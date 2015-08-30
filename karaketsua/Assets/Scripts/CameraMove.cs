@@ -11,48 +11,37 @@ using System.Linq;
 public class CameraMove : MonoBehaviour
 {
 	//public
-    public Vector3[] positions;
-    public Vector3[] rotations;
+	[System.Serializable]
+	public class CameraVector{
+
+		public Vector3 position;
+		public Vector3 rotation;
+	}
+	public CameraVector backCamera;
+	public CameraVector leanCamera;
 	//private
     public float changeTime=1f;
-    public Transform cameraTransform;
     int cameraCount = 0;
 
 	void Start ()
 	{
-        //StartCoroutine("CameraCorutine");
+		MoveToLean ();
 	}
 	
 
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            //var startPosition = cameraTransform.position;
-            //cameraTransform.position = Vector3.Lerp(startPosition, positions[cameraCount%2], changeTime);
-            //cameraTransform.eulerAngles = Vector3.Lerp(cameraTransform.eulerAngles, rotations[cameraCount%2], changeTime);
-            iTween.MoveTo(cameraTransform.gameObject, iTween.Hash("x", positions[cameraCount % 2].x, "y", positions[cameraCount % 2].y, "z", positions[cameraCount % 2].z, "time", changeTime));
-            iTween.RotateTo(cameraTransform.gameObject, iTween.Hash("x", rotations[cameraCount % 2].x, "y", rotations[cameraCount % 2].y, "z", rotations[cameraCount % 2].z, "time", changeTime, "islocal", true));
-            //iTween.RotateTo(cameraTransform.gameObject, iTween.Hash("x", rotations[cameraCount % 2].x, "y", rotations[cameraCount % 2].y, "z", rotations[cameraCount % 2].z, "time", changeTime, "islocal", true));
-            cameraCount++;
-        }
     }
+	//背面に移動
+	public void MoveToBack(){
+		iTween.MoveTo(gameObject, iTween.Hash("x", backCamera.position.x, "y", backCamera.position.y, "z", backCamera.position.z, "time", changeTime));
+		iTween.RotateTo(gameObject, iTween.Hash("x", backCamera.rotation.x, "y", backCamera.rotation.y, "z", backCamera.rotation.z, "time", changeTime, "islocal", true));
 
-    public IEnumerator CameraCorutine()
-    {
-        while (true)
-        {
-            
-            for (int i = 0; i < positions.Length; i++)
-            {
-                var startPosition=cameraTransform.position;
-                cameraTransform.position = Vector3.Lerp(startPosition, positions[i], changeTime);
-                cameraTransform.eulerAngles = Vector3.Lerp(cameraTransform.eulerAngles, rotations[i], changeTime);
-                //cameraTransform.localEulerAngles = rotations[i];
+	}
+	public void MoveToLean(){
+		iTween.MoveTo(gameObject, iTween.Hash("x", leanCamera.position.x, "y", leanCamera.position.y, "z", leanCamera.position.z, "time", changeTime));
+		iTween.RotateTo(gameObject, iTween.Hash("x", leanCamera.rotation.x, "y", leanCamera.rotation.y, "z", leanCamera.rotation.z, "time", changeTime, "islocal", true));
 
-                yield return new WaitForSeconds(changeTime);
-            }
-        }
-    }
+	}
 }

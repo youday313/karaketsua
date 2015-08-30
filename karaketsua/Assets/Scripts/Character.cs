@@ -1,7 +1,7 @@
 ﻿//Character
 //作成日
 //<summary>
-//
+//キャラクターデータ
 //</summary>
 using UnityEngine;
 using System.Collections;
@@ -13,21 +13,21 @@ public class Character : MonoBehaviour
 	//public
 
 	//private
-    public Vect2D<int> positionArray;
-    public bool isSelect;
-    public int movableCount;//移動可能距離
-    public Material material;
-    Color defaultColor;
-    Color selectColor;
+    //現在のキャラクター位置配列
+	public Vect2D<int> positionArray;
+
+    bool isSelect=false;
+	[System.NonSerialized]
+	public int movableCount=1;//移動可能距離
     public Vector2 array;
     Animator animator;
+
+	GameObject actionUICanvas;
+
+	enum CommandState{none,move,attack,skill};
+	CommandState commandState=CommandState.none;
 	void Start ()
 	{
-        // このクラスが付属しているマテリアルを取得 
-        material = this.gameObject.GetComponent<Renderer>().material;
-        // 選択時と非選択時のカラーを保持 
-        defaultColor = material.color;
-        selectColor = Color.red;
         positionArray = new Vect2D<int>((int)array.x, (int)array.y);
         animator = GetComponent<Animator>();
 	}
@@ -39,12 +39,8 @@ public class Character : MonoBehaviour
 	
 	void Update ()
 	{
-        material.color = defaultColor;
-        // StageBaseからbColorStateの値がtrueにされていれば色をかえる 
-        if (isSelect)
-        {
-            material.color = selectColor;
-        }
+		
+        
 	}
     public void Move(Vector3 toVect)
     {
@@ -56,7 +52,6 @@ public class Character : MonoBehaviour
         table.Add("oncomplete", "CompleteMove");	// トゥイーン終了時にCompleteHandler()を呼ぶ
         animator.SetFloat("Speed", 1f);
         iTween.MoveTo(gameObject, table);
-        
     }
 
     void CompleteMove()
@@ -64,4 +59,10 @@ public class Character : MonoBehaviour
         Debug.Log("End");
         animator.SetFloat("Speed", 0f);
     }
+
+	//キャラクターを行動選択状態にする
+	public void OnSelect(){
+		actionUICanvas.SetActive (true);
+		isSelect = true;
+	}
 }

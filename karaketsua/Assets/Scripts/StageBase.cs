@@ -120,7 +120,7 @@ public class StageBase : MonoBehaviour
                 if (select != null)
                 {
                     selectCharacter = select.GetComponent<Character>();
-                    selectCharacter.isSelect = true;
+                    //selectCharacter.isSelect = true;
                     //移動可能距離を示す
                     //絶対値の和がcountより小さいところが移動可能
                     var movableTiles = GameObject.FindGameObjectsWithTag("Tile")
@@ -191,7 +191,7 @@ public class StageBase : MonoBehaviour
                         selectCharacter.positionArray = new Vect2D<int>(tileArray.x, tileArray.y);
                         
                     }
-                    selectCharacter.isSelect = false;
+                    //selectCharacter.isSelect = false;
                     foreach (var tile in GameObject.FindGameObjectsWithTag("Tile").Select(c=>c.GetComponent<TileBase>()))
                     {
                         tile.isMovableState = false;

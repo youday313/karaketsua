@@ -10,13 +10,13 @@ using System.Linq;
 
 public class TileBase : MonoBehaviour
 {
-
+	
     private Color default_color;  // 初期化カラー
     private Color select_color;    // 選択時カラー
     private Color movableColor;
     public Vect2D<int> positionArray;//配列番号
     
-    protected Material _material;
+      protected Material _material;
 
     public bool bColorState=false;
     public bool isMovableState=false;

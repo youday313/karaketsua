@@ -7,33 +7,55 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public class WaitTime : MonoBehaviour
 {
+
+
+
 	//public
 
+	//関連付けられたキャラ
+	public Character character;
 	//private
 
-    RectTransform rect;
+	Scrollbar scrollbar;
+	WaitTimeManager waitTimeManager;
     public float waitSpeed;
+
+
+	bool isActive;
+	public bool IsActive {
+		get { return isActive; }
+		set{ isActive = value;}
+	}
+
 	void Start ()
+
 	{
-		rect=GetComponent<RectTransform>();
-        StartCoroutine("Move");
+		scrollbar=GetComponent<Scrollbar>();
+		waitTimeManager = WaitTimeManager.Instance;
+		isActive = true;
+        //StartCoroutine("Move");
 	}
 	
 	void Update ()
 	{
-        
+		if (isActive) {
+			UpdateValue ();	
+		}
     }
-    IEnumerator Move()
-    {
-        while (true)
-        {
-            rect.position = new Vector3(Mathf.Clamp(rect.position.x + waitSpeed, -220f, 220f), rect.position.y, rect.position.z);
-            //rect.position = Mathf.Clamp(rect.position, -220f, 220f);
-            yield return new WaitForEndOfFrame();
-        }
-    }
+
+	void UpdateValue(){
+		scrollbar.value -= Time.deltaTime*waitSpeed;
+		if (scrollbar.value == 0) {
+			waitTimeManager.OnActiveCharacter ();
+			character.OnSelect ();
+		}
+	}
+
+
+ 
 	
 }
