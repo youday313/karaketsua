@@ -1,0 +1,22 @@
+﻿#pragma strict
+
+import Arbor;
+
+public class #SCRIPTNAME# extends StateBehaviour {
+
+	function Start () {
+
+	}
+	
+	function OnStateBegin () {
+	
+	}
+	
+	function OnStateEnd () {
+	
+	}
+
+	function Update () {
+
+	}
+}

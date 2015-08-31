@@ -1,0 +1,43 @@
+// Basic Settings
+SiteURL:				http://arbor.caitsithware.com/en/
+
+// Context Menu
+Create State:			Create State
+Create Resident State:	Create Resident State
+Create Comment:			Create Comment
+Copy:					Copy
+Paste:					Paste
+Duplicate:				Duplicate
+Delete:					Delete
+Go to Previous State:	Go to Previous State
+Go to Next State:		Go to Next State
+
+// State
+Start State:			Start State
+Resident State:			Resident State
+State:					State
+Comment:				Comment
+Set Start State:		Set Start State
+Add Behaviour:			Add Behaviour
+Paste Behaviour:		Paste Behaviour
+
+// Behaviour
+Move Up:				Move Up
+Move Down:				Move Down
+Edit Script:			Edit Script
+
+// StateList
+State List:				State List
+
+// Grid Setting
+Grid:					Grid
+Show Grid:				Show Grid
+Snap Grid:				Snap Grid
+Grid Size:				Grid Size
+Grid Split Num:			Grid Split Num
+Reset:					Reset
+
+// Language
+Auto:					Auto
+English:				English
+Japanese:				Japanese

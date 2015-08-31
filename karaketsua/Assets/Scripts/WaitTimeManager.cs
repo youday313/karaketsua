@@ -6,7 +6,6 @@ using System.Linq;
 public class WaitTimeManager : Singleton<WaitTimeManager> {
 
 	List<WaitTime> waitTimes=new List<WaitTime>();
-	CameraMove cameraMove;
 
 	// Use this for initialization
 	void Start () {
@@ -14,8 +13,8 @@ public class WaitTimeManager : Singleton<WaitTimeManager> {
 		foreach (var waitTime in GameObject.FindGameObjectsWithTag("WaitTime")) {
 			waitTimes.Add (waitTime.GetComponent<WaitTime>());
 		}
-		cameraMove = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<CameraMove>();
-
+		
+       
 	}
 	
 	// Update is called once per frame
@@ -28,7 +27,7 @@ public class WaitTimeManager : Singleton<WaitTimeManager> {
 		foreach (var wait in waitTimes) {
 			wait.IsActive = false;
 		}
-		cameraMove.MoveToBack ();
+
 	}
 
 

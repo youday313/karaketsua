@@ -1,0 +1,15 @@
+﻿import Arbor
+
+class #SCRIPTNAME# (StateBehaviour): 
+
+	def Start ():
+		pass
+		
+	override def OnStateBegin ():
+		pass
+		
+	override def OnStateEnd ():
+		pass
+	
+	def Update ():
+		pass

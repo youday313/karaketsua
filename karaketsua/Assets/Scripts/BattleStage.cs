@@ -12,6 +12,9 @@ public class BattleStage : BattleBase
 {
 
     protected int _sceneTask;
+    public static readonly int stageSizeX = 2;
+    public static readonly int stageSizeY = 3;
+
 
     // Use this for initialization
     void Start()
@@ -21,9 +24,9 @@ public class BattleStage : BattleBase
         // 配置元のオブジェクト指定 
         var stageObject = GameObject.FindWithTag("Stage");
         // タイル配置
-        for (int i = -2; i <= 2; i++)
+        for (int i = -stageSizeX; i <= stageSizeX; i++)
         {
-            for (int j = -3; j <= 3; j++)
+            for (int j = -stageSizeY; j <= stageSizeY; j++)
             {
 
                 Vector3 tile_pos = new Vector3(

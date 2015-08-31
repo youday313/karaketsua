@@ -226,7 +226,7 @@ public class StageBase : MonoBehaviour
             {
                 // 当たったオブジェクトのTileBaseクラスを取得
                 TileBase tile_base = hit.collider.GetComponent<TileBase>();
-                tile_base.bColorState = true;
+                //tile_base.bColorState = true;
             }
 
         }

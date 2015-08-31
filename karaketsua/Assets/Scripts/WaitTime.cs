@@ -50,7 +50,9 @@ public class WaitTime : MonoBehaviour
 	void UpdateValue(){
 		scrollbar.value -= Time.deltaTime*waitSpeed;
 		if (scrollbar.value == 0) {
+            //キャラクター選択時全体で共通動作はManagerで操作
 			waitTimeManager.OnActiveCharacter ();
+            //キャラクター個別に関連した処理
 			character.OnSelect ();
 		}
 	}
