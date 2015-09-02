@@ -52,7 +52,7 @@ public class PlayerOwner : Singleton<PlayerOwner>
         Debug.Log("InEnd");
         if (commandState == CommandState.None) return;
 
-        if (commandState == CommandState.Move)
+        if (commandState == CommandState.Wait)
         {
             MoveActiveCharacter(dragInfo.delta);
         }
@@ -79,7 +79,6 @@ public class PlayerOwner : Singleton<PlayerOwner>
         {
             activeCharacter.Move(new Vect2D<int>(0, (int)Mathf.Sign(delta.y)));
         }
-
     }
     void AttackActiveCharacter(Vector2 delta)
     {

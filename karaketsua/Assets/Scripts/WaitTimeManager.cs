@@ -30,5 +30,14 @@ public class WaitTimeManager : Singleton<WaitTimeManager> {
 
 	}
 
+    public void RestartWaitTime()
+    {
+        foreach (var wait in waitTimes)
+        {
+            wait.IsActive = true;
+        }
+
+    }
+
 
 }

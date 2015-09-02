@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
     //パラメーター
     public float hitPoint=1;
     public GameObject destroyEffect;
-
+    public WaitTime waitTime;
 
 	void Start ()
 	{
@@ -116,6 +116,7 @@ public class Character : MonoBehaviour
     void CompleteMove()
     {
         animator.SetFloat("Speed", 0f);
+        ResetActive();
     }
 
 	//キャラクターを行動選択状態にする
@@ -132,4 +133,10 @@ public class Character : MonoBehaviour
 
 
 	}
+
+    void ResetActive()
+    {
+        waitTime.ResetValue();
+
+    }
 }

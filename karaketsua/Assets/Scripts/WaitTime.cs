@@ -57,6 +57,11 @@ public class WaitTime : MonoBehaviour
 		}
 	}
 
+    public void ResetValue()
+    {
+        waitTimeManager.RestartWaitTime();
+
+    }
 
  
 	

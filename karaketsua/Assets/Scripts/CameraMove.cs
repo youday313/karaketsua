@@ -21,7 +21,6 @@ public class CameraMove : MonoBehaviour
 	public CameraVector leanCamera;
 	//private
     public float changeTime=1f;
-    int cameraCount = 0;
 
 	void Start ()
 	{

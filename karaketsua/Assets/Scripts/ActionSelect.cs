@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum CommandState { None,Move, Attack, Skill };
+public enum CommandState { None,Wait, Attack, Skill };
 
 public class ActionSelect : Singleton<ActionSelect>
 {
@@ -31,6 +31,7 @@ public class ActionSelect : Singleton<ActionSelect>
     public void SetActiveAction()
     {
         commands.SetActive(true);
+        PlayerOwner.Instance.commandState = CommandState.Wait;
     }
 
     public void SelectCommandFromButton(string state)
@@ -38,11 +39,12 @@ public class ActionSelect : Singleton<ActionSelect>
         var command=EnumRapper.GetEnum<CommandState>(state);
         swipeIcon.SetActive(true);
 
-        if (command == CommandState.Move)
-        {
-            PlayerOwner.Instance.commandState = CommandState.Move;
-        }
-        else if (command == CommandState.Attack)
+
+        //if (command == CommandState.Move)
+        //{
+        //    PlayerOwner.Instance.commandState = CommandState.Move;
+        //}
+        if (command == CommandState.Attack)
         {
             PlayerOwner.Instance.commandState = CommandState.Attack;
 
