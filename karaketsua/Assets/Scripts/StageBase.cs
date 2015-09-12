@@ -183,12 +183,12 @@ public class StageBase : MonoBehaviour
                     {
                         //移動処理
                         //座標移動
-                        selectCharacter.Move(tile_base.transform.position);
+                        //selectCharacter.Move(tile_base.transform.position);
                         
                         
                         //selectCharacter.transform.position = new Vector3(tile_base.transform.position.x, selectCharacter.transform.position.y, tile_base.transform.position.z);
                         //配列番号変更
-                        selectCharacter.positionArray = new Vect2D<int>(tileArray.x, tileArray.y);
+                        selectCharacter.positionArray = new IntVect2D(tileArray.x, tileArray.y);
                         
                     }
                     //selectCharacter.isSelect = false;

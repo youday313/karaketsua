@@ -40,7 +40,7 @@ public class BattleStage : BattleBase
                 {
                     // プレハブの複製 
                     var tile =Instantiate(prefab,tile_pos, Quaternion.identity) as GameObject;
-                    tile.GetComponent<TileBase>().Init(new Vect2D<int>(i,j));
+                    tile.GetComponent<TileBase>().Init(new IntVect2D(i,j));
 
                     // 生成元の下に複製したプレハブをくっつける 
                     tile.transform.parent = stageObject.transform;

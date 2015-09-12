@@ -32,7 +32,6 @@ public class WaitTime : MonoBehaviour
 	}
 
 	void Start ()
-
 	{
 		scrollbar=GetComponent<Scrollbar>();
 		waitTimeManager = WaitTimeManager.Instance;

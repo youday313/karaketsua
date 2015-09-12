@@ -7,14 +7,15 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+public enum TileState { Default=0,Active,Moved,Select,Attack,Skill};
 
 public class TileBase : MonoBehaviour
 {
-	
-    private Color defaultColor;  // 初期化カラー
-    private Color selectColor;    // 選択時カラー
-    //private Color movableColor;
-    public Vect2D<int> positionArray;//配列番号
+
+    //[SerializeField]
+    Color[] tileColors=new Color[Enum.GetNames(typeof(TileState)).Count()];
+    public IntVect2D positionArray = new IntVect2D(IntVect2D.nullNumber, IntVect2D.nullNumber);//配列番号
     
       protected Material material;
 
@@ -26,26 +27,25 @@ public class TileBase : MonoBehaviour
         // このクラスが付属しているマテリアルを取得 
         material = this.gameObject.GetComponent<Renderer>().material;
         // 選択時と非選択時のカラーを保持 
-        defaultColor = material.color;
-        selectColor = Color.magenta;
+        tileColors[(int)TileState.Default] = material.color;
+        tileColors[(int)TileState.Active] = Color.blue;
+        tileColors[(int)TileState.Moved] = Color.green;
+        tileColors[(int)TileState.Select] = Color.yellow;
+        tileColors[(int)TileState.Attack] = Color.red;
+        tileColors[(int)TileState.Skill] = Color.black;
+
         //movableColor = Color.blue;
     }
-    public void Init(Vect2D<int> array)
+    public void Init(IntVect2D array)
     {
         positionArray.x = array.x;
         positionArray.y = array.y;
     }
     //選択したキャラクターの下
-    public void ChangeColor(bool isActive)
+    public void ChangeColor(TileState tileState)
     {
-        if (isActive)
-        {
-            material.color = selectColor;
-        }
-        else
-        {
-            material.color = defaultColor;
-        }
+        material.color = tileColors[(int)tileState];
+
     }
 
     // Update is called once per frame
