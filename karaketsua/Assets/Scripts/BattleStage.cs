@@ -83,6 +83,8 @@ public class BattleStage : Singleton<BattleStage>
     {
         if (reset) ResetTileColor();
         GetTile(position).ChangeColor(state);
+
+
     }
     //上下左右のタイル色変更
     public void ChangeNeighborTilesColor(IntVect2D position, TileState toState, bool reset=false)

@@ -117,7 +117,7 @@ public class PlayerOwner : Singleton<PlayerOwner>
         else if(commandState==CommandState.Skill){
             activeCharacter.SetSkillMode();
             IT_Gesture.onSwipingE += OnSwiping;
-            IT_Gesture.onMouse1UpE += OnTouchUp;
+            //IT_Gesture.onMouse1UpE += OnTouchUp;
         }
         else if (commandState==CommandState.Wait)
         {
@@ -126,7 +126,7 @@ public class PlayerOwner : Singleton<PlayerOwner>
         else if (commandState == CommandState.End)
         {
             IT_Gesture.onSwipingE -= OnSwiping;
-            IT_Gesture.onMouse1UpE -= OnTouchUp;
+            //IT_Gesture.onMouse1UpE -= OnTouchUp;
         }
     }
 

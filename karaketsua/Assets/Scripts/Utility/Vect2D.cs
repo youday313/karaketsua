@@ -25,6 +25,11 @@ public class IntVect2D
         x = _x;
         y = _y;
     }
+    public IntVect2D(IntVect2D vect)
+    {
+        x = vect.x;
+        y = vect.y;
+    }
     public static bool IsEqual(IntVect2D t1,IntVect2D t2)
     {
         return t1.x == t2.x&&t1.y==t2.y ;
