@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum CommandState { None, Moved, TargetSelect, Attack, Skill, End };
+public enum CommandState { None, Moved, TargetSelect, Attack, Skill,Wait, End };
 
 public class PlayerOwner : Singleton<PlayerOwner>
 {
@@ -36,6 +36,14 @@ public class PlayerOwner : Singleton<PlayerOwner>
         cameraMove.MoveToBack();
         ActionSelect.Instance.SetActiveAction();
         commandState = CommandState.None;
+
+    }
+    public void OnEndActive()
+    {
+        activeCharacter = null;
+        SetCommandState(CommandState.End);
+        cameraMove.MoveToLean();
+        WaitTimeManager.Instance.RestartWaitTime();
 
     }
 
@@ -111,13 +119,20 @@ public class PlayerOwner : Singleton<PlayerOwner>
             IT_Gesture.onSwipingE += OnSwiping;
             IT_Gesture.onMouse1UpE += OnTouchUp;
         }
+        else if (commandState==CommandState.Wait)
+        {
+            activeCharacter.Wait();
+        }
+        else if (commandState == CommandState.End)
+        {
+            IT_Gesture.onSwipingE -= OnSwiping;
+            IT_Gesture.onMouse1UpE -= OnTouchUp;
+        }
     }
 
 
     void MoveActiveCharacter(Vector2 delta)
     {
-
-
         //どの方向に動くか
         //x方向
         if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))

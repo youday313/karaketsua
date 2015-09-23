@@ -149,7 +149,7 @@ public class Character : MonoBehaviour
         //攻撃
         animator.SetTrigger("Attack");
         target.Damage(1);
-        PlayerOwner.Instance.commandState = CommandState.End;
+        ResetActive();
     }
 
     IntVect2D GetArrayFromRay(Vector2 touchPosition)
@@ -285,17 +285,23 @@ public class Character : MonoBehaviour
                 }
                 //攻撃
                 animator.SetTrigger("Attack");
+                ResetActive();
             }
 
         }
     }
 
 
+    public void Wait()
+    {
+        ResetActive();
+    }
 
     void ResetActive()
     {
+        battleStage.ResetTileColor();
         waitTime.ResetValue();
-
+        PlayerOwner.Instance.OnEndActive();
     }
 
 }

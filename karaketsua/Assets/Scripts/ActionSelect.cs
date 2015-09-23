@@ -50,7 +50,7 @@ public class ActionSelect : Singleton<ActionSelect>
         }
         else if (command == CommandButton.Wait)
         {
-
+            PlayerOwner.Instance.SetCommandState(CommandState.Wait);
         }
         commands.SetActive(false);
     }

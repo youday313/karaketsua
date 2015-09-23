@@ -23,6 +23,7 @@ public class WaitTime : MonoBehaviour
 	Scrollbar scrollbar;
 	WaitTimeManager waitTimeManager;
     public float waitSpeed;
+    float initTimeValue=1;
 
 
 	bool isActive;
@@ -36,6 +37,7 @@ public class WaitTime : MonoBehaviour
 		scrollbar=GetComponent<Scrollbar>();
 		waitTimeManager = WaitTimeManager.Instance;
 		isActive = true;
+        scrollbar.value = initTimeValue;
         //StartCoroutine("Move");
 	}
 	
@@ -58,7 +60,7 @@ public class WaitTime : MonoBehaviour
 
     public void ResetValue()
     {
-        waitTimeManager.RestartWaitTime();
+        scrollbar.value = initTimeValue;
 
     }
 
