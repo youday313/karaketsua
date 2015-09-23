@@ -32,8 +32,9 @@ public class Character : MonoBehaviour
 
     BattleStage battleStage;
 
+    #region::初期化
 
-	void Start ()
+    void Start ()
 	{
         positionArray = new IntVect2D((int)array.x, (int)array.y);
         animator = GetComponent<Animator>();
@@ -51,13 +52,17 @@ public class Character : MonoBehaviour
         positionArray.x = array.x;
         positionArray.y = array.y;
     }
-	
-	void Update ()
+
+    #endregion::初期化
+
+    void Update ()
 	{
 		
         
 	}
 
+
+    #region::移動
     //
     public void Move(IntVect2D toVect)
     {
@@ -88,8 +93,28 @@ public class Character : MonoBehaviour
         PlayerOwner.Instance.commandState = CommandState.Moved;
 
     }
+    void CompleteMove()
+    {
+        animator.SetFloat("Speed", 0f);
+    }
+    #endregion::移動
+    #region::選択
+    //キャラクターを行動選択状態にする
+    public void OnSelect()
+    {
+        isSelect = true;
+        isAlreadyMove = false;
+        //選択したキャラを登録
+        PlayerOwner.Instance.OnActiveCharacter(this);
+        //足元のタイルの色変更
+        battleStage.ChangeColor(positionArray, TileState.Select);
 
-    public void SetTarget(Vector2 touchPosition )
+        //上下左右のタイル色を移動可能色にする
+        battleStage.ChangeNeighborTilesColor(positionArray, TileState.Active);
+
+    }
+    //ターゲットの決定
+    public void SetTarget(Vector2 touchPosition)
     {
 
         IntVect2D targetPosition = GetArrayFromRay(touchPosition);
@@ -116,7 +141,21 @@ public class Character : MonoBehaviour
         PlayerOwner.Instance.commandState = CommandState.Attack;
 
     }
+    //攻撃待機状態
+    public void SetAttackMode()
+    {
 
+        //自分の乗っているタイルの色変更
+        battleStage.ChangeColor(positionArray, TileState.Moved, reset: true);
+
+        //攻撃範囲のタイル色を攻撃可能色にする
+        //現在は上下左右のみ
+        battleStage.ChangeNeighborTilesColor(positionArray, TileState.Attack);
+
+    }
+    #endregion::選択
+
+    #region::攻撃
     //ターゲットが選択されていた時タイルタップ
     public void Attack(Vector2 touchPosition)
     {
@@ -138,11 +177,11 @@ public class Character : MonoBehaviour
             return;
 
         }
-            //ターゲット以外のキャラをタップ
-            //ターゲットの切り替え
+        //ターゲット以外のキャラをタップ
+        //ターゲットの切り替え
         else if (target != attackTarget)
         {
-            battleStage.ChangeNeighborTilesColor(positionArray,TileState.Attack);
+            battleStage.ChangeNeighborTilesColor(positionArray, TileState.Attack);
             SetTarget(touchPosition);
         }
 
@@ -152,6 +191,23 @@ public class Character : MonoBehaviour
         ResetActive();
     }
 
+
+    public void Damage(float power)
+    {
+        hitPoint -= power;
+        if (hitPoint <= 0)
+        {
+            Instantiate(destroyEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+    #endregion::攻撃
+
+
+
+
+    #region::Utility
+    //クリックしたタイル位置を取得
     IntVect2D GetArrayFromRay(Vector2 touchPosition)
     {
         RaycastHit hit;  // 光線に当たったオブジェクトを受け取るクラス 
@@ -175,50 +231,16 @@ public class Character : MonoBehaviour
         return new IntVect2D(IntVect2D.nullNumber,IntVect2D.nullNumber);
     }
 
-    //攻撃待機状態
-    public void SetAttackMode()
-    {
-        
-        //自分の乗っているタイルの色変更
-        battleStage.ChangeColor(positionArray,TileState.Moved,reset:true);
-
-        //攻撃範囲のタイル色を攻撃可能色にする
-        //現在は上下左右のみ
-        battleStage.ChangeNeighborTilesColor(positionArray, TileState.Attack);
-
-    }
-
-    public void Damage(float power)
-    {
-        hitPoint -= power;
-        if (hitPoint <= 0)
-        {
-            Instantiate(destroyEffect,transform.position,Quaternion.identity);
-            Destroy(gameObject);
-        }
-    }
+    #endregion:Utility
 
 
-    void CompleteMove()
-    {
-        animator.SetFloat("Speed", 0f);
-    }
-
-	//キャラクターを行動選択状態にする
-	public void OnSelect(){
-		isSelect = true;
-        isAlreadyMove = false;
-        //選択したキャラを登録
-        PlayerOwner.Instance.OnActiveCharacter(this);
-        //足元のタイルの色変更
-        battleStage.ChangeColor(positionArray,TileState.Select);
-
-        //上下左右のタイル色を移動可能色にする
-        battleStage.ChangeNeighborTilesColor(positionArray, TileState.Active);
-
-    }
 
 
+
+
+    #region::スキル
+
+    List<IntVect2D> swipedPosision = new List<IntVect2D>();
     public void SetSkillMode()
     {
         
@@ -231,21 +253,18 @@ public class Character : MonoBehaviour
 
         swipedPosision = new List<IntVect2D>();
     }
-
-    List<IntVect2D> swipedPosision = new List<IntVect2D>();
-    
     public void SkillSwipe(SwipeInfo swipeInfo)
     {
-                     var targetPosition=GetArrayFromRay(swipeInfo.startPoint);
-            if(IntVect2D.IsNull(targetPosition)==true)return;
+        var targetPosition = GetArrayFromRay(swipeInfo.startPoint);
+        if (IntVect2D.IsNull(targetPosition) == true) return;
 
         //一番初めのスワイプ
-        if (swipedPosision.Count==0)
+        if (swipedPosision.Count == 0)
         {
             //ルート2以下の距離
-             if (Vector2.Distance(new Vector2(targetPosition.x, targetPosition.y), new Vector2(positionArray.x, positionArray.y)) >= 2f) return;
-             //スキル開始
-             swipedPosision.Add(targetPosition);
+            if (Vector2.Distance(new Vector2(targetPosition.x, targetPosition.y), new Vector2(positionArray.x, positionArray.y)) > Mathf.Sqrt(2)) return;
+            //スキル開始
+            swipedPosision.Add(targetPosition);
 
             battleStage.ChangeColor(targetPosition, TileState.Select);
         }
@@ -253,32 +272,32 @@ public class Character : MonoBehaviour
         {
             var lastPosition = swipedPosision.Last();
             //現在位置
-            if (IntVect2D.IsEqual(targetPosition, lastPosition)==true) return;
+            if (IntVect2D.IsEqual(targetPosition, lastPosition) == true) return;
             //隣
-            if(IntVect2D.IsNeighbor(targetPosition,lastPosition)==false)return;
+            if (IntVect2D.IsNeighbor(targetPosition, lastPosition) == false) return;
             //キャラクター以外
-            if (IntVect2D.IsEqual(targetPosition,positionArray)) return;
-                //キャラクターから2未満
+            if (IntVect2D.IsEqual(targetPosition, positionArray)) return;
+            //キャラクターから2未満
             if (Vector2.Distance(new Vector2(targetPosition.x, targetPosition.y), new Vector2(positionArray.x, positionArray.y)) >= 2f) return;
             //まだ通過していない
             foreach (var pos in swipedPosision)
             {
-                if(IntVect2D.IsEqual(targetPosition, pos)==true)return;
+                if (IntVect2D.IsEqual(targetPosition, pos) == true) return;
             }
 
             //新しい位置
             swipedPosision.Add(targetPosition);
             //ルート2以下の距離
-            battleStage.ChangeTilesColorFromDistance(targetPosition, TileState.Select, Mathf.Sqrt(2));
+            battleStage.ChangeColor(targetPosition, TileState.Select);
 
             if (swipedPosision.Count == 8)
             {
                 //ターゲットの検索
                 var targets = GameObject.FindGameObjectsWithTag("EnemyCharacter")
                     .Select(t => t.GetComponent<Character>())
-                    .Where(t => Vector2.Distance(new Vector2(t.positionArray.x, t.positionArray.y), new Vector2(positionArray.x, positionArray.y))<2f)
-                    .Select(t=>t.GetComponent<Character>());
-                if (targets.Count() == 0) return;        
+                    .Where(t => Vector2.Distance(new Vector2(t.positionArray.x, t.positionArray.y), new Vector2(positionArray.x, positionArray.y)) < 2f)
+                    .Select(t => t.GetComponent<Character>());
+                if (targets.Count() == 0) return;
                 foreach (var tar in targets)
                 {
                     tar.Damage(1);
@@ -290,6 +309,11 @@ public class Character : MonoBehaviour
 
         }
     }
+
+
+    #endregion::スキル
+
+
 
 
     public void Wait()
