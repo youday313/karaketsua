@@ -30,11 +30,14 @@ public class Character : MonoBehaviour
     public bool isAlreadyMove = false;
     Character attackTarget;
 
+    BattleStage battleStage;
+
 
 	void Start ()
 	{
         positionArray = new IntVect2D((int)array.x, (int)array.y);
         animator = GetComponent<Animator>();
+        battleStage = BattleStage.Instance;
         Init();
 	}
     void Init()
@@ -65,8 +68,7 @@ public class Character : MonoBehaviour
         positionArray.y = Mathf.Clamp(positionArray.y + toVect.y, -BattleStage.stageSizeY, BattleStage.stageSizeY);
 
         //移動先のタイル
-        var toTile = GameObject.FindGameObjectsWithTag("Tile").Select(x => x.GetComponent<TileBase>())
-            .Where(t => t.positionArray.x == positionArray.x && t.positionArray.y == positionArray.y).FirstOrDefault();
+        var toTile = battleStage.GetTile(positionArray);
         //移動失敗
         if (toTile == null) return;
 
@@ -79,9 +81,10 @@ public class Character : MonoBehaviour
         animator.SetFloat("Speed", 1f);
         iTween.MoveTo(gameObject, table);
         isAlreadyMove = true;
-        ResetTileColor();
+
+
         //自分の乗っているタイルの色変更
-        toTile.ChangeColor(TileState.Moved);
+        battleStage.ChangeColor(positionArray,TileState.Moved,reset:true);
         PlayerOwner.Instance.commandState = CommandState.Moved;
 
     }
@@ -95,7 +98,7 @@ public class Character : MonoBehaviour
         //ターゲットの検索
         var target = GameObject.FindGameObjectsWithTag("EnemyCharacter")
     .Select(t => t.GetComponent<Character>())
-    .Where(t => IntVect2D.IsEqual(t.positionArray, targetPosition))
+    .Where(t => targetPosition.IsEqual(t.positionArray))
     .FirstOrDefault();
         //ターゲットが存在しないマスをタップ
         if (target == null) return;
@@ -106,9 +109,8 @@ public class Character : MonoBehaviour
 
         attackTarget = target;
         //ターゲットのタイル変更
-        var toTile = GameObject.FindGameObjectsWithTag("Tile").Select(x => x.GetComponent<TileBase>())
-.Where(t => t.positionArray.x == targetPosition.x && t.positionArray.y == targetPosition.y).FirstOrDefault();
-        toTile.ChangeColor(TileState.Select);
+        battleStage.ChangeColor(positionArray, TileState.Select);
+
 
 
         PlayerOwner.Instance.commandState = CommandState.Attack;
@@ -125,7 +127,7 @@ public class Character : MonoBehaviour
         //ターゲットの検索
         var target = GameObject.FindGameObjectsWithTag("EnemyCharacter")
     .Select(t => t.GetComponent<Character>())
-    .Where(t => IntVect2D.IsEqual(t.positionArray, targetPosition))
+    .Where(t => targetPosition.IsEqual(t.positionArray))
     .FirstOrDefault();
 
         //ターゲットが存在しないマスをタップ
@@ -140,7 +142,7 @@ public class Character : MonoBehaviour
             //ターゲットの切り替え
         else if (target != attackTarget)
         {
-            ChangeNeighborTile(TileState.Attack);
+            battleStage.ChangeNeighborTilesColor(positionArray,TileState.Attack);
             SetTarget(touchPosition);
         }
 
@@ -176,26 +178,14 @@ public class Character : MonoBehaviour
     //攻撃待機状態
     public void SetAttackMode()
     {
-        ResetTileColor();
+        
         //自分の乗っているタイルの色変更
-        var toTile = GameObject.FindGameObjectsWithTag("Tile").Select(x => x.GetComponent<TileBase>())
-        .Where(t => t.positionArray.x == positionArray.x && t.positionArray.y == positionArray.y).FirstOrDefault();
-        toTile.ChangeColor(TileState.Moved);
+        battleStage.ChangeColor(positionArray,TileState.Moved,reset:true);
 
         //攻撃範囲のタイル色を攻撃可能色にする
         //現在は上下左右のみ
-        var tiles = GameObject.FindGameObjectsWithTag("Tile")
-            .Select(t => t.GetComponent<TileBase>())
-            .Where(t =>
-               t.positionArray.x - 1 == positionArray.x && t.positionArray.y == positionArray.y
-            || t.positionArray.x + 1 == positionArray.x && t.positionArray.y == positionArray.y
-            || t.positionArray.x == positionArray.x && t.positionArray.y - 1 == positionArray.y
-            || t.positionArray.x == positionArray.x && t.positionArray.y + 1 == positionArray.y)
-            .Select(t => t.GetComponent<TileBase>());
-        foreach (var t in tiles)
-        {
-            t.ChangeColor(TileState.Attack);
-        }
+        battleStage.ChangeNeighborTilesColor(positionArray, TileState.Attack);
+
     }
 
     public void Damage(float power)
@@ -221,49 +211,23 @@ public class Character : MonoBehaviour
         //選択したキャラを登録
         PlayerOwner.Instance.OnActiveCharacter(this);
         //足元のタイルの色変更
-        var tile=GameObject.FindGameObjectsWithTag("Tile").Where(t => t.GetComponent<TileBase>().positionArray.x == positionArray.x && t.GetComponent<TileBase>().positionArray.y == positionArray.y)
-            .Select(t => t.GetComponent<TileBase>()).FirstOrDefault();
-        tile.ChangeColor(TileState.Select);
-            
-        //上下左右のタイル色を移動可能色にする
-        ChangeNeighborTile(TileState.Active);
+        battleStage.ChangeColor(positionArray,TileState.Select);
 
-	}
-    //上下左右のタイル色変更
-    public void ChangeNeighborTile(TileState toState)
-    {
-        var tiles = GameObject.FindGameObjectsWithTag("Tile")
-    .Select(t => t.GetComponent<TileBase>())
-    .Where(t =>
-       t.positionArray.x - 1 == positionArray.x && t.positionArray.y == positionArray.y
-    || t.positionArray.x + 1 == positionArray.x && t.positionArray.y == positionArray.y
-    || t.positionArray.x == positionArray.x && t.positionArray.y - 1 == positionArray.y
-    || t.positionArray.x == positionArray.x && t.positionArray.y + 1 == positionArray.y)
-    .Select(t => t.GetComponent<TileBase>());
-        foreach (var t in tiles)
-        {
-            t.ChangeColor(toState);
-        }
+        //上下左右のタイル色を移動可能色にする
+        battleStage.ChangeNeighborTilesColor(positionArray, TileState.Active);
 
     }
 
+
     public void SetSkillMode()
     {
-        ResetTileColor();
+        
+
         //ルート2以下の距離
-        var tiles = GameObject.FindGameObjectsWithTag("Tile")
-            .Select(t => t.GetComponent<TileBase>())
-            .Where(t => Vector2.Distance(new Vector2(t.positionArray.x, t.positionArray.y), new Vector2(positionArray.x, positionArray.y)) < 2f)
-            .Select(t => t.GetComponent<TileBase>());
         //色変更
-        foreach (var t in tiles)
-        {
-            t.ChangeColor(TileState.Skill);
-        }
+        battleStage.ChangeTilesColorFromDistance(positionArray, TileState.Skill, Mathf.Sqrt(2), reset:true);
         //足元のタイルの色変更
-        var tile = GameObject.FindGameObjectsWithTag("Tile").Where(t => t.GetComponent<TileBase>().positionArray.x == positionArray.x && t.GetComponent<TileBase>().positionArray.y == positionArray.y)
-            .Select(t => t.GetComponent<TileBase>()).FirstOrDefault();
-        tile.ChangeColor(TileState.Select);
+        battleStage.ChangeColor(positionArray, TileState.Select);
 
         swipedPosision = new List<IntVect2D>();
     }
@@ -278,17 +242,12 @@ public class Character : MonoBehaviour
         //一番初めのスワイプ
         if (swipedPosision.Count==0)
         {
-            Debug.Log("First");
             //ルート2以下の距離
              if (Vector2.Distance(new Vector2(targetPosition.x, targetPosition.y), new Vector2(positionArray.x, positionArray.y)) >= 2f) return;
              //スキル開始
              swipedPosision.Add(targetPosition);
-             var tile = GameObject.FindGameObjectsWithTag("Tile")
-     .Select(t => t.GetComponent<TileBase>())
-     .Where(t => IntVect2D.IsEqual(targetPosition, t.positionArray))
-     .FirstOrDefault();
-             tile.ChangeColor(TileState.Select);
 
+            battleStage.ChangeColor(targetPosition, TileState.Select);
         }
         else
         {
@@ -310,11 +269,7 @@ public class Character : MonoBehaviour
             //新しい位置
             swipedPosision.Add(targetPosition);
             //ルート2以下の距離
-            var tile = GameObject.FindGameObjectsWithTag("Tile")
-                .Select(t => t.GetComponent<TileBase>())
-                .Where(t => IntVect2D.IsEqual(targetPosition, t.positionArray))
-                .FirstOrDefault();
-            tile.ChangeColor(TileState.Select);
+            battleStage.ChangeTilesColorFromDistance(targetPosition, TileState.Select, Mathf.Sqrt(2));
 
             if (swipedPosision.Count == 8)
             {
@@ -332,15 +287,6 @@ public class Character : MonoBehaviour
                 animator.SetTrigger("Attack");
             }
 
-        }
-    }
-
-
-    //床のタイルの色をクリア
-    public void ResetTileColor()
-    {
-        foreach(var tile in GameObject.FindGameObjectsWithTag("Tile").Select(x=>x.GetComponent<TileBase>())){
-            tile.ChangeColor(TileState.Default);
         }
     }
 

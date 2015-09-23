@@ -29,6 +29,10 @@ public class IntVect2D
     {
         return t1.x == t2.x&&t1.y==t2.y ;
     }
+    public bool IsEqual(IntVect2D t)
+    {
+        return x == t.x && y == t.y;
+    }
     //null判別用
     public const int nullNumber = 1000;
     public static bool IsNull(IntVect2D t)

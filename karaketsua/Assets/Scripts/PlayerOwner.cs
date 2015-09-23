@@ -103,7 +103,8 @@ public class PlayerOwner : Singleton<PlayerOwner>
         commandState = state;
         //ターゲット選択なら上下左右のタイル色変更
         if (commandState==CommandState.TargetSelect) {
-            activeCharacter.ChangeNeighborTile(TileState.Attack);
+            //activeCharacter.ChangeNeighborTile(TileState.Attack);
+            BattleStage.Instance.ChangeNeighborTilesColor(activeCharacter.positionArray, TileState.Attack);
         }
         else if(commandState==CommandState.Skill){
             activeCharacter.SetSkillMode();
