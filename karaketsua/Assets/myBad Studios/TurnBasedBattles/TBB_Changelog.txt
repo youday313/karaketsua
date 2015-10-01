@@ -1,0 +1,64 @@
+﻿v1.3
+Major changes:
+Now uses a single grid, instead of creating two grids with the values found in tbbBattlefield
+Player can now battle on either side of the battlefield
+Individual tiles can now report what side of the field they are on
+AI vs AI now working
+Human vs Human now working
+Player can now optionally reposition his/ her characters during their turn
+tbbBattleLancher now overrides tbBattlefield in terms of what characters will participate in the match
+
+Removed the PositionBattlefield function. Grids now position themselves during creation
+Removed the requirement to manually specify PlayerFaction and EnemyFaction and now determine it automatically
+Removed all references to PlayerFaction and EnemyFaction and replaced it with TopFaction and BottomFaction
+Removed some duplicate code being triggered on different components
+Removed the GridCenter gameObject from tbbBattlefield in favor of the new Middle Transform in tbbGrid
+
+Added new class tbbMovement to handle character positioning if movement is enabled
+Added new class tbbGrid and moved grid related functions from tbbFaction to there
+Added a new drop down field to specify which side the player starts on
+Added a new drop down field to specify which side starts the battle
+Added a new field called tile_cursor to tbbBattlefield. Use this to specify the prefab to use to indicate selected tile during movement state
+Added new boolean field Spawn_all_enemy_party_members so you can spawn all enemy characters each turn, instead of a random selection
+Added Starting_Faction drop down to tbbBattleLauncher and makes tbbBattlefield honor this setting
+Added 'grid' variabe of type tbbGrid to tbbBattlefield
+Added 'grid' property to tbbFactions but it references 'grid' in tbbBattlefield
+Added 'side' property to tbbFaction to indicate wether this faction plays in the Upper or Lower part of the field
+Added North, South East, West and Middle position markers to the grid for future use
+Added ChangeToNextState and ChangeToPreviousState to tbbCharSelect to better facilitate sequential state traversal
+Added ID property to tbbPlayerInfo to identify characters by numerically instead of by name, thusly allowing duplicate characters
+Added onPreCharacterLoad event to tbbBattlefield. This fires just before the characters are spawned
+Added onCharactersLoaded event to tbbBattlefield. Use this to apply your character's saved stats to generic spawned prefabs
+Added AttackMode property to tbbAttackInfo to report AttackMode as tbbeAttackMode instead of tbbeAttackModeExt.
+	- Automatically converts tbbeAttackModeExt.Default to an appropriate value
+
+Updated tbbBattleOrder to use new tbbAttackInfo.AttackMode property instead of calculating the value each time it is used
+
+Other changes
+Various changes to Input classes to improve code flow and incorporate the new movement state
+Fixed a few errors with tile highlighting
+Various other, minor bug fixes
+Changed the coding style I employed for public variables to enable Doxygen to generate complete documentation. Before, a lot of stuff was skipped
+
+v1.2
+A few minor bg fixes
+Updated Vita controller support to now include access to the thumb sticks also. No configuration required on your end.
+Adds a couple of entries in the Input manager for the Vita
+Adds the TBB define so other packages can detect the presence of this kit
+Now supports legacy animations on a per-character basis
+
+v1.1.1
+Added Hex grid layout
+Fixed enemy facing the wrong way during neutral area battles
+Fixed character running forever if casting a spell from the home tile
+Added an MP depletion and requirement system to magic spells
+Changed Spell selection to always show spells, even if there is only one
+
+v1.1
+Lowered minimum Unity version to 4.3.0
+Removed all default values from functions to allow for pre Unity 4.5 compatibility
+Added Vita button mapping
+Simplified the button input class using the new button mapping class
+
+v1.0
+initial release
