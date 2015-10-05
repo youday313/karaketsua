@@ -18,16 +18,18 @@ public class Character : MonoBehaviour
 	public IntVect2D positionArray;
 
     bool isSelect=false;
+    bool isNowAction = false;//行動中
 	[System.NonSerialized]
 	public int movableCount=1;//移動可能距離
-    public Vector2 array;
+    public Vector2 startPositionArray;
     Animator animator;
 
     //パラメーター
     public float hitPoint=1;
     public GameObject destroyEffect;
-    public WaitTime waitTime;
-    public bool isAlreadyMove = false;
+    public float waitSpeed;
+    WaitTime waitTime;
+    bool isAlreadyMove = false;
     Character attackTarget;
 
     BattleStage battleStage;
@@ -36,15 +38,16 @@ public class Character : MonoBehaviour
 
     void Start ()
 	{
-        positionArray = new IntVect2D((int)array.x, (int)array.y);
+        positionArray = new IntVect2D((int)startPositionArray.x, (int)startPositionArray.y);
         animator = GetComponent<Animator>();
         battleStage = BattleStage.Instance;
+        waitTime= WaitTimeManager.Instance.CreateWaitTime(waitSpeed, this);
         Init();
 	}
     void Init()
     {
-        positionArray.x = (int)array.x;
-        positionArray.y = (int)array.y;
+        positionArray.x = (int)startPositionArray.x;
+        positionArray.y = (int)startPositionArray.y;
 
     }
 
@@ -88,6 +91,7 @@ public class Character : MonoBehaviour
         animator.SetFloat("Speed", 1f);
         iTween.MoveTo(gameObject, table);
         isAlreadyMove = true;
+        isNowAction = true;
 
 
         //自分の乗っているタイルの色変更
@@ -98,6 +102,8 @@ public class Character : MonoBehaviour
     void CompleteMove()
     {
         animator.SetFloat("Speed", 0f);
+        isNowAction = false;
+
     }
     #endregion::移動
     #region::選択

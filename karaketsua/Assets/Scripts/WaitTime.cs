@@ -22,7 +22,7 @@ public class WaitTime : MonoBehaviour
 
 	Scrollbar scrollbar;
 	WaitTimeManager waitTimeManager;
-    public float waitSpeed;
+    float waitSpeed;
     float initTimeValue=1;
 
 
@@ -40,7 +40,13 @@ public class WaitTime : MonoBehaviour
         scrollbar.value = initTimeValue;
         //StartCoroutine("Move");
 	}
-	
+	public void Init(float speed,Character chara)
+    {
+        waitSpeed = speed;
+        character = chara;
+
+    }
+
 	void Update ()
 	{
 		if (isActive) {
