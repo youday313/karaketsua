@@ -53,6 +53,43 @@ public class BattleStage : Singleton<BattleStage>
         }
     }
 
+    public void UpdateTileColors(IntVect2D positionArray,TileState state)
+    {
+        //OnSelect
+        if (state == TileState.Active)
+        {
+            ResetTileColor();
+            ChangeColor(positionArray, state);
+            ChangeNeighborTilesColor(positionArray, TileState.Movable);
+        }
+        //Move
+        else if (state == TileState.Moved)
+        {
+            ResetTileColor();
+            ChangeColor(positionArray, state);
+        }
+        else if (state == TileState.Target) {
+            ChangeColor(positionArray, state);
+        }
+        else if (state == TileState.Attackable)
+        {
+            ResetTileColor();
+            ChangeColor(positionArray, TileState.Active);
+            ChangeNeighborTilesColor(positionArray, TileState.Attackable);
+        }
+        else if (state == TileState.Skill)
+        {
+            ChangeColor(positionArray, state);
+        }
+        
+
+        //TargetSelect
+
+        
+        //
+
+    }
+
     //ゲット関連
     public TileBase GetTile(IntVect2D position)
     {

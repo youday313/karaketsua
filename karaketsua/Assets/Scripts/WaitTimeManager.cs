@@ -49,6 +49,12 @@ public class WaitTimeManager : Singleton<WaitTimeManager> {
         wTime.transform.SetParent(backGazeCanvas,false);
         return wTime;
     }
+    public void DestroyWaitTime(WaitTime charaWait)
+    {
+        waitTimes.Remove(charaWait);
+        Destroy(charaWait.gameObject);
+
+    }
 
 
 }

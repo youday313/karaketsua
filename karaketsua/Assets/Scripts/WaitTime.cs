@@ -60,7 +60,7 @@ public class WaitTime : MonoBehaviour
             //キャラクター選択時全体で共通動作はManagerで操作
 			waitTimeManager.OnActiveCharacter ();
             //キャラクター個別に関連した処理
-			character.OnSelect ();
+			character.OnActive ();
 		}
 	}
 

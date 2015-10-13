@@ -61,6 +61,7 @@ public class ActionSelect : Singleton<ActionSelect>
     public void CancelButton()
     {
         cancel.SetActive(false);
+
         SetActiveAction();
     }
 }

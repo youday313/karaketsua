@@ -49,7 +49,6 @@ public class PlayerOwner : Singleton<PlayerOwner>
 
     void OnEnable()
     {
-        Debug.Log("In");
         IT_Gesture.onDraggingEndE += OnDragEnd;
         //IT_Gesture.onTouchDownE += OnTouch;
         IT_Gesture.onShortTapE += OnShortTap;
@@ -81,6 +80,7 @@ public class PlayerOwner : Singleton<PlayerOwner>
 
     void OnShortTap(Vector2 touchInfo)
     {
+        Debug.Log("set");
         //攻撃先選択
         if (commandState == CommandState.TargetSelect)
         {
@@ -111,8 +111,9 @@ public class PlayerOwner : Singleton<PlayerOwner>
         commandState = state;
         //ターゲット選択なら上下左右のタイル色変更
         if (commandState==CommandState.TargetSelect) {
+            activeCharacter.SetAttackMode();
             //activeCharacter.ChangeNeighborTile(TileState.Attack);
-            BattleStage.Instance.ChangeNeighborTilesColor(activeCharacter.positionArray, TileState.Attack);
+            //BattleStage.Instance.ChangeNeighborTilesColor(activeCharacter.positionArray, TileState.Attack);
         }
         else if(commandState==CommandState.Skill){
             activeCharacter.SetSkillMode();
