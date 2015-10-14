@@ -12,7 +12,6 @@ using System.Linq;
 public class BattleStage : Singleton<BattleStage>
 {
 
-    protected int _sceneTask;
     public static readonly int stageSizeX = 2;
     public static readonly int stageSizeY = 3;
 

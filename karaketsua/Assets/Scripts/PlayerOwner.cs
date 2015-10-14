@@ -80,7 +80,6 @@ public class PlayerOwner : Singleton<PlayerOwner>
 
     void OnShortTap(Vector2 touchInfo)
     {
-        Debug.Log("set");
         //攻撃先選択
         if (commandState == CommandState.TargetSelect)
         {

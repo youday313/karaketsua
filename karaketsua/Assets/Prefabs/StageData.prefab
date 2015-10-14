@@ -43,14 +43,20 @@ MonoBehaviour:
   - prefab: {fileID: 11430450, guid: 3b4e38f76b1b4224599291de7d953902, type: 2}
     position: {x: 0, y: -3}
   - prefab: {fileID: 11430450, guid: 3b4e38f76b1b4224599291de7d953902, type: 2}
-    position: {x: -2, y: -3}
+    position: {x: -1, y: -3}
   - prefab: {fileID: 11409440, guid: 7818ac7cc23b67b4ea93a1a85c4fa6aa, type: 2}
+    position: {x: 1, y: -3}
+  - prefab: {fileID: 11478736, guid: 96110cb5c72e5bb4f961d9b559761d03, type: 2}
     position: {x: 2, y: -3}
   enemyCharacters:
   - prefab: {fileID: 11483650, guid: 8b7f418d8ac6fe24d8ec548bea019cf8, type: 2}
     position: {x: 1, y: 0}
-  - prefab: {fileID: 11483650, guid: 8b7f418d8ac6fe24d8ec548bea019cf8, type: 2}
+  - prefab: {fileID: 11451692, guid: 1f21be3da9aeb344fb9bbb58ca620cab, type: 2}
     position: {x: -1, y: 0}
+  - prefab: {fileID: 11451692, guid: 1f21be3da9aeb344fb9bbb58ca620cab, type: 2}
+    position: {x: -2, y: -1}
+  - prefab: {fileID: 11483650, guid: 8b7f418d8ac6fe24d8ec548bea019cf8, type: 2}
+    position: {x: 2, y: -1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
