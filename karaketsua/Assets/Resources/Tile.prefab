@@ -80,12 +80,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124948}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9249242fb8228ac4684ee1777cad0687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isMovableState: 0
+  tileMaterials:
+  - {fileID: 2100000, guid: 11023a9596f6fb640bb0440f56c3534f, type: 2}
+  - {fileID: 2100000, guid: 76e088d925aeb124cae745ec4fd71a0e, type: 2}
+  - {fileID: 2100000, guid: 6c68218ce0d5f0348902be4512757071, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -129,6 +132,18 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: tileMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 11023a9596f6fb640bb0440f56c3534f, type: 2}
+    - target: {fileID: 0}
+      propertyPath: tileMaterials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 76e088d925aeb124cae745ec4fd71a0e, type: 2}
+    - target: {fileID: 0}
+      propertyPath: tileMaterials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 6c68218ce0d5f0348902be4512757071, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124948}

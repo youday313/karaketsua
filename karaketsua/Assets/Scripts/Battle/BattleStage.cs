@@ -52,40 +52,23 @@ public class BattleStage : Singleton<BattleStage>
         }
     }
 
-    public void UpdateTileColors(IntVect2D positionArray,TileState state)
+    public void UpdateTileColors(Character chara,TileState state)
     {
-        //OnSelect
-        if (state == TileState.Active)
+        var positionArray = chara.positionArray;
+        if (state == TileState.Attack)
         {
             ResetTileColor();
             ChangeColor(positionArray, state);
-            ChangeNeighborTilesColor(positionArray, TileState.Movable);
-        }
-        //Move
-        else if (state == TileState.Moved)
-        {
-            ResetTileColor();
-            ChangeColor(positionArray, state);
-        }
-        else if (state == TileState.Target) {
-            ChangeColor(positionArray, state);
-        }
-        else if (state == TileState.Attackable)
-        {
-            ResetTileColor();
-            ChangeColor(positionArray, TileState.Active);
-            ChangeNeighborTilesColor(positionArray, TileState.Attackable);
-        }
-        else if (state == TileState.Skill)
-        {
-            ChangeColor(positionArray, state);
-        }
-        
+            ChangeNeighborTilesColor(positionArray, state);
 
-        //TargetSelect
+        }
+        else if (state == TileState.Move)
+        {
+            ResetTileColor();
+            ChangeColor(positionArray, state);
+            ChangeNeighborTilesColor(positionArray, state);
+        }
 
-        
-        //
 
     }
 
@@ -123,6 +106,7 @@ public class BattleStage : Singleton<BattleStage>
     }
     public void ChangeColor(IntVect2D position,TileState state,bool reset=false)
     {
+
         if (reset) ResetTileColor();
         GetTile(position).ChangeColor(state);
 
@@ -145,6 +129,5 @@ public class BattleStage : Singleton<BattleStage>
         {
             tile.ChangeColor(toState);
         }
-
     }
 }

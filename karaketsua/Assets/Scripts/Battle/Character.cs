@@ -95,7 +95,6 @@ public class Character : MonoBehaviour
         var tilePosition = BattleStage.Instance.GetTile(positionArray).transform.position;
         CSTransform.SetX(transform,tilePosition.x);
         CSTransform.SetZ(transform,tilePosition.z);
-
     }
 
     public void Init(IntVect2D array,bool isEne)
@@ -150,10 +149,14 @@ public class Character : MonoBehaviour
         ActionSelect.Instance.SetActiveAction(this);
         activeCircle.SetActive(true);
         //タイル変更
-        //BattleStage.Instance.UpdateTileColors(positionArray, TileState.Active);
+        BattleStage.Instance.UpdateTileColors(this, TileState.Move);
+
+        CameraMove.Instance.MoveToBack(this);
     }
     void SetInitialActionState(bool isAllReset)
     {
+        attacker.IsEnable = false;
+
         if (isAllReset == true)
         {
             mover.OnActiveCharacter();
@@ -162,15 +165,18 @@ public class Character : MonoBehaviour
         {
             mover.Enable();
         }
-        mover.Enable();
-        attacker.IsEnable = false;
+        
+        //mover.Enable();
+        
     }
     
     //ボタンからの行動決定
     public void SetAttackMode()
     {
         mover.Disable();
+
         attacker.IsEnable = true;
+        BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
     }
     public void SetSkillMode()
     {
@@ -187,10 +193,11 @@ public class Character : MonoBehaviour
     }
     public void ResetActive()
     {
-        //BattleStage.Instance.ResetTileColor();
+        BattleStage.Instance.ResetTileColor();
         activeTime.ResetValue();
         DisableActionMode();
         //PlayerOwner.Instance.OnEndActive();
+        CameraMove.Instance.MoveToLean();
     }
     public void Damage(int enemyPower)
     {
@@ -216,7 +223,6 @@ public class Character : MonoBehaviour
     //計算式
     int CalcDamage(int power)
     {
-
         return power;
     }
     void DeathMyself()
@@ -230,7 +236,6 @@ public class Character : MonoBehaviour
         CharacterManager.Instance.DestroyCharacter(this);
         Destroy(gameObject);
     }
-
 
     #region::Utility
     //クリックしたタイル位置を取得

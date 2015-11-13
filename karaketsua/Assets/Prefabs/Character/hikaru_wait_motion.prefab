@@ -2191,7 +2191,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124488}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: .100000001, z: 0}
   m_LocalScale: {x: .300000012, y: 1, z: .300000012}
   m_Children: []
   m_Father: {fileID: 404370}
@@ -2885,7 +2885,7 @@ Animator:
   m_GameObject: {fileID: 191596}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: afd6f71a08ce3264d83aa944971ad53a, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3385f5c20ee1cdd4cb06d8469022140b, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2908,7 +2908,7 @@ MonoBehaviour:
     charaName: "\u4E00\u4E4B\u702C\u5149"
     HP: 100
     attackRange: 1
-    activeSpeed: 20
+    activeSpeed: 35
     power: 100
     deffence: 100
     skillPoint: 100
@@ -3017,7 +3017,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.activeSpeed
-      value: 20
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.HP
@@ -3042,6 +3042,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: characterParameter.charaName
       value: "\u4E00\u4E4B\u702C\u5149"
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: .100000001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

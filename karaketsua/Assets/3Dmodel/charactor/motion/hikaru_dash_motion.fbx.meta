@@ -206,7 +206,205 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 90
+      lastFrame: 180
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 120
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: blade_poly
+        weight: 1
+      - path: hikaru_Ctrl_Reference
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_ChestEndEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_ChestOriginEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_HeadEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_LeftUpLeg
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_LeftUpLeg/hikaru_setup1:Character1_Ctrl_LeftLeg
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_LeftUpLeg/hikaru_setup1:Character1_Ctrl_LeftLeg/hikaru_setup1:Character1_Ctrl_LeftFoot
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_LeftUpLeg/hikaru_setup1:Character1_Ctrl_LeftLeg/hikaru_setup1:Character1_Ctrl_LeftFoot/hikaru_setup1:Character1_Ctrl_LeftToeBase
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_RightUpLeg
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_RightUpLeg/hikaru_setup1:Character1_Ctrl_RightLeg
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_RightUpLeg/hikaru_setup1:Character1_Ctrl_RightLeg/hikaru_setup1:Character1_Ctrl_RightFoot
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_RightUpLeg/hikaru_setup1:Character1_Ctrl_RightLeg/hikaru_setup1:Character1_Ctrl_RightFoot/hikaru_setup1:Character1_Ctrl_RightToeBase
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_LeftArm
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_LeftArm/hikaru_setup1:Character1_Ctrl_LeftForeArm
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_LeftArm/hikaru_setup1:Character1_Ctrl_LeftForeArm/hikaru_setup1:Character1_Ctrl_LeftHand
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_LeftArm/hikaru_setup1:Character1_Ctrl_LeftForeArm/hikaru_setup1:Character1_Ctrl_LeftHand/hikaru_setup1:Character1_Ctrl_LeftHandMiddle1
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_LeftArm/hikaru_setup1:Character1_Ctrl_LeftForeArm/hikaru_setup1:Character1_Ctrl_LeftHand/hikaru_setup1:Character1_Ctrl_LeftHandMiddle1/hikaru_setup1:Character1_Ctrl_LeftHandMiddle2
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_LeftArm/hikaru_setup1:Character1_Ctrl_LeftForeArm/hikaru_setup1:Character1_Ctrl_LeftHand/hikaru_setup1:Character1_Ctrl_LeftHandThumb1
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_LeftArm/hikaru_setup1:Character1_Ctrl_LeftForeArm/hikaru_setup1:Character1_Ctrl_LeftHand/hikaru_setup1:Character1_Ctrl_LeftHandThumb1/hikaru_setup1:Character1_Ctrl_LeftHandThumb2
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_Neck
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_Neck/hikaru_setup1:Character1_Ctrl_Head
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_RightArm
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_RightArm/hikaru_setup1:Character1_Ctrl_RightForeArm
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_RightArm/hikaru_setup1:Character1_Ctrl_RightForeArm/hikaru_setup1:Character1_Ctrl_RightHand
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_RightArm/hikaru_setup1:Character1_Ctrl_RightForeArm/hikaru_setup1:Character1_Ctrl_RightHand/hikaru_setup1:Character1_Ctrl_RightHandMiddle1
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_RightArm/hikaru_setup1:Character1_Ctrl_RightForeArm/hikaru_setup1:Character1_Ctrl_RightHand/hikaru_setup1:Character1_Ctrl_RightHandMiddle1/hikaru_setup1:Character1_Ctrl_RightHandMiddle2
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_RightArm/hikaru_setup1:Character1_Ctrl_RightForeArm/hikaru_setup1:Character1_Ctrl_RightHand/hikaru_setup1:Character1_Ctrl_RightHandThumb1
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_Hips/hikaru_setup1:Character1_Ctrl_Spine/hikaru_setup1:Character1_Ctrl_Spine1/hikaru_setup1:Character1_Ctrl_Spine2/hikaru_setup1:Character1_Ctrl_RightArm/hikaru_setup1:Character1_Ctrl_RightForeArm/hikaru_setup1:Character1_Ctrl_RightHand/hikaru_setup1:Character1_Ctrl_RightHandThumb1/hikaru_setup1:Character1_Ctrl_RightHandThumb2
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_HipsEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftAnkleEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftElbowEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftFootEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftHandMiddleEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftHandThumbEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftHipEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftKneeEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftShoulderEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_LeftWristEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightAnkleEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightElbowEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightFootEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightHandMiddleEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightHandThumbEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightHipEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightKneeEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightShoulderEffector
+        weight: 1
+      - path: hikaru_Ctrl_Reference/hikaru_setup1:Character1_Ctrl_RightWristEffector
+        weight: 1
+      - path: hikaru_poly
+        weight: 1
+      - path: hikaru_Reference
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_LeftUpLeg
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_LeftUpLeg/hikaru_setup1:Character1_LeftLeg
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_LeftUpLeg/hikaru_setup1:Character1_LeftLeg/hikaru_setup1:Character1_LeftFoot
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_LeftUpLeg/hikaru_setup1:Character1_LeftLeg/hikaru_setup1:Character1_LeftFoot/hikaru_setup1:Character1_LeftToeBase
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_RightUpLeg
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_RightUpLeg/hikaru_setup1:Character1_RightLeg
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_RightUpLeg/hikaru_setup1:Character1_RightLeg/hikaru_setup1:Character1_RightFoot
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_RightUpLeg/hikaru_setup1:Character1_RightLeg/hikaru_setup1:Character1_RightFoot/hikaru_setup1:Character1_RightToeBase
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_LeftArm
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_LeftArm/hikaru_setup1:Character1_LeftForeArm
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_LeftArm/hikaru_setup1:Character1_LeftForeArm/hikaru_setup1:Character1_LeftHand
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_LeftArm/hikaru_setup1:Character1_LeftForeArm/hikaru_setup1:Character1_LeftHand/hikaru_setup1:Character1_LeftHandMiddle1
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_LeftArm/hikaru_setup1:Character1_LeftForeArm/hikaru_setup1:Character1_LeftHand/hikaru_setup1:Character1_LeftHandMiddle1/hikaru_setup1:Character1_LeftHandMiddle2
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_LeftArm/hikaru_setup1:Character1_LeftForeArm/hikaru_setup1:Character1_LeftHand/hikaru_setup1:Character1_LeftHandThumb1
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_LeftArm/hikaru_setup1:Character1_LeftForeArm/hikaru_setup1:Character1_LeftHand/hikaru_setup1:Character1_LeftHandThumb1/hikaru_setup1:Character1_LeftHandThumb2
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_Neck
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_Neck/hikaru_setup1:Character1_Head
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_RightArm
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_RightArm/hikaru_setup1:Character1_RightForeArm
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_RightArm/hikaru_setup1:Character1_RightForeArm/hikaru_setup1:Character1_RightHand
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_RightArm/hikaru_setup1:Character1_RightForeArm/hikaru_setup1:Character1_RightHand/hikaru_setup1:Character1_RightHandMiddle1
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_RightArm/hikaru_setup1:Character1_RightForeArm/hikaru_setup1:Character1_RightHand/hikaru_setup1:Character1_RightHandMiddle1/hikaru_setup1:Character1_RightHandMiddle2
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_RightArm/hikaru_setup1:Character1_RightForeArm/hikaru_setup1:Character1_RightHand/hikaru_setup1:Character1_RightHandThumb1
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/hikaru_setup1:Character1_Spine/hikaru_setup1:Character1_Spine1/hikaru_setup1:Character1_Spine2/hikaru_setup1:Character1_RightArm/hikaru_setup1:Character1_RightForeArm/hikaru_setup1:Character1_RightHand/hikaru_setup1:Character1_RightHandThumb1/hikaru_setup1:Character1_RightHandThumb2
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/koshinuno_joint
+        weight: 1
+      - path: hikaru_Reference/hikaru_setup1:Character1_Hips/koshinuno_joint/koshinuno_sentan_joint
+        weight: 1
+      - path: saya_poly
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

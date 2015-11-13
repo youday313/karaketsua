@@ -38,7 +38,11 @@ public class CharacterMover : MonoBehaviour {
         IT_Gesture.onDraggingEndE += OnDragMove;
         IT_Gesture.onChargeStartE += ActiveSelectMoveCursor;
         IT_Gesture.onChargeEndE += DisactiveSelectMoveCursor;
-
+        if (isMoved == false)
+        {
+            directionIcon.SetActive(true);
+            BattleStage.Instance.UpdateTileColors(this.character, TileState.Move);
+        }
 
     }
     public void Disable(){
@@ -175,6 +179,7 @@ public class CharacterMover : MonoBehaviour {
     {
         isNowAction = false;
         UpdateAnimation();
+        BattleStage.Instance.ResetTileColor();
         //character.ResetActive();
     }
 
