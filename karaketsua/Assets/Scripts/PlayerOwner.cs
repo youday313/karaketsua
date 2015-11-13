@@ -8,7 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum CommandState { None, Moved, TargetSelect, Attack, Skill,Wait, End };
+/*
 
 public class PlayerOwner : Singleton<PlayerOwner>
 {
@@ -133,19 +133,20 @@ public class PlayerOwner : Singleton<PlayerOwner>
 
     void MoveActiveCharacter(Vector2 delta)
     {
-        //どの方向に動くか
-        //x方向
-        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
-        {
-            activeCharacter.Move(new IntVect2D((int)Mathf.Sign(delta.x), 0));
+        ////どの方向に動くか
+        ////x方向
+        //if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        //{
+        //    activeCharacter.Move(new IntVect2D((int)Mathf.Sign(delta.x), 0));
 
-        }
-            //y方向
-        else
-        {
-            activeCharacter.Move(new IntVect2D(0, (int)Mathf.Sign(delta.y)));
-        }
+        //}
+        //    //y方向
+        //else
+        //{
+        //    activeCharacter.Move(new IntVect2D(0, (int)Mathf.Sign(delta.y)));
+        //}
     }
 
 
 }
+*/

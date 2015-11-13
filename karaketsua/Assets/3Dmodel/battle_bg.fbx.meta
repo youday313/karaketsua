@@ -1,0 +1,1557 @@
+fileFormatVersion: 2
+guid: b0e24ac35fe7d7e4fb405b60e8592677
+timeCreated: 1447406844
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: big_tree_poly
+    100004: bush:bush_poly
+    100006: bush_poly
+    100008: bush_poly10
+    100010: bush_poly11
+    100012: bush_poly12
+    100014: bush_poly13
+    100016: bush_poly14
+    100018: bush_poly15
+    100020: bush_poly16
+    100022: bush_poly17
+    100024: bush_poly2
+    100026: bush_poly3
+    100028: bush_poly4
+    100030: bush_poly6
+    100032: bush_poly7
+    100034: bush_poly8
+    100036: bush_poly9
+    100038: filed_poly
+    100040: forest_shadow
+    100042: gake_poly1
+    100044: gake_poly2
+    100046: gake_poly3
+    100048: hayashi_poly
+    100050: kihuku_poly1
+    100052: kihuku_poly2
+    100054: kihuku_poly3
+    100056: kiri_poly
+    100058: kiri_poly1
+    100060: kiri_poly2
+    100062: kiri_poly3
+    100064: kiri_poly4
+    100066: kiri_poly5
+    100068: kiri_poly6
+    100070: kiri_poly7
+    100072: kiri_poly8
+    100074: kusa_1:kusa_poly
+    100076: kusa_2:kusa_2_poly
+    100078: kusa_2_poly
+    100080: kusa_2_poly1
+    100082: kusa_2_poly10
+    100084: kusa_2_poly11
+    100086: kusa_2_poly12
+    100088: kusa_2_poly13
+    100090: kusa_2_poly14
+    100092: kusa_2_poly15
+    100094: kusa_2_poly16
+    100096: kusa_2_poly17
+    100098: kusa_2_poly18
+    100100: kusa_2_poly2
+    100102: kusa_2_poly3
+    100104: kusa_2_poly4
+    100106: kusa_2_poly5
+    100108: kusa_2_poly6
+    100110: kusa_2_poly7
+    100112: kusa_2_poly8
+    100114: kusa_2_poly9
+    100116: kusa_3:kusa_3_poly
+    100118: kusa_3_poly
+    100120: kusa_3_poly1
+    100122: kusa_3_poly10
+    100124: kusa_3_poly11
+    100126: kusa_3_poly12
+    100128: kusa_3_poly13
+    100130: kusa_3_poly14
+    100132: kusa_3_poly15
+    100134: kusa_3_poly16
+    100136: kusa_3_poly17
+    100138: kusa_3_poly18
+    100140: kusa_3_poly19
+    100142: kusa_3_poly2
+    100144: kusa_3_poly20
+    100146: kusa_3_poly21
+    100148: kusa_3_poly3
+    100150: kusa_3_poly4
+    100152: kusa_3_poly5
+    100154: kusa_3_poly6
+    100156: kusa_3_poly7
+    100158: kusa_3_poly8
+    100160: kusa_3_poly9
+    100162: kusa_poly
+    100164: kusa_poly1
+    100166: kusa_poly10
+    100168: kusa_poly100
+    100170: kusa_poly101
+    100172: kusa_poly102
+    100174: kusa_poly103
+    100176: kusa_poly104
+    100178: kusa_poly105
+    100180: kusa_poly106
+    100182: kusa_poly107
+    100184: kusa_poly11
+    100186: kusa_poly12
+    100188: kusa_poly13
+    100190: kusa_poly14
+    100192: kusa_poly15
+    100194: kusa_poly16
+    100196: kusa_poly17
+    100198: kusa_poly18
+    100200: kusa_poly19
+    100202: kusa_poly2
+    100204: kusa_poly20
+    100206: kusa_poly21
+    100208: kusa_poly22
+    100210: kusa_poly23
+    100212: kusa_poly24
+    100214: kusa_poly25
+    100216: kusa_poly26
+    100218: kusa_poly27
+    100220: kusa_poly28
+    100222: kusa_poly29
+    100224: kusa_poly3
+    100226: kusa_poly30
+    100228: kusa_poly31
+    100230: kusa_poly32
+    100232: kusa_poly33
+    100234: kusa_poly34
+    100236: kusa_poly35
+    100238: kusa_poly36
+    100240: kusa_poly37
+    100242: kusa_poly38
+    100244: kusa_poly39
+    100246: kusa_poly4
+    100248: kusa_poly40
+    100250: kusa_poly41
+    100252: kusa_poly42
+    100254: kusa_poly43
+    100256: kusa_poly44
+    100258: kusa_poly45
+    100260: kusa_poly46
+    100262: kusa_poly47
+    100264: kusa_poly48
+    100266: kusa_poly49
+    100268: kusa_poly5
+    100270: kusa_poly50
+    100272: kusa_poly51
+    100274: kusa_poly52
+    100276: kusa_poly53
+    100278: kusa_poly54
+    100280: kusa_poly55
+    100282: kusa_poly56
+    100284: kusa_poly57
+    100286: kusa_poly58
+    100288: kusa_poly59
+    100290: kusa_poly6
+    100292: kusa_poly60
+    100294: kusa_poly61
+    100296: kusa_poly62
+    100298: kusa_poly63
+    100300: kusa_poly64
+    100302: kusa_poly65
+    100304: kusa_poly66
+    100306: kusa_poly67
+    100308: kusa_poly68
+    100310: kusa_poly69
+    100312: kusa_poly7
+    100314: kusa_poly70
+    100316: kusa_poly71
+    100318: kusa_poly72
+    100320: kusa_poly73
+    100322: kusa_poly74
+    100324: kusa_poly75
+    100326: kusa_poly76
+    100328: kusa_poly77
+    100330: kusa_poly78
+    100332: kusa_poly79
+    100334: kusa_poly8
+    100336: kusa_poly80
+    100338: kusa_poly81
+    100340: kusa_poly82
+    100342: kusa_poly83
+    100344: kusa_poly84
+    100346: kusa_poly85
+    100348: kusa_poly86
+    100350: kusa_poly87
+    100352: kusa_poly89
+    100354: kusa_poly9
+    100356: kusa_poly90
+    100358: kusa_poly91
+    100360: kusa_poly92
+    100362: kusa_poly93
+    100364: kusa_poly94
+    100366: kusa_poly95
+    100368: kusa_poly96
+    100370: kusa_poly97
+    100372: kusa_poly98
+    100374: kusa_poly99
+    100376: low_bush_poly
+    100378: low_bush_poly1
+    100380: low_bush_poly10
+    100382: low_bush_poly11
+    100384: low_bush_poly12
+    100386: low_bush_poly13
+    100388: low_bush_poly2
+    100390: low_bush_poly3
+    100392: low_bush_poly4
+    100394: low_bush_poly5
+    100396: low_bush_poly6
+    100398: low_bush_poly7
+    100400: low_bush_poly8
+    100402: low_bush_poly9
+    100404: low_tree_gr
+    100406: low_tree_gr1
+    100408: low_tree_gr2
+    100410: low_tree_gr3
+    100412: low_tree_poly
+    100414: low_tree_poly 1
+    100416: low_tree_poly 2
+    100418: low_tree_poly1
+    100420: low_tree_poly1 1
+    100422: low_tree_poly1 2
+    100424: low_tree_poly1 3
+    100426: low_tree_poly11
+    100428: low_tree_poly12
+    100430: low_tree_poly3
+    100432: low_tree_poly3 1
+    100434: low_tree_poly3 2
+    100436: low_tree_poly4
+    100438: low_tree_poly4 1
+    100440: low_tree_poly4 2
+    100442: low_tree_poly4 3
+    100444: low_tree_poly6
+    100446: low_tree_poly6 1
+    100448: low_tree_poly6 2
+    100450: low_tree_poly7
+    100452: low_tree_poly7 1
+    100454: low_tree_poly7 2
+    100456: low_tree_poly7 3
+    100458: low_tree_poly8
+    100460: low_tree_poly8 1
+    100462: low_tree_poly9
+    100464: nekko_poly
+    100466: nekko_poly1
+    100468: nekko_poly10
+    100470: nekko_poly18
+    100472: nekko_poly19
+    100474: nekko_poly2
+    100476: nekko_poly3
+    100478: nekko_poly4
+    100480: nekko_poly5
+    100482: nekko_poly6
+    100484: nekko_poly7
+    100486: nekko_poly9
+    100488: nomal_tree1:nomal_tree_poly
+    100490: nomal_tree_glp
+    100492: nomal_tree_glp1
+    100494: nomal_tree_glp2
+    100496: nomal_tree_glp3
+    100498: nomal_tree_glp4
+    100500: nomal_tree_glp5
+    100502: nomal_tree_glp6
+    100504: nomal_tree_poly
+    100506: nomal_tree_poly 1
+    100508: nomal_tree_poly 2
+    100510: nomal_tree_poly 3
+    100512: nomal_tree_poly 4
+    100514: nomal_tree_poly 5
+    100516: rock:rock_poly
+    100518: rock_poly
+    100520: rock_poly1
+    100522: rock_poly2
+    100524: rock_poly3
+    100526: shadow_poly1
+    100528: shadow_poly1 1
+    100530: shadow_poly1 2
+    100532: shadow_poly2
+    100534: shadow_poly3
+    100536: shadow_poly4
+    100538: shadow_poly5
+    100540: sky_poly
+    100542: slim_tree1:slim_tree_poly
+    100544: slim_tree_gr
+    100546: slim_tree_gr1
+    100548: slim_tree_gr2
+    100550: slim_tree_poly
+    100552: slim_tree_poly 1
+    100554: tree_shadow_poly3
+    100556: tree_shadow_poly3 1
+    100558: tree_shadow_poly3 10
+    100560: tree_shadow_poly3 11
+    100562: tree_shadow_poly3 12
+    100564: tree_shadow_poly3 13
+    100566: tree_shadow_poly3 14
+    100568: tree_shadow_poly3 15
+    100570: tree_shadow_poly3 2
+    100572: tree_shadow_poly3 3
+    100574: tree_shadow_poly3 4
+    100576: tree_shadow_poly3 5
+    100578: tree_shadow_poly3 6
+    100580: tree_shadow_poly3 7
+    100582: tree_shadow_poly3 8
+    100584: tree_shadow_poly3 9
+    100586: tree_shadow_poly4
+    100588: tree_shadow_poly4 1
+    100590: tree_shadow_poly4 2
+    100592: tree_shadow_poly4 3
+    100594: tree_shadow_poly4 4
+    100596: tree_shadow_poly4 5
+    100598: tree_shadow_poly4 6
+    100600: tree_shadow_poly5
+    100602: tree_shadow_poly5 1
+    100604: tree_shadow_poly5 2
+    100606: wood_poly
+    100608: wood_poly1
+    100610: wood_poly2
+    400000: //RootNode
+    400002: big_tree_poly
+    400004: bush:bush_poly
+    400006: bush_poly
+    400008: bush_poly10
+    400010: bush_poly11
+    400012: bush_poly12
+    400014: bush_poly13
+    400016: bush_poly14
+    400018: bush_poly15
+    400020: bush_poly16
+    400022: bush_poly17
+    400024: bush_poly2
+    400026: bush_poly3
+    400028: bush_poly4
+    400030: bush_poly6
+    400032: bush_poly7
+    400034: bush_poly8
+    400036: bush_poly9
+    400038: filed_poly
+    400040: forest_shadow
+    400042: gake_poly1
+    400044: gake_poly2
+    400046: gake_poly3
+    400048: hayashi_poly
+    400050: kihuku_poly1
+    400052: kihuku_poly2
+    400054: kihuku_poly3
+    400056: kiri_poly
+    400058: kiri_poly1
+    400060: kiri_poly2
+    400062: kiri_poly3
+    400064: kiri_poly4
+    400066: kiri_poly5
+    400068: kiri_poly6
+    400070: kiri_poly7
+    400072: kiri_poly8
+    400074: kusa_1:kusa_poly
+    400076: kusa_2:kusa_2_poly
+    400078: kusa_2_poly
+    400080: kusa_2_poly1
+    400082: kusa_2_poly10
+    400084: kusa_2_poly11
+    400086: kusa_2_poly12
+    400088: kusa_2_poly13
+    400090: kusa_2_poly14
+    400092: kusa_2_poly15
+    400094: kusa_2_poly16
+    400096: kusa_2_poly17
+    400098: kusa_2_poly18
+    400100: kusa_2_poly2
+    400102: kusa_2_poly3
+    400104: kusa_2_poly4
+    400106: kusa_2_poly5
+    400108: kusa_2_poly6
+    400110: kusa_2_poly7
+    400112: kusa_2_poly8
+    400114: kusa_2_poly9
+    400116: kusa_3:kusa_3_poly
+    400118: kusa_3_poly
+    400120: kusa_3_poly1
+    400122: kusa_3_poly10
+    400124: kusa_3_poly11
+    400126: kusa_3_poly12
+    400128: kusa_3_poly13
+    400130: kusa_3_poly14
+    400132: kusa_3_poly15
+    400134: kusa_3_poly16
+    400136: kusa_3_poly17
+    400138: kusa_3_poly18
+    400140: kusa_3_poly19
+    400142: kusa_3_poly2
+    400144: kusa_3_poly20
+    400146: kusa_3_poly21
+    400148: kusa_3_poly3
+    400150: kusa_3_poly4
+    400152: kusa_3_poly5
+    400154: kusa_3_poly6
+    400156: kusa_3_poly7
+    400158: kusa_3_poly8
+    400160: kusa_3_poly9
+    400162: kusa_poly
+    400164: kusa_poly1
+    400166: kusa_poly10
+    400168: kusa_poly100
+    400170: kusa_poly101
+    400172: kusa_poly102
+    400174: kusa_poly103
+    400176: kusa_poly104
+    400178: kusa_poly105
+    400180: kusa_poly106
+    400182: kusa_poly107
+    400184: kusa_poly11
+    400186: kusa_poly12
+    400188: kusa_poly13
+    400190: kusa_poly14
+    400192: kusa_poly15
+    400194: kusa_poly16
+    400196: kusa_poly17
+    400198: kusa_poly18
+    400200: kusa_poly19
+    400202: kusa_poly2
+    400204: kusa_poly20
+    400206: kusa_poly21
+    400208: kusa_poly22
+    400210: kusa_poly23
+    400212: kusa_poly24
+    400214: kusa_poly25
+    400216: kusa_poly26
+    400218: kusa_poly27
+    400220: kusa_poly28
+    400222: kusa_poly29
+    400224: kusa_poly3
+    400226: kusa_poly30
+    400228: kusa_poly31
+    400230: kusa_poly32
+    400232: kusa_poly33
+    400234: kusa_poly34
+    400236: kusa_poly35
+    400238: kusa_poly36
+    400240: kusa_poly37
+    400242: kusa_poly38
+    400244: kusa_poly39
+    400246: kusa_poly4
+    400248: kusa_poly40
+    400250: kusa_poly41
+    400252: kusa_poly42
+    400254: kusa_poly43
+    400256: kusa_poly44
+    400258: kusa_poly45
+    400260: kusa_poly46
+    400262: kusa_poly47
+    400264: kusa_poly48
+    400266: kusa_poly49
+    400268: kusa_poly5
+    400270: kusa_poly50
+    400272: kusa_poly51
+    400274: kusa_poly52
+    400276: kusa_poly53
+    400278: kusa_poly54
+    400280: kusa_poly55
+    400282: kusa_poly56
+    400284: kusa_poly57
+    400286: kusa_poly58
+    400288: kusa_poly59
+    400290: kusa_poly6
+    400292: kusa_poly60
+    400294: kusa_poly61
+    400296: kusa_poly62
+    400298: kusa_poly63
+    400300: kusa_poly64
+    400302: kusa_poly65
+    400304: kusa_poly66
+    400306: kusa_poly67
+    400308: kusa_poly68
+    400310: kusa_poly69
+    400312: kusa_poly7
+    400314: kusa_poly70
+    400316: kusa_poly71
+    400318: kusa_poly72
+    400320: kusa_poly73
+    400322: kusa_poly74
+    400324: kusa_poly75
+    400326: kusa_poly76
+    400328: kusa_poly77
+    400330: kusa_poly78
+    400332: kusa_poly79
+    400334: kusa_poly8
+    400336: kusa_poly80
+    400338: kusa_poly81
+    400340: kusa_poly82
+    400342: kusa_poly83
+    400344: kusa_poly84
+    400346: kusa_poly85
+    400348: kusa_poly86
+    400350: kusa_poly87
+    400352: kusa_poly89
+    400354: kusa_poly9
+    400356: kusa_poly90
+    400358: kusa_poly91
+    400360: kusa_poly92
+    400362: kusa_poly93
+    400364: kusa_poly94
+    400366: kusa_poly95
+    400368: kusa_poly96
+    400370: kusa_poly97
+    400372: kusa_poly98
+    400374: kusa_poly99
+    400376: low_bush_poly
+    400378: low_bush_poly1
+    400380: low_bush_poly10
+    400382: low_bush_poly11
+    400384: low_bush_poly12
+    400386: low_bush_poly13
+    400388: low_bush_poly2
+    400390: low_bush_poly3
+    400392: low_bush_poly4
+    400394: low_bush_poly5
+    400396: low_bush_poly6
+    400398: low_bush_poly7
+    400400: low_bush_poly8
+    400402: low_bush_poly9
+    400404: low_tree_gr
+    400406: low_tree_gr1
+    400408: low_tree_gr2
+    400410: low_tree_gr3
+    400412: low_tree_poly
+    400414: low_tree_poly 1
+    400416: low_tree_poly 2
+    400418: low_tree_poly1
+    400420: low_tree_poly1 1
+    400422: low_tree_poly1 2
+    400424: low_tree_poly1 3
+    400426: low_tree_poly11
+    400428: low_tree_poly12
+    400430: low_tree_poly3
+    400432: low_tree_poly3 1
+    400434: low_tree_poly3 2
+    400436: low_tree_poly4
+    400438: low_tree_poly4 1
+    400440: low_tree_poly4 2
+    400442: low_tree_poly4 3
+    400444: low_tree_poly6
+    400446: low_tree_poly6 1
+    400448: low_tree_poly6 2
+    400450: low_tree_poly7
+    400452: low_tree_poly7 1
+    400454: low_tree_poly7 2
+    400456: low_tree_poly7 3
+    400458: low_tree_poly8
+    400460: low_tree_poly8 1
+    400462: low_tree_poly9
+    400464: nekko_poly
+    400466: nekko_poly1
+    400468: nekko_poly10
+    400470: nekko_poly18
+    400472: nekko_poly19
+    400474: nekko_poly2
+    400476: nekko_poly3
+    400478: nekko_poly4
+    400480: nekko_poly5
+    400482: nekko_poly6
+    400484: nekko_poly7
+    400486: nekko_poly9
+    400488: nomal_tree1:nomal_tree_poly
+    400490: nomal_tree_glp
+    400492: nomal_tree_glp1
+    400494: nomal_tree_glp2
+    400496: nomal_tree_glp3
+    400498: nomal_tree_glp4
+    400500: nomal_tree_glp5
+    400502: nomal_tree_glp6
+    400504: nomal_tree_poly
+    400506: nomal_tree_poly 1
+    400508: nomal_tree_poly 2
+    400510: nomal_tree_poly 3
+    400512: nomal_tree_poly 4
+    400514: nomal_tree_poly 5
+    400516: rock:rock_poly
+    400518: rock_poly
+    400520: rock_poly1
+    400522: rock_poly2
+    400524: rock_poly3
+    400526: shadow_poly1
+    400528: shadow_poly1 1
+    400530: shadow_poly1 2
+    400532: shadow_poly2
+    400534: shadow_poly3
+    400536: shadow_poly4
+    400538: shadow_poly5
+    400540: sky_poly
+    400542: slim_tree1:slim_tree_poly
+    400544: slim_tree_gr
+    400546: slim_tree_gr1
+    400548: slim_tree_gr2
+    400550: slim_tree_poly
+    400552: slim_tree_poly 1
+    400554: tree_shadow_poly3
+    400556: tree_shadow_poly3 1
+    400558: tree_shadow_poly3 10
+    400560: tree_shadow_poly3 11
+    400562: tree_shadow_poly3 12
+    400564: tree_shadow_poly3 13
+    400566: tree_shadow_poly3 14
+    400568: tree_shadow_poly3 15
+    400570: tree_shadow_poly3 2
+    400572: tree_shadow_poly3 3
+    400574: tree_shadow_poly3 4
+    400576: tree_shadow_poly3 5
+    400578: tree_shadow_poly3 6
+    400580: tree_shadow_poly3 7
+    400582: tree_shadow_poly3 8
+    400584: tree_shadow_poly3 9
+    400586: tree_shadow_poly4
+    400588: tree_shadow_poly4 1
+    400590: tree_shadow_poly4 2
+    400592: tree_shadow_poly4 3
+    400594: tree_shadow_poly4 4
+    400596: tree_shadow_poly4 5
+    400598: tree_shadow_poly4 6
+    400600: tree_shadow_poly5
+    400602: tree_shadow_poly5 1
+    400604: tree_shadow_poly5 2
+    400606: wood_poly
+    400608: wood_poly1
+    400610: wood_poly2
+    2300000: big_tree_poly
+    2300002: bush:bush_poly
+    2300004: bush_poly
+    2300006: bush_poly10
+    2300008: bush_poly11
+    2300010: bush_poly12
+    2300012: bush_poly13
+    2300014: bush_poly14
+    2300016: bush_poly15
+    2300018: bush_poly16
+    2300020: bush_poly17
+    2300022: bush_poly2
+    2300024: bush_poly3
+    2300026: bush_poly4
+    2300028: bush_poly6
+    2300030: bush_poly7
+    2300032: bush_poly8
+    2300034: bush_poly9
+    2300036: filed_poly
+    2300038: forest_shadow
+    2300040: gake_poly1
+    2300042: gake_poly2
+    2300044: gake_poly3
+    2300046: hayashi_poly
+    2300048: kihuku_poly1
+    2300050: kihuku_poly2
+    2300052: kihuku_poly3
+    2300054: kiri_poly
+    2300056: kiri_poly1
+    2300058: kiri_poly2
+    2300060: kiri_poly3
+    2300062: kiri_poly4
+    2300064: kiri_poly5
+    2300066: kiri_poly6
+    2300068: kiri_poly7
+    2300070: kiri_poly8
+    2300072: kusa_1:kusa_poly
+    2300074: kusa_2:kusa_2_poly
+    2300076: kusa_2_poly
+    2300078: kusa_2_poly1
+    2300080: kusa_2_poly10
+    2300082: kusa_2_poly11
+    2300084: kusa_2_poly12
+    2300086: kusa_2_poly13
+    2300088: kusa_2_poly14
+    2300090: kusa_2_poly15
+    2300092: kusa_2_poly16
+    2300094: kusa_2_poly17
+    2300096: kusa_2_poly18
+    2300098: kusa_2_poly2
+    2300100: kusa_2_poly3
+    2300102: kusa_2_poly4
+    2300104: kusa_2_poly5
+    2300106: kusa_2_poly6
+    2300108: kusa_2_poly7
+    2300110: kusa_2_poly8
+    2300112: kusa_2_poly9
+    2300114: kusa_3:kusa_3_poly
+    2300116: kusa_3_poly
+    2300118: kusa_3_poly1
+    2300120: kusa_3_poly10
+    2300122: kusa_3_poly11
+    2300124: kusa_3_poly12
+    2300126: kusa_3_poly13
+    2300128: kusa_3_poly14
+    2300130: kusa_3_poly15
+    2300132: kusa_3_poly16
+    2300134: kusa_3_poly17
+    2300136: kusa_3_poly18
+    2300138: kusa_3_poly19
+    2300140: kusa_3_poly2
+    2300142: kusa_3_poly20
+    2300144: kusa_3_poly21
+    2300146: kusa_3_poly3
+    2300148: kusa_3_poly4
+    2300150: kusa_3_poly5
+    2300152: kusa_3_poly6
+    2300154: kusa_3_poly7
+    2300156: kusa_3_poly8
+    2300158: kusa_3_poly9
+    2300160: kusa_poly
+    2300162: kusa_poly1
+    2300164: kusa_poly10
+    2300166: kusa_poly100
+    2300168: kusa_poly101
+    2300170: kusa_poly102
+    2300172: kusa_poly103
+    2300174: kusa_poly104
+    2300176: kusa_poly105
+    2300178: kusa_poly106
+    2300180: kusa_poly107
+    2300182: kusa_poly11
+    2300184: kusa_poly12
+    2300186: kusa_poly13
+    2300188: kusa_poly14
+    2300190: kusa_poly15
+    2300192: kusa_poly16
+    2300194: kusa_poly17
+    2300196: kusa_poly18
+    2300198: kusa_poly19
+    2300200: kusa_poly2
+    2300202: kusa_poly20
+    2300204: kusa_poly21
+    2300206: kusa_poly22
+    2300208: kusa_poly23
+    2300210: kusa_poly24
+    2300212: kusa_poly25
+    2300214: kusa_poly26
+    2300216: kusa_poly27
+    2300218: kusa_poly28
+    2300220: kusa_poly29
+    2300222: kusa_poly3
+    2300224: kusa_poly30
+    2300226: kusa_poly31
+    2300228: kusa_poly32
+    2300230: kusa_poly33
+    2300232: kusa_poly34
+    2300234: kusa_poly35
+    2300236: kusa_poly36
+    2300238: kusa_poly37
+    2300240: kusa_poly38
+    2300242: kusa_poly39
+    2300244: kusa_poly4
+    2300246: kusa_poly40
+    2300248: kusa_poly41
+    2300250: kusa_poly42
+    2300252: kusa_poly43
+    2300254: kusa_poly44
+    2300256: kusa_poly45
+    2300258: kusa_poly46
+    2300260: kusa_poly47
+    2300262: kusa_poly48
+    2300264: kusa_poly49
+    2300266: kusa_poly5
+    2300268: kusa_poly50
+    2300270: kusa_poly51
+    2300272: kusa_poly52
+    2300274: kusa_poly53
+    2300276: kusa_poly54
+    2300278: kusa_poly55
+    2300280: kusa_poly56
+    2300282: kusa_poly57
+    2300284: kusa_poly58
+    2300286: kusa_poly59
+    2300288: kusa_poly6
+    2300290: kusa_poly60
+    2300292: kusa_poly61
+    2300294: kusa_poly62
+    2300296: kusa_poly63
+    2300298: kusa_poly64
+    2300300: kusa_poly65
+    2300302: kusa_poly66
+    2300304: kusa_poly67
+    2300306: kusa_poly68
+    2300308: kusa_poly69
+    2300310: kusa_poly7
+    2300312: kusa_poly70
+    2300314: kusa_poly71
+    2300316: kusa_poly72
+    2300318: kusa_poly73
+    2300320: kusa_poly74
+    2300322: kusa_poly75
+    2300324: kusa_poly76
+    2300326: kusa_poly77
+    2300328: kusa_poly78
+    2300330: kusa_poly79
+    2300332: kusa_poly8
+    2300334: kusa_poly80
+    2300336: kusa_poly81
+    2300338: kusa_poly82
+    2300340: kusa_poly83
+    2300342: kusa_poly84
+    2300344: kusa_poly85
+    2300346: kusa_poly86
+    2300348: kusa_poly87
+    2300350: kusa_poly89
+    2300352: kusa_poly9
+    2300354: kusa_poly90
+    2300356: kusa_poly91
+    2300358: kusa_poly92
+    2300360: kusa_poly93
+    2300362: kusa_poly94
+    2300364: kusa_poly95
+    2300366: kusa_poly96
+    2300368: kusa_poly97
+    2300370: kusa_poly98
+    2300372: kusa_poly99
+    2300374: low_bush_poly
+    2300376: low_bush_poly1
+    2300378: low_bush_poly10
+    2300380: low_bush_poly11
+    2300382: low_bush_poly12
+    2300384: low_bush_poly13
+    2300386: low_bush_poly2
+    2300388: low_bush_poly3
+    2300390: low_bush_poly4
+    2300392: low_bush_poly5
+    2300394: low_bush_poly6
+    2300396: low_bush_poly7
+    2300398: low_bush_poly8
+    2300400: low_bush_poly9
+    2300402: low_tree_poly
+    2300404: low_tree_poly 1
+    2300406: low_tree_poly 2
+    2300408: low_tree_poly1
+    2300410: low_tree_poly1 1
+    2300412: low_tree_poly1 2
+    2300414: low_tree_poly1 3
+    2300416: low_tree_poly11
+    2300418: low_tree_poly12
+    2300420: low_tree_poly3
+    2300422: low_tree_poly3 1
+    2300424: low_tree_poly3 2
+    2300426: low_tree_poly4
+    2300428: low_tree_poly4 1
+    2300430: low_tree_poly4 2
+    2300432: low_tree_poly4 3
+    2300434: low_tree_poly6
+    2300436: low_tree_poly6 1
+    2300438: low_tree_poly6 2
+    2300440: low_tree_poly7
+    2300442: low_tree_poly7 1
+    2300444: low_tree_poly7 2
+    2300446: low_tree_poly7 3
+    2300448: low_tree_poly8
+    2300450: low_tree_poly8 1
+    2300452: low_tree_poly9
+    2300454: nekko_poly
+    2300456: nekko_poly1
+    2300458: nekko_poly10
+    2300460: nekko_poly18
+    2300462: nekko_poly19
+    2300464: nekko_poly2
+    2300466: nekko_poly3
+    2300468: nekko_poly4
+    2300470: nekko_poly5
+    2300472: nekko_poly6
+    2300474: nekko_poly7
+    2300476: nekko_poly9
+    2300478: nomal_tree1:nomal_tree_poly
+    2300480: nomal_tree_poly
+    2300482: nomal_tree_poly 1
+    2300484: nomal_tree_poly 2
+    2300486: nomal_tree_poly 3
+    2300488: nomal_tree_poly 4
+    2300490: nomal_tree_poly 5
+    2300492: rock:rock_poly
+    2300494: rock_poly
+    2300496: rock_poly1
+    2300498: rock_poly2
+    2300500: rock_poly3
+    2300502: shadow_poly1
+    2300504: shadow_poly1 1
+    2300506: shadow_poly1 2
+    2300508: shadow_poly2
+    2300510: shadow_poly3
+    2300512: shadow_poly4
+    2300514: shadow_poly5
+    2300516: sky_poly
+    2300518: slim_tree1:slim_tree_poly
+    2300520: slim_tree_poly
+    2300522: slim_tree_poly 1
+    2300524: tree_shadow_poly3
+    2300526: tree_shadow_poly3 1
+    2300528: tree_shadow_poly3 10
+    2300530: tree_shadow_poly3 11
+    2300532: tree_shadow_poly3 12
+    2300534: tree_shadow_poly3 13
+    2300536: tree_shadow_poly3 14
+    2300538: tree_shadow_poly3 15
+    2300540: tree_shadow_poly3 2
+    2300542: tree_shadow_poly3 3
+    2300544: tree_shadow_poly3 4
+    2300546: tree_shadow_poly3 5
+    2300548: tree_shadow_poly3 6
+    2300550: tree_shadow_poly3 7
+    2300552: tree_shadow_poly3 8
+    2300554: tree_shadow_poly3 9
+    2300556: tree_shadow_poly4
+    2300558: tree_shadow_poly4 1
+    2300560: tree_shadow_poly4 2
+    2300562: tree_shadow_poly4 3
+    2300564: tree_shadow_poly4 4
+    2300566: tree_shadow_poly4 5
+    2300568: tree_shadow_poly4 6
+    2300570: tree_shadow_poly5
+    2300572: tree_shadow_poly5 1
+    2300574: tree_shadow_poly5 2
+    2300576: wood_poly
+    2300578: wood_poly1
+    2300580: wood_poly2
+    3300000: big_tree_poly
+    3300002: bush:bush_poly
+    3300004: bush_poly
+    3300006: bush_poly10
+    3300008: bush_poly11
+    3300010: bush_poly12
+    3300012: bush_poly13
+    3300014: bush_poly14
+    3300016: bush_poly15
+    3300018: bush_poly16
+    3300020: bush_poly17
+    3300022: bush_poly2
+    3300024: bush_poly3
+    3300026: bush_poly4
+    3300028: bush_poly6
+    3300030: bush_poly7
+    3300032: bush_poly8
+    3300034: bush_poly9
+    3300036: filed_poly
+    3300038: forest_shadow
+    3300040: gake_poly1
+    3300042: gake_poly2
+    3300044: gake_poly3
+    3300046: hayashi_poly
+    3300048: kihuku_poly1
+    3300050: kihuku_poly2
+    3300052: kihuku_poly3
+    3300054: kiri_poly
+    3300056: kiri_poly1
+    3300058: kiri_poly2
+    3300060: kiri_poly3
+    3300062: kiri_poly4
+    3300064: kiri_poly5
+    3300066: kiri_poly6
+    3300068: kiri_poly7
+    3300070: kiri_poly8
+    3300072: kusa_1:kusa_poly
+    3300074: kusa_2:kusa_2_poly
+    3300076: kusa_2_poly
+    3300078: kusa_2_poly1
+    3300080: kusa_2_poly10
+    3300082: kusa_2_poly11
+    3300084: kusa_2_poly12
+    3300086: kusa_2_poly13
+    3300088: kusa_2_poly14
+    3300090: kusa_2_poly15
+    3300092: kusa_2_poly16
+    3300094: kusa_2_poly17
+    3300096: kusa_2_poly18
+    3300098: kusa_2_poly2
+    3300100: kusa_2_poly3
+    3300102: kusa_2_poly4
+    3300104: kusa_2_poly5
+    3300106: kusa_2_poly6
+    3300108: kusa_2_poly7
+    3300110: kusa_2_poly8
+    3300112: kusa_2_poly9
+    3300114: kusa_3:kusa_3_poly
+    3300116: kusa_3_poly
+    3300118: kusa_3_poly1
+    3300120: kusa_3_poly10
+    3300122: kusa_3_poly11
+    3300124: kusa_3_poly12
+    3300126: kusa_3_poly13
+    3300128: kusa_3_poly14
+    3300130: kusa_3_poly15
+    3300132: kusa_3_poly16
+    3300134: kusa_3_poly17
+    3300136: kusa_3_poly18
+    3300138: kusa_3_poly19
+    3300140: kusa_3_poly2
+    3300142: kusa_3_poly20
+    3300144: kusa_3_poly21
+    3300146: kusa_3_poly3
+    3300148: kusa_3_poly4
+    3300150: kusa_3_poly5
+    3300152: kusa_3_poly6
+    3300154: kusa_3_poly7
+    3300156: kusa_3_poly8
+    3300158: kusa_3_poly9
+    3300160: kusa_poly
+    3300162: kusa_poly1
+    3300164: kusa_poly10
+    3300166: kusa_poly100
+    3300168: kusa_poly101
+    3300170: kusa_poly102
+    3300172: kusa_poly103
+    3300174: kusa_poly104
+    3300176: kusa_poly105
+    3300178: kusa_poly106
+    3300180: kusa_poly107
+    3300182: kusa_poly11
+    3300184: kusa_poly12
+    3300186: kusa_poly13
+    3300188: kusa_poly14
+    3300190: kusa_poly15
+    3300192: kusa_poly16
+    3300194: kusa_poly17
+    3300196: kusa_poly18
+    3300198: kusa_poly19
+    3300200: kusa_poly2
+    3300202: kusa_poly20
+    3300204: kusa_poly21
+    3300206: kusa_poly22
+    3300208: kusa_poly23
+    3300210: kusa_poly24
+    3300212: kusa_poly25
+    3300214: kusa_poly26
+    3300216: kusa_poly27
+    3300218: kusa_poly28
+    3300220: kusa_poly29
+    3300222: kusa_poly3
+    3300224: kusa_poly30
+    3300226: kusa_poly31
+    3300228: kusa_poly32
+    3300230: kusa_poly33
+    3300232: kusa_poly34
+    3300234: kusa_poly35
+    3300236: kusa_poly36
+    3300238: kusa_poly37
+    3300240: kusa_poly38
+    3300242: kusa_poly39
+    3300244: kusa_poly4
+    3300246: kusa_poly40
+    3300248: kusa_poly41
+    3300250: kusa_poly42
+    3300252: kusa_poly43
+    3300254: kusa_poly44
+    3300256: kusa_poly45
+    3300258: kusa_poly46
+    3300260: kusa_poly47
+    3300262: kusa_poly48
+    3300264: kusa_poly49
+    3300266: kusa_poly5
+    3300268: kusa_poly50
+    3300270: kusa_poly51
+    3300272: kusa_poly52
+    3300274: kusa_poly53
+    3300276: kusa_poly54
+    3300278: kusa_poly55
+    3300280: kusa_poly56
+    3300282: kusa_poly57
+    3300284: kusa_poly58
+    3300286: kusa_poly59
+    3300288: kusa_poly6
+    3300290: kusa_poly60
+    3300292: kusa_poly61
+    3300294: kusa_poly62
+    3300296: kusa_poly63
+    3300298: kusa_poly64
+    3300300: kusa_poly65
+    3300302: kusa_poly66
+    3300304: kusa_poly67
+    3300306: kusa_poly68
+    3300308: kusa_poly69
+    3300310: kusa_poly7
+    3300312: kusa_poly70
+    3300314: kusa_poly71
+    3300316: kusa_poly72
+    3300318: kusa_poly73
+    3300320: kusa_poly74
+    3300322: kusa_poly75
+    3300324: kusa_poly76
+    3300326: kusa_poly77
+    3300328: kusa_poly78
+    3300330: kusa_poly79
+    3300332: kusa_poly8
+    3300334: kusa_poly80
+    3300336: kusa_poly81
+    3300338: kusa_poly82
+    3300340: kusa_poly83
+    3300342: kusa_poly84
+    3300344: kusa_poly85
+    3300346: kusa_poly86
+    3300348: kusa_poly87
+    3300350: kusa_poly89
+    3300352: kusa_poly9
+    3300354: kusa_poly90
+    3300356: kusa_poly91
+    3300358: kusa_poly92
+    3300360: kusa_poly93
+    3300362: kusa_poly94
+    3300364: kusa_poly95
+    3300366: kusa_poly96
+    3300368: kusa_poly97
+    3300370: kusa_poly98
+    3300372: kusa_poly99
+    3300374: low_bush_poly
+    3300376: low_bush_poly1
+    3300378: low_bush_poly10
+    3300380: low_bush_poly11
+    3300382: low_bush_poly12
+    3300384: low_bush_poly13
+    3300386: low_bush_poly2
+    3300388: low_bush_poly3
+    3300390: low_bush_poly4
+    3300392: low_bush_poly5
+    3300394: low_bush_poly6
+    3300396: low_bush_poly7
+    3300398: low_bush_poly8
+    3300400: low_bush_poly9
+    3300402: low_tree_poly
+    3300404: low_tree_poly 1
+    3300406: low_tree_poly 2
+    3300408: low_tree_poly1
+    3300410: low_tree_poly1 1
+    3300412: low_tree_poly1 2
+    3300414: low_tree_poly1 3
+    3300416: low_tree_poly11
+    3300418: low_tree_poly12
+    3300420: low_tree_poly3
+    3300422: low_tree_poly3 1
+    3300424: low_tree_poly3 2
+    3300426: low_tree_poly4
+    3300428: low_tree_poly4 1
+    3300430: low_tree_poly4 2
+    3300432: low_tree_poly4 3
+    3300434: low_tree_poly6
+    3300436: low_tree_poly6 1
+    3300438: low_tree_poly6 2
+    3300440: low_tree_poly7
+    3300442: low_tree_poly7 1
+    3300444: low_tree_poly7 2
+    3300446: low_tree_poly7 3
+    3300448: low_tree_poly8
+    3300450: low_tree_poly8 1
+    3300452: low_tree_poly9
+    3300454: nekko_poly
+    3300456: nekko_poly1
+    3300458: nekko_poly10
+    3300460: nekko_poly18
+    3300462: nekko_poly19
+    3300464: nekko_poly2
+    3300466: nekko_poly3
+    3300468: nekko_poly4
+    3300470: nekko_poly5
+    3300472: nekko_poly6
+    3300474: nekko_poly7
+    3300476: nekko_poly9
+    3300478: nomal_tree1:nomal_tree_poly
+    3300480: nomal_tree_poly
+    3300482: nomal_tree_poly 1
+    3300484: nomal_tree_poly 2
+    3300486: nomal_tree_poly 3
+    3300488: nomal_tree_poly 4
+    3300490: nomal_tree_poly 5
+    3300492: rock:rock_poly
+    3300494: rock_poly
+    3300496: rock_poly1
+    3300498: rock_poly2
+    3300500: rock_poly3
+    3300502: shadow_poly1
+    3300504: shadow_poly1 1
+    3300506: shadow_poly1 2
+    3300508: shadow_poly2
+    3300510: shadow_poly3
+    3300512: shadow_poly4
+    3300514: shadow_poly5
+    3300516: sky_poly
+    3300518: slim_tree1:slim_tree_poly
+    3300520: slim_tree_poly
+    3300522: slim_tree_poly 1
+    3300524: tree_shadow_poly3
+    3300526: tree_shadow_poly3 1
+    3300528: tree_shadow_poly3 10
+    3300530: tree_shadow_poly3 11
+    3300532: tree_shadow_poly3 12
+    3300534: tree_shadow_poly3 13
+    3300536: tree_shadow_poly3 14
+    3300538: tree_shadow_poly3 15
+    3300540: tree_shadow_poly3 2
+    3300542: tree_shadow_poly3 3
+    3300544: tree_shadow_poly3 4
+    3300546: tree_shadow_poly3 5
+    3300548: tree_shadow_poly3 6
+    3300550: tree_shadow_poly3 7
+    3300552: tree_shadow_poly3 8
+    3300554: tree_shadow_poly3 9
+    3300556: tree_shadow_poly4
+    3300558: tree_shadow_poly4 1
+    3300560: tree_shadow_poly4 2
+    3300562: tree_shadow_poly4 3
+    3300564: tree_shadow_poly4 4
+    3300566: tree_shadow_poly4 5
+    3300568: tree_shadow_poly4 6
+    3300570: tree_shadow_poly5
+    3300572: tree_shadow_poly5 1
+    3300574: tree_shadow_poly5 2
+    3300576: wood_poly
+    3300578: wood_poly1
+    3300580: wood_poly2
+    4300000: filed_poly
+    4300002: big_tree_poly
+    4300004: nekko_poly
+    4300006: sky_poly
+    4300008: hayashi_poly
+    4300010: wood_poly
+    4300012: forest_shadow
+    4300014: rock:rock_poly
+    4300016: shadow_poly1
+    4300018: bush:bush_poly
+    4300020: tree_shadow_poly3
+    4300022: kusa_1:kusa_poly
+    4300024: kusa_2:kusa_2_poly
+    4300026: kusa_3:kusa_3_poly
+    4300028: nekko_poly1
+    4300030: nekko_poly2
+    4300032: nekko_poly3
+    4300034: nekko_poly4
+    4300036: nekko_poly5
+    4300038: nekko_poly6
+    4300040: nekko_poly7
+    4300042: bush_poly
+    4300044: tree_shadow_poly3
+    4300046: rock_poly
+    4300048: shadow_poly1
+    4300050: kusa_poly
+    4300052: kusa_poly1
+    4300054: kusa_poly2
+    4300056: kusa_poly3
+    4300058: kusa_poly4
+    4300060: kusa_poly5
+    4300062: kusa_poly6
+    4300064: kihuku_poly1
+    4300066: gake_poly1
+    4300068: bush_poly2
+    4300070: tree_shadow_poly3
+    4300072: kusa_2_poly
+    4300074: kusa_poly7
+    4300076: kusa_poly8
+    4300078: kusa_poly9
+    4300080: kusa_poly10
+    4300082: kusa_poly11
+    4300084: tree_shadow_poly4
+    4300086: nomal_tree1:nomal_tree_poly
+    4300088: tree_shadow_poly5
+    4300090: slim_tree1:slim_tree_poly
+    4300092: rock_poly1
+    4300094: low_tree_poly
+    4300096: low_tree_poly1
+    4300098: low_tree_poly3
+    4300100: low_tree_poly4
+    4300102: low_tree_poly6
+    4300104: low_tree_poly7
+    4300106: low_tree_poly9
+    4300108: low_tree_poly11
+    4300110: tree_shadow_poly4
+    4300112: nomal_tree_poly
+    4300114: shadow_poly2
+    4300116: tree_shadow_poly4
+    4300118: nomal_tree_poly
+    4300120: tree_shadow_poly4
+    4300122: nomal_tree_poly
+    4300124: kusa_3_poly
+    4300126: kusa_3_poly1
+    4300128: kusa_3_poly2
+    4300130: kusa_poly12
+    4300132: bush_poly3
+    4300134: tree_shadow_poly3
+    4300136: bush_poly4
+    4300138: tree_shadow_poly3
+    4300140: kusa_poly13
+    4300142: kusa_2_poly1
+    4300144: kusa_poly14
+    4300146: nekko_poly9
+    4300148: kusa_poly15
+    4300150: kusa_poly16
+    4300152: kusa_poly17
+    4300154: kusa_poly18
+    4300156: kusa_poly19
+    4300158: kusa_2_poly2
+    4300160: kusa_3_poly3
+    4300162: kusa_3_poly4
+    4300164: wood_poly1
+    4300166: wood_poly2
+    4300168: kusa_poly20
+    4300170: kusa_poly21
+    4300172: kusa_poly22
+    4300174: low_bush_poly
+    4300176: bush_poly6
+    4300178: kusa_2_poly3
+    4300180: kusa_3_poly5
+    4300182: kusa_poly23
+    4300184: kusa_poly24
+    4300186: kusa_poly25
+    4300188: gake_poly2
+    4300190: nekko_poly10
+    4300192: kihuku_poly2
+    4300194: low_tree_poly
+    4300196: low_tree_poly1
+    4300198: low_tree_poly4
+    4300200: low_tree_poly6
+    4300202: low_tree_poly7
+    4300204: low_tree_poly8
+    4300206: low_tree_poly1
+    4300208: low_tree_poly3
+    4300210: low_tree_poly4
+    4300212: low_tree_poly6
+    4300214: low_tree_poly7
+    4300216: low_tree_poly
+    4300218: low_tree_poly1
+    4300220: low_tree_poly3
+    4300222: low_tree_poly4
+    4300224: low_tree_poly7
+    4300226: low_tree_poly8
+    4300228: low_tree_poly12
+    4300230: bush_poly7
+    4300232: tree_shadow_poly3
+    4300234: shadow_poly3
+    4300236: shadow_poly4
+    4300238: shadow_poly5
+    4300240: kusa_poly26
+    4300242: kusa_poly27
+    4300244: kusa_poly28
+    4300246: kusa_poly29
+    4300248: kusa_poly30
+    4300250: kusa_poly31
+    4300252: kusa_poly32
+    4300254: kusa_poly33
+    4300256: kusa_poly34
+    4300258: kusa_poly35
+    4300260: kusa_poly36
+    4300262: kusa_poly37
+    4300264: kusa_poly38
+    4300266: kusa_poly39
+    4300268: kusa_poly40
+    4300270: kusa_poly41
+    4300272: kusa_poly42
+    4300274: tree_shadow_poly5
+    4300276: slim_tree_poly
+    4300278: nekko_poly18
+    4300280: kusa_poly43
+    4300282: kusa_poly44
+    4300284: kusa_poly45
+    4300286: kusa_poly46
+    4300288: kusa_poly47
+    4300290: kusa_poly48
+    4300292: kusa_poly49
+    4300294: kusa_poly50
+    4300296: kusa_poly51
+    4300298: kusa_poly52
+    4300300: kusa_poly53
+    4300302: kusa_poly54
+    4300304: kusa_poly55
+    4300306: kusa_poly56
+    4300308: kusa_poly57
+    4300310: kusa_poly58
+    4300312: kusa_poly59
+    4300314: tree_shadow_poly5
+    4300316: slim_tree_poly
+    4300318: tree_shadow_poly4
+    4300320: nomal_tree_poly
+    4300322: tree_shadow_poly4
+    4300324: nomal_tree_poly
+    4300326: bush_poly8
+    4300328: tree_shadow_poly3
+    4300330: bush_poly9
+    4300332: tree_shadow_poly3
+    4300334: bush_poly10
+    4300336: tree_shadow_poly3
+    4300338: rock_poly2
+    4300340: shadow_poly1
+    4300342: kusa_poly60
+    4300344: kusa_2_poly4
+    4300346: kusa_2_poly5
+    4300348: kusa_2_poly6
+    4300350: kusa_2_poly7
+    4300352: kusa_2_poly8
+    4300354: kusa_2_poly9
+    4300356: kusa_2_poly10
+    4300358: kusa_2_poly11
+    4300360: kusa_2_poly12
+    4300362: kusa_2_poly13
+    4300364: kusa_2_poly14
+    4300366: kusa_2_poly15
+    4300368: kusa_3_poly6
+    4300370: kusa_3_poly7
+    4300372: kusa_3_poly8
+    4300374: kusa_3_poly9
+    4300376: kusa_3_poly10
+    4300378: low_bush_poly1
+    4300380: low_bush_poly2
+    4300382: bush_poly11
+    4300384: tree_shadow_poly3
+    4300386: bush_poly12
+    4300388: tree_shadow_poly3
+    4300390: kusa_poly61
+    4300392: kusa_poly62
+    4300394: kusa_poly63
+    4300396: kusa_poly64
+    4300398: kusa_poly65
+    4300400: kusa_poly66
+    4300402: kusa_poly67
+    4300404: kusa_poly68
+    4300406: kusa_poly69
+    4300408: kusa_2_poly16
+    4300410: low_bush_poly3
+    4300412: low_bush_poly4
+    4300414: low_bush_poly5
+    4300416: kusa_poly70
+    4300418: kusa_poly71
+    4300420: kusa_poly72
+    4300422: kusa_poly73
+    4300424: kusa_poly74
+    4300426: kusa_poly75
+    4300428: kusa_poly76
+    4300430: bush_poly13
+    4300432: tree_shadow_poly3
+    4300434: kusa_3_poly11
+    4300436: kusa_3_poly12
+    4300438: kusa_3_poly13
+    4300440: kusa_poly77
+    4300442: kihuku_poly3
+    4300444: gake_poly3
+    4300446: kusa_poly78
+    4300448: kusa_poly79
+    4300450: kusa_poly80
+    4300452: kusa_poly81
+    4300454: kusa_poly82
+    4300456: kusa_poly83
+    4300458: kusa_poly84
+    4300460: kusa_poly85
+    4300462: kusa_poly86
+    4300464: kusa_poly87
+    4300466: kusa_poly89
+    4300468: kusa_poly90
+    4300470: kusa_poly91
+    4300472: kusa_poly92
+    4300474: kusa_poly93
+    4300476: low_bush_poly6
+    4300478: low_bush_poly7
+    4300480: low_bush_poly8
+    4300482: low_bush_poly9
+    4300484: low_bush_poly10
+    4300486: low_bush_poly11
+    4300488: kusa_poly94
+    4300490: kusa_poly95
+    4300492: low_bush_poly12
+    4300494: rock_poly3
+    4300496: kusa_3_poly14
+    4300498: kusa_3_poly15
+    4300500: kusa_3_poly16
+    4300502: nekko_poly19
+    4300504: bush_poly14
+    4300506: tree_shadow_poly3
+    4300508: kusa_3_poly17
+    4300510: bush_poly15
+    4300512: tree_shadow_poly3
+    4300514: bush_poly16
+    4300516: tree_shadow_poly3
+    4300518: kusa_3_poly18
+    4300520: kusa_poly96
+    4300522: bush_poly17
+    4300524: tree_shadow_poly3
+    4300526: kusa_poly97
+    4300528: kusa_2_poly17
+    4300530: kusa_poly98
+    4300532: kusa_poly99
+    4300534: kusa_poly100
+    4300536: kusa_2_poly18
+    4300538: kusa_3_poly19
+    4300540: kusa_3_poly20
+    4300542: kusa_3_poly21
+    4300544: kusa_poly101
+    4300546: low_bush_poly13
+    4300548: kusa_poly102
+    4300550: kusa_poly103
+    4300552: kusa_poly104
+    4300554: kusa_poly105
+    4300556: kusa_poly106
+    4300558: kusa_poly107
+    4300560: tree_shadow_poly4
+    4300562: nomal_tree_poly
+    4300564: kiri_poly
+    4300566: kiri_poly1
+    4300568: kiri_poly2
+    4300570: kiri_poly3
+    4300572: kiri_poly4
+    4300574: kiri_poly5
+    4300576: kiri_poly6
+    4300578: kiri_poly7
+    4300580: kiri_poly8
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using System.Collections.Generic;
+using System.Linq;
 
 //set_positionの拡張版
 public static class CSTransform {

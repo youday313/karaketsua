@@ -4,13 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Fire
-  - ActionSelect
   - Stage
-  - WaitTime
+  - ActiveTime
   - Tile
+  - BattleCharacter
   - PlayerCharacter
-  - EnemyCharacter
   layers:
   - Default
   - TransparentFX
