@@ -152,11 +152,11 @@ public class CharacterMover : MonoBehaviour {
     {
         if (isNowAction == true)
         {
-            //animator.SetFloat("Speed", 1f);
+            animator.SetBool("Move", true);
         }
         else if (isNowAction == false)
         {
-            //animator.SetFloat("Speed", 0f);
+            animator.SetBool("Move", false);
         }
     }
     //移動アニメーション作成
@@ -165,7 +165,8 @@ public class CharacterMover : MonoBehaviour {
         Hashtable table = new Hashtable();
         table.Add("x", position.x);
         table.Add("z", position.y);
-        table.Add("time", 1.0f);
+        //table.Add("time", 1.0f);
+        table.Add("time", 1.6);
         table.Add("easetype", iTween.EaseType.linear);
         table.Add("oncomplete", "CompleteMove");	// トゥイーン終了時にCompleteHandler()を呼ぶ
         return table;

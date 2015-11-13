@@ -71,6 +71,7 @@ public class Character : MonoBehaviour
     CharacterAttacker attacker;
     //スキル
     //Skill skill;
+    Animator animator;
 
 
     #region::初期化
@@ -79,6 +80,7 @@ public class Character : MonoBehaviour
 	{
         mover = GetComponent<CharacterMover>();
         attacker = GetComponent<CharacterAttacker>();
+        animator = GetComponent<Animator>();
         activeTime = ActiveTimeCreater.Instance.CreateActiveTime(this);
         SetActiveTimeEventHandler();
         SetPositionOnTile();
@@ -193,9 +195,22 @@ public class Character : MonoBehaviour
     public void Damage(int enemyPower)
     {
         characterParameter.HP -= CalcDamage(enemyPower);
+        DamageAnimation();
         if (characterParameter.HP <= 0)
         {
             DeathMyself();
+        }
+        
+    }
+    void DamageAnimation()
+    {
+        if (characterParameter.HP == 0)
+        {
+            animator.SetTrigger("Death");
+        }
+        else
+        {
+            animator.SetTrigger("Damage");
         }
     }
     //計算式

@@ -47,23 +47,42 @@ public class CharacterAttacker : MonoBehaviour {
     void Enable()
     {
         OnActiveCharacter();
-        IT_Gesture.onTouchDownE+=OnTouchDown;
+        //IT_Gesture.onTouchDownE+=OnTouchDown;
+        //IT_Gesture.onMouse1DownE += OnMouseDown;
+        IT_Gesture.onShortTapE += OnShortTap;
     }
     void Disable()
     {
-        IT_Gesture.onTouchDownE -= OnTouchDown;
+        //IT_Gesture.onTouchDownE -= OnTouchDown;
+        //IT_Gesture.onMouse1DownE -= OnMouseDown;
+        IT_Gesture.onShortTapE -= OnShortTap;
     }
 
-    void OnTouchDown(Touch touch)
+    void OnShortTap(Vector2 pos)
+    {
+        UpdateAttackState(pos);
+
+    }
+    //void OnMouseDown(Vector2 pos)
+    //{
+    //    Debug.Log("OnMouse");
+    //    UpdateAttackState(pos);
+    //}
+    //void OnTouchDown(Touch touch)
+    //{
+    //    Debug.Log("OnTouch");
+    //    UpdateAttackState(touch.position);
+    //}
+    void UpdateAttackState(Vector2 position)
     {
         if (isNowAction == true) return;
         if (isSetTarget == false)
         {
-            SetTarget(touch.position);
+            SetTarget(position);
         }
         else
         {
-            Attack(touch.position);
+            Attack(position);
         }
     }
     void SetAttackMode(bool isSet)
@@ -76,19 +95,20 @@ public class CharacterAttacker : MonoBehaviour {
     //ターゲットの決定
     public void SetTarget(Vector2 touchPosition)
     {
-
+        Debug.Log("In");
         //ターゲットの検索
         var target = GetOpponentCharacterFromTouch(touchPosition);
 
         //ターゲットが存在しないマスをタップ
         if (target == null) return;
+
         //攻撃範囲内
         if (Mathf.Abs(target.positionArray.x - character.positionArray.x) + Mathf.Abs(target.positionArray.y - character.positionArray.y) > character.characterParameter.attackRange) return;
-
+     
 
         attackTarget = target;
         //ターゲットのタイル変更
-        BattleStage.Instance.ChangeColor(target.positionArray, TileState.Target);
+        //BattleStage.Instance.ChangeColor(target.positionArray, TileState.Target);
 
 
         SetAttackMode(true);
@@ -138,7 +158,7 @@ public class CharacterAttacker : MonoBehaviour {
     public float attackMotionTime=1f;
     void StartAttackAnimation()
     {
-        //animator.SetTrigger("Attack");
+        animator.SetTrigger("Attack");
         isNowAction=true;
         Invoke("OnCompleteAnimation",attackMotionTime);
     }
@@ -178,7 +198,7 @@ public class CharacterAttacker : MonoBehaviour {
     //タイル上のキャラを取得
     Character GetCharacterOnTile(IntVect2D toPos)
     {
-        return GameObject.FindGameObjectsWithTag("Character").
+        return GameObject.FindGameObjectsWithTag("BattleCharacter").
             Select(t => t.GetComponent<Character>()).
             Where(t => toPos.IsEqual(t.positionArray)).
             FirstOrDefault();
@@ -187,16 +207,18 @@ public class CharacterAttacker : MonoBehaviour {
     //タイル上のキャラが自身にとっての敵キャラなら取得
     Character GetOpponentCharacterOnTile(IntVect2D toPos)
     {
+
         var chara = GetCharacterOnTile(toPos);
+        if (chara == null) return null;
         if (chara.isEnemy != this.character.isEnemy) return chara;
         return null;
     }
     Character GetOpponentCharacterFromTouch(Vector2 touchPosition)
     {
+
         var targetPosition = GetArrayFromRay(touchPosition);
         //タイル以外をタップ
         if (targetPosition == null) return null;
-
         //ターゲットの検索
         return GetOpponentCharacterOnTile(targetPosition);
     }
