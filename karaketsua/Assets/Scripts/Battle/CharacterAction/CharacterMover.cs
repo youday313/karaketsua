@@ -135,6 +135,7 @@ public class CharacterMover : MonoBehaviour {
         //移動先のタイル位置
         var toTilePostion = BattleStage.Instance.GetTileXAndZPosition(newPosition);
         var table = SetMoveTable(toTilePostion);
+
         //座標変更
         iTween.MoveTo(gameObject, table);
 
