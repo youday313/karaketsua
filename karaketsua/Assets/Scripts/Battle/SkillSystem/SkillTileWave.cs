@@ -7,6 +7,7 @@ using System.Linq;
 public class SkillTileWave : MonoBehaviour {
 
 	List<SkillTile> skillTiles=new List<SkillTile>();
+	public SkillTile skillTilePrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +18,11 @@ public class SkillTileWave : MonoBehaviour {
 	void Update () {
 	
 	}
-
-	IEnumerator ICreateNewTile(){
-		foreach (var tile in skillTiles) {
-			CreateNewTile (tile);
-			yield return null;
-		}
-	}
-	void CreateNewTile(SkillTile tile){
 		
+	public void CreateNewTile(){
+		foreach (var skillTile in skillTiles) {
+			var tile =Instantiate (skillTilePrefab);
+			tile.
+		}
 	}
 }
