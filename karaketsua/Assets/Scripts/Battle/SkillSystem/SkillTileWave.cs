@@ -8,6 +8,8 @@ public class SkillTileWave : MonoBehaviour {
 
 	List<SkillTile> skillTiles=new List<SkillTile>();
 	public SkillTile skillTilePrefab;
+    HoleSkillTile holeSkillTile;
+    IntVect2D startPos;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +20,49 @@ public class SkillTileWave : MonoBehaviour {
 	void Update () {
 	
 	}
-		
-	public void CreateNewTile(){
-		foreach (var skillTile in skillTiles) {
-			var tile =Instantiate (skillTilePrefab);
-			tile.
-		}
+    public void Init(HoleSkillTile _holeSkillTile,IntVect2D _starPos)
+    {
+        holeSkillTile = _holeSkillTile;
+        startPos = _starPos;
+    }
+	
+	
+    //座標の修正が必要
+    //キャラ位置から修正する
+	public void CreateNewTileSequence(IntVect2D arrayPos){
+        //単数
+        if (skillTiles.Count == 1)
+        {
+            CreateNewTile(arrayPos, _isStart: true, _isEnd: true, _preSkillTile: null);
+        }
+        //複数
+        else
+        {
+            //最初
+            var preTile=CreateNewTile(arrayPos, _isStart: true, _isEnd: false, _preSkillTile: null);
+      //途中
+            for (int i = 1; i < skillTiles.Count - 1; i++)
+            {
+                preTile=CreateNewTile(arrayPos, _isStart: false, _isEnd: false, _preSkillTile: preTile);
+            
+            }
+            //最後
+            CreateNewTile(arrayPos, _isStart: false, _isEnd: true, _preSkillTile: preTile);
+        }
 	}
+    public SkillTile CreateNewTile(IntVect2D arrayPos,bool _isStart,bool _isEnd,SkillTile _preSkillTile)
+    {
+        var tile = Instantiate(skillTilePrefab) as SkillTile;
+        tile.Init(this,arrayPos, _isStart, _isEnd, _preSkillTile);
+        return tile;
+    }
+
+    public void SuccessDrag()
+    {
+        holeSkillTile.SuccessWave();
+    }
+    public void MissDrag()
+    {
+
+    }
 }

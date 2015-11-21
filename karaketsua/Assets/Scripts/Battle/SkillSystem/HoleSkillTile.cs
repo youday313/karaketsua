@@ -5,6 +5,7 @@ using System.Linq;
 
 public class HoleSkillTile : MonoBehaviour {
 
+    Character character;
 
 	public List<SkillTileWave> skillTileWaves=new List<SkillTileWave>();
 
@@ -26,6 +27,11 @@ public class HoleSkillTile : MonoBehaviour {
 		}
 	}
 	void CreateNewWave(SkillTileWave wave){
-		wave.CreateNewTile ();
+		wave.CreateNewTileSequence (character.positionArray);
 	}
+
+    public void SuccessWave()
+    {
+
+    }
 }
