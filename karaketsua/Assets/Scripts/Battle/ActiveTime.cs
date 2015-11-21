@@ -29,7 +29,7 @@ public class ActiveTime : MonoBehaviour
 
 	Slider slider;
     float activeSpeed;
-    float initTimeValue=100;
+    float initTimeValue=20;
     float nowWaitTime;
     float NowWaitTime
     {

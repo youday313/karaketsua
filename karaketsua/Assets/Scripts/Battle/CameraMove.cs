@@ -22,22 +22,55 @@ public class CameraMove : Singleton<CameraMove>
 	//private
     public float changeTime=1f;
     bool isTurn = false;
+    bool isAttack = false;
+
 
 	void Start ()
 	{
 		MoveToLean ();
 	}
+    
 	
 
 
     void Update()
     {
-        //if (isTurn)
-        //{
-        //    TurnAroundForWaiting();
-        //}
+    }
+    void OnEnable()
+    {
+        IT_Gesture.onDraggingE += OnDraggingInAttackMode;
     }
 
+    void OnDisable()
+    {
+        IT_Gesture.onDraggingE -= OnDraggingInAttackMode;
+    }
+    void OnDraggingInAttackMode(DragInfo dragInfo)
+    {
+        if (isAttack == false) return;
+        //x方向
+        var moveVect=GetMoveDirection(dragInfo.delta);
+        CSTransform.SetX(transform,transform.position.x+ moveVect.x);
+        CSTransform.SetZ(transform, transform.position.z + moveVect.z);
+        
+    }
+    Vector3 GetMoveDirection(Vector2 delta)
+    {
+        //x方向
+        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        {
+            
+            delta*=IT_Gesture.GetDPIFactor();
+            return new Vector3(delta.x,0, 0);
+
+        }
+        //y方向
+        else
+        {
+            delta *= IT_Gesture.GetDPIFactor();
+            return new Vector3(0,0,delta.y);
+        }
+    }
 	//背面に移動
 	public void MoveToBack(Character chara){
 
@@ -49,7 +82,6 @@ public class CameraMove : Singleton<CameraMove>
 
 
 	public void MoveToLean(){
-
         iTween.MoveTo(gameObject, iTween.Hash("x", leanCamera.position.x, "y", leanCamera.position.y, "z", leanCamera.position.z, "time", changeTime));
         iTween.RotateTo(gameObject, iTween.Hash("x", leanCamera.rotation.x, "y", leanCamera.rotation.y, "z", leanCamera.rotation.z, "time", changeTime, "islocal", true));
         isTurn = false;
@@ -66,12 +98,16 @@ public class CameraMove : Singleton<CameraMove>
         return table;
 
     }
+
+    public void SetAttackMoveMode(bool _isAttack)
+    {
+        isAttack = _isAttack;
+    }
     //回転
     //待機画面。アクティブタイム増加中
     public void TurnAroundForWaiting()
     {
-        transform.LookAt(new Vector3(0,0,0));
-        transform.Rotate(new Vector3(0, 0, 0), Time.deltaTime);
+        //transform.parent.Rotate(0,1 , 0);
     }
 
 }

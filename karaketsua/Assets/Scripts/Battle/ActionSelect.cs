@@ -44,7 +44,8 @@ public class ActionSelect : Singleton<ActionSelect>
     }
     public void OnSkillButton()
     {
-        
+        activeCharacter.SetSkillMode();
+        commands.SetActive(false);
     }
     public void OnWaitButton()
     {

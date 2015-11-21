@@ -6,7 +6,7 @@ using System.Linq;
 
 public class CharacterAttacker : MonoBehaviour {
 
-    Character character;
+    protected Character character;
         [System.NonSerialized]
     public bool isNowAction = false;
         [System.NonSerialized]
@@ -29,7 +29,7 @@ public class CharacterAttacker : MonoBehaviour {
         }
 
     }
-    Animator animator;
+    protected Animator animator;
 
     Character attackTarget;
 	// Use this for initialization
@@ -50,6 +50,7 @@ public class CharacterAttacker : MonoBehaviour {
         //IT_Gesture.onTouchDownE+=OnTouchDown;
         //IT_Gesture.onMouse1DownE += OnMouseDown;
         IT_Gesture.onShortTapE += OnShortTap;
+        //CameraMove.Instance.SetAttackMoveMode(true);
         BattleStage.Instance.UpdateTileColors(this.character, TileState.Attack);
     }
     void Disable()
@@ -57,6 +58,7 @@ public class CharacterAttacker : MonoBehaviour {
         //IT_Gesture.onTouchDownE -= OnTouchDown;
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
         IT_Gesture.onShortTapE -= OnShortTap;
+        //CameraMove.Instance.SetAttackMoveMode(false);
         BattleStage.Instance.ResetTileColor();
     }
 
@@ -65,17 +67,8 @@ public class CharacterAttacker : MonoBehaviour {
         UpdateAttackState(pos);
 
     }
-    //void OnMouseDown(Vector2 pos)
-    //{
-    //    Debug.Log("OnMouse");
-    //    UpdateAttackState(pos);
-    //}
-    //void OnTouchDown(Touch touch)
-    //{
-    //    Debug.Log("OnTouch");
-    //    UpdateAttackState(touch.position);
-    //}
-    void UpdateAttackState(Vector2 position)
+    
+    public void UpdateAttackState(Vector2 position)
     {
         if (isNowAction == true) return;
         if (isSetTarget == false)
@@ -97,7 +90,6 @@ public class CharacterAttacker : MonoBehaviour {
     //ターゲットの決定
     public void SetTarget(Vector2 touchPosition)
     {
-        Debug.Log("In");
         //ターゲットの検索
         var target = GetOpponentCharacterFromTouch(touchPosition);
 

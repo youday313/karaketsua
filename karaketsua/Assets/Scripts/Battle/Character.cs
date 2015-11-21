@@ -72,8 +72,10 @@ public class Character : MonoBehaviour
     //スキル
     //Skill skill;
 
-	HoleSkillTile 
+    CharacterSkill skill; 
     Animator animator;
+
+
 
 
     #region::初期化
@@ -83,6 +85,7 @@ public class Character : MonoBehaviour
         mover = GetComponent<CharacterMover>();
         attacker = GetComponent<CharacterAttacker>();
         animator = GetComponent<Animator>();
+        skill = GetComponent<CharacterSkill>();
         activeTime = ActiveTimeCreater.Instance.CreateActiveTime(this);
         SetActiveTimeEventHandler();
         SetPositionOnTile();
@@ -116,6 +119,7 @@ public class Character : MonoBehaviour
         isNowSelect = false;
         mover.Disable();
         attacker.IsEnable = false;
+        skill.IsEnable = false;
         activeCircle.SetActive(false);
     }
 
@@ -140,6 +144,7 @@ public class Character : MonoBehaviour
     {
         if (mover.isNowAction == true) return true;
         if (attacker.isNowAction == true) return true;
+        if (skill.isNowAction == true) return true;
         return false;
     }
 
@@ -158,7 +163,8 @@ public class Character : MonoBehaviour
     void SetInitialActionState(bool isAllReset)
     {
         attacker.IsEnable = false;
-
+        skill.IsEnable = false;
+        CameraMove.Instance.MoveToBack(this);
         if (isAllReset == true)
         {
             mover.OnActiveCharacter();
@@ -182,7 +188,9 @@ public class Character : MonoBehaviour
     }
     public void SetSkillMode()
     {
-
+        mover.Disable();
+        skill.IsEnable = true;
+        BattleStage.Instance.UpdateTileColors(this, TileState.Skill);
     }
 
     public void SetWaitMode()

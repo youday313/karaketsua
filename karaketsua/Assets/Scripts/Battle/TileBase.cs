@@ -10,7 +10,7 @@ using System.Linq;
 using System;
 //Active:行動キャラ,Moved:移動終了,Movable:移動可能範囲,Target:攻撃先,Attackble:攻撃範囲,Skill:スキル範囲,Skilled;スキル塗り終わり
 //public enum TileState { Default=0,Active,Moved,Movable,Target,Attackable,Skill,Skilled};
-public enum TileState{Default,Attack,Move};
+public enum TileState{Default,Attack,Move,Skill};
 
 public class TileBase : MonoBehaviour
 {

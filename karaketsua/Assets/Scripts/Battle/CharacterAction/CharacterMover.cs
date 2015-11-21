@@ -72,7 +72,7 @@ public class CharacterMover : MonoBehaviour {
         //移動実行
         UpdatePosition(newPosition);
 
-        UpdateAnimation();
+        StartAnimation();
 
         UpdateTileState();
         //コマンド変更
@@ -129,6 +129,8 @@ public class CharacterMover : MonoBehaviour {
     //実際に移動
     void UpdatePosition(IntVect2D newPosition)
     {
+        //移動方向
+        var direction = GetDirection(character.positionArray, newPosition);
         //配列値変更
         character.positionArray = newPosition;
 
@@ -144,7 +146,12 @@ public class CharacterMover : MonoBehaviour {
 
         directionIcon.SetActive(false);
 
-        UpdateAnimation();
+        StartAnimation();
+        StartRotateAnimation(direction);
+    }
+    IntVect2D GetDirection(IntVect2D oldVect,IntVect2D newVect)
+    {
+        return new IntVect2D(newVect.x - oldVect.x, newVect.y-oldVect.y);
     }
     void UpdateTileState()
     {
@@ -153,16 +160,41 @@ public class CharacterMover : MonoBehaviour {
         //BattleStage.Instance.UpdateTileColors(positionArray, TileState.Moved);
     }
     //アニメーション状態
-    void UpdateAnimation()
+    //void UpdateAnimation()
+    //{
+    //    if (isNowAction == true)
+    //    {
+    //        animator.SetBool("Move", true);
+    //        StartRotateAnimation();
+    //    }
+    //    else if (isNowAction == false)
+    //    {
+    //        animator.SetBool("Move", false);
+            
+    //    }
+    //}
+    void StartAnimation()
     {
-        if (isNowAction == true)
-        {
-            animator.SetBool("Move", true);
-        }
-        else if (isNowAction == false)
-        {
-            animator.SetBool("Move", false);
-        }
+        animator.SetBool("Move", true);
+        
+    }
+    void StopAnimation()
+    {
+        animator.SetBool("Move", false);
+        ResetRoatateAnimation();
+    }
+    void StartRotateAnimation(IntVect2D vect)
+    {
+        float angleX = vect.x * 90;
+        float angleY = Mathf.Sign(vect.y) > 0 ? 0 : 180;
+        float isEnemyAngle = character.isEnemy == false ? 1 : -1;
+        transform.eulerAngles = new Vector3(0, angleX + isEnemyAngle * angleY, 0);
+        
+    }
+    void ResetRoatateAnimation()
+    {
+        var isEnemyAngle = character.isEnemy == true ? 180 : 0;
+        transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
     }
     //移動アニメーション作成
     Hashtable SetMoveTable(Vector2 position)
@@ -179,7 +211,7 @@ public class CharacterMover : MonoBehaviour {
     void CompleteMove()
     {
         isNowAction = false;
-        UpdateAnimation();
+        StopAnimation();
         BattleStage.Instance.ResetTileColor();
         //character.ResetActive();
     }

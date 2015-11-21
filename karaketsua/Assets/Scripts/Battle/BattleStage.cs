@@ -68,6 +68,12 @@ public class BattleStage : Singleton<BattleStage>
             ChangeColor(positionArray, state);
             ChangeNeighborTilesColor(positionArray, state);
         }
+        else if (state == TileState.Skill)
+        {
+            ResetTileColor();
+            ChangeColor(positionArray, state);
+            
+        }
 
 
     }

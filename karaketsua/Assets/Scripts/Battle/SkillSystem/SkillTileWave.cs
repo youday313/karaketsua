@@ -29,7 +29,7 @@ public class SkillTileWave : MonoBehaviour {
 	
     //座標の修正が必要
     //キャラ位置から修正する
-	public void CreateNewTileSequence(IntVect2D arrayPos){
+	public virtual void CreateNewTileSequence(IntVect2D arrayPos){
         //単数
         if (skillTiles.Count == 1)
         {
