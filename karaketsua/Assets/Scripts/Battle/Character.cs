@@ -71,6 +71,8 @@ public class Character : MonoBehaviour
     CharacterAttacker attacker;
     //スキル
     //Skill skill;
+
+	HoleSkillTile 
     Animator animator;
 
 

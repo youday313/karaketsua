@@ -3,12 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-
+[System.Serializable]
 public class SkillTileWave : MonoBehaviour {
 
-	List<SkillTile> skillTiles=new List<SkillTile>();
+	public List<SkillTile> skillTiles=new List<SkillTile>();
 	public SkillTile skillTilePrefab;
-    HoleSkillTile holeSkillTile;
+	CharacterSkill characterSkill;
     IntVect2D startPos;
 
 	// Use this for initialization
@@ -20,9 +20,9 @@ public class SkillTileWave : MonoBehaviour {
 	void Update () {
 	
 	}
-    public void Init(HoleSkillTile _holeSkillTile,IntVect2D _starPos)
+	public void Init(CharacterSkill _skill,IntVect2D _starPos)
     {
-        holeSkillTile = _holeSkillTile;
+        characterSkill = _skill;
         startPos = _starPos;
     }
 	
@@ -59,7 +59,7 @@ public class SkillTileWave : MonoBehaviour {
 
     public void SuccessDrag()
     {
-        holeSkillTile.SuccessWave();
+        characterSkill.SuccessWave();
     }
     public void MissDrag()
     {
