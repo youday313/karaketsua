@@ -31,8 +31,8 @@ public class ActiveTime : MonoBehaviour
     float activeSpeed;
     //public float initTimeValue=20;
     //最大速度のキャラがかかる秒数
-    public static float cycleSecond=3f;
-    public static float minOneCycleValue;
+    static float cycleSecond=3f;
+    static float minOneCycleValue;
     float nowWaitTime;
     float NowWaitTime
     {
