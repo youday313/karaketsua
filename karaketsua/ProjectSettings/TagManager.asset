@@ -10,7 +10,7 @@ TagManager:
   - BattleCharacter
   - PlayerCharacter
   - ActionSelect
-  - CharacterStateUI
+  - CharacterStateUIParent
   layers:
   - Default
   - TransparentFX

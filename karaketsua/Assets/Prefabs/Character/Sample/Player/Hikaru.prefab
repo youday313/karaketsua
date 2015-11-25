@@ -2999,7 +2999,7 @@ MonoBehaviour:
     activeSpeed: 4
     power: 10
     deffence: 0
-    skillPoint: 0
+    skillPoint: 20
     intellect: 0
   deathEffect: {fileID: 179242, guid: 42a81a0777f908643880561530b39751, type: 2}
   activeCircle: {fileID: 166670}
@@ -3113,7 +3113,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.skillPoint
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.activeSpeed

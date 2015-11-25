@@ -29,7 +29,10 @@ public class ActiveTime : MonoBehaviour
 
 	Slider slider;
     float activeSpeed;
-    float initTimeValue=20;
+    //public float initTimeValue=20;
+    //最大速度のキャラがかかる秒数
+    public static float cycleSecond=3f;
+    public static float minOneCycleValue;
     float nowWaitTime;
     float NowWaitTime
     {
@@ -51,17 +54,33 @@ public class ActiveTime : MonoBehaviour
 	void Awake ()
 	{
         slider = GetComponent<Slider>();
-        slider.value = initTimeValue;
+        //slider.value = initTimeValue;
         isActive = true;
 	}
 	public void Init(Character chara)
     {
         activeSpeed = chara.characterParameter.activeSpeed;
         character = chara;
-        slider.maxValue = initTimeValue;
-        nowWaitTime = initTimeValue;
+        //slider.maxValue = initTimeValue;
+        //nowWaitTime = initTimeValue;
 
     }
+
+    void Start()
+    {
+        SetActiveTimeValue();
+
+    }
+    void SetActiveTimeValue()
+    {
+        //最大速度取得
+        var maxSpeed = GameObject.FindGameObjectsWithTag("ActiveTime").Select(x => x.GetComponent<ActiveTime>().activeSpeed).Max();
+        //最小でかかるスライダー量取得
+        minOneCycleValue = maxSpeed * cycleSecond;
+        //max補正
+        slider.maxValue = minOneCycleValue;
+        nowWaitTime = minOneCycleValue;
+    }   
 
 	void Update ()
 	{
@@ -100,7 +119,7 @@ public class ActiveTime : MonoBehaviour
     //行動終了とActiveTime再開
     public void ResetValue()
     {
-        NowWaitTime = initTimeValue;
+        NowWaitTime = minOneCycleValue;
         //OnStartActiveTimeE(this);
         //activeTime再開
         foreach (var time in GameObject.FindGameObjectsWithTag("ActiveTime").Select(x => x.GetComponent<ActiveTime>()))

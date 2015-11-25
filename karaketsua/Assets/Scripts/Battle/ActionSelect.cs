@@ -14,6 +14,7 @@ public class ActionSelect : Singleton<ActionSelect>
 {
 	//public
     public GameObject commands;
+    public GameObject andoButton;
 	//private
 
     Character activeCharacter;
@@ -21,6 +22,7 @@ public class ActionSelect : Singleton<ActionSelect>
 	void Start ()
 	{
         commands.SetActive(false);
+        andoButton.SetActive(false);
     }
 	
 	void Update ()
@@ -33,6 +35,7 @@ public class ActionSelect : Singleton<ActionSelect>
     {
         activeCharacter = activeChara;
         commands.SetActive(true);
+        andoButton.SetActive(false);
     }
 
     //ボタンから使用
@@ -41,11 +44,13 @@ public class ActionSelect : Singleton<ActionSelect>
     {
         activeCharacter.SetAttackMode();
         commands.SetActive(false);
+        andoButton.SetActive(true);
     }
     public void OnSkillButton()
     {
         activeCharacter.SetSkillMode();
         commands.SetActive(false);
+        andoButton.SetActive(true);
     }
     public void OnWaitButton()
     {
@@ -57,6 +62,7 @@ public class ActionSelect : Singleton<ActionSelect>
     {
         activeCharacter.SetAndo();
         commands.SetActive(true);
+        andoButton.SetActive(false);
 
         //SetActiveAction();
     }

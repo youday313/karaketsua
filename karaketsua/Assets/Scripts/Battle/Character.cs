@@ -74,7 +74,7 @@ public class Character : MonoBehaviour
 
     CharacterSkill skill; 
     Animator animator;
-
+    CharacterStateUI characterStateUI;
 
 
 
@@ -91,6 +91,7 @@ public class Character : MonoBehaviour
         SetPositionOnTile();
         activeCircle.SetActive(false);
         DisableActionMode();
+        CreateCharacterUI();
         //Init();
     }
 
@@ -132,9 +133,20 @@ public class Character : MonoBehaviour
     {
         activeTime.OnStopActiveTimeE -= OnActive;
     }
+    void CreateCharacterUI()
+    {
+        if (isEnemy == true) return;
+        characterStateUI = Instantiate(Resources.Load<CharacterStateUI>("CharacterStateUI")) as CharacterStateUI;
+        characterStateUI.Init(this);
+    }
+    void UpdateCharacterStateUI()
+    {
+        if (isEnemy == true) return;
+        characterStateUI.UpdateUI(this);
+    }
     #endregion::初期化
 
-    void Update ()
+    void Update ()  
 	{
         
         
@@ -217,6 +229,7 @@ public class Character : MonoBehaviour
         {
             DeathMyself();
         }
+        UpdateCharacterStateUI();
         
     }
     void DamageAnimation()
@@ -230,11 +243,15 @@ public class Character : MonoBehaviour
             animator.SetTrigger("Damage");
         }
     }
+    //ここを変えるとダメージが変わる
     //計算式
     int CalcDamage(int power)
     {
-        return power;
+        //相手攻撃力 - 自分防御力 がダメージ量
+        //相手攻撃力<自分防御力 だったらダメージ0
+        return Mathf.Max(0, power - characterParameter.deffence);
     }
+
     void DeathMyself()
     {
         //爆発エフェクト

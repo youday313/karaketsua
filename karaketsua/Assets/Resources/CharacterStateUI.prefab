@@ -174,6 +174,7 @@ GameObject:
   - 224: {fileID: 22401832}
   - 222: {fileID: 22215966}
   - 114: {fileID: 11480638}
+  - 114: {fileID: 11495690}
   m_Layer: 5
   m_Name: CharacterStateUI
   m_TagString: Untagged
@@ -402,7 +403,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: .734000027
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -605,6 +606,23 @@ MonoBehaviour:
   m_Spacing: 4
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
+--- !u!114 &11495690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a64e7f622db24e2498cd9905d726ce21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faceImage: {fileID: 11407614}
+  name: {fileID: 11476688}
+  HPbar: {fileID: 11452830}
+  HPbarText: {fileID: 11478948}
+  skillBar: {fileID: 11428754}
+  skillBarText: {fileID: 11461008}
 --- !u!222 &22200812
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -780,10 +798,10 @@ RectTransform:
   - {fileID: 22412250}
   m_Father: {fileID: 22474076}
   m_RootOrder: 0
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 61.25, y: -6.75}
-  m_SizeDelta: {x: 122.5, y: 13.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22434948
 RectTransform:
@@ -834,10 +852,10 @@ RectTransform:
   - {fileID: 22481206}
   m_Father: {fileID: 22474076}
   m_RootOrder: 1
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 61.25, y: -24.25}
-  m_SizeDelta: {x: 122.5, y: 13.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22474076
 RectTransform:
