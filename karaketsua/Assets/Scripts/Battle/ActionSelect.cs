@@ -15,14 +15,16 @@ public class ActionSelect : Singleton<ActionSelect>
 	//public
     public GameObject commands;
     public GameObject andoButton;
+    public GameObject bottomUI;
 	//private
 
     Character activeCharacter;
 
-	void Start ()
+	void Awake ()
 	{
         commands.SetActive(false);
         andoButton.SetActive(false);
+        bottomUI.SetActive(false);
     }
 	
 	void Update ()
@@ -36,6 +38,13 @@ public class ActionSelect : Singleton<ActionSelect>
         activeCharacter = activeChara;
         commands.SetActive(true);
         andoButton.SetActive(false);
+        bottomUI.SetActive(true);
+    }
+    public void EndActiveAction()
+    {
+        commands.SetActive(false);
+        andoButton.SetActive(false);
+        bottomUI.SetActive(false);
     }
 
     //ボタンから使用
@@ -55,7 +64,7 @@ public class ActionSelect : Singleton<ActionSelect>
     public void OnWaitButton()
     {
         activeCharacter.SetWaitMode();
-        commands.SetActive(false);
+        EndActiveAction();
     }
 
     public void OnAndoButton()
@@ -63,6 +72,7 @@ public class ActionSelect : Singleton<ActionSelect>
         activeCharacter.SetAndo();
         commands.SetActive(true);
         andoButton.SetActive(false);
+
 
         //SetActiveAction();
     }

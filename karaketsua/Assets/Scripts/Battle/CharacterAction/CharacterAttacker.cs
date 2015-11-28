@@ -146,12 +146,15 @@ public class CharacterAttacker : MonoBehaviour {
         //攻撃
         target.Damage(character.characterParameter.power);
         StartAttackAnimation();
+        //攻撃時にUI非表示
+        ActionSelect.Instance.EndActiveAction();
     }
     //攻撃モーション時間
     //モーション時間＋猶予時間の案もありか
     public float attackMotionTime=1f;
     void StartAttackAnimation()
     {
+
         animator.SetTrigger("Attack");
         isNowAction=true;
         Invoke("OnCompleteAnimation",attackMotionTime);

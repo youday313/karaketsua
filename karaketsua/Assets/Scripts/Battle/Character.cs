@@ -220,6 +220,7 @@ public class Character : MonoBehaviour
         DisableActionMode();
         //PlayerOwner.Instance.OnEndActive();
         CameraMove.Instance.MoveToLean();
+        ActionSelect.Instance.EndActiveAction();
     }
     public void Damage(int enemyPower)
     {
