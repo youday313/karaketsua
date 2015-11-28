@@ -21,6 +21,7 @@ public class ActiveTime : MonoBehaviour
     public event Action<ActiveTime> OnStartActiveTimeE;
 
 	//関連付けられたキャラ
+    [System.NonSerialized]
 	public Character character;
 	//private
 
@@ -28,6 +29,8 @@ public class ActiveTime : MonoBehaviour
     //static List<ActiveTime> allActiveTimes=new List<ActiveTime>();
 
 	Slider slider;
+    [SerializeField]
+    Image iconImage;
     float activeSpeed;
     //public float initTimeValue=20;
     //最大速度のキャラがかかる秒数
@@ -61,6 +64,7 @@ public class ActiveTime : MonoBehaviour
     {
         activeSpeed = chara.characterParameter.activeSpeed;
         character = chara;
+        iconImage.sprite = Resources.Load<Sprite>("Icon/"+character.characterParameter.charaName);
         //slider.maxValue = initTimeValue;
         //nowWaitTime = initTimeValue;
 
