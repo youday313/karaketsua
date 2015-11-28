@@ -87,16 +87,20 @@ public class CameraMove : Singleton<CameraMove>
         isTurn = false;
 	}
     //移動アニメーション作成
-    Hashtable SetMoveTable()
+    Hashtable SetMoveTable(Vector2 pos,float time)
     {
         Hashtable table = new Hashtable();
-        table.Add("x", leanCamera.position.x);
-        table.Add("z", leanCamera.position.z);
-        table.Add("time", changeTime);
+        table.Add("x", pos.x+transform.position.x);
+        table.Add("z", pos.y + transform.position.z);
+        table.Add("time", time);
         table.Add("easetype", iTween.EaseType.linear);
-        table.Add("oncomplete", "CompleteMove");	// トゥイーン終了時にCompleteHandler()を呼ぶ
         return table;
 
+    }
+    public void FollowCharacter(Vector2 pos,float time)
+    {
+        var table=SetMoveTable(pos,time);
+        iTween.MoveTo(gameObject, table);
     }
 
     public void SetAttackMoveMode(bool _isAttack)

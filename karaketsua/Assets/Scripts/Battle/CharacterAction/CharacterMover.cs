@@ -131,6 +131,7 @@ public class CharacterMover : MonoBehaviour {
     {
         //移動方向
         var direction = GetDirection(character.positionArray, newPosition);
+        var oldTilePosition = BattleStage.Instance.GetTileXAndZPosition(character.positionArray);
         //配列値変更
         character.positionArray = newPosition;
 
@@ -141,6 +142,8 @@ public class CharacterMover : MonoBehaviour {
         //座標変更
         iTween.MoveTo(gameObject, table);
 
+        var realCameraMovePosition = toTilePostion - oldTilePosition;
+        CameraMove.Instance.FollowCharacter(realCameraMovePosition, moveTime);
         isMoved = true;
         isNowAction = true;
 
@@ -197,13 +200,14 @@ public class CharacterMover : MonoBehaviour {
         transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
     }
     //移動アニメーション作成
+    float moveTime = 1.6f;
     Hashtable SetMoveTable(Vector2 position)
     {
         Hashtable table = new Hashtable();
         table.Add("x", position.x);
         table.Add("z", position.y);
         //table.Add("time", 1.0f);
-        table.Add("time", 1.6);
+        table.Add("time", moveTime);
         table.Add("easetype", iTween.EaseType.linear);
         table.Add("oncomplete", "CompleteMove");	// トゥイーン終了時にCompleteHandler()を呼ぶ
         return table;
