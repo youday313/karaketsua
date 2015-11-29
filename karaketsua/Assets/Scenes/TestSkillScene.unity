@@ -611,6 +611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commands: {fileID: 679912010}
   andoButton: {fileID: 1096023090}
+  bottomUI: {fileID: 2037575475}
 --- !u!1 &287484547
 GameObject:
   m_ObjectHideFlags: 0
