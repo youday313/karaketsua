@@ -152,7 +152,7 @@ public class CharacterAttacker : MonoBehaviour {
     }
     //攻撃モーション時間
     //モーション時間＋猶予時間の案もありか
-    public float attackMotionTime=1f;
+    public float attackMotionTime=3f;
     void StartAttackAnimation()
     {
 
