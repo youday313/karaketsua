@@ -144,6 +144,16 @@ public class Character : MonoBehaviour
         if (isEnemy == true) return;
         characterStateUI.UpdateUI(this);
     }
+
+    void OnEnable()
+    {
+        IT_Gesture.onShortTapE += OnShortTapForDisplayState;
+    }
+    void OnDisable()
+    {
+        IT_Gesture.onShortTapE -= OnShortTapForDisplayState;
+
+    }
     #endregion::初期化
 
     void Update ()  
@@ -263,6 +273,13 @@ public class Character : MonoBehaviour
         activeTime.DeathCharacter();
         CharacterManager.Instance.DestroyCharacter(this);
         Destroy(gameObject);
+    }
+
+    
+    //タッチでステータス表示
+    void OnShortTapForDisplayState(Vector2 pos)
+    {
+
     }
 
     #region::Utility

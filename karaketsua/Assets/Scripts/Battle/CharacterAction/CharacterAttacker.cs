@@ -65,7 +65,6 @@ public class CharacterAttacker : MonoBehaviour {
     void OnShortTap(Vector2 pos)
     {
         UpdateAttackState(pos);
-        Debug.Log("in");
 
     }
     
@@ -173,7 +172,7 @@ public class CharacterAttacker : MonoBehaviour {
     #region::Utility
 
     //スクリーン座標を受け取る
-    IntVect2D GetArrayFromRay(Vector2 touchPosition)
+    static IntVect2D GetArrayFromRay(Vector2 touchPosition)
     {
         RaycastHit hit;  // 光線に当たったオブジェクトを受け取るクラス 
         Ray ray;  // 光線クラス
