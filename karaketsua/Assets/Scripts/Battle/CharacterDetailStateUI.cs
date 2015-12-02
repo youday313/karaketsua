@@ -13,7 +13,7 @@ public class CharacterDetailStateUI : MonoBehaviour
     {
         myRectTrans = GetComponent<RectTransform>();
     }
-    public void Init(Vector2 touchPosition)
+    public void Init(Vector2 touchPosition,CharacterParameter param)
     {
      
         //親の設定
@@ -21,15 +21,21 @@ public class CharacterDetailStateUI : MonoBehaviour
         transform.SetParent(parent);
         //ターゲットの設定
         UpdateUiLocalPosFromTargetPos(touchPosition);
+        SetParam(param);
+    }
+    void SetParam(CharacterParameter param)
+    {
+
     }
 
 
-
+    //表示位置修正
+    //画面から出ないように修正しないといけない
     void UpdateUiLocalPosFromTargetPos(Vector2 touchPosition)
     {
         //var screenPos = Camera.main.WorldToScreenPoint(touchPosition);
         var screenPos = touchPosition;
-        screenPos +=new Vector2(myRectTrans.sizeDelta.x / 2,-myRectTrans.sizeDelta.y / 2);
+        screenPos +=new Vector2(0,-myRectTrans.sizeDelta.y / 2);
         myRectTrans.position = screenPos;
         //RectTransformUtility.ScreenPointToLocalPointInRectangle(parentRectTrans, screenPos, uiCamera, out localPos);
         //myRectTrans.localPosition = localPos;

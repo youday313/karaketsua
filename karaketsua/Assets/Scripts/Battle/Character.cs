@@ -283,6 +283,9 @@ public class Character : MonoBehaviour
 
     void OnStartChargeForDisplayState(ChargedInfo cInfo)
     {
+        //ActiveTime停止中
+        if (GameObject.FindGameObjectsWithTag("ActiveTime").Any(x=>x.GetComponent<ActiveTime>().IsActive==true)==true) return;
+
         //ターゲットの検索
         var target = GetCharacterOnTile(cInfo.pos);
         //ターゲットが存在しないマスをタップ
@@ -291,7 +294,7 @@ public class Character : MonoBehaviour
         //ターゲットが自分
 
         detailStateUI = Instantiate(Resources.Load<CharacterDetailStateUI>("CharacterDetailStateUI")) as CharacterDetailStateUI;
-        detailStateUI.Init(cInfo.pos);
+        detailStateUI.Init(cInfo.pos,this.characterParameter);
     }
     void OnEndChargeForDisplayState(ChargedInfo cInfo)
     {
