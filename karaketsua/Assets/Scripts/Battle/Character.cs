@@ -282,31 +282,19 @@ public class Character : MonoBehaviour
 
     }
 
+
+
     #region::Utility
-    //クリックしたタイル位置を取得
-    IntVect2D GetArrayFromRay(Vector2 touchPosition)
+    //タイル上のキャラを取得
+    public static Character GetCharacterOnTile(IntVect2D toPos)
     {
-        RaycastHit hit;  // 光線に当たったオブジェクトを受け取るクラス 
-        Ray ray;  // 光線クラス
-
-        // スクリーン座標に対してマウスの位置の光線を取得
-        ray = Camera.main.ScreenPointToRay(touchPosition);
-        // マウスの光線の先にオブジェクトが存在していたら hit に入る 
-        //Tileのlayer番号は8
-        var layerMask = 1 << 8;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-        {
-            if (hit.collider.tag == "Tile")
-            {
-                // 当たったオブジェクトのTileBaseクラスを取得
-                return hit.collider.GetComponent<TileBase>().positionArray;
-
-            }
-        }
-        return null;
+        return GameObject.FindGameObjectsWithTag("BattleCharacter").
+            Select(t => t.GetComponent<Character>()).
+            Where(t => toPos.IsEqual(t.positionArray)).
+            FirstOrDefault();
     }
 
-    #endregion:Utility
+    #endregion::Utility
 
 
 

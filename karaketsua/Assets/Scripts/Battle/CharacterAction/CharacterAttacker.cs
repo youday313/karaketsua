@@ -169,45 +169,12 @@ public class CharacterAttacker : MonoBehaviour {
 
     #endregion::攻撃
 
-    #region::Utility
-
-    //スクリーン座標を受け取る
-    static IntVect2D GetArrayFromRay(Vector2 touchPosition)
-    {
-        RaycastHit hit;  // 光線に当たったオブジェクトを受け取るクラス 
-        Ray ray;  // 光線クラス
-
-        // スクリーン座標に対してマウスの位置の光線を取得
-        ray = Camera.main.ScreenPointToRay(touchPosition);
-        // マウスの光線の先にオブジェクトが存在していたら hit に入る 
-        //Tileのlayer番号は8
-        var layerMask = 1 << 8;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-        {
-            if (hit.collider.tag == "Tile")
-            {
-                // 当たったオブジェクトのTileBaseクラスを取得
-                return hit.collider.GetComponent<TileBase>().positionArray;
-
-            }
-        }
-        return null;
-    }
-
-    //タイル上のキャラを取得
-    Character GetCharacterOnTile(IntVect2D toPos)
-    {
-        return GameObject.FindGameObjectsWithTag("BattleCharacter").
-            Select(t => t.GetComponent<Character>()).
-            Where(t => toPos.IsEqual(t.positionArray)).
-            FirstOrDefault();
-    }
 
     //タイル上のキャラが自身にとっての敵キャラなら取得
     Character GetOpponentCharacterOnTile(IntVect2D toPos)
     {
 
-        var chara = GetCharacterOnTile(toPos);
+        var chara = Character.GetCharacterOnTile(toPos);
         if (chara == null) return null;
         if (chara.isEnemy != this.character.isEnemy) return chara;
         return null;
@@ -215,12 +182,10 @@ public class CharacterAttacker : MonoBehaviour {
     Character GetOpponentCharacterFromTouch(Vector2 touchPosition)
     {
 
-        var targetPosition = GetArrayFromRay(touchPosition);
+        var targetPosition = TileBase.GetArrayFromRay(touchPosition);
         //タイル以外をタップ
         if (targetPosition == null) return null;
         //ターゲットの検索
         return GetOpponentCharacterOnTile(targetPosition);
     }
-
-    #endregion::Utility
 }
