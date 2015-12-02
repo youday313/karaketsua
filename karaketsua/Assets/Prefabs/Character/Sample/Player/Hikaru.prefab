@@ -2994,11 +2994,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterParameter:
     charaName: "\u4E00\u4E4B\u702C\u5149"
-    HP: 7
+    HP: 4200
     attackRange: 1
-    activeSpeed: 4
-    power: 10
-    deffence: 0
+    activeSpeed: 2400
+    power: 2200
+    deffence: 2700
     skillPoint: 20
     intellect: 0
   deathEffect: {fileID: 179242, guid: 42a81a0777f908643880561530b39751, type: 2}
@@ -3101,15 +3101,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: characterParameter.HP
-      value: 7
+      value: 4200
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.power
-      value: 10
+      value: 2200
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.deffence
-      value: 0
+      value: 2700
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.skillPoint
@@ -3117,7 +3117,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.activeSpeed
-      value: 4
+      value: 2400
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.intellect

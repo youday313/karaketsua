@@ -2969,11 +2969,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterParameter:
     charaName: "\u4E00\u4E4B\u702C\u5149"
-    HP: 5
+    HP: 3050
     attackRange: 1
-    activeSpeed: 10
-    power: 4
-    deffence: 0
+    activeSpeed: 2700
+    power: 3250
+    deffence: 2200
     skillPoint: 20
     intellect: 0
   deathEffect: {fileID: 179242, guid: 42a81a0777f908643880561530b39751, type: 2}
@@ -3101,15 +3101,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: characterParameter.HP
-      value: 5
+      value: 3050
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.activeSpeed
-      value: 10
+      value: 2700
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.power
-      value: 4
+      value: 3250
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
@@ -3126,6 +3126,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: characterParameter.skillPoint
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.deffence
+      value: 2200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

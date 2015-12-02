@@ -65,6 +65,7 @@ public class CharacterAttacker : MonoBehaviour {
     void OnShortTap(Vector2 pos)
     {
         UpdateAttackState(pos);
+        Debug.Log("in");
 
     }
     
@@ -158,6 +159,8 @@ public class CharacterAttacker : MonoBehaviour {
         animator.SetTrigger("Attack");
         isNowAction=true;
         Invoke("OnCompleteAnimation",attackMotionTime);
+        CameraMove.Instance.MoveToAttack(this.character.transform.position,attackTarget.transform.position);
+
     }
     void OnCompleteAnimation()
     {

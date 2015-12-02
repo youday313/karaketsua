@@ -17,8 +17,14 @@ public class CameraMove : Singleton<CameraMove>
 		public Vector3 position;
 		public Vector3 rotation;
 	}
+    [Tooltip("キャラクター選択時")]
 	public CameraVector backCamera;
+    [Tooltip("ActiveTime稼働時")]
 	public CameraVector leanCamera;
+    [Tooltip("攻撃時")]
+    public CameraVector attackCamera;
+
+
 	//private
     public float changeTime=1f;
     bool isTurn = false;
@@ -71,21 +77,32 @@ public class CameraMove : Singleton<CameraMove>
             return new Vector3(0,0,delta.y);
         }
     }
-	//背面に移動
-	public void MoveToBack(Character chara){
+	//キャラクター背面に移動
+    public void MoveToBack(Vector3 charaPosition)
+    {
 
-        iTween.MoveTo(gameObject, iTween.Hash("x", chara.transform.position.x+backCamera.position.x, "y", chara.transform.position.y + backCamera.position.y, "z", chara.transform.position.z + backCamera.position.z, "time", changeTime));
+        iTween.MoveTo(gameObject, iTween.Hash("x", charaPosition.x + backCamera.position.x, "y", charaPosition.y + backCamera.position.y, "z", charaPosition.z + backCamera.position.z, "time", changeTime));
 		iTween.RotateTo(gameObject, iTween.Hash("x", backCamera.rotation.x, "y", backCamera.rotation.y, "z", backCamera.rotation.z, "time", changeTime, "islocal", true));
         
         isTurn = true;
 	}
 
-
+    //固定点
 	public void MoveToLean(){
         iTween.MoveTo(gameObject, iTween.Hash("x", leanCamera.position.x, "y", leanCamera.position.y, "z", leanCamera.position.z, "time", changeTime));
         iTween.RotateTo(gameObject, iTween.Hash("x", leanCamera.rotation.x, "y", leanCamera.rotation.y, "z", leanCamera.rotation.z, "time", changeTime, "islocal", true));
         isTurn = false;
 	}
+
+    //攻撃時
+    public void MoveToAttack(Vector3 attackerPosition,Vector3 targetPosition)
+    {
+        var centerPosition = (targetPosition - attackerPosition) / 2;
+        var newPosition = attackerPosition + centerPosition;
+        iTween.MoveTo(gameObject, iTween.Hash("x", newPosition.x + attackCamera.position.x, "y", newPosition.y + attackCamera.position.y, "z", newPosition.z + attackCamera.position.z, "time", changeTime));
+        iTween.RotateTo(gameObject, iTween.Hash("x", attackCamera.rotation.x, "y", attackCamera.rotation.y, "z", attackCamera.rotation.z, "time", changeTime, "islocal", true));
+        isTurn = false;
+    }
     //移動アニメーション作成
     Hashtable SetMoveTable(Vector2 pos,float time)
     {

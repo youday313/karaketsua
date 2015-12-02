@@ -170,13 +170,13 @@ public class Character : MonoBehaviour
         //タイル変更
         BattleStage.Instance.UpdateTileColors(this, TileState.Move);
 
-        CameraMove.Instance.MoveToBack(this);
+        CameraMove.Instance.MoveToBack(this.transform.position);
     }
     void SetInitialActionState(bool isAllReset)
     {
         attacker.IsEnable = false;
         skill.IsEnable = false;
-        CameraMove.Instance.MoveToBack(this);
+        CameraMove.Instance.MoveToBack(this.transform.position);
         if (isAllReset == true)
         {
             mover.OnActiveCharacter();
