@@ -74,7 +74,8 @@ public class Character : MonoBehaviour
 
     CharacterSkill skill; 
     Animator animator;
-    CharacterStateUI characterStateUI;
+    CharacterStateUI StateUI;
+    CharacterDetailStateUI detailStateUI;
 
 
 
@@ -136,23 +137,25 @@ public class Character : MonoBehaviour
     void CreateCharacterUI()
     {
         if (isEnemy == true) return;
-        characterStateUI = Instantiate(Resources.Load<CharacterStateUI>("CharacterStateUI")) as CharacterStateUI;
-        characterStateUI.Init(this);
+        StateUI = Instantiate(Resources.Load<CharacterStateUI>("CharacterStateUI")) as CharacterStateUI;
+        StateUI.Init(this);
     }
     void UpdateCharacterStateUI()
     {
         if (isEnemy == true) return;
-        characterStateUI.UpdateUI(this);
+        StateUI.UpdateUI(this);
     }
 
     void OnEnable()
     {
-        IT_Gesture.onShortTapE += OnShortTapForDisplayState;
+        IT_Gesture.onChargeStartE += OnStartChargeForDisplayState;
+        IT_Gesture.onChargeEndE += OnEndChargeForDisplayState;
+
     }
     void OnDisable()
     {
-        IT_Gesture.onShortTapE -= OnShortTapForDisplayState;
-
+        IT_Gesture.onChargeStartE -= OnStartChargeForDisplayState;
+        IT_Gesture.onChargeEndE -= OnEndChargeForDisplayState;
     }
     #endregion::初期化
 
@@ -277,8 +280,26 @@ public class Character : MonoBehaviour
 
     
     //タッチでステータス表示
-    void OnShortTapForDisplayState(Vector2 pos)
+
+    void OnStartChargeForDisplayState(ChargedInfo cInfo)
     {
+        //ターゲットの検索
+        var target = GetCharacterOnTile(cInfo.pos);
+        //ターゲットが存在しないマスをタップ
+        if (target != this) return;
+
+        //ターゲットが自分
+
+        detailStateUI = Instantiate(Resources.Load<CharacterDetailStateUI>("CharacterDetailStateUI")) as CharacterDetailStateUI;
+        detailStateUI.Init(cInfo.pos);
+    }
+    void OnEndChargeForDisplayState(ChargedInfo cInfo)
+    {
+        if (detailStateUI == null) return;
+        Debug.Log("in");
+
+        Destroy(detailStateUI.gameObject);
+        detailStateUI = null;
 
     }
 
@@ -292,6 +313,19 @@ public class Character : MonoBehaviour
             Select(t => t.GetComponent<Character>()).
             Where(t => toPos.IsEqual(t.positionArray)).
             FirstOrDefault();
+    }
+
+    public static Character GetCharacterOnTile(Vector2 pos){
+        var targetPosition = TileBase.GetArrayFromRay(pos);
+        //タイル以外をタップ
+        if (targetPosition == null) return null;
+        //ターゲットの検索
+        var target = GetCharacterOnTile(targetPosition);
+
+        //ターゲットが存在しないマスをタップ
+        if (target == null) return null;
+        return target;
+
     }
 
     #endregion::Utility

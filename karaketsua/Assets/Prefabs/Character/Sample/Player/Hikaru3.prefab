@@ -2992,7 +2992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35668a4f1c0801747a08d3c05ae8d7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackMotionTime: 1
+  attackMotionTime: 3
 --- !u!114 &11489618
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3126,6 +3126,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: characterParameter.deffence
       value: 2050
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: attackMotionTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

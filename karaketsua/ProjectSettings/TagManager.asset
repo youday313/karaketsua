@@ -11,6 +11,7 @@ TagManager:
   - PlayerCharacter
   - ActionSelect
   - CharacterStateUIParent
+  - CharacterDetailStateUIParent
   layers:
   - Default
   - TransparentFX

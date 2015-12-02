@@ -181,7 +181,7 @@ public class CharacterAttacker : MonoBehaviour {
     }
     Character GetOpponentCharacterFromTouch(Vector2 touchPosition)
     {
-
+        var chara = Character.GetCharacterOnTile(touchPosition);
         var targetPosition = TileBase.GetArrayFromRay(touchPosition);
         //タイル以外をタップ
         if (targetPosition == null) return null;
