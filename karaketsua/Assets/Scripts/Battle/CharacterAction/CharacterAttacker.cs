@@ -32,10 +32,13 @@ public class CharacterAttacker : MonoBehaviour {
     protected Animator animator;
 
     Character attackTarget;
+    CameraMove cameraMove;
+
 	// Use this for initialization
 	void Start () {
         character = GetComponent<Character>();
         animator = GetComponent<Animator>();
+        cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
 	}
 
     void OnActiveCharacter()
@@ -50,7 +53,7 @@ public class CharacterAttacker : MonoBehaviour {
         //IT_Gesture.onTouchDownE+=OnTouchDown;
         //IT_Gesture.onMouse1DownE += OnMouseDown;
         IT_Gesture.onShortTapE += OnShortTap;
-        CameraMove.Instance.SetAttackMoveMode(true);
+        cameraMove.SetAttackMoveMode(true);
         BattleStage.Instance.UpdateTileColors(this.character, TileState.Attack);
     }
     void Disable()
@@ -58,7 +61,7 @@ public class CharacterAttacker : MonoBehaviour {
         //IT_Gesture.onTouchDownE -= OnTouchDown;
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
         IT_Gesture.onShortTapE -= OnShortTap;
-        CameraMove.Instance.SetAttackMoveMode(false);
+        cameraMove.SetAttackMoveMode(false);
         BattleStage.Instance.ResetTileColor();
     }
 
@@ -158,7 +161,7 @@ public class CharacterAttacker : MonoBehaviour {
         animator.SetTrigger("Attack");
         isNowAction=true;
         Invoke("OnCompleteAnimation",attackMotionTime);
-        CameraMove.Instance.MoveToAttack(this.character.transform.position,attackTarget.transform.position);
+        cameraMove.MoveToAttack(this.character.transform.position, attackTarget.transform.position);
 
     }
     void OnCompleteAnimation()

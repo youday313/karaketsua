@@ -7,8 +7,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
-public class CameraMove : Singleton<CameraMove>
+public class CameraMove : MonoBehaviour
 {
 	//public
 	[System.Serializable]
@@ -30,6 +31,9 @@ public class CameraMove : Singleton<CameraMove>
     bool isTurn = false;
     bool isAttack = false;
 
+    CameraVector resetPosition;
+    [SerializeField]
+    Button resetButton;
 
 	void Start ()
 	{
@@ -45,12 +49,18 @@ public class CameraMove : Singleton<CameraMove>
     void OnEnable()
     {
         IT_Gesture.onDraggingE += OnDraggingInAttackMode;
+        IT_Gesture.onDraggingStartE += OnDraggingInAttackMode;
+
+        IT_Gesture.onDraggingE += OnDraggingInActionModeForCameraMove;
     }
 
     void OnDisable()
     {
         IT_Gesture.onDraggingE -= OnDraggingInAttackMode;
+        IT_Gesture.onDraggingStartE -= OnDraggingInAttackMode;
+        IT_Gesture.onDraggingE -= OnDraggingInActionModeForCameraMove;
     }
+    //攻撃時カメラ追従
     void OnDraggingInAttackMode(DragInfo dragInfo)
     {
         if (isAttack == false) return;
@@ -60,6 +70,28 @@ public class CameraMove : Singleton<CameraMove>
         CSTransform.SetZ(transform, transform.position.z + moveVect.z);
         
     }
+
+
+    #region::行動選択時カメラ移動
+    void OnDraggingStartInActionMode(DragInfo dragInfo)
+    {
+        resetPosition.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        resetPosition.rotation = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+    }
+
+    //ドラッグでカメラ移動
+    void OnDraggingInActionModeForCameraMove(DragInfo dragInfo)
+    {
+
+    }
+
+    public void ResetCamera()
+    {
+        transform.position = resetPosition.position;
+        transform.rotation = Quaternion.Euler(resetPosition.rotation);
+    }
+
+    #endregion
     Vector3 GetMoveDirection(Vector2 delta)
     {
         //x方向

@@ -18,10 +18,12 @@ public class CharacterMover : MonoBehaviour {
     bool isEnable = false;
     public GameObject directionIcon;
 
+    CameraMove cameraMove;
 	// Use this for initialization
 	void Start () {
         character=GetComponent<Character>();
         animator = GetComponent<Animator>();
+        cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
 	}
 
     public void OnActiveCharacter()
@@ -143,7 +145,7 @@ public class CharacterMover : MonoBehaviour {
         iTween.MoveTo(gameObject, table);
 
         var realCameraMovePosition = toTilePostion - oldTilePosition;
-        CameraMove.Instance.FollowCharacter(realCameraMovePosition, moveTime);
+        cameraMove.FollowCharacter(realCameraMovePosition, moveTime);
         isMoved = true;
         isNowAction = true;
 

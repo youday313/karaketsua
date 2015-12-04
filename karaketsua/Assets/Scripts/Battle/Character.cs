@@ -77,7 +77,7 @@ public class Character : MonoBehaviour
     CharacterStateUI StateUI;
     CharacterDetailStateUI detailStateUI;
 
-
+    CameraMove cameraMove;
 
     #region::初期化
 
@@ -87,6 +87,8 @@ public class Character : MonoBehaviour
         attacker = GetComponent<CharacterAttacker>();
         animator = GetComponent<Animator>();
         skill = GetComponent<CharacterSkill>();
+        cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
+
         activeTime = ActiveTimeCreater.Instance.CreateActiveTime(this);
         SetActiveTimeEventHandler();
         SetPositionOnTile();
@@ -183,13 +185,13 @@ public class Character : MonoBehaviour
         //タイル変更
         BattleStage.Instance.UpdateTileColors(this, TileState.Move);
 
-        CameraMove.Instance.MoveToBack(this.transform.position);
+        cameraMove.MoveToBack(this.transform.position);
     }
     void SetInitialActionState(bool isAllReset)
     {
         attacker.IsEnable = false;
         skill.IsEnable = false;
-        CameraMove.Instance.MoveToBack(this.transform.position);
+        cameraMove.MoveToBack(this.transform.position);
         if (isAllReset == true)
         {
             mover.OnActiveCharacter();
@@ -232,7 +234,7 @@ public class Character : MonoBehaviour
         activeTime.ResetValue();
         DisableActionMode();
         //PlayerOwner.Instance.OnEndActive();
-        CameraMove.Instance.MoveToLean();
+        cameraMove.MoveToLean();
         ActionSelect.Instance.EndActiveAction();
     }
     public void Damage(int enemyPower)
@@ -299,13 +301,11 @@ public class Character : MonoBehaviour
     void OnEndChargeForDisplayState(ChargedInfo cInfo)
     {
         if (detailStateUI == null) return;
-        Debug.Log("in");
 
         Destroy(detailStateUI.gameObject);
         detailStateUI = null;
 
     }
-
 
 
     #region::Utility
