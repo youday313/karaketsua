@@ -150,14 +150,19 @@ public class Character : MonoBehaviour
 
     void OnEnable()
     {
+        /*
         IT_Gesture.onChargeStartE += OnStartChargeForDisplayState;
         IT_Gesture.onChargeEndE += OnEndChargeForDisplayState;
-
+        */
+        IT_Gesture.onShortTapE += OnTouchForDisplayState;
     }
     void OnDisable()
     {
+        /*
         IT_Gesture.onChargeStartE -= OnStartChargeForDisplayState;
         IT_Gesture.onChargeEndE -= OnEndChargeForDisplayState;
+         */
+        IT_Gesture.onShortTapE -= OnTouchForDisplayState;
     }
     #endregion::初期化
 
@@ -282,29 +287,38 @@ public class Character : MonoBehaviour
 
     
     //タッチでステータス表示
-
-    void OnStartChargeForDisplayState(ChargedInfo cInfo)
+    void OnTouchForDisplayState(Vector2 touch)
     {
-        //ActiveTime停止中
-        if (GameObject.FindGameObjectsWithTag("ActiveTime").Any(x=>x.GetComponent<ActiveTime>().IsActive==true)==true) return;
-
-        //ターゲットの検索
-        var target = GetCharacterOnTile(cInfo.pos);
-        //ターゲットが存在しないマスをタップ
-        if (target != this) return;
-
-        //ターゲットが自分
-
-        detailStateUI = Instantiate(Resources.Load<CharacterDetailStateUI>("CharacterDetailStateUI")) as CharacterDetailStateUI;
-        detailStateUI.Init(cInfo.pos,this.characterParameter);
+        if (detailStateUI == null)
+        {
+            OnStartTouchForDisplayState(touch);
+        }
+        else
+        {
+            OnEndChargeForDisplayState();
+        }
     }
-    void OnEndChargeForDisplayState(ChargedInfo cInfo)
+    void OnStartTouchForDisplayState(Vector2 touch)
+    {
+            //ActiveTime停止中
+            if (GameObject.FindGameObjectsWithTag("ActiveTime").Any(x => x.GetComponent<ActiveTime>().IsActive == true) == true) return;
+
+            //ターゲットの検索
+            var target = GetCharacterOnTile(touch);
+            //ターゲットが存在しないマスをタップ
+            if (target != this) return;
+
+            //ターゲットが自分
+
+            detailStateUI = Instantiate(Resources.Load<CharacterDetailStateUI>("CharacterDetailStateUI")) as CharacterDetailStateUI;
+            detailStateUI.Init(touch, this.characterParameter);
+    }
+    void OnEndChargeForDisplayState()
     {
         if (detailStateUI == null) return;
 
         Destroy(detailStateUI.gameObject);
         detailStateUI = null;
-
     }
 
 

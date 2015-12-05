@@ -31,16 +31,21 @@ public class CameraMove : MonoBehaviour
     bool isTurn = false;
     bool isAttack = false;
 
-    CameraVector resetPosition;
+    CameraVector resetPosition=new CameraVector();
     [SerializeField]
     Button resetButton;
 
 	void Start ()
 	{
 		MoveToLean ();
+        SetCameraVector();
 	}
-    
-	
+
+    void SetCameraVector()
+    {
+        resetPosition.position = transform.position;
+        resetPosition.rotation = transform.eulerAngles;
+    }
 
 
     void Update()
@@ -49,15 +54,15 @@ public class CameraMove : MonoBehaviour
     void OnEnable()
     {
         IT_Gesture.onDraggingE += OnDraggingInAttackMode;
-        IT_Gesture.onDraggingStartE += OnDraggingInAttackMode;
 
+        IT_Gesture.onDraggingStartE += OnDraggingStartInActionMode;
         IT_Gesture.onDraggingE += OnDraggingInActionModeForCameraMove;
     }
 
     void OnDisable()
     {
         IT_Gesture.onDraggingE -= OnDraggingInAttackMode;
-        IT_Gesture.onDraggingStartE -= OnDraggingInAttackMode;
+        IT_Gesture.onDraggingStartE -= OnDraggingStartInActionMode;
         IT_Gesture.onDraggingE -= OnDraggingInActionModeForCameraMove;
     }
     //攻撃時カメラ追従
@@ -82,7 +87,8 @@ public class CameraMove : MonoBehaviour
     //ドラッグでカメラ移動
     void OnDraggingInActionModeForCameraMove(DragInfo dragInfo)
     {
-
+        var delta = dragInfo.delta *IT_Gesture.GetDPIFactor();
+        transform.position += new Vector3(delta.x, 0, delta.y);
     }
 
     public void ResetCamera()
@@ -117,6 +123,7 @@ public class CameraMove : MonoBehaviour
 		iTween.RotateTo(gameObject, iTween.Hash("x", backCamera.rotation.x, "y", backCamera.rotation.y, "z", backCamera.rotation.z, "time", changeTime, "islocal", true));
         
         isTurn = true;
+        SetCameraVector();
 	}
 
     //固定点
@@ -124,6 +131,7 @@ public class CameraMove : MonoBehaviour
         iTween.MoveTo(gameObject, iTween.Hash("x", leanCamera.position.x, "y", leanCamera.position.y, "z", leanCamera.position.z, "time", changeTime));
         iTween.RotateTo(gameObject, iTween.Hash("x", leanCamera.rotation.x, "y", leanCamera.rotation.y, "z", leanCamera.rotation.z, "time", changeTime, "islocal", true));
         isTurn = false;
+        SetCameraVector();
 	}
 
     //攻撃時
