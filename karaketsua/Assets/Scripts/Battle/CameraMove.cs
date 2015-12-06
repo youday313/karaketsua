@@ -28,7 +28,7 @@ public class CameraMove : MonoBehaviour
 
 	//private
     public float changeTime=1f;
-    bool isTurn = false;
+    bool isNowSelect = false;
     bool isAttack = false;
 
     CameraVector resetPosition=new CameraVector();
@@ -39,10 +39,12 @@ public class CameraMove : MonoBehaviour
 	{
 		MoveToLean ();
         SetCameraVector();
+        isNowSelect = false;
 	}
 
     void SetCameraVector()
     {
+
         resetPosition.position = transform.position;
         resetPosition.rotation = transform.eulerAngles;
     }
@@ -54,7 +56,6 @@ public class CameraMove : MonoBehaviour
     void OnEnable()
     {
         IT_Gesture.onDraggingE += OnDraggingInAttackMode;
-
         IT_Gesture.onDraggingStartE += OnDraggingStartInActionMode;
         IT_Gesture.onDraggingE += OnDraggingInActionModeForCameraMove;
     }
@@ -81,12 +82,14 @@ public class CameraMove : MonoBehaviour
     void OnDraggingStartInActionMode(DragInfo dragInfo)
     {
         resetPosition.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        resetPosition.rotation = new Vector3(transform.rotation.x, transform.rotation.y, transform.rotation.z);
+        resetPosition.rotation = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+        
     }
 
     //ドラッグでカメラ移動
     void OnDraggingInActionModeForCameraMove(DragInfo dragInfo)
     {
+        if (isNowMove == true) return;
         var delta = dragInfo.delta *IT_Gesture.GetDPIFactor();
         transform.position += new Vector3(delta.x, 0, delta.y);
     }
@@ -94,7 +97,7 @@ public class CameraMove : MonoBehaviour
     public void ResetCamera()
     {
         transform.position = resetPosition.position;
-        transform.rotation = Quaternion.Euler(resetPosition.rotation);
+        transform.eulerAngles = resetPosition.rotation;
     }
 
     #endregion
@@ -118,19 +121,19 @@ public class CameraMove : MonoBehaviour
 	//キャラクター背面に移動
     public void MoveToBack(Vector3 charaPosition)
     {
-
+        SetCameraVector();
         iTween.MoveTo(gameObject, iTween.Hash("x", charaPosition.x + backCamera.position.x, "y", charaPosition.y + backCamera.position.y, "z", charaPosition.z + backCamera.position.z, "time", changeTime));
 		iTween.RotateTo(gameObject, iTween.Hash("x", backCamera.rotation.x, "y", backCamera.rotation.y, "z", backCamera.rotation.z, "time", changeTime, "islocal", true));
+
+        isNowSelect = true;
         
-        isTurn = true;
-        SetCameraVector();
 	}
 
     //固定点
 	public void MoveToLean(){
         iTween.MoveTo(gameObject, iTween.Hash("x", leanCamera.position.x, "y", leanCamera.position.y, "z", leanCamera.position.z, "time", changeTime));
         iTween.RotateTo(gameObject, iTween.Hash("x", leanCamera.rotation.x, "y", leanCamera.rotation.y, "z", leanCamera.rotation.z, "time", changeTime, "islocal", true));
-        isTurn = false;
+        isNowSelect = false;
         SetCameraVector();
 	}
 
@@ -141,7 +144,7 @@ public class CameraMove : MonoBehaviour
         var newPosition = attackerPosition + centerPosition;
         iTween.MoveTo(gameObject, iTween.Hash("x", newPosition.x + attackCamera.position.x, "y", newPosition.y + attackCamera.position.y, "z", newPosition.z + attackCamera.position.z, "time", changeTime));
         iTween.RotateTo(gameObject, iTween.Hash("x", attackCamera.rotation.x, "y", attackCamera.rotation.y, "z", attackCamera.rotation.z, "time", changeTime, "islocal", true));
-        isTurn = false;
+        isNowSelect = false;
     }
     //移動アニメーション作成
     Hashtable SetMoveTable(Vector2 pos,float time)
@@ -156,6 +159,7 @@ public class CameraMove : MonoBehaviour
     }
     public void FollowCharacter(Vector2 pos,float time)
     {
+        ResetCamera();
         var table=SetMoveTable(pos,time);
         iTween.MoveTo(gameObject, table);
     }
@@ -170,5 +174,9 @@ public class CameraMove : MonoBehaviour
     {
         //transform.parent.Rotate(0,1 , 0);
     }
-
+    bool isNowMove = false;
+    public void SetNowCharacterMove(bool _isNowMove)
+    {
+        isNowMove = _isNowMove;
+    }
 }

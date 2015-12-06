@@ -270,7 +270,7 @@ public class Character : MonoBehaviour
     {
         //相手攻撃力 - 自分防御力 がダメージ量
         //相手攻撃力<自分防御力 だったらダメージ0
-        return Mathf.Max(0, power - characterParameter.deffence);
+        return Mathf.Max(0, power - (1/2*characterParameter.deffence));
     }
 
     void DeathMyself()

@@ -36,10 +36,16 @@ public class CharacterMover : MonoBehaviour {
     
     public void Enable()
     {
+        
         isNowAction = false;
+        
+        //キャラクター移動選択
+        IT_Gesture.onDraggingStartE += OnChargeForMove;
+        //キャラクター移動用
         IT_Gesture.onDraggingEndE += OnDragMove;
-        IT_Gesture.onChargeStartE += ActiveSelectMoveCursor;
-        IT_Gesture.onChargeEndE += DisactiveSelectMoveCursor;
+        //カーソル表示用
+        //IT_Gesture.onChargeStartE += ActiveSelectMoveCursor;
+        //IT_Gesture.onChargeEndE += DisactiveSelectMoveCursor;
         if (isMoved == false)
         {
             directionIcon.SetActive(true);
@@ -48,15 +54,35 @@ public class CharacterMover : MonoBehaviour {
 
     }
     public void Disable(){
+        //キャラクター移動選択
+        IT_Gesture.onDraggingStartE += OnChargeForMove;
         IT_Gesture.onDraggingEndE-=OnDragMove;
-        IT_Gesture.onChargeStartE -= ActiveSelectMoveCursor;
-        IT_Gesture.onChargeEndE -= DisactiveSelectMoveCursor;
+        //IT_Gesture.onChargeStartE -= ActiveSelectMoveCursor;
+        //IT_Gesture.onChargeEndE -= DisactiveSelectMoveCursor;
         directionIcon.SetActive(false);
+    }
+    //移動のための選択
+    bool isNowCharge = false;
+    void OnChargeForMove(DragInfo dragInfo)
+    {
+        //移動可能
+        if (CanMoveFromState() == false) return;
+        //自分キャラ
+        if (Character.GetCharacterOnTile(dragInfo.pos) != this.character) return;
+
+        cameraMove.SetNowCharacterMove(true);
+        isNowCharge = true;
     }
     void OnDragMove(DragInfo dragInfo)
     {
+        if (isNowCharge == true)
+        {
+            RequestMove(dragInfo.delta);
+        }
 
-        RequestMove(dragInfo.delta);
+        cameraMove.SetNowCharacterMove(false);
+        isNowCharge = false;
+
 
     }
     //一連の移動判定処理の開始
@@ -223,9 +249,9 @@ public class CharacterMover : MonoBehaviour {
     }
 
     //ホールド時矢印を出す
-    void ActiveSelectMoveCursor(ChargedInfo cInfo)
+    void ActiveSelectMoveCursor(DragInfo cInfo)
     {
-
+       
     }
     void DisactiveSelectMoveCursor(ChargedInfo cInfo)
     {
