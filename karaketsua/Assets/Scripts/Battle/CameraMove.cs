@@ -115,6 +115,7 @@ public class CameraMove : MonoBehaviour
         if (activeCharacter.IsNowOnFinger()== true) return;
         var delta = dragInfo.delta *IT_Gesture.GetDPIFactor();
         transform.position -= new Vector3(GetSignFromFrontMode() * delta.x, 0, GetSignFromFrontMode() * delta.y);
+        ClampOnFromFront();
     }
 
     public void ResetCamera()
@@ -122,6 +123,17 @@ public class CameraMove : MonoBehaviour
         if (nowCameraState != CameraState.Back && nowCameraState != CameraState.Lean) return;
         transform.position = resetPosition.position;
         transform.eulerAngles = resetPosition.rotation;
+    }
+    void ClampOnFromFront()
+    {
+        if (nowCameraMode == CameraMode.FromBack)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3, 3), transform.position.y, Mathf.Clamp(transform.position.z, -14, -2));
+        }
+        else if (nowCameraMode == CameraMode.FromFront)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, -3, 3), transform.position.y, Mathf.Clamp(transform.position.z, 2, 14));
+        }
     }
 
     #endregion::行動選択時カメラ移動
