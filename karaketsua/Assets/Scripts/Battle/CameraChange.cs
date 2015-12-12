@@ -4,10 +4,11 @@ using System;
 
 
 public enum CameraMode { FromBack=0,FromFront,Up }
-public class CameraChange : MonoBehaviour {
+public class CameraChange : Singleton<CameraChange> {
 
     public GameObject leanCameraObject;
     public GameObject upCameraObject;
+    public GameObject actionUI;
     CameraMove leanCamera;
 	// Use this for initialization
 	void Start () {
@@ -22,6 +23,12 @@ public class CameraChange : MonoBehaviour {
     public void ChangeCameraMode()
     {
         nowCameraMode = (CameraMode)(((int)nowCameraMode + 1) % Enum.GetNames(typeof(CameraMode)).Length);
+        if (nowCameraMode == CameraMode.FromBack)
+        {
+            actionUI.SetActive(true);
+            leanCameraObject.SetActive(true);
+            upCameraObject.SetActive(false);
+        }
         if (nowCameraMode == CameraMode.FromBack || nowCameraMode == CameraMode.FromFront)
         {
 
@@ -35,10 +42,10 @@ public class CameraChange : MonoBehaviour {
     }
     void ActiveLeanCamera(CameraMode _cameraMode)
     {
-        leanCameraObject.SetActive(true);
-        upCameraObject.SetActive(false);
+        
 
         leanCamera.ChangeFrontMode(_cameraMode);
+
 
         
     }
@@ -46,5 +53,6 @@ public class CameraChange : MonoBehaviour {
     {
         leanCameraObject.SetActive(false);
         upCameraObject.SetActive(true);
+        actionUI.SetActive(false);
     }
 }

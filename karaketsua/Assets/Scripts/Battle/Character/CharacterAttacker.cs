@@ -72,6 +72,7 @@ public class CharacterAttacker : MonoBehaviour {
     public void UpdateAttackState(Vector2 position)
     {
         if (isNowAction == true) return;
+        if (CameraChange.Instance.nowCameraMode != CameraMode.FromBack && CameraChange.Instance.nowCameraMode != CameraMode.FromFront) return;
         if (isSetTarget == false)
         {
             SetTarget(position);

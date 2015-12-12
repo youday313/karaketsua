@@ -297,6 +297,7 @@ public class Character : MonoBehaviour
     {
         if (detailStateUI == null)
         {
+            if (CameraChange.Instance.nowCameraMode != CameraMode.Up) return;
             OnStartTouchForDisplayState(touch);
         }
         else

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharacterStateUI : MonoBehaviour {
 
     public Image faceImage;
-    public Text name;
+    //public Text name;
     public Slider HPbar;
     public Text HPbarText;
     public Slider skillBar;
@@ -16,7 +16,7 @@ public class CharacterStateUI : MonoBehaviour {
     {
         transform.SetParent(GameObject.FindGameObjectWithTag("CharacterStateUIParent").transform, false);
         faceImage = Resources.Load<Image>("Icon/"+character.characterParameter.charaName);
-        name.text = character.characterParameter.charaName;
+        //name.text = character.characterParameter.charaName;
         HPbar.maxValue = character.characterParameter.HP;
         skillBar.maxValue = character.characterParameter.skillPoint;
         UpdateUI(character);

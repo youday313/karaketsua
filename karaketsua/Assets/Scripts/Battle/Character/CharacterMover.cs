@@ -70,6 +70,8 @@ public class CharacterMover : MonoBehaviour {
         //自分キャラ
         if (Character.GetCharacterOnTile(dragInfo.pos) != this.character) return;
 
+        //移動可能状態のカメラ
+        if (CameraChange.Instance.nowCameraMode != CameraMode.FromBack && CameraChange.Instance.nowCameraMode != CameraMode.FromFront) return;
         isNowCharge = true;
     }
     void OnDragMove(DragInfo dragInfo)

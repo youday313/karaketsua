@@ -27,10 +27,6 @@ public class ActionSelect : Singleton<ActionSelect>
         bottomUI.SetActive(false);
     }
 	
-	void Update ()
-	{
-		
-	}
 
     //ボタンを表示
     public void SetActiveAction(Character activeChara)
