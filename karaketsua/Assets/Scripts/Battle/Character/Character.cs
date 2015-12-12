@@ -180,6 +180,13 @@ public class Character : MonoBehaviour
         return false;
     }
 
+    public bool IsNowOnFinger()
+    {
+        if (mover.isNowCharge == true) return true;
+        return false;
+
+    }
+
     //キャラクターを行動選択状態にする
     public void OnActive(ActiveTime wTime)
     {
@@ -189,14 +196,13 @@ public class Character : MonoBehaviour
         activeCircle.SetActive(true);
         //タイル変更
         BattleStage.Instance.UpdateTileColors(this, TileState.Move);
-
-        cameraMove.MoveToBack(this.transform.position);
     }
+
     void SetInitialActionState(bool isAllReset)
     {
         attacker.IsEnable = false;
         skill.IsEnable = false;
-        cameraMove.MoveToBack(this.transform.position);
+        cameraMove.SetActiveCharacter(this);
         if (isAllReset == true)
         {
             mover.OnActiveCharacter();
@@ -239,7 +245,7 @@ public class Character : MonoBehaviour
         activeTime.ResetValue();
         DisableActionMode();
         //PlayerOwner.Instance.OnEndActive();
-        cameraMove.MoveToLean();
+        cameraMove.DisableActiveCharacter();
         ActionSelect.Instance.EndActiveAction();
     }
     public void Damage(int enemyPower)

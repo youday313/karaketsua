@@ -53,7 +53,6 @@ public class CharacterAttacker : MonoBehaviour {
         //IT_Gesture.onTouchDownE+=OnTouchDown;
         //IT_Gesture.onMouse1DownE += OnMouseDown;
         IT_Gesture.onShortTapE += OnShortTap;
-        cameraMove.SetAttackMoveMode(true);
         BattleStage.Instance.UpdateTileColors(this.character, TileState.Attack);
     }
     void Disable()
@@ -61,7 +60,6 @@ public class CharacterAttacker : MonoBehaviour {
         //IT_Gesture.onTouchDownE -= OnTouchDown;
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
         IT_Gesture.onShortTapE -= OnShortTap;
-        cameraMove.SetAttackMoveMode(false);
         BattleStage.Instance.ResetTileColor();
     }
 

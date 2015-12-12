@@ -62,7 +62,7 @@ public class CharacterMover : MonoBehaviour {
         directionIcon.SetActive(false);
     }
     //移動のための選択
-    bool isNowCharge = false;
+    public bool isNowCharge = false;
     void OnChargeForMove(DragInfo dragInfo)
     {
         //移動可能
@@ -70,7 +70,6 @@ public class CharacterMover : MonoBehaviour {
         //自分キャラ
         if (Character.GetCharacterOnTile(dragInfo.pos) != this.character) return;
 
-        cameraMove.SetNowCharacterMove(true);
         isNowCharge = true;
     }
     void OnDragMove(DragInfo dragInfo)
@@ -80,7 +79,6 @@ public class CharacterMover : MonoBehaviour {
             RequestMove(dragInfo.delta);
         }
 
-        cameraMove.SetNowCharacterMove(false);
         isNowCharge = false;
 
 
@@ -89,11 +87,13 @@ public class CharacterMover : MonoBehaviour {
     void RequestMove(Vector2 delta)
     {
         if(CanMoveFromState()==false)return;
-
-        var toVect = GetMoveDirection(delta);
+        //カメラから方向取得
+        var toVect = cameraMove.GetMoveDirection(delta);
+        var toVect2D = GetMoveDirection(toVect);
+        //var toVect = GetMoveDirection(delta);
         var newPosition = new IntVect2D(character.positionArray);
-        newPosition.x = Mathf.Clamp(character.positionArray.x + toVect.x, -BattleStage.stageSizeX, BattleStage.stageSizeX);
-        newPosition.y = Mathf.Clamp(character.positionArray.y + toVect.y, -BattleStage.stageSizeY, BattleStage.stageSizeY);
+        newPosition.x = Mathf.Clamp(character.positionArray.x + toVect2D.x, -BattleStage.stageSizeX, BattleStage.stageSizeX);
+        newPosition.y = Mathf.Clamp(character.positionArray.y + toVect2D.y, -BattleStage.stageSizeY, BattleStage.stageSizeY);
 
         if(CanMoveFromTileState(newPosition)==false)return;
 

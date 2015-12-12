@@ -61,7 +61,8 @@ public class TileBase : MonoBehaviour
         Ray ray;  // 光線クラス
 
         // スクリーン座標に対してマウスの位置の光線を取得
-        ray = Camera.main.ScreenPointToRay(touchPosition);
+        var camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        ray = camera.ScreenPointToRay(touchPosition);
         // マウスの光線の先にオブジェクトが存在していたら hit に入る 
         //Tileのlayer番号は8
         var layerMask = 1 << 8;
