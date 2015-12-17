@@ -8,9 +8,7 @@ public class CharacterStateUI : MonoBehaviour {
     public Image faceImage;
     //public Text name;
     public Slider HPbar;
-    public Text HPbarText;
     public Slider skillBar;
-    public Text skillBarText;
 
     public void Init(Character character)
     {
@@ -25,10 +23,8 @@ public class CharacterStateUI : MonoBehaviour {
     public void UpdateUI(Character character)
     {
         HPbar.value = character.characterParameter.HP;
-        HPbarText.text = HPbar.value + "/" + HPbar.maxValue;
 
         skillBar.value = character.characterParameter.skillPoint;
-        skillBarText.text = skillBar.value + "/" + skillBar.maxValue;
 
 
     }

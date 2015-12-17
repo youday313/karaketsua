@@ -181,6 +181,7 @@ public class CharacterMover : MonoBehaviour {
 
         StartAnimation();
         StartRotateAnimation(direction);
+
     }
     IntVect2D GetDirection(IntVect2D oldVect,IntVect2D newVect)
     {
@@ -226,8 +227,10 @@ public class CharacterMover : MonoBehaviour {
     }
     void ResetRoatateAnimation()
     {
+
         var isEnemyAngle = character.isEnemy == true ? 180 : 0;
         transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
+    
     }
     //移動アニメーション作成
     float moveTime = 1.6f;
