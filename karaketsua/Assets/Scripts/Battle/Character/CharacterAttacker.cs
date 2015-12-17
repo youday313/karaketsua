@@ -99,8 +99,8 @@ public class CharacterAttacker : MonoBehaviour {
         if (target == null) return;
 
         //攻撃範囲内
-        if (Mathf.Abs(target.positionArray.x - character.positionArray.x) + Mathf.Abs(target.positionArray.y - character.positionArray.y) > character.characterParameter.attackRange) return;
-     
+        //if (Mathf.Abs(target.positionArray.x - character.positionArray.x) + Mathf.Abs(target.positionArray.y - character.positionArray.y) > character.characterParameter.attackRange) return;
+        if (IsInAttackRange(target.positionArray)==false) return;
 
         attackTarget = target;
         //ターゲットのタイル変更
@@ -110,6 +110,11 @@ public class CharacterAttacker : MonoBehaviour {
         SetAttackMode(true);
         //PlayerOwner.Instance.commandState = CommandState.Attack;
 
+    }
+
+    bool IsInAttackRange(IntVect2D targetPositionArray)
+    {
+        return character.characterParameter.attackRange.Any(x=>x.IsEqual(IntVect2D.Sub(targetPositionArray,character.positionArray)));
     }
 
     //ターゲット選択ボタンを選択した時

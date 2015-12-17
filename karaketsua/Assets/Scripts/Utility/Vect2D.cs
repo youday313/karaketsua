@@ -16,6 +16,7 @@ public struct Vect2D<T>
     }
 }
 
+[System.Serializable]
 public class IntVect2D
 {
     public int x;
@@ -30,23 +31,27 @@ public class IntVect2D
         x = vect.x;
         y = vect.y;
     }
-    public static bool IsEqual(IntVect2D t1,IntVect2D t2)
+    public static bool IsEqual(IntVect2D v1,IntVect2D v2)
     {
-        return t1.x == t2.x&&t1.y==t2.y ;
+        return v1.x == v2.x&&v1.y==v2.y ;
     }
-    public bool IsEqual(IntVect2D t)
+    public bool IsEqual(IntVect2D v)
     {
-        return x == t.x && y == t.y;
+        return x == v.x && y == v.y;
     }
     //null判別用
     public const int nullNumber = 1000;
-    public static bool IsNull(IntVect2D t)
+    public static bool IsNull(IntVect2D v)
     {
-        return t.x == nullNumber && t.y == nullNumber;
+        return v.x == nullNumber && v.y == nullNumber;
     }
-    public static bool IsNeighbor(IntVect2D t1,IntVect2D t2)
+    public static bool IsNeighbor(IntVect2D v1,IntVect2D v2)
     {
-        return (Mathf.Abs(t1.x - t2.x) + Mathf.Abs(t1.y - t2.y)) <=1;
+        return (Mathf.Abs(v1.x - v2.x) + Mathf.Abs(v1.y - v2.y)) <=1;
+    }
+    public static IntVect2D Sub(IntVect2D v1,IntVect2D v2)
+    {
+        return new IntVect2D(v1.x-v2.x,v1.y-v2.y);
     }
 }
 

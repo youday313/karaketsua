@@ -1396,6 +1396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionIcon: {fileID: 158704}
+  isNowCharge: 0
 --- !u!114 &11466526
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1407,10 +1408,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c45f2eab33333f04889a179cfc31dd05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionArray:
+    x: 0
+    y: 0
   characterParameter:
     charaName: "\u3056\u3053"
     HP: 10
-    attackRange: 1
+    attackRange:
+    - x: 1
+      y: 0
+    - x: -1
+      y: 0
+    - x: 0
+      y: 1
+    - x: 0
+      y: -1
     activeSpeed: 17
     power: 10
     deffence: 100
@@ -1503,7 +1515,27 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: characterParameter.attackRange.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.attackRange.Array.data[0].x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.attackRange.Array.data[1].x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.attackRange.Array.data[2].y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.attackRange.Array.data[3].y
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 101864}

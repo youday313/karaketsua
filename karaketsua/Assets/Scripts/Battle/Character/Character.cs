@@ -23,7 +23,7 @@ public class CharacterParameter
     //体力
     public int HP;
     //攻撃範囲
-    public int attackRange=1;
+    public List<IntVect2D> attackRange;
     //行動力
     public int activeSpeed;
     //攻撃力
