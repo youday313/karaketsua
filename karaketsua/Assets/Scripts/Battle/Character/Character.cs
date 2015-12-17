@@ -51,7 +51,8 @@ public class Character : MonoBehaviour
     [System.NonSerialized]
     public CharacterState characterState = CharacterState.Wait;
     //現在のキャラクター位置配列
-    public IntVect2D positionArray = new IntVect2D(0, 0);
+	[System.NonSerialized]
+	public IntVect2D positionArray = new IntVect2D(0, 0);
     [System.NonSerialized]
     public bool isNowSelect = false;
     
