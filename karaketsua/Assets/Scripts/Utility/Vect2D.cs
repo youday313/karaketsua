@@ -53,6 +53,9 @@ public class IntVect2D
     {
         return new IntVect2D(v1.x-v2.x,v1.y-v2.y);
     }
+	public static IntVect2D Add(IntVect2D v1,IntVect2D v2){
+		return new IntVect2D (v1.x + v2.x,v1.y + v2.y);
+	}
 }
 
 #endregion

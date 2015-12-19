@@ -223,7 +223,7 @@ public class Character : MonoBehaviour
         mover.Disable();
 
         attacker.IsEnable = true;
-        BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
+        //BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
     }
     public void SetSkillMode()
     {
@@ -242,7 +242,7 @@ public class Character : MonoBehaviour
     }
     public void ResetActive()
     {
-        BattleStage.Instance.ResetTileColor();
+        BattleStage.Instance.ResetAllTileColor();
         activeTime.ResetValue();
         DisableActionMode();
         //PlayerOwner.Instance.OnEndActive();

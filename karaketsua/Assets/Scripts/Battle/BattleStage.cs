@@ -57,26 +57,32 @@ public class BattleStage : Singleton<BattleStage>
         var positionArray = chara.positionArray;
         if (state == TileState.Attack)
         {
-            ResetTileColor();
+            ResetAllTileColor();
             ChangeColor(positionArray, state);
-            ChangeNeighborTilesColor(positionArray, state);
+            //ChangeNeighborTilesColor(positionArray, state);
 
         }
         else if (state == TileState.Move)
         {
-            ResetTileColor();
+            ResetAllTileColor();
             ChangeColor(positionArray, state);
             ChangeNeighborTilesColor(positionArray, state);
         }
         else if (state == TileState.Skill)
         {
-            ResetTileColor();
+            ResetAllTileColor();
             ChangeColor(positionArray, state);
             
         }
 
 
     }
+	public void ChangeTileColorsToAttack(Character character){
+		ResetAllTileColor();
+		foreach(var range in character.characterParameter.attackRange){
+			ChangeColor (IntVect2D.Add (character.positionArray, range),TileState.Attack);
+		}
+	}
 
     //ゲット関連
     public TileBase GetTile(IntVect2D position)
@@ -103,7 +109,7 @@ public class BattleStage : Singleton<BattleStage>
     }
 
     //色変更
-    public void ResetTileColor()
+    public void ResetAllTileColor()
     {
         foreach (var tile in tileBases)
         {
@@ -113,15 +119,18 @@ public class BattleStage : Singleton<BattleStage>
     public void ChangeColor(IntVect2D position,TileState state,bool reset=false)
     {
 
-        if (reset) ResetTileColor();
-        GetTile(position).ChangeColor(state);
+        if (reset) ResetAllTileColor();
+		var tile = GetTile (position);
+		if (tile == null)
+			return;
+        tile.ChangeColor(state);
 
 
     }
     //上下左右のタイル色変更
     public void ChangeNeighborTilesColor(IntVect2D position, TileState toState, bool reset=false)
     {
-        if (reset) ResetTileColor();
+        if (reset) ResetAllTileColor();
         foreach(var tile in GetVerticalHorizontalTiles(position))
         {
             tile.ChangeColor(toState);
@@ -130,7 +139,7 @@ public class BattleStage : Singleton<BattleStage>
     }
     public void ChangeTilesColorFromDistance(IntVect2D position, TileState toState,float distance, bool reset = false)
     {
-        if (reset) ResetTileColor();
+        if (reset) ResetAllTileColor();
         foreach (var tile in GetTilesFormDistance(position,distance))
         {
             tile.ChangeColor(toState);

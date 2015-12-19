@@ -249,7 +249,7 @@ public class CharacterMover : MonoBehaviour {
     {
         isNowAction = false;
         StopAnimation();
-        BattleStage.Instance.ResetTileColor();
+        BattleStage.Instance.ResetAllTileColor();
         //character.ResetActive();
     }
 
