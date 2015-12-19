@@ -12,6 +12,7 @@ using System;
 public enum CommandState { None, Moved, TargetSelect, Attack, Skill, Wait, End };
 
 public enum CharacterState { Wait,Attack,Skill,End}
+public enum AttackDistance{Near,Middle,Far}
 
 [System.Serializable]
 [RequireComponent(typeof(CharacterMover))]
@@ -24,6 +25,8 @@ public class CharacterParameter
     public int HP;
     //攻撃範囲
     public List<IntVect2D> attackRange;
+    //攻撃種類
+    public AttackDistance attackDistance;
     //行動力
     public int activeSpeed;
     //攻撃力

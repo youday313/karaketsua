@@ -31,7 +31,8 @@ public class CameraMove : MonoBehaviour
     [Tooltip("ActiveTime稼働時")]
 	public CameraVector leanCamera;
     [Tooltip("攻撃時")]
-    public CameraVector attackCamera;
+    //攻撃によってカメラ位置が変わる
+    public List<CameraVector> attackCamera=new List<CameraVector>();
 
     Character activeCharacter;
     CameraMode nowCameraMode=CameraMode.FromBack;
@@ -176,15 +177,32 @@ public class CameraMove : MonoBehaviour
 	}
 
     //攻撃時
-    public void MoveToAttack(Vector3 attackerPosition,Vector3 targetPosition)
+    public void MoveToAttack(Character attackCharacter,Vector3 targetPosition)
     {
-        var centerPosition = (targetPosition - attackerPosition) / 2;
-        var newPosition = attackerPosition + centerPosition;
-        iTween.MoveTo(gameObject, iTween.Hash("x", newPosition.x + attackCamera.position.x, "y", newPosition.y + attackCamera.position.y, "z", newPosition.z + attackCamera.position.z,
-            "time", changeTime,"oncomplete", "OnCompleteMove", "oncompletetarget", gameObject, "oncompleteparams", CameraState.Attack));
-        iTween.RotateTo(gameObject, iTween.Hash("x", attackCamera.rotation.x, "y", GetInverseRotationFromFrontMode() + attackCamera.rotation.y, "z", attackCamera.rotation.z, "time", changeTime, "islocal", true));
+        var centerPosition = (targetPosition - attackCharacter.transform.position) / 2;
+        var newPosition = attackCharacter.transform.position + centerPosition;
+
+        switch(attackCharacter.characterParameter.attackDistance){
+            case AttackDistance.Near:
+                StartCameraMoveUseiTween(newPosition,AttackDistance.Near);
+                break;
+            case AttackDistance.Middle:
+                StartCameraMoveUseiTween(newPosition, AttackDistance.Middle);
+                break;
+            case AttackDistance.Far:
+                StartCameraMoveUseiTween(new Vector3(0,0,0), AttackDistance.Far);
+                break;
+        }
+
         nowCameraState = CameraState.Moving;
         SetCameraButtonActivity(false);
+    }
+
+    void StartCameraMoveUseiTween(Vector3 pos,AttackDistance distance)
+    {
+        iTween.MoveTo(gameObject, iTween.Hash("x", pos.x + attackCamera[(int)distance].position.x, "y", pos.y+attackCamera[(int)distance].position.y, "z", pos.z+attackCamera[(int)distance].position.z,
+           "time", changeTime, "oncomplete", "OnCompleteMove", "oncompletetarget", gameObject, "oncompleteparams", CameraState.Attack));
+        iTween.RotateTo(gameObject, iTween.Hash("x", attackCamera[(int)distance].rotation.x, "y", GetInverseRotationFromFrontMode() + attackCamera[(int)distance].rotation.y, "z", attackCamera[(int)distance].rotation.z, "time", changeTime, "islocal", true));
     }
     void OnCompleteMove(CameraState state)
     {

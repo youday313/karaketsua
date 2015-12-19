@@ -166,7 +166,7 @@ public class CharacterAttacker : MonoBehaviour {
         animator.SetTrigger("Attack");
         isNowAction=true;
         Invoke("OnCompleteAnimation",attackMotionTime);
-        cameraMove.MoveToAttack(this.character.transform.position, attackTarget.transform.position);
+        cameraMove.MoveToAttack(this.character, attackTarget.transform.position);
 
     }
     void OnCompleteAnimation()
