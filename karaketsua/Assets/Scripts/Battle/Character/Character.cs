@@ -23,10 +23,7 @@ public class CharacterParameter
     public string charaName;
     //体力
     public int HP;
-    //攻撃範囲
-    public List<IntVect2D> attackRange;
-    //攻撃種類
-    public AttackDistance attackDistance;
+    public List<AttackParameter> attackParameter;
     //行動力
     public int activeSpeed;
     //攻撃力
@@ -38,6 +35,25 @@ public class CharacterParameter
     //知力
     public int intellect;
 
+
+
+}
+//一つの攻撃のパラメーター
+[System.Serializable]
+public class AttackParameter
+{
+        //攻撃範囲
+    public List<IntVect2D> attackRange;
+
+    //攻撃種類
+    public AttackDistance attackDistance;
+
+    //範囲攻撃
+    //範囲内の全ての敵にダメージ
+    public bool isMultiAttack;
+
+    //技の威力
+    public int power;
 
 
 }
@@ -227,6 +243,10 @@ public class Character : MonoBehaviour
 
         attacker.IsEnable = true;
         //BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
+    }
+    public void ExecuteAttack()
+    {
+        attacker.Attack();
     }
     public void SetSkillMode()
     {

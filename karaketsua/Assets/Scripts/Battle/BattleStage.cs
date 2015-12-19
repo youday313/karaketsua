@@ -77,9 +77,10 @@ public class BattleStage : Singleton<BattleStage>
 
 
     }
-	public void ChangeTileColorsToAttack(Character character){
+    public void ChangeTileColorsToAttack(List<IntVect2D> attackRange, Character character)
+    {
 		ResetAllTileColor();
-		foreach(var range in character.characterParameter.attackRange){
+		foreach(var range in attackRange){
 			ChangeColor (IntVect2D.Add (character.positionArray, range),TileState.Attack);
 		}
 	}

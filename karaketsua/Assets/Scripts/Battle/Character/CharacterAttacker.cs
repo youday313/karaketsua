@@ -31,8 +31,11 @@ public class CharacterAttacker : MonoBehaviour {
     }
     protected Animator animator;
 
-    Character attackTarget;
+    List<Character> attackTarget=new List<Character>();
     CameraMove cameraMove;
+    //選択した攻撃方法
+    [System.NonSerialized]
+    public AttackParameter selectAttackParameter=null;
 
 	// Use this for initialization
 	void Start () {
@@ -54,7 +57,11 @@ public class CharacterAttacker : MonoBehaviour {
         //IT_Gesture.onMouse1DownE += OnMouseDown;
         IT_Gesture.onShortTapE += OnShortTap;
         //BattleStage.Instance.UpdateTileColors(this.character, TileState.Attack);
-		BattleStage.Instance.ChangeTileColorsToAttack(this.character);
+        
+        //仮で必ず最初の攻撃方法を取る
+        selectAttackParameter = character.characterParameter.attackParameter[0];
+
+		BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange,this.character);
     }
     void Disable()
     {
@@ -74,18 +81,22 @@ public class CharacterAttacker : MonoBehaviour {
     {
         if (isNowAction == true) return;
         if (CameraChange.Instance.nowCameraMode != CameraMode.FromBack && CameraChange.Instance.nowCameraMode != CameraMode.FromFront) return;
-        if (isSetTarget == false)
-        {
-            SetTarget(position);
-        }
-        else
-        {
-            Attack(position);
-        }
+
+        SetTarget(position);
+        //if (isSetTarget == false)
+        //{
+        //    SetTarget(position);
+        //}
+        //else
+        //{
+        //    Attack(position);
+        //}
     }
+    //ターゲット選択ボタンを選択した時
     void SetAttackMode(bool isSet)
     {
         isSetTarget = isSet;
+        ActionSelect.Instance.EnableAttackButton();
 
     }
 
@@ -102,8 +113,39 @@ public class CharacterAttacker : MonoBehaviour {
         //攻撃範囲内
         //if (Mathf.Abs(target.positionArray.x - character.positionArray.x) + Mathf.Abs(target.positionArray.y - character.positionArray.y) > character.characterParameter.attackRange) return;
         if (IsInAttackRange(target.positionArray)==false) return;
-
-        attackTarget = target;
+        
+        //複数攻撃
+        if (selectAttackParameter.isMultiAttack == true)
+        {
+            //未選択からの選択
+            if (attackTarget.Contains(target) == false)
+            {
+                //タイル変更
+ 
+                attackTarget.Add(target);
+            }
+                //選択からの解除
+            else
+            {
+                //タイル変更
+                attackTarget.Remove(target);
+                return;
+            }
+            
+        }
+        else
+        {
+            //他のキャラが既に選択されていた場合は除く
+            if (attackTarget.Count != 0)
+            {
+                //タイル変更
+                //除く
+                attackTarget = new List<Character>();
+            }
+            //再設定
+            attackTarget.Add(target);
+            
+        }
         //ターゲットのタイル変更
         //BattleStage.Instance.UpdateTileColors(target, TileState.Attack);
 
@@ -115,48 +157,58 @@ public class CharacterAttacker : MonoBehaviour {
 
     bool IsInAttackRange(IntVect2D targetPositionArray)
     {
-        return character.characterParameter.attackRange.Any(x=>x.IsEqual(IntVect2D.Sub(targetPositionArray,character.positionArray)));
+        return selectAttackParameter.attackRange.Any(x=>x.IsEqual(IntVect2D.Sub(targetPositionArray,character.positionArray)));
     }
 
-    //ターゲット選択ボタンを選択した時
-    public void SetAttackMode()
-    {
-        //BattleStage.Instance.UpdateTileColors(positionArray, TileState.Attackable);
 
-
-    }
     #endregion::ターゲット選択
 
     #region::攻撃
     //ターゲットが選択されていた時タイルタップ
-    public void Attack(Vector2 touchPosition)
+    public void Attack()
     {
-        //ターゲットの検索
-        var target = GetOpponentCharacterFromTouch(touchPosition);
-
-        //ターゲットが存在しないマスをタップ
-        if (target == null)
-        {
-            //PlayerOwner.Instance.SetCommandState(CommandState.TargetSelect);
-            SetAttackMode(true);
-            //ターゲットのタイル変更
-            return;
-
-        }
-        //ターゲット以外のキャラをタップ
-        //ターゲットの切り替え
-        else if (target != attackTarget)
-        {
-            //BattleStage.Instance.ChangeNeighborTilesColor(positionArray, TileState.Attack);
-            SetTarget(touchPosition);
-        }
-
+        if (attackTarget.Count == 0) return;
+        Debug.Log("Ina");
         //攻撃
-        target.Damage(character.characterParameter.power);
+        foreach (var target in attackTarget)
+        {
+            target.Damage(character.characterParameter.power);
+        }
         StartAttackAnimation();
         //攻撃時にUI非表示
         ActionSelect.Instance.EndActiveAction();
+
     }
+
+    //旧版
+    //public void Attack(Vector2 touchPosition)
+    //{
+    //    //ターゲットの検索
+    //    var target = GetOpponentCharacterFromTouch(touchPosition);
+
+    //    //ターゲットが存在しないマスをタップ
+    //    if (target == null)
+    //    {
+    //        //PlayerOwner.Instance.SetCommandState(CommandState.TargetSelect);
+    //        SetAttackMode(true);
+    //        //ターゲットのタイル変更
+    //        return;
+
+    //    }
+    //    //ターゲット以外のキャラをタップ
+    //    //ターゲットの切り替え
+    //    else if (target != attackTarget)
+    //    {
+    //        //BattleStage.Instance.ChangeNeighborTilesColor(positionArray, TileState.Attack);
+    //        SetTarget(touchPosition);
+    //    }
+
+    //    //攻撃
+    //    target.Damage(character.characterParameter.power);
+    //    StartAttackAnimation();
+    //    //攻撃時にUI非表示
+    //    ActionSelect.Instance.EndActiveAction();
+    //}
     //攻撃モーション時間
     //モーション時間＋猶予時間の案もありか
     public float attackMotionTime=3f;
@@ -166,7 +218,7 @@ public class CharacterAttacker : MonoBehaviour {
         animator.SetTrigger("Attack");
         isNowAction=true;
         Invoke("OnCompleteAnimation",attackMotionTime);
-        cameraMove.MoveToAttack(this.character, attackTarget.transform.position);
+        cameraMove.MoveToAttack(this, attackTarget[0].transform.position);
 
     }
     void OnCompleteAnimation()

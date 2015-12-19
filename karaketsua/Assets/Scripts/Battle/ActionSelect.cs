@@ -16,6 +16,7 @@ public class ActionSelect : Singleton<ActionSelect>
     public GameObject commands;
     public GameObject andoButton;
     public GameObject bottomUI;
+    public GameObject decideAttackButton;
 	//private
 
     Character activeCharacter;
@@ -25,6 +26,7 @@ public class ActionSelect : Singleton<ActionSelect>
         commands.SetActive(false);
         andoButton.SetActive(false);
         bottomUI.SetActive(false);
+        decideAttackButton.SetActive(false);
     }
 	
 
@@ -35,12 +37,14 @@ public class ActionSelect : Singleton<ActionSelect>
         commands.SetActive(true);
         andoButton.SetActive(false);
         bottomUI.SetActive(true);
+        decideAttackButton.SetActive(false);
     }
     public void EndActiveAction()
     {
         commands.SetActive(false);
         andoButton.SetActive(false);
         bottomUI.SetActive(false);
+        decideAttackButton.SetActive(false);
     }
 
     //ボタンから使用
@@ -50,6 +54,7 @@ public class ActionSelect : Singleton<ActionSelect>
         activeCharacter.SetAttackMode();
         commands.SetActive(false);
         andoButton.SetActive(true);
+
     }
     public void OnSkillButton()
     {
@@ -68,9 +73,19 @@ public class ActionSelect : Singleton<ActionSelect>
         activeCharacter.SetAndo();
         commands.SetActive(true);
         andoButton.SetActive(false);
-
+        decideAttackButton.SetActive(false);
 
         //SetActiveAction();
+    }
+
+    public void EnableAttackButton()
+    {
+        decideAttackButton.SetActive(true);
+    }
+    //攻撃を行うボタン
+    public void OnExecuteAttackButton()
+    {
+        activeCharacter.ExecuteAttack();
     }
 
 }

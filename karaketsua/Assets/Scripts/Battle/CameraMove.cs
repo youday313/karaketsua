@@ -177,12 +177,12 @@ public class CameraMove : MonoBehaviour
 	}
 
     //攻撃時
-    public void MoveToAttack(Character attackCharacter,Vector3 targetPosition)
+    public void MoveToAttack(CharacterAttacker attackCharacter,Vector3 targetPosition)
     {
         var centerPosition = (targetPosition - attackCharacter.transform.position) / 2;
         var newPosition = attackCharacter.transform.position + centerPosition;
 
-        switch(attackCharacter.characterParameter.attackDistance){
+        switch(attackCharacter.selectAttackParameter.attackDistance){
             case AttackDistance.Near:
                 StartCameraMoveUseiTween(newPosition,AttackDistance.Near);
                 break;
