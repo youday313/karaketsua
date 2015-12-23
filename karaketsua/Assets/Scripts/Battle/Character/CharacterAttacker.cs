@@ -59,7 +59,7 @@ public class CharacterAttacker : MonoBehaviour {
         //BattleStage.Instance.UpdateTileColors(this.character, TileState.Attack);
         
         //仮で必ず最初の攻撃方法を取る
-        selectAttackParameter = character.characterParameter.attackParameter[0];
+        selectAttackParameter = character.characterParameter.attackParameter[1];
 
 		BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange,this.character);
     }
@@ -168,7 +168,6 @@ public class CharacterAttacker : MonoBehaviour {
     public void Attack()
     {
         if (attackTarget.Count == 0) return;
-        Debug.Log("Ina");
         //攻撃
         foreach (var target in attackTarget)
         {

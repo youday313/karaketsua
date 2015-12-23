@@ -2922,14 +2922,14 @@ MonoBehaviour:
       isMultiAttack: 0
       power: 0
     - attackRange:
-      - x: 2
+      - x: 3
         y: 0
-      - x: -2
+      - x: -3
         y: 0
       - x: 0
-        y: 2
+        y: 3
       - x: 0
-        y: -2
+        y: -3
       attackDistance: 1
       isMultiAttack: 0
       power: 0
@@ -3116,11 +3116,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.data[1].attackRange.Array.data[0].x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.data[1].attackRange.Array.data[1].x
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.data[1].attackRange.Array.data[2].x
@@ -3128,11 +3128,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.data[1].attackRange.Array.data[2].y
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.data[1].attackRange.Array.data[3].y
-      value: -2
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.data[1].attackRange.Array.data[3].x

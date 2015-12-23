@@ -8,27 +8,27 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public enum CommandButton { Attack,Skill,Wait};
+public enum CommandButton { Attack, Skill, Wait };
 
 public class ActionSelect : Singleton<ActionSelect>
 {
-	//public
+    //public
     public GameObject commands;
     public GameObject andoButton;
     public GameObject bottomUI;
     public GameObject decideAttackButton;
-	//private
+    //private
 
     Character activeCharacter;
 
-	void Awake ()
-	{
+    void Awake()
+    {
         commands.SetActive(false);
         andoButton.SetActive(false);
         bottomUI.SetActive(false);
         decideAttackButton.SetActive(false);
     }
-	
+
 
     //ボタンを表示
     public void SetActiveAction(Character activeChara)
