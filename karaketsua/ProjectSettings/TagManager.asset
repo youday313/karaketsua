@@ -12,6 +12,7 @@ TagManager:
   - ActionSelect
   - CharacterStateUIParent
   - CharacterDetailStateUIParent
+  - EffectCanvas
   layers:
   - Default
   - TransparentFX

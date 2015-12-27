@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEngine.UI;
 
 public enum CommandState { None, Moved, TargetSelect, Attack, Skill, Wait, End };
 
@@ -246,7 +247,8 @@ public class Character : MonoBehaviour
     }
     public void ExecuteAttack()
     {
-        attacker.Attack();
+        //attacker.Attack();
+        StartCoroutine(attacker.AttackWithTap());
     }
     public void SetSkillMode()
     {
@@ -274,7 +276,9 @@ public class Character : MonoBehaviour
     }
     public void Damage(int enemyPower)
     {
-        characterParameter.HP -= CalcDamage(enemyPower);
+        var calcDamage = CalcDamage(enemyPower);
+        characterParameter.HP -= calcDamage;
+        CreateDamageText(calcDamage);
         DamageAnimation();
         if (characterParameter.HP <= 0)
         {
@@ -282,6 +286,15 @@ public class Character : MonoBehaviour
         }
         UpdateCharacterStateUI();
         
+    }
+    void CreateDamageText(float damage)
+    {
+        //ダメージ表示
+        var popupPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+        var damageText = Instantiate(Resources.Load<Text>("DamageText"), Camera.main.WorldToScreenPoint(popupPosition),Quaternion.identity) as Text;
+        damageText.text = damage.ToString();
+        damageText.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
+
     }
     void DamageAnimation()
     {
@@ -359,7 +372,7 @@ public class Character : MonoBehaviour
     {
         return GameObject.FindGameObjectsWithTag("BattleCharacter").
             Select(t => t.GetComponent<Character>()).
-            Where(t => toPos.IsEqual(t.positionArray)).
+            Where(t => IntVect2D.IsEqual(toPos, t.positionArray)).
             FirstOrDefault();
     }
 

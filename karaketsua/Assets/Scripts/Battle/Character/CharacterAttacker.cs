@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-
+[RequireComponent(typeof(Character))]
+[RequireComponent(typeof(Animator))]
 public class CharacterAttacker : MonoBehaviour {
 
     protected Character character;
@@ -59,7 +60,7 @@ public class CharacterAttacker : MonoBehaviour {
         //BattleStage.Instance.UpdateTileColors(this.character, TileState.Attack);
         
         //仮で必ず最初の攻撃方法を取る
-        selectAttackParameter = character.characterParameter.attackParameter[1];
+        selectAttackParameter = character.characterParameter.attackParameter[0];
 
 		BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange,this.character);
     }
@@ -178,6 +179,76 @@ public class CharacterAttacker : MonoBehaviour {
         ActionSelect.Instance.EndActiveAction();
 
     }
+
+    //タップで攻撃
+    public float changeTimeTapMode = 1f;
+    float tapJustTime = 5f;
+    public GameObject attackMakerPrefab;
+    bool isTapDetect = false;
+    float startTime;
+    float tapLeftTime;
+    public IEnumerator AttackWithTap()
+    {
+        if (attackTarget.Count == 0) yield return null;
+
+        //カメラ移動
+        cameraMove.MoveToTapAttack(this, attackTarget[0].transform.position, changeTimeTapMode);
+        yield return new WaitForSeconds(changeTimeTapMode);
+        
+        //攻撃アニメーション
+        animator.SetTrigger("TapAttack");
+        isNowAction = true;
+        //Invoke("OnCompleteAnimation", attackMotionTime);
+
+        //マーカー表示
+        var popupPosition=new Vector3(attackTarget[0].transform.position.x, attackTarget[0].transform.position.y+1f, attackTarget[0].transform.position.z);
+        var attackMaker = Instantiate(attackMakerPrefab, Camera.main.WorldToScreenPoint(popupPosition),Quaternion.identity) as GameObject;
+
+        attackMaker.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
+        
+        Destroy(attackMaker,tapJustTime);
+
+        //とりあえず2秒待ってからマーカー縮小
+        yield return new WaitForSeconds(2f);
+        iTween.ScaleTo(attackMaker, iTween.Hash("scale", new Vector3(0.1f, 0.1f, 1.0f), "time", tapJustTime-2));
+
+        //タップ判定
+        startTime = Time.time;
+        //タップできなかったら最大時間
+        tapLeftTime = 0;
+        IT_Gesture.onShortTapE += OnTapForAttack;
+        yield return new WaitForSeconds(tapJustTime-2);
+        IT_Gesture.onShortTapE -= OnTapForAttack;
+        isTapDetect = false;
+
+        //攻撃
+        foreach (var target in attackTarget)
+        {
+            //target.Damage(character.characterParameter.power);
+            //攻撃力に関わらず秒数
+            target.Damage((int)(tapLeftTime * 1000));
+
+        }
+        
+        Invoke("OnCompleteAnimation",attackMotionTime);
+        //攻撃時にUI非表示
+        ActionSelect.Instance.EndActiveAction();
+        yield return null;
+
+    }
+    //タイミングを合わせたタップ
+    void OnTapForAttack(Vector2 pos)
+    {
+        if (isTapDetect == true) return;
+        isTapDetect = true;
+        //残り時間
+        var nowTime = Time.time - startTime;
+        tapLeftTime = Mathf.Clamp(nowTime,0,tapJustTime);
+
+
+    }
+
+
 
     //旧版
     //public void Attack(Vector2 touchPosition)
