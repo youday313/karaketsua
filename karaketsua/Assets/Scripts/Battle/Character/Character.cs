@@ -12,8 +12,8 @@ using UnityEngine.UI;
 
 public enum CommandState { None, Moved, TargetSelect, Attack, Skill, Wait, End };
 
-public enum CharacterState { Wait,Attack,Skill,End}
-public enum AttackDistance{Near,Middle,Far}
+public enum CharacterState { Wait, Attack, Skill, End }
+public enum AttackDistance { Near, Middle, Far }
 
 [System.Serializable]
 [RequireComponent(typeof(CharacterMover))]
@@ -43,7 +43,7 @@ public class CharacterParameter
 [System.Serializable]
 public class AttackParameter
 {
-        //攻撃範囲
+    //攻撃範囲
     public List<IntVect2D> attackRange;
 
     //攻撃種類
@@ -71,11 +71,11 @@ public class Character : MonoBehaviour
     [System.NonSerialized]
     public CharacterState characterState = CharacterState.Wait;
     //現在のキャラクター位置配列
-	[System.NonSerialized]
-	public IntVect2D positionArray = new IntVect2D(0, 0);
+    [System.NonSerialized]
+    public IntVect2D positionArray = new IntVect2D(0, 0);
     [System.NonSerialized]
     public bool isNowSelect = false;
-    
+
     public CharacterParameter characterParameter;
     public GameObject deathEffect;
     [System.NonSerialized]
@@ -93,7 +93,7 @@ public class Character : MonoBehaviour
     //スキル
     //Skill skill;
 
-    CharacterSkill skill; 
+    CharacterSkill skill;
     Animator animator;
     CharacterStateUI StateUI;
     CharacterDetailStateUI detailStateUI;
@@ -102,8 +102,8 @@ public class Character : MonoBehaviour
 
     #region::初期化
 
-    void Start ()
-	{
+    void Start()
+    {
         mover = GetComponent<CharacterMover>();
         attacker = GetComponent<CharacterAttacker>();
         animator = GetComponent<Animator>();
@@ -123,17 +123,17 @@ public class Character : MonoBehaviour
     void SetPositionOnTile()
     {
         var tilePosition = BattleStage.Instance.GetTile(positionArray).transform.position;
-        CSTransform.SetX(transform,tilePosition.x);
-        CSTransform.SetZ(transform,tilePosition.z);
+        CSTransform.SetX(transform, tilePosition.x);
+        CSTransform.SetZ(transform, tilePosition.z);
     }
 
-    public void Init(IntVect2D array,bool isEne)
+    public void Init(IntVect2D array, bool isEne)
     {
         isEnemy = isEne;
         if (isEnemy == true)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            
+
         }
         positionArray.x = array.x;
         positionArray.y = array.y;
@@ -144,7 +144,7 @@ public class Character : MonoBehaviour
         isNowSelect = false;
         mover.Disable();
         attacker.IsEnable = false;
-        skill.IsEnable = false;
+        skill.IsEnable2 = false;
         activeCircle.SetActive(false);
     }
 
@@ -187,11 +187,11 @@ public class Character : MonoBehaviour
     }
     #endregion::初期化
 
-    void Update ()  
-	{
-        
-        
-	}
+    void Update()
+    {
+
+
+    }
 
     public bool IsNowAction()
     {
@@ -204,6 +204,7 @@ public class Character : MonoBehaviour
     public bool IsNowOnFinger()
     {
         if (mover.isNowCharge == true) return true;
+        if (skill.isNowCharge == true) return true;
         return false;
 
     }
@@ -222,7 +223,7 @@ public class Character : MonoBehaviour
     void SetInitialActionState(bool isAllReset)
     {
         attacker.IsEnable = false;
-        skill.IsEnable = false;
+        skill.IsEnable2 = false;
         cameraMove.SetActiveCharacter(this);
         if (isAllReset == true)
         {
@@ -232,11 +233,11 @@ public class Character : MonoBehaviour
         {
             mover.Enable();
         }
-        
+
         //mover.Enable();
-        
+
     }
-    
+
     //ボタンからの行動決定
     public void SetAttackMode()
     {
@@ -253,8 +254,8 @@ public class Character : MonoBehaviour
     public void SetSkillMode()
     {
         mover.Disable();
-        skill.IsEnable = true;
-        BattleStage.Instance.UpdateTileColors(this, TileState.Skill);
+        skill.IsEnable2 = true;
+        //BattleStage.Instance.UpdateTileColors(this, TileState.Skill);
     }
 
     public void SetWaitMode()
@@ -285,13 +286,13 @@ public class Character : MonoBehaviour
             DeathMyself();
         }
         UpdateCharacterStateUI();
-        
+
     }
     void CreateDamageText(float damage)
     {
         //ダメージ表示
         var popupPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
-        var damageText = Instantiate(Resources.Load<Text>("DamageText"), Camera.main.WorldToScreenPoint(popupPosition),Quaternion.identity) as Text;
+        var damageText = Instantiate(Resources.Load<Text>("DamageText"), Camera.main.WorldToScreenPoint(popupPosition), Quaternion.identity) as Text;
         damageText.text = damage.ToString();
         damageText.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
 
@@ -313,7 +314,7 @@ public class Character : MonoBehaviour
     {
         //相手攻撃力 - 自分防御力 がダメージ量
         //相手攻撃力<自分防御力 だったらダメージ0
-        return Mathf.Max(0, power - (1/2*characterParameter.deffence));
+        return Mathf.Max(0, power - (1 / 2 * characterParameter.deffence));
     }
 
     void DeathMyself()
@@ -328,7 +329,7 @@ public class Character : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+
     //タッチでステータス表示
     void OnTouchForDisplayState(Vector2 touch)
     {
@@ -344,18 +345,18 @@ public class Character : MonoBehaviour
     }
     void OnStartTouchForDisplayState(Vector2 touch)
     {
-            //ActiveTime停止中
-            if (GameObject.FindGameObjectsWithTag("ActiveTime").Any(x => x.GetComponent<ActiveTime>().IsActive == true) == true) return;
+        //ActiveTime停止中
+        if (GameObject.FindGameObjectsWithTag("ActiveTime").Any(x => x.GetComponent<ActiveTime>().IsActive == true) == true) return;
 
-            //ターゲットの検索
-            var target = GetCharacterOnTile(touch);
-            //ターゲットが存在しないマスをタップ
-            if (target != this) return;
+        //ターゲットの検索
+        var target = GetCharacterOnTile(touch);
+        //ターゲットが存在しないマスをタップ
+        if (target != this) return;
 
-            //ターゲットが自分
+        //ターゲットが自分
 
-            detailStateUI = Instantiate(Resources.Load<CharacterDetailStateUI>("CharacterDetailStateUI")) as CharacterDetailStateUI;
-            detailStateUI.Init(touch, this.characterParameter);
+        detailStateUI = Instantiate(Resources.Load<CharacterDetailStateUI>("CharacterDetailStateUI")) as CharacterDetailStateUI;
+        detailStateUI.Init(touch, this.characterParameter);
     }
     void OnEndChargeForDisplayState()
     {
@@ -368,15 +369,33 @@ public class Character : MonoBehaviour
 
     #region::Utility
     //タイル上のキャラを取得
+    //呼ばれる場所の統一化が必要
     public static Character GetCharacterOnTile(IntVect2D toPos)
     {
-        return GameObject.FindGameObjectsWithTag("BattleCharacter").
-            Select(t => t.GetComponent<Character>()).
-            Where(t => IntVect2D.IsEqual(toPos, t.positionArray)).
-            FirstOrDefault();
+        Debug.Log(toPos);
+
+        var objects = GameObject.FindGameObjectsWithTag("BattleCharacter").Select(t => t.GetComponent<Character>()).ToList();
+
+        Debug.Log(objects.Count);
+        foreach (var obj in objects)
+        {
+            if (IntVect2D.IsEqual(obj.positionArray, toPos) == true)
+            {
+                return obj;
+            }
+        }
+        return null;
+        //Linqが止まる原因か検証
+        /*
+    return GameObject.FindGameObjectsWithTag("BattleCharacter").
+        Select(t => t.GetComponent<Character>()).
+        Where(t => IntVect2D.IsEqual(toPos, t.positionArray)).
+        FirstOrDefault();
+         */
     }
 
-    public static Character GetCharacterOnTile(Vector2 pos){
+    public static Character GetCharacterOnTile(Vector2 pos)
+    {
         var targetPosition = TileBase.GetArrayFromRay(pos);
         //タイル以外をタップ
         if (targetPosition == null) return null;
@@ -600,7 +619,7 @@ public class Character : MonoBehaviour
     }
     */
     #endregion::スキル
-    
+
 
 
 

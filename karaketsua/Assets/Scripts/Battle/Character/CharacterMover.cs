@@ -55,13 +55,14 @@ public class CharacterMover : MonoBehaviour {
     }
     public void Disable(){
         //キャラクター移動選択
-        IT_Gesture.onDraggingStartE += OnChargeForMove;
+        IT_Gesture.onDraggingStartE -= OnChargeForMove;
         IT_Gesture.onDraggingEndE-=OnDragMove;
         //IT_Gesture.onChargeStartE -= ActiveSelectMoveCursor;
         //IT_Gesture.onChargeEndE -= DisactiveSelectMoveCursor;
         directionIcon.SetActive(false);
     }
     //移動のための選択
+    [System.NonSerialized]
     public bool isNowCharge = false;
     void OnChargeForMove(DragInfo dragInfo)
     {

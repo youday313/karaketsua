@@ -60,7 +60,7 @@ public class ActionSelect : Singleton<ActionSelect>
     {
         activeCharacter.SetSkillMode();
         commands.SetActive(false);
-        andoButton.SetActive(true);
+        andoButton.SetActive(false);
     }
     public void OnWaitButton()
     {

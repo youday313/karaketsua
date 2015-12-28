@@ -20,9 +20,9 @@ public class CameraChange : Singleton<CameraChange> {
     }
 	
     public CameraMode nowCameraMode;
-    public void ChangeCameraMode()
+    public void ChangeCameraMode(CameraMode nextCameraMode)
     {
-        nowCameraMode = (CameraMode)(((int)nowCameraMode + 1) % Enum.GetNames(typeof(CameraMode)).Length);
+        nowCameraMode = nextCameraMode;
         if (nowCameraMode == CameraMode.FromBack)
         {
             actionUI.SetActive(true);
@@ -40,6 +40,12 @@ public class CameraChange : Singleton<CameraChange> {
         }
         
     }
+    public void SetNextCameraMode()
+    {
+        var nextCameraMode = (CameraMode)(((int)nowCameraMode + 1) % Enum.GetNames(typeof(CameraMode)).Length);
+        ChangeCameraMode(nextCameraMode);
+    }
+
     void ActiveLeanCamera(CameraMode _cameraMode)
     {
         

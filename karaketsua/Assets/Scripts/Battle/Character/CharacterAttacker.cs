@@ -12,7 +12,7 @@ public class CharacterAttacker : MonoBehaviour {
     public bool isNowAction = false;
         [System.NonSerialized]
     public bool isSetTarget = false;
-    bool isEnable = false;
+    protected bool isEnable = false;
     public bool IsEnable
     {
         get { return isEnable; }
@@ -32,8 +32,8 @@ public class CharacterAttacker : MonoBehaviour {
     }
     protected Animator animator;
 
-    List<Character> attackTarget=new List<Character>();
-    CameraMove cameraMove;
+    protected List<Character> attackTarget=new List<Character>();
+    protected CameraMove cameraMove;
     //選択した攻撃方法
     [System.NonSerialized]
     public AttackParameter selectAttackParameter=null;
@@ -45,10 +45,11 @@ public class CharacterAttacker : MonoBehaviour {
         cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
 	}
 
-    void OnActiveCharacter()
+    protected void OnActiveCharacter()
     {
         isSetTarget = false;
         isNowAction = false;
+        attackTarget = new List<Character>();
     }
 
     void Enable()
@@ -229,6 +230,7 @@ public class CharacterAttacker : MonoBehaviour {
             target.Damage((int)(tapLeftTime * 1000));
 
         }
+        attackTarget = null;
         
         Invoke("OnCompleteAnimation",attackMotionTime);
         //攻撃時にUI非表示
@@ -250,35 +252,6 @@ public class CharacterAttacker : MonoBehaviour {
 
 
 
-    //旧版
-    //public void Attack(Vector2 touchPosition)
-    //{
-    //    //ターゲットの検索
-    //    var target = GetOpponentCharacterFromTouch(touchPosition);
-
-    //    //ターゲットが存在しないマスをタップ
-    //    if (target == null)
-    //    {
-    //        //PlayerOwner.Instance.SetCommandState(CommandState.TargetSelect);
-    //        SetAttackMode(true);
-    //        //ターゲットのタイル変更
-    //        return;
-
-    //    }
-    //    //ターゲット以外のキャラをタップ
-    //    //ターゲットの切り替え
-    //    else if (target != attackTarget)
-    //    {
-    //        //BattleStage.Instance.ChangeNeighborTilesColor(positionArray, TileState.Attack);
-    //        SetTarget(touchPosition);
-    //    }
-
-    //    //攻撃
-    //    target.Damage(character.characterParameter.power);
-    //    StartAttackAnimation();
-    //    //攻撃時にUI非表示
-    //    ActionSelect.Instance.EndActiveAction();
-    //}
     //攻撃モーション時間
     //モーション時間＋猶予時間の案もありか
     public float attackMotionTime=3f;
@@ -300,8 +273,9 @@ public class CharacterAttacker : MonoBehaviour {
     #endregion::攻撃
 
 
+
     //タイル上のキャラが自身にとっての敵キャラなら取得
-    Character GetOpponentCharacterOnTile(IntVect2D toPos)
+    protected Character GetOpponentCharacterOnTile(IntVect2D toPos)
     {
 
         var chara = Character.GetCharacterOnTile(toPos);
@@ -309,7 +283,7 @@ public class CharacterAttacker : MonoBehaviour {
         if (chara.isEnemy != this.character.isEnemy) return chara;
         return null;
     }
-    Character GetOpponentCharacterFromTouch(Vector2 touchPosition)
+    protected Character GetOpponentCharacterFromTouch(Vector2 touchPosition)
     {
         var chara = Character.GetCharacterOnTile(touchPosition);
         if (chara == null) return null;

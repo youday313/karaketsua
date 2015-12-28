@@ -89,7 +89,10 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 11023a9596f6fb640bb0440f56c3534f, type: 2}
   - {fileID: 2100000, guid: 76e088d925aeb124cae745ec4fd71a0e, type: 2}
   - {fileID: 2100000, guid: 6c68218ce0d5f0348902be4512757071, type: 2}
-  - {fileID: 2100000, guid: 6c68218ce0d5f0348902be4512757071, type: 2}
+  - {fileID: 2100000, guid: 854f68f27672f034b90fb0fa1d3b324d, type: 2}
+  positionArray:
+    x: 1000
+    y: 1000
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -145,6 +148,10 @@ Prefab:
       propertyPath: tileMaterials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 6c68218ce0d5f0348902be4512757071, type: 2}
+    - target: {fileID: 0}
+      propertyPath: tileMaterials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 854f68f27672f034b90fb0fa1d3b324d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 124948}

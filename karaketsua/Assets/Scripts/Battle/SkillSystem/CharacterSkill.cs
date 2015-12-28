@@ -3,14 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class CharacterSkill : CharacterAttacker {
 
-	public List<SkillTileWave> skillTileWaves=new List<SkillTileWave>();
+public class CharacterSkill : CharacterAttacker
+{
 
-    void OnActiveCharacter()
+    public List<IntVect2D> skillTiles;
+    List<IntVect2D> nowTraceTiles = new List<IntVect2D>();
+    [System.NonSerialized]
+    public bool isNowCharge = false;
+    public bool IsEnable2
     {
-        isSetTarget = false;
-        isNowAction = false;
+        get { return isEnable; }
+        set
+        {
+            if (isEnable == false && value == true)
+            {
+                Enable();
+            }
+            else if (isEnable == true && value == false)
+            {
+                Disable();
+            }
+            isEnable = value;
+        }
+
     }
 
     void Enable()
@@ -18,62 +34,138 @@ public class CharacterSkill : CharacterAttacker {
         OnActiveCharacter();
         //IT_Gesture.onTouchDownE+=OnTouchDown;
         //IT_Gesture.onMouse1DownE += OnMouseDown;
-        IT_Gesture.onShortTapE += OnShortTap;
-        BattleStage.Instance.UpdateTileColors(this.character, TileState.Skill);
+        //IT_Gesture.onShortTapE += OnShortTap;
+        //BattleStage.Instance.UpdateTileColors(this.character, TileState.Skill);
+        SetUpCamera();
+        IT_Gesture.onDraggingStartE += OnDraggingStart;
+        IT_Gesture.onDraggingEndE += OnDraggingEnd;
     }
     void Disable()
     {
         //IT_Gesture.onTouchDownE -= OnTouchDown;
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
-        IT_Gesture.onShortTapE -= OnShortTap;
+        //BattleStage.Instance.ResetAllTileColor();
+        IT_Gesture.onDraggingStartE -= OnDraggingStart;
+        IT_Gesture.onDraggingEndE -= OnDraggingEnd;
+    }
+    void SetUpCamera()
+    {
+        CameraChange.Instance.ChangeCameraMode(CameraMode.Up);
+    }
+
+    //なぞり開始
+    void OnDraggingStart(DragInfo dragInfo)
+    {
+        //タイル上
+        var targetPosition = TileBase.GetArrayFromRay(dragInfo.pos);
+        if (targetPosition == null) return;
+
+
+        nowTraceTiles = new List<IntVect2D>();
+        nowTraceTiles.Add(targetPosition);
+        BattleStage.Instance.ChangeColor(targetPosition, TileState.Skill);
+
+        IT_Gesture.onDraggingE += OnDragging;
+        isNowCharge = true;
+    }
+
+    void OnDragging(DragInfo dragInfo)
+    {
+        //タイル上
+        var targetPosition = TileBase.GetArrayFromRay(dragInfo.pos);
+        if (targetPosition == null) return;
+        //まだ未通過
+        if (IntVect2D.IsEqual(targetPosition, nowTraceTiles.LastOrDefault())) return;
+        //次のタイル
+        if (IntVect2D.IsEqual(targetPosition, IntVect2D.Add(skillTiles[nowTraceTiles.Count], nowTraceTiles[0]))==false) return;
+
+        nowTraceTiles.Add(targetPosition);
+        BattleStage.Instance.ChangeColor(targetPosition,TileState.Skill);
+
+    }
+
+    void OnDraggingEnd(DragInfo dragInfo)
+    {
+
+        CheckTraceComplete();
+        nowTraceTiles = new List<IntVect2D>();
+        IT_Gesture.onDraggingE -= OnDragging;
+        isNowCharge = false;
+
+    }
+
+    void CheckTraceComplete()
+    {
+
         BattleStage.Instance.ResetAllTileColor();
+        //完全になぞった
+        if (nowTraceTiles.Count != skillTiles.Count) return;
+
+        SetTarget();
+        //攻撃範囲に敵がいない
+        if (attackTarget.Count == 0) return;
+
+        //攻撃
+
+        Attack();
+        Disable();
     }
 
-    void OnShortTap(Vector2 pos)
+    void SetTarget()
     {
-        UpdateAttackState(pos);
-
-    }
-    void UpdateAttackState(Vector2 position)
-    {
-        if (isNowAction == true) return;
-        if (isSetTarget == false)
+        foreach (var traceTile in nowTraceTiles)
         {
-            SetTarget(position);
+            var target = GetOpponentCharacterOnTile(traceTile);
+            if (target == null) continue;
+            attackTarget.Add(target);
         }
     }
-    //public void SetTarget(Vector2 touchPosition)
-    //{
-    //    //ターゲットの検索
-    //    var target = GetOpponentCharacterFromTouch(touchPosition);
+    void Attack()
+    {
 
-    //    //ターゲットが存在しないマスをタップ
-    //    if (target == null) return;
+        if (attackTarget.Count == 0) return;
+        //攻撃
+        foreach (var target in attackTarget)
+        {
+            target.Damage(character.characterParameter.power);
+        }
 
-    //    //攻撃範囲内
-    //    if (Mathf.Abs(target.positionArray.x - character.positionArray.x) + Mathf.Abs(target.positionArray.y - character.positionArray.y) > character.characterParameter.attackRange) return;
+        StartAttackAnimation();
+        //攻撃時にUI非表示
+        ActionSelect.Instance.EndActiveAction();
+    }
+
+    void StartAttackAnimation()
+    {
+
+        animator.SetTrigger("TraceAttack");
+        isNowAction = true;
+        attackMotionTime = 7f;
+        Invoke("OnCompleteAnimation", attackMotionTime);
+        //cameraMove.MoveToAttack(this, attackTarget[0].transform.position);
+
+    }
+    void OnCompleteAnimation()
+    {
+        isNowAction = false;
+        CameraChange.Instance.ChangeCameraMode(CameraMode.FromBack);
+        character.ResetActive();
+    }
 
 
-    //    attackTarget = target;
-    //    //ターゲットのタイル変更
-    //    //BattleStage.Instance.UpdateTileColors(target, TileState.Attack);
+    IEnumerator ICreateNewWave()
+    {
+        //foreach (var wave in skillTileWaves)
+        //{
+        //  CreateNewWave(wave);
 
-
-    //    SetAttackMode(true);
-    //    //PlayerOwner.Instance.commandState = CommandState.Attack;
-
-    //}
-
-	IEnumerator ICreateNewWave(){
-		foreach (var wave in skillTileWaves) {
-			CreateNewWave (wave);
-
-			yield return null;
-		}
-	}
-	void CreateNewWave(SkillTileWave wave){
-		wave.CreateNewTileSequence (character.positionArray);
-	}
+        yield return null;
+        //}
+    }
+    void CreateNewWave(SkillTileWave wave)
+    {
+        wave.CreateNewTileSequence(character.positionArray);
+    }
 
     public void SuccessWave()
     {
