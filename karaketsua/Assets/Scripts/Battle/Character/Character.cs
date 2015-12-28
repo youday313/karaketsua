@@ -372,11 +372,10 @@ public class Character : MonoBehaviour
     //呼ばれる場所の統一化が必要
     public static Character GetCharacterOnTile(IntVect2D toPos)
     {
-        Debug.Log(toPos);
 
         var objects = GameObject.FindGameObjectsWithTag("BattleCharacter").Select(t => t.GetComponent<Character>()).ToList();
 
-        Debug.Log(objects.Count);
+
         foreach (var obj in objects)
         {
             if (IntVect2D.IsEqual(obj.positionArray, toPos) == true)

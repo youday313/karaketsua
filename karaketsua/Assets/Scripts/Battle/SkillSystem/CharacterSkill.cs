@@ -38,7 +38,7 @@ public class CharacterSkill : CharacterAttacker
         //BattleStage.Instance.UpdateTileColors(this.character, TileState.Skill);
         SetUpCamera();
         IT_Gesture.onDraggingStartE += OnDraggingStart;
-        IT_Gesture.onDraggingEndE += OnDraggingEnd;
+        
     }
     void Disable()
     {
@@ -46,7 +46,6 @@ public class CharacterSkill : CharacterAttacker
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
         //BattleStage.Instance.ResetAllTileColor();
         IT_Gesture.onDraggingStartE -= OnDraggingStart;
-        IT_Gesture.onDraggingEndE -= OnDraggingEnd;
     }
     void SetUpCamera()
     {
@@ -66,6 +65,7 @@ public class CharacterSkill : CharacterAttacker
         BattleStage.Instance.ChangeColor(targetPosition, TileState.Skill);
 
         IT_Gesture.onDraggingE += OnDragging;
+        IT_Gesture.onDraggingEndE += OnDraggingEnd;
         isNowCharge = true;
     }
 
@@ -76,8 +76,15 @@ public class CharacterSkill : CharacterAttacker
         if (targetPosition == null) return;
         //まだ未通過
         if (IntVect2D.IsEqual(targetPosition, nowTraceTiles.LastOrDefault())) return;
+        //まだ未完成
+        if (skillTiles.Count == nowTraceTiles.Count) return;
+
         //次のタイル
-        if (IntVect2D.IsEqual(targetPosition, IntVect2D.Add(skillTiles[nowTraceTiles.Count], nowTraceTiles[0]))==false) return;
+        if (IntVect2D.IsEqual(targetPosition, IntVect2D.Add(skillTiles[nowTraceTiles.Count], nowTraceTiles[0])) == false)
+        {
+            FailAciton();
+            return;
+        }
 
         nowTraceTiles.Add(targetPosition);
         BattleStage.Instance.ChangeColor(targetPosition,TileState.Skill);
@@ -91,9 +98,15 @@ public class CharacterSkill : CharacterAttacker
         nowTraceTiles = new List<IntVect2D>();
         IT_Gesture.onDraggingE -= OnDragging;
         isNowCharge = false;
-
+        IT_Gesture.onDraggingEndE -= OnDraggingEnd;
     }
-
+    void FailAciton()
+    {
+        BattleStage.Instance.ResetAllTileColor();
+        nowTraceTiles = new List<IntVect2D>();
+        IT_Gesture.onDraggingE -= OnDragging;
+        isNowCharge = true;
+    }
     void CheckTraceComplete()
     {
 
