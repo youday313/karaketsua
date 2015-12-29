@@ -11,27 +11,10 @@ public class CharacterSkill : CharacterAttacker
     List<IntVect2D> nowTraceTiles = new List<IntVect2D>();
     [System.NonSerialized]
     public bool isNowCharge = false;
-    public bool IsEnable2
-    {
-        get { return isEnable; }
-        set
-        {
-            if (isEnable == false && value == true)
-            {
-                Enable();
-            }
-            else if (isEnable == true && value == false)
-            {
-                Disable();
-            }
-            isEnable = value;
-        }
 
-    }
-
-    void Enable()
+    public override void Enable()
     {
-        OnActiveCharacter();
+        base.Enable();
         //IT_Gesture.onTouchDownE+=OnTouchDown;
         //IT_Gesture.onMouse1DownE += OnMouseDown;
         //IT_Gesture.onShortTapE += OnShortTap;
@@ -40,8 +23,10 @@ public class CharacterSkill : CharacterAttacker
         IT_Gesture.onDraggingStartE += OnDraggingStart;
         
     }
-    void Disable()
+    public override void Disable()
     {
+
+        base.Disable();
         //IT_Gesture.onTouchDownE -= OnTouchDown;
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
         //BattleStage.Instance.ResetAllTileColor();
@@ -158,6 +143,9 @@ public class CharacterSkill : CharacterAttacker
         //cameraMove.MoveToAttack(this, attackTarget[0].transform.position);
 
     }
+    //攻撃モーション時間
+    //モーション時間＋猶予時間の案もありか
+    public float attackMotionTime = 3f;
     void OnCompleteAnimation()
     {
         isNowAction = false;

@@ -89,11 +89,12 @@ public class Character : MonoBehaviour
     //移動用
     CharacterMover mover;
     //攻撃用
-    CharacterAttacker attacker;
+    //CharacterAttacker attacker;
     //スキル
     //Skill skill;
 
     CharacterSkill skill;
+    CharacterTapAttack tapAttack;
     Animator animator;
     CharacterStateUI StateUI;
     CharacterDetailStateUI detailStateUI;
@@ -105,9 +106,10 @@ public class Character : MonoBehaviour
     void Start()
     {
         mover = GetComponent<CharacterMover>();
-        attacker = GetComponent<CharacterAttacker>();
+        //attacker = GetComponent<CharacterAttacker>();
         animator = GetComponent<Animator>();
         skill = GetComponent<CharacterSkill>();
+        tapAttack = GetComponent<CharacterTapAttack>();
         cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
 
         activeTime = ActiveTimeCreater.Instance.CreateActiveTime(this);
@@ -143,8 +145,9 @@ public class Character : MonoBehaviour
     {
         isNowSelect = false;
         mover.Disable();
-        attacker.IsEnable = false;
-        skill.IsEnable2 = false;
+        //attacker.IsEnable = false;
+        tapAttack.IsEnable = false;
+        skill.IsEnable = false;
         activeCircle.SetActive(false);
     }
 
@@ -196,7 +199,8 @@ public class Character : MonoBehaviour
     public bool IsNowAction()
     {
         if (mover.isNowAction == true) return true;
-        if (attacker.isNowAction == true) return true;
+        //if (attacker.isNowAction == true) return true;
+        if (tapAttack.isNowAction == true) return true;
         if (skill.isNowAction == true) return true;
         return false;
     }
@@ -222,8 +226,9 @@ public class Character : MonoBehaviour
 
     void SetInitialActionState(bool isAllReset)
     {
-        attacker.IsEnable = false;
-        skill.IsEnable2 = false;
+        //attacker.IsEnable = false;
+        tapAttack.IsEnable = false;
+        skill.IsEnable = false;
         cameraMove.SetActiveCharacter(this);
         if (isAllReset == true)
         {
@@ -243,18 +248,19 @@ public class Character : MonoBehaviour
     {
         mover.Disable();
 
-        attacker.IsEnable = true;
+        //attacker.IsEnable = true;
+        tapAttack.IsEnable = true;
         //BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
     }
     public void ExecuteAttack()
     {
         //attacker.Attack();
-        StartCoroutine(attacker.AttackWithTap());
+        StartCoroutine(tapAttack.AttackWithTap());
     }
     public void SetSkillMode()
     {
         mover.Disable();
-        skill.IsEnable2 = true;
+        skill.IsEnable = true;
         //BattleStage.Instance.UpdateTileColors(this, TileState.Skill);
     }
 
@@ -374,7 +380,7 @@ public class Character : MonoBehaviour
     {
 
         var objects = GameObject.FindGameObjectsWithTag("BattleCharacter").Select(t => t.GetComponent<Character>()).ToList();
-
+        Debug.Log(objects.Count);
 
         foreach (var obj in objects)
         {
@@ -410,214 +416,6 @@ public class Character : MonoBehaviour
     #endregion::Utility
 
 
-
-
-
-
-    #region::スキル
-    /*
-    List<IntVect2D> swipedPosision = new List<IntVect2D>();
-    public void SetSkillMode()
-    {
-
-        //ルート2以下の距離
-        //色変更
-        //battleStage.ChangeTilesColorFromDistance(positionArray, TileState.Skill, Mathf.Sqrt(2), reset:true);
-        for (var i = -BattleStage.stageSizeX; i <= BattleStage.stageSizeX; i++)
-        {
-            var pos = new IntVect2D(positionArray);
-            pos.x = i;
-            BattleStage.Instance.UpdateTileColors(new IntVect2D(pos), TileState.Skill);
-        }
-        //for (var i = -BattleStage.stageSizeY; i <= BattleStage.stageSizeY; i++)
-        //{
-        //    var pos = new IntVect2D(positionArray);
-        //    pos.y = i;
-        //    battleStage.ChangeColor(pos, TileState.Skill);
-        //}
-
-
-        //足元のタイルの色変更
-        //BattleStage.Instance.ChangeColor(positionArray, TileState.Select);
-
-        swipedPosision = new List<IntVect2D>();
-    }
-    bool skillFirstStep=true;
-    public void SkillSwipe(SwipeInfo swipeInfo)
-    {
-        var targetPosition = GetArrayFromRay(swipeInfo.startPoint);
-        if (IntVect2D.IsNull(targetPosition) == true) return;
-
-        if (skillFirstStep == true)
-        {
-            //一番初めのスワイプ
-            if (swipedPosision.Count == 0)
-            {
-                //一番左から
-                var leftPos = new IntVect2D(-BattleStage.stageSizeX, positionArray.y);
-                if (!targetPosition.IsEqual(leftPos)) return;
-                //スキル開始
-                swipedPosision.Add(targetPosition);
-
-                BattleStage.Instance.ChangeColor(targetPosition, TileState.Skilled);
-            }
-            else
-            {
-                var lastPosition = swipedPosision.Last();
-                //現在位置
-                if (IntVect2D.IsEqual(targetPosition, lastPosition) == true) return;
-                //右隣
-                if (IntVect2D.IsNeighbor(targetPosition, lastPosition) == false) return;
-                if (lastPosition.y != targetPosition.y || lastPosition.x > targetPosition.x) return;
-                //まだ通過していない
-                foreach (var pos in swipedPosision)
-                {
-                    if (IntVect2D.IsEqual(targetPosition, pos) == true) return;
-                }
-                //新しい位置
-                swipedPosision.Add(targetPosition);
-                //ルート2以下の距離
-                BattleStage.Instance.ChangeColor(targetPosition, TileState.Skilled);
-                //全て塗った
-                if (swipedPosision.Count == BattleStage.stageSizeX * 2 + 1)
-                {
-                    skillFirstStep = false;
-                    //次はYを塗る
-                    for (var i = -BattleStage.stageSizeY; i <= BattleStage.stageSizeY; i++)
-                    {
-                        var pos = new IntVect2D(positionArray);
-                        pos.y = i;
-                        BattleStage.Instance.ChangeColor(pos, TileState.Skill);
-                    }
-                    swipedPosision = new List<IntVect2D>();
-                    ////ターゲットの検索
-                    //var targets = GameObject.FindGameObjectsWithTag("EnemyCharacter")
-                    //    .Select(t => t.GetComponent<Character>())
-                    //    .Where(t => Vector2.Distance(new Vector2(t.positionArray.x, t.positionArray.y), new Vector2(positionArray.x, positionArray.y)) < 2f)
-                    //    .Select(t => t.GetComponent<Character>());
-                    //if (targets.Count() == 0) return;
-                    //foreach (var tar in targets)
-                    //{
-                    //    tar.Damage(1);
-                    //}
-                    ////攻撃
-                    //animator.SetTrigger("Attack");
-                    //ResetActive();
-                }
-
-            }
-        }
-        else
-        {
-            //一番初めのスワイプ
-            if (swipedPosision.Count == 0)
-            {
-                //一番上から
-                var upPos = new IntVect2D(positionArray.x,BattleStage.stageSizeY);
-                if (!targetPosition.IsEqual(upPos)) return;
-                //スキル開始
-                swipedPosision.Add(targetPosition);
-
-                BattleStage.Instance.ChangeColor(targetPosition, TileState.Skilled);
-            }
-            else
-            {
-                var lastPosition = swipedPosision.Last();
-                //現在位置
-                if (IntVect2D.IsEqual(targetPosition, lastPosition) == true) return;
-                //下以外
-                if (IntVect2D.IsNeighbor(targetPosition, lastPosition) == false) return;
-                if (lastPosition.y < targetPosition.y || lastPosition.x != targetPosition.x) return;
-                //まだ通過していない
-                foreach (var pos in swipedPosision)
-                {
-                    if (IntVect2D.IsEqual(targetPosition, pos) == true) return;
-                }
-                //新しい位置
-                swipedPosision.Add(targetPosition);
-                //ルート2以下の距離
-                BattleStage.Instance.ChangeColor(targetPosition, TileState.Skilled);
-                if (swipedPosision.Count == BattleStage.stageSizeY * 2 + 1)
-                {
-                    //skillFirstStep = false;
-                    ////ターゲットの検索
-                    var targets = GameObject.FindGameObjectsWithTag("EnemyCharacter")
-                        .Select(t => t.GetComponent<Character>())
-                        .Where(t =>  t.positionArray.x==positionArray.x||t.positionArray.y==positionArray.y)
-                        .Select(t => t.GetComponent<Character>());
-                    if (targets.Count() == 0) return;
-                    foreach (var tar in targets)
-                    {
-                        //tar.Damage(1);
-                    }
-                    //攻撃
-                    animator.SetTrigger("Attack");
-                    ResetActive();
-                }
-
-            }
-        }
-    }
-
-
-    /*public void SkillSwipe(SwipeInfo swipeInfo)
-    {
-        var targetPosition = GetArrayFromRay(swipeInfo.startPoint);
-        if (IntVect2D.IsNull(targetPosition) == true) return;
-
-        //一番初めのスワイプ
-        if (swipedPosision.Count == 0)
-        {
-            //ルート2以下の距離
-            if (Vector2.Distance(new Vector2(targetPosition.x, targetPosition.y), new Vector2(positionArray.x, positionArray.y)) > Mathf.Sqrt(2)) return;
-            //スキル開始
-            swipedPosision.Add(targetPosition);
-
-            battleStage.ChangeColor(targetPosition, TileState.Select);
-        }
-        else
-        {
-            var lastPosition = swipedPosision.Last();
-            //現在位置
-            if (IntVect2D.IsEqual(targetPosition, lastPosition) == true) return;
-            //隣
-            if (IntVect2D.IsNeighbor(targetPosition, lastPosition) == false) return;
-            //キャラクター以外
-            if (IntVect2D.IsEqual(targetPosition, positionArray)) return;
-            //キャラクターから2未満
-            if (Vector2.Distance(new Vector2(targetPosition.x, targetPosition.y), new Vector2(positionArray.x, positionArray.y)) >= 2f) return;
-            //まだ通過していない
-            foreach (var pos in swipedPosision)
-            {
-                if (IntVect2D.IsEqual(targetPosition, pos) == true) return;
-            }
-
-            //新しい位置
-            swipedPosision.Add(targetPosition);
-            //ルート2以下の距離
-            battleStage.ChangeColor(targetPosition, TileState.Select);
-
-            if (swipedPosision.Count == 8)
-            {
-                //ターゲットの検索
-                var targets = GameObject.FindGameObjectsWithTag("EnemyCharacter")
-                    .Select(t => t.GetComponent<Character>())
-                    .Where(t => Vector2.Distance(new Vector2(t.positionArray.x, t.positionArray.y), new Vector2(positionArray.x, positionArray.y)) < 2f)
-                    .Select(t => t.GetComponent<Character>());
-                if (targets.Count() == 0) return;
-                foreach (var tar in targets)
-                {
-                    tar.Damage(1);
-                }
-                //攻撃
-                animator.SetTrigger("Attack");
-                ResetActive();
-            }
-
-        }
-    }
-    */
-    #endregion::スキル
 
 
 

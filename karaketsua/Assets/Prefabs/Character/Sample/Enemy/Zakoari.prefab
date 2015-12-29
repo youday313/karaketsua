@@ -537,8 +537,8 @@ GameObject:
   - 95: {fileID: 9559576}
   - 114: {fileID: 11447694}
   - 114: {fileID: 11468282}
-  - 114: {fileID: 11472758}
   - 114: {fileID: 11419430}
+  - 114: {fileID: 11456060}
   m_Layer: 0
   m_Name: Zakoari
   m_TagString: BattleCharacter
@@ -1452,16 +1452,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186302}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0170aeacaced433daa1267bd85b6d67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeTimeTapMode: 1
-  tapJustTime: 1
-  attackMakerPrefab: {fileID: 0}
+  skillTiles: []
   attackMotionTime: 1
-  skillTileWaves: []
 --- !u!114 &11447694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1484,6 +1481,20 @@ MonoBehaviour:
     intellect: 100
   deathEffect: {fileID: 179242, guid: 42a81a0777f908643880561530b39751, type: 2}
   activeCircle: {fileID: 103746}
+--- !u!114 &11456060
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beb648cd08b384e49bc91786781b8551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackMotionTime: 3
+  changeTimeTapMode: 1
+  attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
 --- !u!114 &11468282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1496,22 +1507,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionIcon: {fileID: 128866}
-  isNowCharge: 0
---- !u!114 &11472758
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 186302}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35668a4f1c0801747a08d3c05ae8d7cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeTimeTapMode: 1
-  tapJustTime: 1
-  attackMakerPrefab: {fileID: 0}
-  attackMotionTime: 1
 --- !u!137 &13755052
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1587,7 +1582,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.activeSpeed
@@ -1605,6 +1600,10 @@ Prefab:
       propertyPath: characterParameter.HP
       value: 2800
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: attackMakerPrefab
+      value: 
+      objectReference: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186302}
