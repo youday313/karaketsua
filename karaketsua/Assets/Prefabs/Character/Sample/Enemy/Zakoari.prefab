@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterParameter:
     charaName: "\u3056\u3053"
-    HP: 2800
+    HP: 100
     attackParameter: []
     activeSpeed: 2000
     power: 1200
@@ -1492,9 +1492,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb648cd08b384e49bc91786781b8551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackMotionTime: 3
+  tapActionParamaters: []
+  resetInterval: 3
   changeTimeTapMode: 1
-  attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+  attackEffectPrefab: {fileID: 0}
 --- !u!114 &11468282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1598,7 +1599,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.HP
-      value: 2800
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: attackMakerPrefab

@@ -3,9 +3,28 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-public class CharacterTapAttack : CharacterAttacker {
 
 
+
+public class CharacterTapAttack : CharacterAttacker
+{
+    public enum ActionKind
+    {
+        Tap,
+        Swipe,
+        Hold
+    }
+    [System.Serializable]
+    public class TapActionParameter
+    {
+        public float judgeTime;
+        public float startInterval;
+        public ActionKind actionKind;
+        public GameObject attackMakerPrefab;
+    }
+    public List<TapActionParameter> tapActionParamaters = new List<TapActionParameter>();
+
+    #region::初期化
     public override void Enable()
     {
         base.Enable();
@@ -27,6 +46,7 @@ public class CharacterTapAttack : CharacterAttacker {
         base.Disable();
     }
 
+    #endregion::初期化
     void OnShortTap(Vector2 pos)
     {
         UpdateAttackState(pos);
@@ -37,18 +57,10 @@ public class CharacterTapAttack : CharacterAttacker {
     {
         if (isNowAction == true) return;
         if (CameraChange.Instance.nowCameraMode != CameraMode.FromBack && CameraChange.Instance.nowCameraMode != CameraMode.FromFront) return;
-
         SetTarget(position);
-        //if (isSetTarget == false)
-        //{
-        //    SetTarget(position);
-        //}
-        //else
-        //{
-        //    Attack(position);
-        //}
     }
 
+    #region::ターゲット選択
     //ターゲットの決定
     public void SetTarget(Vector2 touchPosition)
     {
@@ -114,18 +126,13 @@ public class CharacterTapAttack : CharacterAttacker {
         ActionSelect.Instance.EnableAttackButton();
 
     }
-    void StartAttackAnimation()
-    {
 
-        animator.SetTrigger("Attack");
-        isNowAction = true;
-        Invoke("OnCompleteAnimation", attackMotionTime);
-        cameraMove.MoveToAttack(this, attackTarget[0].transform.position);
+    #endregion::ターゲット選択
 
-    }
+
     //攻撃モーション時間
     //モーション時間＋猶予時間の案もありか
-    public float attackMotionTime = 3f;
+    public float resetInterval = 3f;
     void OnCompleteAnimation()
     {
         isNowAction = false;
@@ -133,13 +140,19 @@ public class CharacterTapAttack : CharacterAttacker {
     }
 
 
+    //一度のタップのパラメータ
+
+
     //タップで攻撃
     public float changeTimeTapMode = 1f;
-    float tapJustTime = 5f;
-    public GameObject attackMakerPrefab;
+    //public GameObject attackMakerPrefab;
     bool isTapDetect = false;
     float startTime;
     float tapLeftTime;
+    GameObject nowAttackMaker;
+    TapActionParameter nowTapAction;
+    public GameObject attackEffectPrefab;
+    Vector3 popupPositionInScreen;
     public IEnumerator AttackWithTap()
     {
         if (attackTarget.Count == 0) yield return null;
@@ -151,40 +164,58 @@ public class CharacterTapAttack : CharacterAttacker {
         //攻撃アニメーション
         animator.SetTrigger("TapAttack");
         isNowAction = true;
-        //Invoke("OnCompleteAnimation", attackMotionTime);
 
-        //マーカー表示
-        var popupPosition = new Vector3(attackTarget[0].transform.position.x, attackTarget[0].transform.position.y + 1f, attackTarget[0].transform.position.z);
-        var attackMaker = Instantiate(attackMakerPrefab, Camera.main.WorldToScreenPoint(popupPosition), Quaternion.identity) as GameObject;
+        popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(attackTarget[0].transform.position.x, attackTarget[0].transform.position.y + 1f, attackTarget[0].transform.position.z));
 
-        attackMaker.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
 
-        Destroy(attackMaker, tapJustTime);
+        foreach(var action in tapActionParamaters){
 
-        //とりあえず2秒待ってからマーカー縮小
-        yield return new WaitForSeconds(2f);
-        iTween.ScaleTo(attackMaker, iTween.Hash("scale", new Vector3(0.1f, 0.1f, 1.0f), "time", tapJustTime - 2));
+            nowTapAction = action;
+            //startInterval待ってからマーカー縮小
+            yield return new WaitForSeconds(action.startInterval);
+            //マーカー表示
+            nowAttackMaker = Instantiate(action.attackMakerPrefab, popupPositionInScreen, Quaternion.identity) as GameObject;
+            nowAttackMaker.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
+            
 
-        //タップ判定
-        startTime = Time.time;
-        //タップできなかったら最大時間
-        tapLeftTime = 0;
-        IT_Gesture.onShortTapE += OnTapForAttack;
-        yield return new WaitForSeconds(tapJustTime - 2);
-        IT_Gesture.onShortTapE -= OnTapForAttack;
-        isTapDetect = false;
+            //マーカー縮小始まり
+            iTween.ScaleTo(nowAttackMaker, iTween.Hash("scale", new Vector3(0.1f, 0.1f, 1.0f), "time", action.judgeTime));
 
-        //攻撃
-        foreach (var target in attackTarget)
-        {
-            //target.Damage(character.characterParameter.power);
-            //攻撃力に関わらず秒数
-            target.Damage((int)(tapLeftTime * 1000));
+
+            //タップ判定
+            startTime = Time.time;
+            //タップできなかったら最大時間
+            tapLeftTime = 0;
+            IT_Gesture.onShortTapE += OnTapForAttack;
+            yield return new WaitForSeconds(action.judgeTime);
+            IT_Gesture.onShortTapE -= OnTapForAttack;
+            isTapDetect = false;
+            if (nowAttackMaker != null)
+            {
+                Destroy(nowAttackMaker);
+
+            }
+            //攻撃
+            foreach (var target in attackTarget)
+            {
+                //target.Damage(character.characterParameter.power);
+                //攻撃力に関わらず秒数
+                target.Damage((int)(tapLeftTime * 1000));
+
+            }
+
 
         }
+
+        foreach (var target in attackTarget)
+        {
+            target.CheckDestroy();
+        }
+       
+
         attackTarget = null;
 
-        Invoke("OnCompleteAnimation", attackMotionTime);
+        Invoke("OnCompleteAnimation", resetInterval);
         //攻撃時にUI非表示
         ActionSelect.Instance.EndActiveAction();
         yield return null;
@@ -197,9 +228,11 @@ public class CharacterTapAttack : CharacterAttacker {
         isTapDetect = true;
         //残り時間
         var nowTime = Time.time - startTime;
-        tapLeftTime = Mathf.Clamp(nowTime, 0, tapJustTime);
-
-
+        tapLeftTime = Mathf.Clamp(nowTime, 0, nowTapAction.judgeTime);
+        Destroy(nowAttackMaker);
+        nowAttackMaker = null;
+        var attackEffect = Instantiate(attackEffectPrefab, popupPositionInScreen, Quaternion.identity) as GameObject;
+        attackEffect.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
     }
 
 

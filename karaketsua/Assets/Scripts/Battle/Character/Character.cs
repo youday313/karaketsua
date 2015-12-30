@@ -272,13 +272,18 @@ public class Character : MonoBehaviour
         var calcDamage = CalcDamage(enemyPower);
         characterParameter.HP -= calcDamage;
         CreateDamageText(calcDamage);
-        DamageAnimation();
-        if (characterParameter.HP <= 0)
-        {
-            DeathMyself();
-        }
+        //DamageAnimation();
+        animator.SetTrigger("Damage");
         UpdateCharacterStateUI();
 
+    }
+    public void CheckDestroy()
+    {
+        if (characterParameter.HP <= 0)
+        {
+            animator.SetTrigger("Death");
+            DeathMyself();
+        }
     }
     void CreateDamageText(float damage)
     {
@@ -289,17 +294,17 @@ public class Character : MonoBehaviour
         damageText.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
 
     }
-    void DamageAnimation()
-    {
-        if (characterParameter.HP == 0)
-        {
-            animator.SetTrigger("Death");
-        }
-        else
-        {
-            animator.SetTrigger("Damage");
-        }
-    }
+    //void DamageAnimation()
+    //{
+    //    if (characterParameter.HP == 0)
+    //    {
+    //        animator.SetTrigger("Death");
+    //    }
+    //    else
+    //    {
+    //        animator.SetTrigger("Damage");
+    //    }
+    //}
     //ここを変えるとダメージが変わる
     //計算式
     int CalcDamage(int power)
@@ -365,10 +370,29 @@ public class Character : MonoBehaviour
     public static Character GetCharacterOnTile(IntVect2D toPos)
     {
 
-        var objects = GameObject.FindGameObjectsWithTag("BattleCharacter").Select(t => t.GetComponent<Character>()).ToList();
-        Debug.Log(objects.Count);
+        var objects = GameObject.FindGameObjectsWithTag("BattleCharacter");
+        var characters=new List<Character>();
 
+        Debug.Log(objects.Length);
         foreach (var obj in objects)
+        {
+            if (obj == null)
+            {
+
+                Debug.Log("Error");
+            }
+            else
+            {
+                characters.Add(obj.GetComponent<Character>());
+            }
+        }
+        Debug.Log(objects.Length);
+        foreach (var ob in objects)
+        {
+            Debug.Log(ob.name);
+        }
+
+        foreach (var obj in characters)
         {
             if (IntVect2D.IsEqual(obj.positionArray, toPos) == true)
             {

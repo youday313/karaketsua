@@ -127,8 +127,9 @@ public class CharacterSkill : CharacterAttacker
         foreach (var target in attackTarget)
         {
             target.Damage(character.characterParameter.power);
+            target.ExecuteAttack();
         }
-
+        
         StartAttackAnimation();
         //攻撃時にUI非表示
         ActionSelect.Instance.EndActiveAction();
