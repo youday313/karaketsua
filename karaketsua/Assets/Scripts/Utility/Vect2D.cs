@@ -56,6 +56,10 @@ public class IntVect2D
 	public static IntVect2D Add(IntVect2D v1,IntVect2D v2){
 		return new IntVect2D (v1.x + v2.x,v1.y + v2.y);
 	}
+    public static IntVect2D GetDirection(IntVect2D oldVect, IntVect2D newVect)
+    {
+        return new IntVect2D(newVect.x - oldVect.x, newVect.y - oldVect.y);
+    }
 }
 
 #endregion

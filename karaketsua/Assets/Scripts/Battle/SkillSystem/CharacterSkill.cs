@@ -26,11 +26,12 @@ public class CharacterSkill : CharacterAttacker
     public override void Disable()
     {
 
-        base.Disable();
+
         //IT_Gesture.onTouchDownE -= OnTouchDown;
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
         //BattleStage.Instance.ResetAllTileColor();
         IT_Gesture.onDraggingStartE -= OnDraggingStart;
+        base.Disable();
     }
     void SetUpCamera()
     {
@@ -150,7 +151,7 @@ public class CharacterSkill : CharacterAttacker
     {
         isNowAction = false;
         CameraChange.Instance.ChangeCameraMode(CameraMode.FromBack);
-        character.ResetActive();
+        character.EndActiveCharacterAction();
     }
 
 

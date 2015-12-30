@@ -80,8 +80,6 @@ public class Character : MonoBehaviour
     public GameObject deathEffect;
     [System.NonSerialized]
     public bool isEnemy = false;
-    //乗っているタイル
-    TileBase onTile;
     public GameObject activeCircle;
 
     ActiveTime activeTime;
@@ -144,7 +142,7 @@ public class Character : MonoBehaviour
     void DisableActionMode()
     {
         isNowSelect = false;
-        mover.Disable();
+        mover.ResetMoveParamEndAction();
         //attacker.IsEnable = false;
         tapAttack.IsEnable = false;
         skill.IsEnable = false;
@@ -174,18 +172,11 @@ public class Character : MonoBehaviour
 
     void OnEnable()
     {
-        /*
-        IT_Gesture.onChargeStartE += OnStartChargeForDisplayState;
-        IT_Gesture.onChargeEndE += OnEndChargeForDisplayState;
-        */
+        
         IT_Gesture.onShortTapE += OnTouchForDisplayState;
     }
     void OnDisable()
     {
-        /*
-        IT_Gesture.onChargeStartE -= OnStartChargeForDisplayState;
-        IT_Gesture.onChargeEndE -= OnEndChargeForDisplayState;
-         */
         IT_Gesture.onShortTapE -= OnTouchForDisplayState;
     }
     #endregion::初期化
@@ -217,27 +208,21 @@ public class Character : MonoBehaviour
     public void OnActive(ActiveTime wTime)
     {
         isNowSelect = true;
-        SetInitialActionState(true);
+        SetInitialActionState();
         ActionSelect.Instance.SetActiveAction(this);
         activeCircle.SetActive(true);
         //タイル変更
         BattleStage.Instance.UpdateTileColors(this, TileState.Move);
     }
 
-    void SetInitialActionState(bool isAllReset)
+    void SetInitialActionState()
     {
         //attacker.IsEnable = false;
         tapAttack.IsEnable = false;
         skill.IsEnable = false;
         cameraMove.SetActiveCharacter(this);
-        if (isAllReset == true)
-        {
-            mover.OnActiveCharacter();
-        }
-        else
-        {
-            mover.Enable();
-        }
+        mover.IsEnable = true;
+
 
         //mover.Enable();
 
@@ -246,10 +231,11 @@ public class Character : MonoBehaviour
     //ボタンからの行動決定
     public void SetAttackMode()
     {
-        mover.Disable();
+        mover.IsEnable=false;
 
         //attacker.IsEnable = true;
         tapAttack.IsEnable = true;
+
         //BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
     }
     public void ExecuteAttack()
@@ -259,20 +245,20 @@ public class Character : MonoBehaviour
     }
     public void SetSkillMode()
     {
-        mover.Disable();
+        mover.IsEnable=false;
         skill.IsEnable = true;
         //BattleStage.Instance.UpdateTileColors(this, TileState.Skill);
     }
 
     public void SetWaitMode()
     {
-        ResetActive();
+        EndActiveCharacterAction();
     }
     public void SetAndo()
     {
-        SetInitialActionState(false);
+        SetInitialActionState();
     }
-    public void ResetActive()
+    public void EndActiveCharacterAction()
     {
         BattleStage.Instance.ResetAllTileColor();
         activeTime.ResetValue();

@@ -4,41 +4,28 @@ using System.Collections.Generic;
 using System.Linq;
 //キャラクターの移動に関するクラス
 
-public class CharacterMover : MonoBehaviour {
-
-    Character character;
+public class CharacterMover : CharacterBaseAction
+{
 
     [System.NonSerialized]
     public int movableCount = 1;//移動可能距離
         [System.NonSerialized]
     bool isMoved = false;
-        [System.NonSerialized]
-    public bool isNowAction = false;
-    Animator animator;
-    bool isEnable = false;
+
+
     public GameObject directionIcon;
 
-    CameraMove cameraMove;
-	// Use this for initialization
-	void Start () {
-        character=GetComponent<Character>();
-        animator = GetComponent<Animator>();
-        cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
-	}
-
-    public void OnActiveCharacter()
-    {
-        isMoved = false;
-        directionIcon.SetActive(true);
-        Enable();
-    }
+    //public void OnActiveCharacter()
+    //{
+    //    //isMoved = false;
+    //    directionIcon.SetActive(true);
+    //}
 
     
-    public void Enable()
+    public override void Enable()
     {
-        
-        isNowAction = false;
-        
+        base.Enable();
+        //OnActiveCharacter();
         //キャラクター移動選択
         IT_Gesture.onDraggingStartE += OnChargeForMove;
         //キャラクター移動用
@@ -53,14 +40,23 @@ public class CharacterMover : MonoBehaviour {
         }
 
     }
-    public void Disable(){
+
+    public override void Disable(){
         //キャラクター移動選択
         IT_Gesture.onDraggingStartE -= OnChargeForMove;
         IT_Gesture.onDraggingEndE-=OnDragMove;
         //IT_Gesture.onChargeStartE -= ActiveSelectMoveCursor;
         //IT_Gesture.onChargeEndE -= DisactiveSelectMoveCursor;
         directionIcon.SetActive(false);
+        base.Disable();
     }
+    //行動の完全終了時
+    public void ResetMoveParamEndAction()
+    {
+        IsEnable = false;
+        isMoved = false;
+    }
+
     //移動のための選択
     [System.NonSerialized]
     public bool isNowCharge = false;
@@ -161,7 +157,7 @@ public class CharacterMover : MonoBehaviour {
     void UpdatePosition(IntVect2D newPosition)
     {
         //移動方向
-        var direction = GetDirection(character.positionArray, newPosition);
+        var direction = IntVect2D.GetDirection(character.positionArray, newPosition);
         var oldTilePosition = BattleStage.Instance.GetTileXAndZPosition(character.positionArray);
         //配列値変更
         character.positionArray = newPosition;
@@ -183,10 +179,6 @@ public class CharacterMover : MonoBehaviour {
         StartAnimation();
         StartRotateAnimation(direction);
 
-    }
-    IntVect2D GetDirection(IntVect2D oldVect,IntVect2D newVect)
-    {
-        return new IntVect2D(newVect.x - oldVect.x, newVect.y-oldVect.y);
     }
     void UpdateTileState()
     {

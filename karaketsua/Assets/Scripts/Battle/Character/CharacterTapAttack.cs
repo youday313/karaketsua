@@ -20,10 +20,11 @@ public class CharacterTapAttack : CharacterAttacker {
     }
     public override void Disable()
     {
-        base.Disable();
+
         //IT_Gesture.onTouchDownE -= OnTouchDown;
         //IT_Gesture.onMouse1DownE -= OnMouseDown;
         IT_Gesture.onShortTapE -= OnShortTap;
+        base.Disable();
     }
 
     void OnShortTap(Vector2 pos)
@@ -128,7 +129,7 @@ public class CharacterTapAttack : CharacterAttacker {
     void OnCompleteAnimation()
     {
         isNowAction = false;
-        character.ResetActive();
+        character.EndActiveCharacterAction();
     }
 
 
