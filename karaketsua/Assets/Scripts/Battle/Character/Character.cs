@@ -92,7 +92,7 @@ public class Character : MonoBehaviour
     //Skill skill;
 
     CharacterSkill skill;
-    CharacterTapAttack tapAttack;
+    CharacterSingleAttack singleAttack;
     Animator animator;
     CharacterStateUI StateUI;
     CharacterDetailStateUI detailStateUI;
@@ -107,7 +107,7 @@ public class Character : MonoBehaviour
         //attacker = GetComponent<CharacterAttacker>();
         animator = GetComponent<Animator>();
         skill = GetComponent<CharacterSkill>();
-        tapAttack = GetComponent<CharacterTapAttack>();
+        singleAttack = GetComponent<CharacterSingleAttack>();
         cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
 
         activeTime = ActiveTimeCreater.Instance.CreateActiveTime(this);
@@ -144,7 +144,7 @@ public class Character : MonoBehaviour
         isNowSelect = false;
         mover.ResetMoveParamEndAction();
         //attacker.IsEnable = false;
-        tapAttack.IsEnable = false;
+        singleAttack.IsEnable = false;
         skill.IsEnable = false;
         activeCircle.SetActive(false);
     }
@@ -191,7 +191,7 @@ public class Character : MonoBehaviour
     {
         if (mover.isNowAction == true) return true;
         //if (attacker.isNowAction == true) return true;
-        if (tapAttack.isNowAction == true) return true;
+        if (singleAttack.isNowAction == true) return true;
         if (skill.isNowAction == true) return true;
         return false;
     }
@@ -218,7 +218,7 @@ public class Character : MonoBehaviour
     void SetInitialActionState()
     {
         //attacker.IsEnable = false;
-        tapAttack.IsEnable = false;
+        singleAttack.IsEnable = false;
         skill.IsEnable = false;
         cameraMove.SetActiveCharacter(this);
         mover.IsEnable = true;
@@ -234,14 +234,14 @@ public class Character : MonoBehaviour
         mover.IsEnable=false;
 
         //attacker.IsEnable = true;
-        tapAttack.IsEnable = true;
+        singleAttack.IsEnable = true;
 
         //BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
     }
     public void ExecuteAttack()
     {
         //attacker.Attack();
-        StartCoroutine(tapAttack.AttackWithTap());
+        StartCoroutine(singleAttack.AttackWithTap());
     }
     public void SetSkillMode()
     {
