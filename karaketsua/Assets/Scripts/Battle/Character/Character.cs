@@ -91,7 +91,7 @@ public class Character : MonoBehaviour
     //スキル
     //Skill skill;
 
-    CharacterSkill skill;
+    CharacterMoveAttack skill;
     CharacterSingleAttack singleAttack;
     Animator animator;
     CharacterStateUI StateUI;
@@ -106,7 +106,7 @@ public class Character : MonoBehaviour
         mover = GetComponent<CharacterMover>();
         //attacker = GetComponent<CharacterAttacker>();
         animator = GetComponent<Animator>();
-        skill = GetComponent<CharacterSkill>();
+        skill = GetComponent<CharacterMoveAttack>();
         singleAttack = GetComponent<CharacterSingleAttack>();
         cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
 
@@ -242,6 +242,10 @@ public class Character : MonoBehaviour
     {
         //attacker.Attack();
         StartCoroutine(singleAttack.AttackWithTap());
+    }
+    public void ExcuteMoveAttack()
+    {
+        skill.ExcuteAttack();
     }
     public void SetSkillMode()
     {

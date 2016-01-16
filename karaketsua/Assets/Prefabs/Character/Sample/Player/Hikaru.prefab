@@ -11,8 +11,8 @@ GameObject:
   - 95: {fileID: 9550826}
   - 114: {fileID: 11429824}
   - 114: {fileID: 11443902}
-  - 114: {fileID: 11445078}
   - 114: {fileID: 11468130}
+  - 114: {fileID: 11490028}
   m_Layer: 0
   m_Name: Hikaru
   m_TagString: BattleCharacter
@@ -2964,33 +2964,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionIcon: {fileID: 161040}
---- !u!114 &11445078
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0170aeacaced433daa1267bd85b6d67, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skillTiles:
-  - x: 0
-    y: 0
-  - x: 1
-    y: 0
-  - x: 2
-    y: 0
-  - x: 2
-    y: -1
-  - x: 2
-    y: -2
-  - x: 3
-    y: -2
-  - x: 4
-    y: -2
-  attackMotionTime: 1
 --- !u!114 &11468130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3002,18 +2975,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb648cd08b384e49bc91786781b8551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tapActionParamaters:
-  - judgeTime: 2
-    startInterval: 1
-    actionKind: 0
-    attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+  singleActionParamaters:
   - judgeTime: 1
     startInterval: 1
     actionKind: 0
-    attackMakerPrefab: {fileID: 104416, guid: 2d1e1f1080fe663468d226a52baceafc, type: 2}
-  resetInterval: 3
-  changeTimeTapMode: 1
+    attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+    attackEffectKind: 0
+  - judgeTime: 1
+    startInterval: .5
+    actionKind: 0
+    attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+    attackEffectKind: 0
+  - judgeTime: 2
+    startInterval: .5
+    actionKind: 0
+    attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+    attackEffectKind: 0
+  changeTimeSingleMode: 1
   attackEffectPrefab: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
+  resetInterval: 3
+--- !u!114 &11490028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04caba61515b44049bb9b6c0868e20b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveRange: 12
+  attackMotionTime: 3
 --- !u!137 &13730464
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3093,6 +3086,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: tapActionParamaters.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.size
@@ -3266,6 +3263,46 @@ Prefab:
       propertyPath: attackEffectPrefab
       value: 
       objectReference: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[0].attackMakerPrefab
+      value: 
+      objectReference: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[1].attackMakerPrefab
+      value: 
+      objectReference: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[2].attackMakerPrefab
+      value: 
+      objectReference: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[0].startInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[0].judgeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[1].startInterval
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[1].judgeTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[2].startInterval
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: singleActionParamaters.Array.data[2].judgeTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: moveRange
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100656}

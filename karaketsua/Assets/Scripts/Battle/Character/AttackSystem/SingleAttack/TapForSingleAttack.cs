@@ -13,7 +13,6 @@ public class TapForSingleAttack : MonoBehaviour {
     SingleActionParameter singleActionParameter;
 	// Use this for initialization
 	void Start () {
-
         StartCoroutine("StartAction");
 	}
     public void Init(SingleActionParameter actionParam,Vector3 popupPos)

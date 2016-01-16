@@ -40,6 +40,14 @@ public class CameraChange : Singleton<CameraChange> {
         }
         
     }
+    public void ChangeCameraModeForMoveAttack()
+    {
+        nowCameraMode = CameraMode.Up;
+
+        leanCameraObject.SetActive(false);
+        upCameraObject.SetActive(true);
+        //actionUI.SetActive(false);
+    }
     public void SetNextCameraMode()
     {
         var nextCameraMode = (CameraMode)(((int)nowCameraMode + 1) % Enum.GetNames(typeof(CameraMode)).Length);

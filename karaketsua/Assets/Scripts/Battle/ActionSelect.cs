@@ -17,6 +17,7 @@ public class ActionSelect : Singleton<ActionSelect>
     public GameObject andoButton;
     public GameObject bottomUI;
     public GameObject decideAttackButton;
+    public GameObject decideMoveAttackButton;
     //private
 
     Character activeCharacter;
@@ -82,10 +83,23 @@ public class ActionSelect : Singleton<ActionSelect>
     {
         decideAttackButton.SetActive(true);
     }
+    //moveAttack
+    public void EnableMoveAttackButton()
+    {
+        decideMoveAttackButton.SetActive(true);
+    }
+    public void DisableMoveAttackButton()
+    {
+        decideMoveAttackButton.SetActive(false);
+    }
     //攻撃を行うボタン
     public void OnExecuteAttackButton()
     {
         activeCharacter.ExecuteAttack();
+    }
+    public void OnExecuteMoveAttackButton()
+    {
+        activeCharacter.ExcuteMoveAttack();
     }
 
 }
