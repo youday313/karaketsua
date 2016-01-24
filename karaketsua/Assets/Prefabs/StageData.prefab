@@ -41,10 +41,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCharacters:
   - prefab: {fileID: 11429824, guid: cbc6ca6317fcd8c4db66b84ce791b272, type: 2}
-    position: {x: 0, y: -1}
+    position: {x: 0, y: 0}
   enemyCharacters:
   - prefab: {fileID: 11447694, guid: 91202ceaaf6944e459f1b72fa46834ba, type: 2}
     position: {x: 0, y: 1}
+  - prefab: {fileID: 11447694, guid: 91202ceaaf6944e459f1b72fa46834ba, type: 2}
+    position: {x: 1, y: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

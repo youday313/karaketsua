@@ -7,99 +7,149 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 public enum CommandButton { Attack, Skill, Wait };
 
+//UIの設定
 public class ActionSelect : Singleton<ActionSelect>
 {
-    //public
-    public GameObject commands;
-    public GameObject andoButton;
-    public GameObject bottomUI;
-    public GameObject decideAttackButton;
-    public GameObject decideMoveAttackButton;
-    //private
+
+    //宣言
+    
+    public UIActionSelect actionUI;
+    public UIBottomController bottomControllerUI;
+    //public UIWaza wazaUI;
+    //public UIActionExecute executeActionUI;
 
     Character activeCharacter;
 
-    void Awake()
+    void Start()
     {
-        commands.SetActive(false);
-        andoButton.SetActive(false);
-        bottomUI.SetActive(false);
-        decideAttackButton.SetActive(false);
+        //戦闘開始
+        actionUI.OnStartBattleScene();
+        bottomControllerUI.OnStartBattleScene();
     }
 
+    #region::他のスクリプトから呼ぶ
 
     //ボタンを表示
-    public void SetActiveAction(Character activeChara)
+    public void OnActiveCharacter(Character activeChara)
     {
         activeCharacter = activeChara;
-        commands.SetActive(true);
-        andoButton.SetActive(false);
-        bottomUI.SetActive(true);
-        decideAttackButton.SetActive(false);
+        actionUI.OnActiveCharacter();
+        bottomControllerUI.OnActiveCharacter();
     }
     public void EndActiveAction()
     {
-        commands.SetActive(false);
-        andoButton.SetActive(false);
-        bottomUI.SetActive(false);
-        decideAttackButton.SetActive(false);
+        bottomControllerUI.UnSetActive();
+        activeCharacter = null;
     }
 
-    //ボタンから使用
+    //カメラが移動
+    public void OnCameraMove()
+    {
+        bottomControllerUI.OnCameraMove();
+    }
 
+    //行動選択時
+    //キャンセルを有効化
+    public void OnActionSelect()
+    {
+        bottomControllerUI.OnActionSelect();
+    }
+
+
+    #endregion::他のスクリプトから呼ぶ
+
+
+
+
+    #region::UIから使用
+
+    #region::ActionUI
+    //攻撃ボタン
     public void OnAttackButton()
     {
-        activeCharacter.SetAttackMode();
-        commands.SetActive(false);
-        andoButton.SetActive(true);
+    }
+    
+    //防御ボタン
+    public void OnDeffenceButton()
+    {
 
     }
-    public void OnSkillButton()
+
+    #endregion::ActionUI
+
+    #region::BottomUI
+    //戻るボタン：行動キャンセル
+    public void OnCancelButton()
     {
-        activeCharacter.SetSkillMode();
-        commands.SetActive(false);
-        andoButton.SetActive(false);
+        //activeCharacter.SetAndo();
+        //commands.SetActive(true);
+        //andoButton.SetActive(false);
+
     }
-    public void OnWaitButton()
+    //カメラボタン
+    //カメラ操作時：カメラリセット、カメラ非操作時：カメラ切り替え
+    public void OnCameraButton()
+    {
+
+    }
+
+
+    #endregion::BottomUI
+    
+    #region::WazaUI
+    //通常技
+    public void OnWazaButton(int number)
+    {
+        //キャラクターの攻撃の設定
+        //activeCharacter.setAttack();
+
+    }
+    //移動技
+    public void OnSpecialWazaButton()
+    {
+        //キャラクターの攻撃の設定
+    }
+
+    #endregion::WazaUI
+
+    #region::ExecuteUI
+    //攻撃決定
+    public void OnExecuteAttackButton()
+    {
+        activeCharacter.ExecuteAttack();
+    }
+
+    //防御決定
+    public void OnExecuteDeffenceButton()
     {
         activeCharacter.SetWaitMode();
         EndActiveAction();
     }
 
-    public void OnAndoButton()
-    {
-        activeCharacter.SetAndo();
-        commands.SetActive(true);
-        andoButton.SetActive(false);
-        decideAttackButton.SetActive(false);
+    #endregion::ExecuteUI
 
-        //SetActiveAction();
-    }
+    #endregion::UIから使用
 
     public void EnableAttackButton()
     {
-        decideAttackButton.SetActive(true);
+        //decideAttackButton.SetActive(true);
     }
     //moveAttack
     public void EnableMoveAttackButton()
     {
-        decideMoveAttackButton.SetActive(true);
+        //decideMoveAttackButton.SetActive(true);
     }
     public void DisableMoveAttackButton()
     {
-        decideMoveAttackButton.SetActive(false);
+        //decideMoveAttackButton.SetActive(false);
     }
-    //攻撃を行うボタン
-    public void OnExecuteAttackButton()
-    {
-        activeCharacter.ExecuteAttack();
-    }
+
     public void OnExecuteMoveAttackButton()
     {
         activeCharacter.ExcuteMoveAttack();
     }
-
 }

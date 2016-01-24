@@ -209,7 +209,7 @@ public class Character : MonoBehaviour
     {
         isNowSelect = true;
         SetInitialActionState();
-        ActionSelect.Instance.SetActiveAction(this);
+        ActionSelect.Instance.OnActiveCharacter(this);
         activeCircle.SetActive(true);
         //タイル変更
         BattleStage.Instance.UpdateTileColors(this, TileState.Move);
