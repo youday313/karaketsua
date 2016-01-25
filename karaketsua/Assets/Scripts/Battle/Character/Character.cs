@@ -63,16 +63,12 @@ public class Character : MonoBehaviour
 {
 
 
-    //[System.NonSerialized]
-    //public int movableCount=1;//移動可能距離
-    //Animator animator;
-
-    //リファクタリング後
     [System.NonSerialized]
     public CharacterState characterState = CharacterState.Wait;
     //現在のキャラクター位置配列
     [System.NonSerialized]
     public IntVect2D positionArray = new IntVect2D(0, 0);
+    //アクティブか
     [System.NonSerialized]
     public bool isNowSelect = false;
 
@@ -86,12 +82,9 @@ public class Character : MonoBehaviour
 
     //移動用
     CharacterMover mover;
-    //攻撃用
-    //CharacterAttacker attacker;
-    //スキル
-    //Skill skill;
-
+    //特殊技
     CharacterMoveAttack skill;
+    //通常攻撃
     CharacterSingleAttack singleAttack;
     Animator animator;
     CharacterStateUI StateUI;
@@ -104,7 +97,6 @@ public class Character : MonoBehaviour
     void Start()
     {
         mover = GetComponent<CharacterMover>();
-        //attacker = GetComponent<CharacterAttacker>();
         animator = GetComponent<Animator>();
         skill = GetComponent<CharacterMoveAttack>();
         singleAttack = GetComponent<CharacterSingleAttack>();
