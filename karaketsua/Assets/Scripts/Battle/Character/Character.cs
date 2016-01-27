@@ -81,7 +81,7 @@ public class Character : MonoBehaviour
     ActiveTime activeTime;
 
     //移動用
-    CharacterMover mover;
+    public CharacterMover mover;
     //特殊技
     CharacterMoveAttack skill;
     //通常攻撃

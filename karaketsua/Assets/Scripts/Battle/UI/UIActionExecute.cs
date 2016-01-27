@@ -2,19 +2,17 @@
 using System.Collections;
 
 [System.Serializable]
-public class UIActionExecute : MonoBehaviour {
+public class UIActionExecute : UIBase {
 
-    public GameObject parent;
 
     void Awake()
     {
-        OffUI();
+        base.OnAwake();
     }
 
-    //全てオフ
-    void OffUI()
+    void Start()
     {
-        parent.SetActive(false);
-
+        
     }
+
 }

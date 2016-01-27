@@ -10,7 +10,7 @@ public class CharacterMover : CharacterBaseAction
     [System.NonSerialized]
     public int movableCount = 1;//移動可能距離
         [System.NonSerialized]
-    bool isMoved = false;
+    public bool isMoved = false;
 
 
     public GameObject directionIcon;

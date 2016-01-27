@@ -5,9 +5,8 @@ using UnityEngine.UI;
 //オブジェクトの表示のみを行う
 //処理は行わない
 [System.Serializable]
-public class UIBottomController : MonoBehaviour {
+public class UIBottomController : UIBase {
 
-    public GameObject parent;
 
     //子
     public Button cancelButton;
@@ -18,13 +17,26 @@ public class UIBottomController : MonoBehaviour {
     //シーン開始時
     void Awake()
     {
-        OffUI();
+        base.OnAwake();
+        ActionSelect.Instance.OnAwakeE += OffUI;
+        ActionSelect.Instance.OnStartWaveE += OnStartWave;
+        ActionSelect.Instance.OnActiveE += OnActiveCharacter;
+        ActionSelect.Instance.OnSelectAttackE += OnSelectAttack;
+
+        ActionSelect.Instance.OnCameraMoveE += OnCameraMove;
+        ActionSelect.Instance.OnCancelE += OnCancel;
+        
+    }
+    void OnAwake()
+    {
+
     }
 
     //全てオフ
-    void OffUI()
+    public override void OffUI()
     {
-        parent.SetActive(false);
+
+        base.OffUI();
         cancelButton.interactable = false;
         menuButton.interactable = true;
         autoButton.interactable = false;
@@ -32,7 +44,7 @@ public class UIBottomController : MonoBehaviour {
     }
 
     //戦闘のゲーム部が開始した時
-    public void OnStartBattleScene()
+    public void OnStartWave()
     {
         parent.SetActive(true);
         cancelButton.interactable = false;
@@ -50,9 +62,24 @@ public class UIBottomController : MonoBehaviour {
         cameraButton.interactable = false;
     }
 
-    //キャラクター行動終了時
-    public void UnSetActive()
+    public void OnSelectAttack()
     {
+        cancelButton.interactable = true;
+        menuButton.interactable = true;
+        autoButton.interactable = true;
+        cameraButton.interactable = false;
+    }
+
+    //攻撃開始
+    public void OnExecuteAttack()
+    {
+
+    }
+
+    //キャラクター行動終了時
+    public void OnEndActive()
+    {
+        parent.SetActive(true);
         cancelButton.interactable = false;
         menuButton.interactable = true;
         autoButton.interactable = true;
@@ -69,4 +96,11 @@ public class UIBottomController : MonoBehaviour {
     {
         cancelButton.interactable = true;
     }
+
+    public void OnCancel()
+    {
+
+    }
+
+
 }

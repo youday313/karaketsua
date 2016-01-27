@@ -3,32 +3,42 @@ using System.Collections;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class UIActionSelect : MonoBehaviour {
+public class UIActionSelect : UIBase {
 
-    //親
-    public GameObject parent;
     //子
     public Button attackButton;
     public Button deffenceButton;
     public Text nameText;
 
+
+
+
     //シーン開始時
     void Awake()
     {
-        OffUI();
+        base.OnAwake();
+        ActionSelect.Instance.OnStartWaveE += DisableUI;
+        ActionSelect.Instance.OnActiveE += OnActiveCharacter;
+        ActionSelect.Instance.OnSelectAttackE += OffUI;
+        ActionSelect.Instance.OnSelectDeffenceE += OffUI;
+        ActionSelect.Instance.OnCancelE += OnCancel;
+        ActionSelect.Instance.OnCameraMoveE += OnCameraMove;
+        ActionSelect.Instance.OnCharacterMoveE += OnCharacterMove;
+        
     }
 
+
+    //Event
     //全てオフ
-    void OffUI()
+    public override void OffUI()
     {
-        parent.SetActive(false);
+        base.OffUI();
         attackButton.interactable = false;
         deffenceButton.interactable = false;
         nameText.text = "";
     }
-
-    //戦闘のゲーム部が開始した時
-    public void OnStartBattleScene()
+    //2つが半透明
+    public void DisableUI()
     {
         parent.SetActive(true);
         attackButton.interactable = false;
@@ -36,15 +46,41 @@ public class UIActionSelect : MonoBehaviour {
         nameText.text = "";
     }
 
+    
 
     //キャラクター選択時
     public void OnActiveCharacter()
     {
         parent.SetActive(true);
         attackButton.interactable = true;
-        deffenceButton.interactable = false;
-        nameText.text = "";
+        
+        //変動
+        //deffenceButton.interactable = false;
+
+        nameText.text=ActionSelect.Instance.activeCharacter.characterParameter.charaName;
+
     }
+
+    public void OnCameraMove()
+    {
+
+    }
+
+    public void OnCameraReset()
+    {
+
+    }
+
+    public void OnCancel()
+    {
+        
+
+    }
+    public void OnCharacterMove()
+    {
+
+    }
+
 
 
 }

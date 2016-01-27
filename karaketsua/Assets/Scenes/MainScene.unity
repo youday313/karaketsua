@@ -3297,6 +3297,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parent: {fileID: 938363216}
+  wazaObjects: []
+  specialAttackButton: {fileID: 0}
+  leftCountText: {fileID: 0}
 --- !u!1 &1138947889
 GameObject:
   m_ObjectHideFlags: 0
@@ -3342,8 +3345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0399e6766311f3e49984690dc81bc2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionUI: {fileID: 679912011}
-  bottomControllerUI: {fileID: 1950249943}
+  nowUIstate: 0
+  activeCharacter: {fileID: 0}
 --- !u!1 &1140122637
 GameObject:
   m_ObjectHideFlags: 0
