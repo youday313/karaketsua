@@ -145,7 +145,6 @@ public class CameraMove : MonoBehaviour
     {
         activeCharacter = _activeCharacter;
         MoveToBack();
-
     }
     public void DisableActiveCharacter()
     {
