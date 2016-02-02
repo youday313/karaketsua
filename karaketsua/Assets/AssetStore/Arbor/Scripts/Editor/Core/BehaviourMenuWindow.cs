@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,45 +9,8 @@ using Arbor;
 namespace ArborEditor
 {
 	[InitializeOnLoad]
-	public class BehaviourMenuWindow : EditorWindow
+	internal sealed class BehaviourMenuWindow : EditorWindow
 	{
-		private class Styles
-		{
-			public static GUIStyle header;
-			public static GUIStyle componentButton;
-			public static GUIStyle groupButton;
-			public static GUIStyle background;
-			public static GUIStyle previewBackground;
-			public static GUIStyle previewHeader;
-			public static GUIStyle previewText;
-			public static GUIStyle rightArrow;
-			public static GUIStyle leftArrow;
-
-			static Styles()
-			{
-				header = new GUIStyle((GUIStyle)"IN BigTitle");
-                componentButton = new GUIStyle((GUIStyle)"PR Label");
-				background = (GUIStyle)"grey_border";
-				previewBackground = (GUIStyle)"PopupCurveSwatchBackground";
-				previewHeader = new GUIStyle(EditorStyles.label);
-				previewText = new GUIStyle(EditorStyles.wordWrappedLabel);
-				rightArrow = (GUIStyle)"AC RightArrow";
-				leftArrow = (GUIStyle)"AC LeftArrow";
-				header.font = EditorStyles.boldLabel.font;
-				componentButton.alignment = TextAnchor.MiddleLeft;
-				componentButton.padding.left -= 15;
-				componentButton.fixedHeight = 20f;
-				groupButton = new GUIStyle(componentButton);
-				groupButton.padding.left += 17;
-				previewText.padding.left += 3;
-				previewText.padding.right += 3;
-				++previewHeader.padding.left;
-				previewHeader.padding.right += 3;
-				previewHeader.padding.top += 3;
-				previewHeader.padding.bottom += 2;
-			}
-		}
-
 		private static BehaviourMenuWindow _Instance;
 
 		public static BehaviourMenuWindow instance
@@ -117,14 +80,13 @@ namespace ArborEditor
 		private int _AnimTarget = 1;
 		private long _LastTime;
 		private bool _ScrollToSelected;
-		private string _Search = string.Empty;
 		private State _State;
 
 		private bool hasSearch
 		{
 			get
 			{
-				return !string.IsNullOrEmpty(_Search);
+				return !string.IsNullOrEmpty(ArborSettings.behaviourSearch);
 			}
 		}
 
@@ -200,6 +162,13 @@ namespace ArborEditor
 			return list;
 		}
 
+		public class BehaviourMenuItem
+		{
+			public string menuName;
+			public Texture icon;
+			public System.Type classType;
+		};
+
 		private void CreateBehaviourTree()
 		{
 			List<string> list1 = new List<string>();
@@ -207,7 +176,79 @@ namespace ArborEditor
 
 			list2.Add(new GroupElement(0, "Behaviours"));
 
-			foreach (BehaviourMenuUtility.BehaviourMenuItem item in BehaviourMenuUtility.items)
+			List<BehaviourMenuItem> items = new List<BehaviourMenuItem>();
+
+			foreach (MonoScript script in MonoImporter.GetAllRuntimeMonoScripts())
+			{
+				if (script != null && script.hideFlags == 0)
+				{
+					System.Type classType = script.GetClass();
+					if (classType != null)
+					{
+						if (classType.IsSubclassOf(typeof(StateBehaviour)))
+						{
+							object[] hideAttributes = classType.GetCustomAttributes(typeof(HideBehaviour), false);
+
+							if (hideAttributes != null && hideAttributes.Length > 0)
+							{
+								continue;
+							}
+
+							BehaviourMenuItem menuItem = new BehaviourMenuItem();
+							menuItem.classType = classType;
+							menuItem.icon = AssetDatabase.GetCachedIcon(AssetDatabase.GetAssetPath(script));
+
+							menuItem.menuName = "Scripts/" + classType.Name;
+
+							object[] attributes = classType.GetCustomAttributes(typeof(AddBehaviourMenu), false);
+
+							if (attributes != null && attributes.Length > 0)
+							{
+								AddBehaviourMenu behaviourMenu = attributes[0] as AddBehaviourMenu;
+
+								if (behaviourMenu != null)
+								{
+									menuItem.menuName = behaviourMenu.menuName;
+								}
+							}
+
+							if (string.IsNullOrEmpty(menuItem.menuName))
+							{
+								continue;
+							}
+
+							items.Add(menuItem);
+						}
+					}
+				}
+			}
+
+			items.Sort((a, b) => {
+				string[] aNames = a.menuName.Split('/');
+				string[] bNames = b.menuName.Split('/');
+				int i = 0;
+
+				while (i < aNames.Length && i < bNames.Length)
+				{
+					int compare = 0;
+					if (i + 1 >= aNames.Length || i + 1 >= bNames.Length)
+					{
+						compare = bNames.Length - aNames.Length;
+					}
+					if (compare == 0)
+					{
+						compare = aNames[i].CompareTo(bNames[i]);
+					}
+					if (compare != 0)
+					{
+						return compare;
+					}
+					i++;
+				}
+				return bNames.Length - aNames.Length;
+			});
+
+			foreach (BehaviourMenuItem item in items)
 			{
 				string str = item.menuName;
 				string[] strArray = str.Split(new char[] { '/' });
@@ -278,7 +319,7 @@ namespace ArborEditor
 			}
 			else
 			{
-				string str1 = _Search.ToLower();
+				string str1 = ArborSettings.behaviourSearch.ToLower();
 				string[] strArray = str1.Split( new char[] {' '} );
 
 				List<Element> list1 = new List<Element>();
@@ -360,8 +401,8 @@ namespace ArborEditor
 			anim = Mathf.Floor(anim) + Mathf.SmoothStep(0.0f, 1f, Mathf.Repeat(anim, 1f));
 			Rect position1 = this.position;
 			position1.x = (float)((double)this.position.width * (1.0 - (double)anim) + 1.0);
-			position1.y = 40f;
-			position1.height -= 40f;
+			position1.y = 30f;
+			position1.height -= 30f;
 			position1.width -= 2f;
 			GUILayout.BeginArea(position1);
 			Rect rect = GUILayoutUtility.GetRect(10f, 25f);
@@ -393,11 +434,7 @@ namespace ArborEditor
 
 				BehaviourElement behaviourElement = e as BehaviourElement;
 
-				Undo.RecordObject(_State.stateMachine, "Add State Behaviour");
-
 				_State.AddBehaviour(behaviourElement.classType);
-
-				EditorUtility.SetDirty(_State.stateMachine);
 
 				Close();
 			}
@@ -476,11 +513,6 @@ namespace ArborEditor
 			Repaint();
 		}
 
-		private void OnEnable()
-		{
-			_Search = EditorPrefs.GetString("BehaviourSearchString", string.Empty);
-		}
-
 		internal static Rect GUIToScreenRect(Rect guiRect)
 		{
 			Vector2 vector2 = GUIUtility.GUIToScreenPoint(new Vector2(guiRect.x, guiRect.y));
@@ -513,11 +545,10 @@ namespace ArborEditor
 			rect.x += 8f;
 			rect.width -= 16f;
 			GUI.SetNextControlName("ArborBehaviourSearch");
-			string str = EditorGUITools.SearchField(rect, _Search);
-			if (str != _Search)
+			string str = EditorGUITools.SearchField(rect, ArborSettings.behaviourSearch);
+			if (str != ArborSettings.behaviourSearch)
 			{
-				_Search = str;
-				EditorPrefs.SetString("ArborBehaviourSearchString", _Search);
+				ArborSettings.behaviourSearch = str;
 				RebuildSearch();
 			}
 		}
@@ -581,6 +612,9 @@ namespace ArborEditor
 			}
 
 			HandleKeyboard();
+
+			GUILayout.Space(7f);
+            EditorGUI.FocusTextInControl("ArborBehaviourSearch");
 
 			SearchGUI();
 

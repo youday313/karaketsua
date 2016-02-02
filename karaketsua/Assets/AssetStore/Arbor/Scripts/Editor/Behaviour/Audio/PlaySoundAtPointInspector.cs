@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.PlaySoundAtPoint))]
+	[CustomEditor(typeof(PlaySoundAtPoint))]
 	public class PlaySoundAtPointInspector : Editor
 	{
 		public override void OnInspectorGUI()

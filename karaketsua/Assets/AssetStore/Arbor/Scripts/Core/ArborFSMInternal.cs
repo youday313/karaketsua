@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -129,6 +129,15 @@ namespace Arbor
 			}
 		}
 
+#if ARBOR_DOC_JA
+		/// <summary>
+		/// 全ての<see cref="Arbor.CommentNode" />を取得する。
+		/// </summary>
+#else
+		/// <summary>
+		/// Gets all of <see cref = "Arbor.CommentNode" />.
+		/// </summary>
+#endif
 		public CommentNode[] comments
 		{
 			get
@@ -315,14 +324,18 @@ namespace Arbor
 			}
 #endif
 			State state = new State( this,GetUniqueNodeID(),resident );
-			
+
+			ComponentUtility.RecordObject(this, "Created State");
+
 			_States.Add( state );
 			
 			if( !resident && _StartStateID == 0 )
 			{
 				_StartStateID = state.stateID;
 			}
-			
+
+			ComponentUtility.SetDirty(this);
+
 			return state;
 		}
 
@@ -342,11 +355,26 @@ namespace Arbor
 			return CreateState( false );
 		}
 
+#if ARBOR_DOC_JA
+		/// <summary>
+		/// コメントを生成。
+		/// </summary>
+		/// <returns>生成したコメント。</returns>
+#else
+		/// <summary>
+		/// Create comment.
+		/// </summary>
+		/// <returns>The created comment.</returns>
+#endif
 		public CommentNode CreateComment()
 		{
 			CommentNode comment = new CommentNode(this, GetUniqueNodeID());
 
+			ComponentUtility.RecordObject(this, "Created Comment");
+
 			_Comments.Add(comment);
+
+			ComponentUtility.SetDirty(this);
 
 			return comment;
 		}
@@ -514,25 +542,9 @@ namespace Arbor
 #endif
 		public void DeleteState( State state )
 		{
-			foreach( StateBehaviour behaviour in state.behaviours )
-			{
-				behaviour.Destroy();
-			}
-
-			foreach( State otherState in _States )
-			{
-				if( otherState != state )
-				{
-					foreach( StateBehaviour behaviour in otherState.behaviours )
-					{
-						System.Type type = behaviour.GetType();
-						
-						DisconectState( behaviour,type,state.stateID );
-					}
-				}
-			}
-
 			int stateID = state.stateID;
+
+			ComponentUtility.RecordObject(this, "Delete Nodes");
 			
 			_States.Remove( state );
 			
@@ -545,6 +557,28 @@ namespace Arbor
 			{
 				_StartStateID = 0;
 			}
+
+			foreach (State otherState in _States)
+			{
+				if (otherState != state)
+				{
+					foreach (StateBehaviour behaviour in otherState.behaviours)
+					{
+						System.Type type = behaviour.GetType();
+
+						ComponentUtility.RecordObject(behaviour, "Delete Nodes");
+
+						DisconectState(behaviour, type, state.stateID);
+					}
+				}
+			}
+
+			foreach (StateBehaviour behaviour in state.behaviours)
+			{
+				behaviour.Destroy();
+			}
+
+			ComponentUtility.SetDirty(this);
 		}
 
 #if ARBOR_DOC_JA
@@ -560,12 +594,16 @@ namespace Arbor
 #endif
 		public void DeleteComment(CommentNode comment)
 		{
+			ComponentUtility.RecordObject(this, "Delete Nodes");
+
 			_Comments.Remove(comment);
 
 			if (_DicComments != null)
 			{
 				_DicComments.Remove(comment.commentID);
 			}
+
+			ComponentUtility.SetDirty(this);
 		}
 
 #if ARBOR_DOC_JA
@@ -591,7 +629,7 @@ namespace Arbor
 			}
 		}
 
-		void RefreshBehaviours()
+		public void RefreshBehaviours()
 		{
 			foreach (StateBehaviour behaviour in GetComponents<StateBehaviour>())
 			{
@@ -599,14 +637,14 @@ namespace Arbor
 				if (behaviour.stateMachine == this && state != null && !state.Contains(behaviour))
 				{
 					state.AddBehaviour(behaviour);
-				}
+                }
 			}
 
-			foreach ( State state in _States )
+			foreach (State state in _States)
 			{
-				foreach( StateBehaviour behaviour in state.behaviours )
+				foreach (StateBehaviour behaviour in state.behaviours)
 				{
-					if( behaviour != null )
+					if (behaviour != null)
 					{
 						behaviour.hideFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
 					}
@@ -650,11 +688,11 @@ namespace Arbor
 			{
 				foreach ( State state in _States )
 				{
-					state.Restore( this );
+					state.Move( this );
 				}
 			}
 
-			RefreshBehaviours();
+			ComponentUtility.RefreshBehaviours(this);
 		}
 		
 		void Start()
@@ -786,25 +824,25 @@ namespace Arbor
 		/// 状態遷移
 		/// </summary>
 		/// <param name="nextState">遷移先のステート。</param>
-		/// <param name="force">すぐに遷移するかどうか。falseの場合は現在フレームの最後(LateUpdate時)に遷移する。</param>
+		/// <param name="immediateTransition">すぐに遷移するかどうか。falseの場合は現在フレームの最後(LateUpdate時)に遷移する。</param>
 		/// <returns>遷移できたかどうか</returns>
 #else
 		/// <summary>
 		/// State transition
 		/// </summary>
 		/// <param name="nextState">Destination state.</param>
-		/// <param name="force">Whether or not to transition immediately. If false I will transition to the end of the current frame (when LateUpdate).</param>
+		/// <param name="immediateTransition">Whether or not to transition immediately. If false I will transition to the end of the current frame (when LateUpdate).</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition(State nextState,bool force)
+		public bool Transition(State nextState, bool immediateTransition)
 		{
 			if (nextState != null && nextState.stateMachine == this && !nextState.resident)
 			{
-				if (force)
+				if (immediateTransition)
 				{
 					ChangeState(nextState);
 				}
-				else 
+				else
 				{
 					_NextState = nextState;
 				}
@@ -827,7 +865,7 @@ namespace Arbor
 		/// <param name="nextState">Destination state.</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition( State nextState )
+		public bool Transition(State nextState)
 		{
 			return Transition(nextState, false);
 		}
@@ -837,20 +875,20 @@ namespace Arbor
 		/// 状態遷移
 		/// </summary>
 		/// <param name="nextStateID">遷移先のステートID。</param>
-		/// <param name="force">すぐに遷移するかどうか。falseの場合は現在フレームの最後(LateUpdate時)に遷移する。</param>
+		/// <param name="immediateTransition">すぐに遷移するかどうか。falseの場合は現在フレームの最後(LateUpdate時)に遷移する。</param>
 		/// <returns>遷移できたかどうか</returns>
 #else
 		/// <summary>
 		/// State transition
 		/// </summary>
 		/// <param name="nextState">State ID for the transition destination.</param>
-		/// <param name="force">Whether or not to transition immediately. If false I will transition to the end of the current frame (when LateUpdate).</param>
+		/// <param name="immediateTransition">Whether or not to transition immediately. If false I will transition to the end of the current frame (when LateUpdate).</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition(int nextStateID,bool force)
+		public bool Transition(int nextStateID, bool immediateTransition)
 		{
 			State nextState = GetStateFromID(nextStateID);
-			return Transition(nextState,force);
+			return Transition(nextState, immediateTransition);
 		}
 
 #if ARBOR_DOC_JA
@@ -866,9 +904,9 @@ namespace Arbor
 		/// <param name="nextStateID">State ID for the transition destination.</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition( int nextStateID )
+		public bool Transition(int nextStateID)
 		{
-			return Transition( nextStateID,false );
+			return Transition(nextStateID, false);
 		}
 
 #if ARBOR_DOC_JA
@@ -876,21 +914,21 @@ namespace Arbor
 		/// 状態遷移
 		/// </summary>
 		/// <param name="nextStateLink">遷移の接続先。</param>
-		/// <param name="force">すぐに遷移するかどうか。falseの場合は現在フレームの最後(LateUpdate時)に遷移する。</param>
+		/// <param name="immediateTransition">すぐに遷移するかどうか。falseの場合は現在フレームの最後(LateUpdate時)に遷移する。</param>
 		/// <returns>遷移できたかどうか</returns>
 #else
 		/// <summary>
 		/// State transition
 		/// </summary>
 		/// <param name="nextStateLink">The destination of transition.</param>
-		/// <param name="force">Whether or not to transition immediately. If false I will transition to the end of the current frame (when LateUpdate).</param>
+		/// <param name="immediateTransition">Whether or not to transition immediately. If false I will transition to the end of the current frame (when LateUpdate).</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition(StateLink nextStateLink,bool force)
+		public bool Transition(StateLink nextStateLink, bool immediateTransition)
 		{
 			if (nextStateLink.stateID != 0)
 			{
-				return Transition(nextStateLink.stateID,force);
+				return Transition(nextStateLink.stateID, immediateTransition);
 			}
 
 			return false;
@@ -909,9 +947,9 @@ namespace Arbor
 		/// <param name="nextStateLink">The destination of transition.</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition( StateLink nextStateLink )
+		public bool Transition(StateLink nextStateLink)
 		{
-			return Transition(nextStateLink, false);
+			return Transition(nextStateLink, nextStateLink.immediateTransition);
 		}
 
 #if ARBOR_DOC_JA

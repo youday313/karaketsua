@@ -1,102 +1,69 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.ParameterTransition))]
+	[CustomEditor(typeof(ParameterTransition))]
 	public class ParameterTransitionInspector : Editor
 	{
-		public class Styles
+		private void CondisionGUI(ParameterContainer container, SerializedProperty referenceProperty, SerializedProperty condisionProperty)
 		{
-			public static GUIContent addIconContent;
-			public static GUIContent removeIconContent;
-			public static GUIStyle invisibleButton;
-			public static GUIStyle OLTitle;
-			public static GUIStyle OLBox;
-			public static GUIStyle separator;
-
-			static Styles()
-			{
-				addIconContent = new GUIContent(EditorGUIUtility.FindTexture("Toolbar Plus"));
-				removeIconContent = new GUIContent(EditorGUIUtility.FindTexture("Toolbar Minus"));
-				invisibleButton = (GUIStyle)"InvisibleButton";
-				OLTitle = (GUIStyle)"OL Title";
-				OLBox = (GUIStyle)"OL box NoExpand";
-				separator = (GUIStyle)"sv_iconselector_sep";
-			}
-		}
-
-		private void CondisionGUI(Arbor.ParameterContainer container, SerializedProperty referenceProperty, SerializedProperty condisionProperty)
-		{
-			EditorGUILayout.BeginHorizontal();
-
 			SerializedProperty idProperty = referenceProperty.FindPropertyRelative("id");
 
-			Arbor.Parameter parameter = container.GetParam(idProperty.intValue);
+			Parameter parameter = container.GetParam(idProperty.intValue);
 			
 			if (parameter != null)
 			{
-				SerializedProperty typeProperty = condisionProperty.FindPropertyRelative("type");
+				SerializedProperty typeProperty = condisionProperty.FindPropertyRelative("_Type");
 
 				switch (parameter.type)
 				{
-					case Arbor.Parameter.Type.Int:
+					case Parameter.Type.Int:
 						{
-							Rect position = GUILayoutUtility.GetRect(0.0f, 18f);
-							Rect labelRect = new Rect(position.x, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-							EditorGUI.LabelField(labelRect, "Value");
+							EditorGUILayout.PropertyField(typeProperty);
 
-							Rect functionRect = new Rect(labelRect.xMax, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-							Rect valueRect = new Rect(functionRect.xMax, position.y, Mathf.Max(0.0f, position.xMax - functionRect.xMax), 16f);
-
-							EditorGUI.PropertyField(functionRect, typeProperty, GUIContent.none);
-
-							EditorGUI.PropertyField(valueRect, condisionProperty.FindPropertyRelative("intValue"), GUIContent.none);
+							EditorGUILayout.PropertyField(condisionProperty.FindPropertyRelative("_IntValue"), new GUIContent("Int Value"));
 						}
 						break;
-					case Arbor.Parameter.Type.Float:
+					case Parameter.Type.Float:
 						{
-							Rect position = GUILayoutUtility.GetRect(0.0f, 18f);
-							Rect labelRect = new Rect(position.x, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-							EditorGUI.LabelField(labelRect, "Value");
+							EditorGUILayout.PropertyField(typeProperty);
 
-							Rect functionRect = new Rect(labelRect.xMax, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-							Rect valueRect = new Rect(functionRect.xMax, position.y, Mathf.Max(0.0f, position.xMax - functionRect.xMax), 16f);
-
-							EditorGUI.PropertyField(functionRect, typeProperty, GUIContent.none);
-
-							EditorGUI.PropertyField(valueRect, condisionProperty.FindPropertyRelative("floatValue"), GUIContent.none);
+							EditorGUILayout.PropertyField(condisionProperty.FindPropertyRelative("_FloatValue"), new GUIContent("Float Value"));
 						}
 						break;
-					case Arbor.Parameter.Type.Bool:
+					case Parameter.Type.Bool:
 						{
-							Rect position = GUILayoutUtility.GetRect(0.0f, 18f);
-
-							EditorGUI.PropertyField(position, condisionProperty.FindPropertyRelative("boolValue"), new GUIContent("Value"));
+							EditorGUILayout.PropertyField(condisionProperty.FindPropertyRelative("_BoolValue"), new GUIContent("Bool Value"));
+						}
+						break;
+					case Parameter.Type.GameObject:
+						{
+							EditorGUILayout.PropertyField(condisionProperty.FindPropertyRelative("_GameObjectValue"), new GUIContent("GameObject Value"));
 						}
 						break;
 				}
 			}
-
-			EditorGUILayout.EndHorizontal();
 		}
-
-		void OnAddButton()
-		{
-			serializedObject.FindProperty("_Condisions").arraySize++;
-        }
 
 		void OnDrawChild(SerializedProperty property)
 		{
-			SerializedProperty referenceProperty = property.FindPropertyRelative("reference");
+			SerializedProperty referenceProperty = property.FindPropertyRelative("_Reference");
 
 			EditorGUILayout.PropertyField(referenceProperty);
 
 			SerializedProperty containerProperty = referenceProperty.FindPropertyRelative("container");
 
-			Arbor.ParameterContainer container = containerProperty.objectReferenceValue as Arbor.ParameterContainer;
+			ParameterContainerBase containerBase = containerProperty.objectReferenceValue as ParameterContainerBase;
+			ParameterContainer container = null;
+			if (containerBase != null)
+			{
+				container = containerBase.defaultContainer as ParameterContainer;
+			}
 
 			if (container != null)
 			{
@@ -110,11 +77,10 @@ namespace ArborEditor
 
 			ListGUI listGUI = new ListGUI(serializedObject.FindProperty("_Condisions"));
 
-			listGUI.addButton = OnAddButton;
 			listGUI.drawChild = OnDrawChild;
 
 			listGUI.OnGUI();
-			
+
 			serializedObject.ApplyModifiedProperties();
 		}
 	}

@@ -4,7 +4,6 @@ using System.Collections;
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("LoadLevel")]
 	[AddBehaviourMenu("Scene/LoadLevel")]
 	[BuiltInBehaviour]
 	public class LoadLevel : StateBehaviour

@@ -4,7 +4,6 @@ using System.Collections;
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("ButtonDownTransition")]
 	[AddBehaviourMenu("Transition/Input/ButtonDownTransition")]
 	[BuiltInBehaviour]
 	public class ButtonDownTransition : StateBehaviour

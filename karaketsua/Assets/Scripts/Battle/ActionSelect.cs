@@ -29,7 +29,6 @@ public class ActionSelect : Singleton<ActionSelect>
         CameraMove,
         CameraEvent,
         CharacterMove
-
     }
     //キャラクター行動選択時
     public event Action OnAwakeE;

@@ -4,7 +4,6 @@ using System.Collections;
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("OnTriggerEnter2DTransition")]
 	[AddBehaviourMenu("Transition/Collision2D/OnTriggerEnter2DTransition")]
 	[BuiltInBehaviour]
 	public class OnTriggerEnter2DTransition : StateBehaviour

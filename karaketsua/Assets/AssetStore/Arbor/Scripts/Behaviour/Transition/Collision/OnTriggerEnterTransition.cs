@@ -4,7 +4,6 @@ using System.Collections;
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("OnTriggerEnterTransition")]
 	[AddBehaviourMenu("Transition/Collision/OnTriggerEnterTransition")]
 	[BuiltInBehaviour]
 	public class OnTriggerEnterTransition : StateBehaviour

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace Arbor
@@ -24,7 +24,7 @@ namespace Arbor
 		/// Is stored to that container.
 		/// </summary>
 #endif
-		public ParameterContainer container;
+		public ParameterContainerBase container;
 
 #if ARBOR_DOC_JA
 		/// <summary>
@@ -54,7 +54,14 @@ namespace Arbor
 				{
 					return null;
 				}
-				return container.GetParam(id);
+				ParameterContainerInternal parameterContainer = container.container;
+
+				if (parameterContainer == null)
+				{
+					return null;
+				}
+
+				return parameterContainer.GetParam(id);
 			}
 		}
 	}

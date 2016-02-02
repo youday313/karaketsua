@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.UITweenSize))]
+	[CustomEditor(typeof(UITweenSize))]
 	public class UITweenSizeInspector : TweenBaseInspector
 	{
 		public override void OnInspectorGUI ()
@@ -16,6 +18,7 @@ namespace ArborEditor
 			EditorGUILayout.Space();
 
 			EditorGUILayout.PropertyField( serializedObject.FindProperty( "_Target" ) );
+			EditorGUILayout.PropertyField( serializedObject.FindProperty("_Relative") );
 			EditorGUILayout.PropertyField( serializedObject.FindProperty( "_From" ) );
 			EditorGUILayout.PropertyField( serializedObject.FindProperty("_To") );
 

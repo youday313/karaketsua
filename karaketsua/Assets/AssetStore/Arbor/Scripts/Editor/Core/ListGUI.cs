@@ -1,91 +1,82 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-public class ListGUI
+namespace ArborEditor
 {
-	public class Styles
+	public sealed class ListGUI
 	{
-		public static GUIContent addIconContent;
-		public static GUIContent removeIconContent;
-		public static GUIStyle invisibleButton;
-		public static GUIStyle OLTitle;
-		public static GUIStyle OLBox;
-		public static GUIStyle separator;
+		private string _Title;
+		private SerializedProperty _Property;
 
-		static Styles()
+		public ListGUI(SerializedProperty property)
 		{
-			addIconContent = new GUIContent(EditorGUIUtility.FindTexture("Toolbar Plus"));
-			removeIconContent = new GUIContent(EditorGUIUtility.FindTexture("Toolbar Minus"));
-			invisibleButton = (GUIStyle)"InvisibleButton";
-			OLTitle = (GUIStyle)"OL Title";
-			OLBox = (GUIStyle)"OL box NoExpand";
-			separator = (GUIStyle)"sv_iconselector_sep";
+			_Property = property;
 		}
-	}
 
-	private string _Title;
-	private SerializedProperty _Property;
+		public delegate void DelegateAddButton();
 
-	public ListGUI(SerializedProperty property)
-	{
-		_Property = property;
-	}
+		public DelegateAddButton addButton;
 
-	public delegate void DelegateAddButton();
+		public delegate void DelegateDrawChild(SerializedProperty property);
 
-	public DelegateAddButton addButton;
+		public DelegateDrawChild drawChild;
 
-	public delegate void DelegateDrawChild(SerializedProperty property);
-
-	public DelegateDrawChild drawChild;
-
-	public void OnGUI()
-	{
-		GUILayout.BeginHorizontal(ObjectNames.NicifyVariableName(_Property.name), Styles.OLTitle);
-
-		GUILayout.FlexibleSpace();
-		if (GUILayout.Button(Styles.addIconContent, Styles.invisibleButton, GUILayout.Width(20f), GUILayout.Height(20)))
+		public void OnGUI()
 		{
-			if (addButton != null)
+			GUILayout.BeginHorizontal(Styles.RLHeader);
+
+			GUILayout.Label(ObjectNames.NicifyVariableName(_Property.name));
+
+			GUILayout.FlexibleSpace();
+			if (GUILayout.Button(Styles.addIconContent, Styles.invisibleButton, GUILayout.Width(20f), GUILayout.Height(20)))
 			{
-				addButton();
-            }
-		}
-		GUILayout.EndHorizontal();
-
-		if (_Property.arraySize > 0)
-		{
-			EditorGUILayout.BeginVertical(Styles.OLBox);
-
-			for (int i = 0; i < _Property.arraySize; i++)
-			{
-				EditorGUILayout.BeginHorizontal();
-
-				EditorGUILayout.BeginVertical();
-
-				if (drawChild != null)
+				if (addButton != null)
 				{
-					drawChild( _Property.GetArrayElementAtIndex(i) );
+					addButton();
 				}
-
-				EditorGUILayout.EndVertical();
-
-				if (GUILayout.Button(Styles.removeIconContent, Styles.invisibleButton, GUILayout.Width(20f), GUILayout.Height(20)))
+				else
 				{
-					_Property.DeleteArrayElementAtIndex(i);
-					break;
-				}
-
-				EditorGUILayout.EndHorizontal();
-
-				if (i < _Property.arraySize - 1)
-				{
-					GUILayout.Label(GUIContent.none, Styles.separator);
+					_Property.arraySize++;
 				}
 			}
+			GUILayout.EndHorizontal();
 
-			EditorGUILayout.EndVertical();
+			if (_Property.arraySize > 0)
+			{
+				EditorGUILayout.BeginVertical(Styles.RLBackground);
+
+				for (int i = 0; i < _Property.arraySize; i++)
+				{
+					EditorGUILayout.BeginHorizontal();
+
+					EditorGUILayout.BeginVertical();
+
+					if (drawChild != null)
+					{
+						drawChild(_Property.GetArrayElementAtIndex(i));
+					}
+
+					EditorGUILayout.EndVertical();
+
+					if (GUILayout.Button(Styles.removeIconContent, Styles.invisibleButton, GUILayout.Width(20f), GUILayout.Height(20)))
+					{
+						_Property.DeleteArrayElementAtIndex(i);
+						break;
+					}
+
+					EditorGUILayout.EndHorizontal();
+
+					if (i < _Property.arraySize - 1)
+					{
+						EditorGUITools.DrawSeparator();
+					}
+				}
+
+				GUILayout.Space(10);
+
+				EditorGUILayout.EndVertical();
+			}
 		}
-    }
+	}
 }

@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.ButtonDownTransition))]
+	[CustomEditor(typeof(ButtonDownTransition))]
 	public class ButtonDownTransitionInspector : Editor
 	{
 		public override void OnInspectorGUI()

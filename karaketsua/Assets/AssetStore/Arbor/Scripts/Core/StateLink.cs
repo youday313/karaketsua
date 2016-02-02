@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace Arbor
@@ -17,15 +17,37 @@ namespace Arbor
 	{
 #if ARBOR_DOC_JA
 		/// <summary>
+		/// 名前。入力しなかった場合はパスが表示される。
+		/// </summary>
+#else
+		/// <summary>
+		/// Name. The path is displayed if you do not enter.
+		/// </summary>
+#endif
+		public string name;
+
+#if ARBOR_DOC_JA
+		/// <summary>
 		/// 遷移先StateのID。
 		/// </summary>
-#else		
+#else
 		/// <summary>
 		/// ID of transition destination State.
 		/// </summary>
 #endif
 		public int stateID;
 
+#if ARBOR_DOC_JA
+		/// <summary>
+		/// 通常、LateUpdate時に遷移するところを即時に遷移する。
+		/// </summary>
+#else
+		/// <summary>
+		/// Normally, a transition to the immediate place to transition LateUpdate time.
+		/// </summary>
+#endif
+		public bool immediateTransition;
+		
 #if ARBOR_DOC_JA
 		/// <summary>
 		/// Editor用。

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 namespace Arbor
@@ -13,7 +13,7 @@ namespace Arbor
 	/// </summary>
 #endif
 	[System.Serializable]
-	public class CommentNode : Node
+	public sealed class CommentNode : Node
 	{
 		[SerializeField]
 		private int _CommentID;

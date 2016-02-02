@@ -5,7 +5,6 @@ using System.Collections.Generic;
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("OnTriggerStayTransition")]
 	[AddBehaviourMenu("Transition/Collision/OnTriggerStayTransition")]
 	[BuiltInBehaviour]
 	public class OnTriggerStayTransition : StateBehaviour

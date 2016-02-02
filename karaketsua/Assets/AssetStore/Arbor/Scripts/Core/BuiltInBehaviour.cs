@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Arbor
 {
@@ -12,7 +12,7 @@ namespace Arbor
 	/// </summary>
 #endif
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-	public class BuiltInBehaviour : Attribute
+	public sealed class BuiltInBehaviour : Attribute
 	{
 	}
 }

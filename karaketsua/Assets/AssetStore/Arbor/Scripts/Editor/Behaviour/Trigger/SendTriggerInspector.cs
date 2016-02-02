@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.SendTrigger))]
+	[CustomEditor(typeof(SendTrigger))]
 	public class SendTriggerInspector : Editor
 	{
 		public override void OnInspectorGUI()

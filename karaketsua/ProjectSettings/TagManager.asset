@@ -13,6 +13,7 @@ TagManager:
   - CharacterStateUIParent
   - CharacterDetailStateUIParent
   - EffectCanvas
+  - SceneState
   layers:
   - Default
   - TransparentFX

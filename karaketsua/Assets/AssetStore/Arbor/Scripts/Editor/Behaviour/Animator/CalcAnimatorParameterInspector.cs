@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 #if UNITY_5
 using UnityEditor.Animations;
@@ -18,7 +18,7 @@ namespace ArborEditor
 		{
 			serializedObject.Update();
 
-			SerializedProperty referenceProperty = serializedObject.FindProperty("reference");
+			SerializedProperty referenceProperty = serializedObject.FindProperty("_Reference");
 
 			EditorGUILayout.PropertyField(referenceProperty);
 
@@ -27,8 +27,6 @@ namespace ArborEditor
 			if (animator != null)
 			{
 				AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
-
-				EditorGUILayout.BeginHorizontal();
 
 				SerializedProperty nameProperty = referenceProperty.FindPropertyRelative("name");
 
@@ -57,51 +55,31 @@ namespace ArborEditor
 
 				if (selectParameter != null)
 				{
-					SerializedProperty functionProperty = serializedObject.FindProperty("function");
+					SerializedProperty functionProperty = serializedObject.FindProperty("_Function");
 
 					switch (selectParameter.type)
 					{
 						case AnimatorControllerParameterType.Float:
 							{
-								Rect position = GUILayoutUtility.GetRect(0.0f, 18f);
-								Rect labelRect = new Rect(position.x, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-								EditorGUI.LabelField(labelRect, "Value");
-
-								Rect functionRect = new Rect(labelRect.xMax, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-								Rect valueRect = new Rect(functionRect.xMax, position.y, Mathf.Max(0.0f, position.xMax - functionRect.xMax), 16f);
-
-								EditorGUI.PropertyField(functionRect, functionProperty, GUIContent.none);
-
-								EditorGUI.PropertyField(valueRect, serializedObject.FindProperty("floatValue"), GUIContent.none);
+								EditorGUILayout.PropertyField(functionProperty);
+								EditorGUILayout.PropertyField(serializedObject.FindProperty("_FloatValue"),new GUIContent("Float Value"));
 							}
 							break;
 						case AnimatorControllerParameterType.Int:
 							{
-								Rect position = GUILayoutUtility.GetRect(0.0f, 18f);
-								Rect labelRect = new Rect(position.x, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-								EditorGUI.LabelField(labelRect, "Value");
-
-								Rect functionRect = new Rect(labelRect.xMax, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-								Rect valueRect = new Rect(functionRect.xMax, position.y, Mathf.Max(0.0f, position.xMax - functionRect.xMax), 16f);
-
-								EditorGUI.PropertyField(functionRect, functionProperty, GUIContent.none);
-
-								EditorGUI.PropertyField(valueRect, serializedObject.FindProperty("intValue"), GUIContent.none);
+								EditorGUILayout.PropertyField(functionProperty);
+								EditorGUILayout.PropertyField(serializedObject.FindProperty("_IntValue"), new GUIContent("Int Value"));
 							}
 							break;
 						case AnimatorControllerParameterType.Bool:
 							{
-								Rect position = GUILayoutUtility.GetRect(0.0f, 18f);
-
-								EditorGUI.PropertyField(position, serializedObject.FindProperty("boolValue"), new GUIContent("Value"));
+								EditorGUILayout.PropertyField(serializedObject.FindProperty("_BoolValue"), new GUIContent("Bool Value"));
 							}
 							break;
 						case AnimatorControllerParameterType.Trigger:
 							break;
 					}
 				}
-
-				EditorGUILayout.EndHorizontal();
 			}
 
 			serializedObject.ApplyModifiedProperties();

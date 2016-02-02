@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections;
 
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("CalcParameter")]
 	[AddBehaviourMenu("Parameter/CalcParameter")]
 	[BuiltInBehaviour]
-	public class CalcParameter : StateBehaviour
+	public class CalcParameter : StateBehaviour, ISerializationCallbackReceiver
 	{
 		public ParameterReference reference;
 
@@ -18,9 +18,74 @@ namespace Arbor
 		}
 		public Function function;
 
-		public int intValue;
-		public int floatValue;
-		public bool boolValue;
+		[FormerlySerializedAs("intValue")]
+		[SerializeField] private int _OldIntValue;
+		[FormerlySerializedAs("floatValue")]
+		[SerializeField] private float _OldFloatValue;
+		[FormerlySerializedAs("boolValue")]
+		[SerializeField] private bool _OldBoolValue;
+
+		[SerializeField] private int _SerializeVersion;
+		[SerializeField] private FlexibleInt _IntValue;
+		[SerializeField] private FlexibleFloat _FloatValue;
+		[SerializeField] private FlexibleBool _BoolValue;
+		[SerializeField] private FlexibleGameObject _GameObjectValue;
+
+		public int intValue
+		{
+			get
+			{
+				return _IntValue.value;
+			}
+		}
+
+		public float floatValue
+		{
+			get
+			{
+				return _FloatValue.value;
+			}
+		}
+
+		public bool boolValue
+		{
+			get
+			{
+				return _BoolValue.value;
+			}
+		}
+
+		public GameObject gameObjectValue
+		{
+			get
+			{
+				return _GameObjectValue.value;
+			}
+		}
+
+		void SerializeVer1()
+		{
+			_IntValue = (FlexibleInt)_OldIntValue;
+			_FloatValue = (FlexibleFloat)_OldFloatValue;
+			_BoolValue = (FlexibleBool)_OldBoolValue;
+		}
+
+		public void OnBeforeSerialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+                _SerializeVersion = 1;
+			}
+		}
+
+		public void OnAfterDeserialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+			}
+		}
 
 		// Use this for enter state
 		public override void OnStateBegin()
@@ -74,11 +139,22 @@ namespace Arbor
 					break;
 				case Parameter.Type.Bool:
 					{
-						bool value = parameter.boolValue;
+						bool value = boolValue;
 
 						if (parameter.boolValue != value)
 						{
 							parameter.boolValue = value;
+							parameter.OnChanged();
+						}
+					}
+					break;
+				case Parameter.Type.GameObject:
+					{
+						GameObject value = gameObjectValue;
+
+						if (parameter.gameObjectValue != value)
+						{
+							parameter.gameObjectValue = value;
 							parameter.OnChanged();
 						}
 					}

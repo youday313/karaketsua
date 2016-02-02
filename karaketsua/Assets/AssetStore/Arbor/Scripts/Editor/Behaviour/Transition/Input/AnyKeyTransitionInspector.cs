@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.AnyKeyTransition))]
+	[CustomEditor(typeof(AnyKeyTransition))]
 	public class AnyKeyTransitionInspector : Editor
 	{
 		public override void OnInspectorGUI()

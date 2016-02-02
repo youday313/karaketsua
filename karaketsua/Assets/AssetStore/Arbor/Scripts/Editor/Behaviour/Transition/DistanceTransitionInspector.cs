@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.DistanceTransition))]
+	[CustomEditor(typeof(DistanceTransition))]
 	public class DistanceTransitionInspector : Editor
 	{
 		public override void OnInspectorGUI()

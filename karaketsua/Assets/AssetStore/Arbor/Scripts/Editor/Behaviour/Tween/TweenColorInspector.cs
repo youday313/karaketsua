@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.TweenColor))]
+	[CustomEditor(typeof(TweenColor))]
 	public class TweenColorInspector : TweenBaseInspector
 	{
 		public override void OnInspectorGUI ()

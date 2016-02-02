@@ -1,4 +1,6 @@
-﻿namespace Arbor
+using UnityEngine;
+
+namespace Arbor
 {
 #if ARBOR_DOC_JA
 	/// <summary>
@@ -57,6 +59,17 @@
 			/// </summary>
 #endif
 			Bool,
+
+#if ARBOR_DOC_JA
+			/// <summary>
+			/// GameObject型。
+			/// </summary>
+#else
+			/// <summary>
+			/// GameObject type.
+			/// </summary>
+#endif
+			GameObject,
 		}
 
 #if ARBOR_DOC_JA
@@ -68,7 +81,7 @@
 		/// Container this parameter is stored.
 		/// </summary>
 #endif
-		public ParameterContainer container;
+		public ParameterContainerInternal container;
 
 #if ARBOR_DOC_JA
 		/// <summary>
@@ -135,6 +148,37 @@
 		/// </summary>
 #endif
 		public bool boolValue;
+
+#if ARBOR_DOC_JA
+		/// <summary>
+		/// GameObject型の値。変更した後はOnChanged()を呼び出すこと。
+		/// </summary>
+#else
+		/// <summary>
+		/// GameObject value of type. And invoking the OnChanged () after changing.
+		/// </summary>
+#endif
+		public GameObject gameObjectValue;
+
+		public object value
+		{
+			get
+			{
+				switch (type)
+				{
+					case Type.Int:
+						return intValue;
+					case Type.Float:
+						return floatValue;
+					case Type.Bool:
+						return boolValue;
+					case Type.GameObject:
+						return gameObjectValue;
+				}
+
+				return null;
+			}
+		}
 
 #if ARBOR_DOC_JA
 		/// <summary>

@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &22912507
 GameObject:
@@ -124,8 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  m_Priority: 3
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -402,10 +402,10 @@ RectTransform:
   - {fileID: 402565942}
   m_Father: {fileID: 22912508}
   m_RootOrder: 2
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -81, y: -29}
-  m_SizeDelta: {x: 160, y: 20}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 88.0999985, y: 48.2999992}
+  m_SizeDelta: {x: 160, y: 23}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &468833351
 MonoBehaviour:
@@ -460,7 +460,9 @@ MonoBehaviour:
   _ChangeTimingTransition: 1
   _Threshold: .5
   _LessState:
+    name: 
     stateID: 0
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 20, y: 78}
     lineStartTangent: {x: -30, y: 78}
@@ -469,7 +471,9 @@ MonoBehaviour:
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
   _GreaterState:
+    name: 
     stateID: 1976681210
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 304, y: 364}
     lineStartTangent: {x: 354, y: 364}
@@ -496,7 +500,9 @@ MonoBehaviour:
   _ChangeTimingTransition: 1
   _Threshold: .5
   _LessState:
+    name: 
     stateID: 787814235
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 20, y: 36}
     lineStartTangent: {x: -30, y: 36}
@@ -505,7 +511,9 @@ MonoBehaviour:
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
   _GreaterState:
+    name: 
     stateID: 0
+    immediateTransition: 0
     lineEnable: 0
     lineStart: {x: 0, y: 0}
     lineStartTangent: {x: 0, y: 0}
@@ -1038,9 +1046,9 @@ RectTransform:
   - {fileID: 1831722260}
   m_Father: {fileID: 22912508}
   m_RootOrder: 1
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 93, y: 119}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -88, y: -17.2999992}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1251970933
@@ -1061,7 +1069,9 @@ MonoBehaviour:
   _Toggle: {fileID: 0}
   _ChangeTimingTransition: 1
   _OnState:
+    name: 
     stateID: 0
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 44, y: 72}
     lineStartTangent: {x: -6, y: 72}
@@ -1070,7 +1080,9 @@ MonoBehaviour:
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
   _OffState:
+    name: 
     stateID: 1976681210
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 328, y: 310}
     lineStartTangent: {x: 378, y: 310}
@@ -1096,7 +1108,9 @@ MonoBehaviour:
   _Toggle: {fileID: 0}
   _ChangeTimingTransition: 1
   _OnState:
+    name: 
     stateID: 787814235
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 44, y: 6}
     lineStartTangent: {x: -6, y: 6}
@@ -1105,7 +1119,9 @@ MonoBehaviour:
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
   _OffState:
+    name: 
     stateID: 0
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 44, y: 88}
     lineStartTangent: {x: -6, y: 88}
@@ -1339,12 +1355,14 @@ MonoBehaviour:
   _BehaviourEnabled: 1
   _Button: {fileID: 0}
   _NextState:
+    name: 
     stateID: 787814235
+    immediateTransition: 0
     lineEnable: 1
-    lineStart: {x: 44, y: -164}
-    lineStartTangent: {x: -6, y: -164}
-    lineEnd: {x: 36, y: 140}
-    lineEndTangent: {x: -14, y: 140}
+    lineStart: {x: 44, y: -200}
+    lineStartTangent: {x: -6, y: -200}
+    lineEnd: {x: 36, y: 8}
+    lineEndTangent: {x: -14, y: 8}
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1718839574
@@ -1365,9 +1383,9 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 36
-      y: -240
+      y: -276
       width: 300
-      height: 328
+      height: 208
     _StateID: 1976681210
     _Resident: 0
     _Behaviours:
@@ -1381,16 +1399,16 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 36
-      y: 108
+      y: -24
       width: 300
-      height: 309
+      height: 193
     _StateID: 787814235
     _Resident: 0
     _Behaviours:
-    - {fileID: 1718839580}
     - {fileID: 1718839579}
-    - {fileID: 1718839583}
     - {fileID: 1718839585}
+    - {fileID: 1718839583}
+    - {fileID: 1718839580}
     name: New State
   _Comments: []
 --- !u!114 &1718839575
@@ -1475,9 +1493,9 @@ RectTransform:
   - {fileID: 219120271}
   m_Father: {fileID: 22912508}
   m_RootOrder: 0
-  m_AnchorMin: {x: .5, y: .5}
-  m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: -80, y: 80}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 88.0999985, y: -67}
   m_SizeDelta: {x: 160, y: 100}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1718839579
@@ -1510,15 +1528,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _StateMachine: {fileID: 1718839574}
   _StateID: 787814235
-  expanded: 0
+  expanded: 1
   _BehaviourEnabled: 1
   _NextState:
+    name: 
     stateID: 1976681210
+    immediateTransition: 0
     lineEnable: 1
-    lineStart: {x: 328, y: 184}
-    lineStartTangent: {x: 378, y: 184}
-    lineEnd: {x: 336, y: -208}
-    lineEndTangent: {x: 386, y: -208}
+    lineStart: {x: 328, y: 161}
+    lineStartTangent: {x: 378, y: 161}
+    lineEnd: {x: 336, y: -244}
+    lineEndTangent: {x: 386, y: -244}
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
   _Seconds: 1
@@ -1562,17 +1582,30 @@ MonoBehaviour:
     - time: 0
       value: 0
       inSlope: 0
-      outSlope: 1
+      outSlope: 0
       tangentMode: 0
     - time: 1
       value: 1
-      inSlope: 1
+      inSlope: 0
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
   _UseRealtime: 0
+  _RepeatUntilTransition: 1
+  _NextState:
+    name: 
+    stateID: 0
+    immediateTransition: 0
+    lineEnable: 0
+    lineStart: {x: 0, y: 0}
+    lineStartTangent: {x: 0, y: 0}
+    lineEnd: {x: 0, y: 0}
+    lineEndTangent: {x: 0, y: 0}
+    lineColorChanged: 0
+    lineColor: {r: 1, g: 1, b: 1, a: 1}
   _Target: {fileID: 0}
+  _Relative: 0
   _From: {x: 160, y: 0}
   _To: {x: 160, y: 100}
 --- !u!114 &1718839583
@@ -1608,6 +1641,18 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   _UseRealtime: 0
+  _RepeatUntilTransition: 1
+  _NextState:
+    name: 
+    stateID: 0
+    immediateTransition: 0
+    lineEnable: 0
+    lineStart: {x: 0, y: 0}
+    lineStartTangent: {x: 0, y: 0}
+    lineEnd: {x: 0, y: 0}
+    lineEndTangent: {x: 0, y: 0}
+    lineColorChanged: 0
+    lineColor: {r: 1, g: 1, b: 1, a: 1}
   _Target: {fileID: 0}
   _Gradient:
     key0:
@@ -1685,6 +1730,18 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
   _UseRealtime: 0
+  _RepeatUntilTransition: 1
+  _NextState:
+    name: 
+    stateID: 0
+    immediateTransition: 0
+    lineEnable: 0
+    lineStart: {x: 0, y: 0}
+    lineStartTangent: {x: 0, y: 0}
+    lineEnd: {x: 0, y: 0}
+    lineEndTangent: {x: 0, y: 0}
+    lineColorChanged: 0
+    lineColor: {r: 1, g: 1, b: 1, a: 1}
   _Target: {fileID: 0}
   _Gradient:
     key0:
@@ -1742,7 +1799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _StateMachine: {fileID: 1718839574}
   _StateID: 787814235
-  expanded: 1
+  expanded: 0
   _BehaviourEnabled: 1
   _Type: 0
   _Duration: 1
@@ -1752,19 +1809,32 @@ MonoBehaviour:
     - time: 0
       value: 0
       inSlope: 0
-      outSlope: 1
+      outSlope: 0
       tangentMode: 0
     - time: 1
       value: 1
-      inSlope: 1
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
   _UseRealtime: 0
+  _RepeatUntilTransition: 1
+  _NextState:
+    name: 
+    stateID: 0
+    immediateTransition: 0
+    lineEnable: 0
+    lineStart: {x: 0, y: 0}
+    lineStartTangent: {x: 0, y: 0}
+    lineEnd: {x: 0, y: 0}
+    lineEndTangent: {x: 0, y: 0}
+    lineColorChanged: 0
+    lineColor: {r: 1, g: 1, b: 1, a: 1}
   _Target: {fileID: 0}
-  _From: {x: -80, y: 80}
-  _To: {x: -80, y: 150}
+  _Relative: 0
+  _From: {x: 88, y: -60}
+  _To: {x: 88, y: 0}
 --- !u!114 &1718839586
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1778,7 +1848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _StateMachine: {fileID: 1718839574}
   _StateID: 1976681210
-  expanded: 1
+  expanded: 0
   _BehaviourEnabled: 1
   _Type: 0
   _Duration: 0
@@ -1787,20 +1857,33 @@ MonoBehaviour:
     m_Curve:
     - time: 0
       value: 0
-      inSlope: 0
+      inSlope: 1
       outSlope: 1
-      tangentMode: 0
+      tangentMode: 10
     - time: 1
       value: 1
       inSlope: 1
-      outSlope: 0
-      tangentMode: 0
+      outSlope: 1
+      tangentMode: 10
     m_PreInfinity: 2
     m_PostInfinity: 2
   _UseRealtime: 0
+  _RepeatUntilTransition: 1
+  _NextState:
+    name: 
+    stateID: 0
+    immediateTransition: 0
+    lineEnable: 0
+    lineStart: {x: 0, y: 0}
+    lineStartTangent: {x: 0, y: 0}
+    lineEnd: {x: 0, y: 0}
+    lineEndTangent: {x: 0, y: 0}
+    lineColorChanged: 0
+    lineColor: {r: 1, g: 1, b: 1, a: 1}
   _Target: {fileID: 0}
-  _From: {x: -80, y: 80}
-  _To: {x: -80, y: 80}
+  _Relative: 0
+  _From: {x: 88, y: -60}
+  _To: {x: 88, y: -60}
 --- !u!1 &1831722259
 GameObject:
   m_ObjectHideFlags: 0

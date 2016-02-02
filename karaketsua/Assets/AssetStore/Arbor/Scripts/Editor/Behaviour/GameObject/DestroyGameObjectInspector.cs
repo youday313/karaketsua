@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.DestroyGameObject))]
+	[CustomEditor(typeof(DestroyGameObject))]
 	public class DestroyGameObjectInspector : Editor
 	{
 		public override void OnInspectorGUI()

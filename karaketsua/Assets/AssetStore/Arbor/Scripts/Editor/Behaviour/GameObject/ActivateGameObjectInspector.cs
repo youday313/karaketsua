@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.ActivateGameObject))]
+	[CustomEditor(typeof(ActivateGameObject))]
 	public class ActivateGameObjectInspector : Editor
 	{
 		public override void OnInspectorGUI()

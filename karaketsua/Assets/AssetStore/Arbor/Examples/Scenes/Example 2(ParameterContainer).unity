@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &11321479
 GameObject:
@@ -114,10 +113,12 @@ MonoBehaviour:
   expanded: 1
   _BehaviourEnabled: 1
   _NextState:
+    name: 
     stateID: 1746430907
+    immediateTransition: 0
     lineEnable: 1
-    lineStart: {x: 376, y: 476}
-    lineStartTangent: {x: 426, y: 476}
+    lineStart: {x: 376, y: 547}
+    lineStartTangent: {x: 426, y: 547}
     lineEnd: {x: 432, y: 104}
     lineEndTangent: {x: 382, y: 104}
     lineColorChanged: 0
@@ -138,22 +139,56 @@ MonoBehaviour:
   expanded: 1
   _BehaviourEnabled: 1
   _NextState:
+    name: 
     stateID: 557563932
+    immediateTransition: 0
     lineEnable: 1
-    lineStart: {x: 92, y: 441}
-    lineStartTangent: {x: 42, y: 441}
-    lineEnd: {x: 84, y: 536}
-    lineEndTangent: {x: 34, y: 536}
+    lineStart: {x: 92, y: 512}
+    lineStartTangent: {x: 42, y: 512}
+    lineEnd: {x: 84, y: 608}
+    lineEndTangent: {x: 34, y: 608}
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
   _Condisions:
-  - reference:
+  - _Reference:
       container: {fileID: 11321486}
       id: 341917398
-    type: 1
-    intValue: 10
-    floatValue: 0
-    boolValue: 0
+    _Type: 1
+    _OldIntValue: 10
+    _OldFloatValue: 0
+    _OldBoolValue: 0
+    _IntValue:
+      _Type: 0
+      _Value: 10
+      _Parameter:
+        container: {fileID: 0}
+        id: 0
+      _MinRange: 0
+      _MaxRange: 0
+    _FloatValue:
+      _Type: 0
+      _Value: 0
+      _Parameter:
+        container: {fileID: 0}
+        id: 0
+      _MinRange: 0
+      _MaxRange: 0
+    _BoolValue:
+      _Type: 0
+      _Value: 0
+      _Parameter:
+        container: {fileID: 0}
+        id: 0
+      _Probability: 0
+    _GameObjectValue:
+      _Type: 0
+      _Value: {fileID: 0}
+      _Parameter:
+        container: {fileID: 0}
+        id: 0
+      _MinRange: 0
+      _MaxRange: 0
+  _SerializeVersion: 1
 --- !u!114 &11321482
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -170,12 +205,14 @@ MonoBehaviour:
   expanded: 1
   _BehaviourEnabled: 1
   _NextState:
+    name: 
     stateID: 237298363
+    immediateTransition: 0
     lineEnable: 1
-    lineStart: {x: 376, y: 637}
-    lineStartTangent: {x: 426, y: 637}
-    lineEnd: {x: 384, y: 344}
-    lineEndTangent: {x: 434, y: 344}
+    lineStart: {x: 376, y: 759}
+    lineStartTangent: {x: 426, y: 759}
+    lineEnd: {x: 384, y: 356}
+    lineEndTangent: {x: 434, y: 356}
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &11321483
@@ -197,9 +234,41 @@ MonoBehaviour:
     container: {fileID: 11321486}
     id: 341917398
   function: 1
-  intValue: 1
-  floatValue: 0
-  boolValue: 0
+  _OldIntValue: 1
+  _OldFloatValue: 0
+  _OldBoolValue: 0
+  _SerializeVersion: 1
+  _IntValue:
+    _Type: 0
+    _Value: 1
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
+  _FloatValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
+  _BoolValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _Probability: 0
+  _GameObjectValue:
+    _Type: 0
+    _Value: {fileID: 0}
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
 --- !u!114 &11321484
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -216,12 +285,14 @@ MonoBehaviour:
   expanded: 1
   _BehaviourEnabled: 1
   _NextState:
+    name: 
     stateID: 237298363
+    immediateTransition: 0
     lineEnable: 1
-    lineStart: {x: 92, y: 289}
-    lineStartTangent: {x: 42, y: 289}
-    lineEnd: {x: 84, y: 344}
-    lineEndTangent: {x: 34, y: 344}
+    lineStart: {x: 92, y: 303}
+    lineStartTangent: {x: 42, y: 303}
+    lineEnd: {x: 84, y: 356}
+    lineEndTangent: {x: 34, y: 356}
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &11321485
@@ -243,9 +314,41 @@ MonoBehaviour:
     container: {fileID: 11321486}
     id: 341917398
   function: 0
-  intValue: 0
-  floatValue: 0
-  boolValue: 0
+  _OldIntValue: 0
+  _OldFloatValue: 0
+  _OldBoolValue: 0
+  _SerializeVersion: 1
+  _IntValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
+  _FloatValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
+  _BoolValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _Probability: 0
+  _GameObjectValue:
+    _Type: 0
+    _Value: {fileID: 0}
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
 --- !u!114 &11321486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +368,7 @@ MonoBehaviour:
     intValue: 0
     floatValue: 0
     boolValue: 0
+    gameObjectValue: {fileID: 0}
 --- !u!114 &11321487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,9 +387,9 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 84
-      y: 156
+      y: 120
       width: 300
-      height: 141
+      height: 191
     _StateID: 1976681210
     _Resident: 0
     _Behaviours:
@@ -307,9 +411,9 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 84
-      y: 504
+      y: 576
       width: 300
-      height: 141
+      height: 191
     _StateID: 557563932
     _Resident: 0
     _Behaviours:
@@ -320,9 +424,9 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 84
-      y: 312
+      y: 324
       width: 300
-      height: 172
+      height: 231
     _StateID: 237298363
     _Resident: 0
     _Behaviours:
@@ -336,7 +440,7 @@ MonoBehaviour:
       x: 84
       y: 60
       width: 300
-      height: 79
+      height: 45
     _CommentID: 1516180604
     comment: Loop 10 Test
 --- !u!4 &11321488

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -136,11 +136,15 @@ namespace Arbor
 
 			StateBehaviour behaviour = ComponentUtility.AddComponent( stateMachine.gameObject,type ) as StateBehaviour;
 
+			ComponentUtility.RecordObject(behaviour, "Add Behaviour");
+
 			behaviour.enabled = false;
 			behaviour.hideFlags = HideFlags.HideInInspector | HideFlags.HideInHierarchy;
 			
 			behaviour._StateMachine = stateMachine;
 			behaviour._StateID = stateID;
+
+			ComponentUtility.SetDirty(behaviour);
 
 			return behaviour;
 		}
@@ -149,11 +153,15 @@ namespace Arbor
 		{
 			Type behaviour = ComponentUtility.AddComponent<Type>( stateMachine.gameObject );
 
+			ComponentUtility.RecordObject(behaviour, "Add Behaviour");
+
 			behaviour.enabled = false;
 			behaviour.hideFlags = HideFlags.HideInInspector | HideFlags.HideInHierarchy;
 			
 			behaviour._StateMachine = stateMachine;
 			behaviour._StateID = stateID;
+
+			ComponentUtility.SetDirty(behaviour);
 
 			return behaviour;
 		}
@@ -208,7 +216,7 @@ namespace Arbor
 
 			if (stateMachine != null)
 			{
-				return stateMachine.Transition(stateID,force);
+				return stateMachine.Transition(stateID, force);
 			}
 
 			return false;
@@ -227,18 +235,18 @@ namespace Arbor
 		/// <param name="nextStateID">State ID for the transition destination.</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition( int stateID )
+		public bool Transition(int stateID)
 		{
-			if( !enabled )
+			if (!enabled)
 			{
 				return false;
 			}
-			
-			if( stateMachine != null )
+
+			if (stateMachine != null)
 			{
-				return stateMachine.Transition( stateID );
+				return stateMachine.Transition(stateID);
 			}
-			
+
 			return false;
 		}
 
@@ -266,7 +274,7 @@ namespace Arbor
 
 			if (stateMachine != null)
 			{
-				return stateMachine.Transition(nextState,force);
+				return stateMachine.Transition(nextState, force);
 			}
 
 			return false;
@@ -285,16 +293,16 @@ namespace Arbor
 		/// <param name="nextState">Destination state.</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition( State nextState )
+		public bool Transition(State nextState)
 		{
-			if( !enabled )
+			if (!enabled)
 			{
 				return false;
 			}
 
-			if( stateMachine != null )
+			if (stateMachine != null)
 			{
-				return stateMachine.Transition( nextState );
+				return stateMachine.Transition(nextState);
 			}
 
 			return false;
@@ -343,16 +351,16 @@ namespace Arbor
 		/// <param name="nextStateLink">The destination of transition.</param>
 		/// <returns>Whether or not the transition</returns>
 #endif
-		public bool Transition( StateLink nextStateLink )
+		public bool Transition(StateLink nextStateLink)
 		{
-			if( !enabled )
+			if (!enabled)
 			{
 				return false;
 			}
 
-			if( stateMachine != null )
+			if (stateMachine != null)
 			{
-				return stateMachine.Transition( nextStateLink );
+				return stateMachine.Transition(nextStateLink);
 			}
 			return false;
 		}
@@ -476,14 +484,12 @@ namespace Arbor
 #endif
 		public void Destroy()
 		{
-			State s = state;
-
-			ComponentUtility.Destroy( this );
-
-			if( s != null )
+			if(state != null )
 			{
-				s.RemoveBehaviour( this );
+				state.RemoveBehaviour( this );
 			}
+
+			ComponentUtility.Destroy(this);
 		}
 	}
 }

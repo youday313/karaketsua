@@ -1,13 +1,13 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections;
 
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("SendMessageGameObject")]
 	[AddBehaviourMenu("GameObject/SendMessageGameObject")]
 	[BuiltInBehaviour]
-	public class SendMessageGameObject : StateBehaviour
+	public class SendMessageGameObject : StateBehaviour, ISerializationCallbackReceiver
 	{
 		public enum Type
 		{
@@ -17,34 +17,111 @@ namespace Arbor
 			Bool,
 			String,
 		}
-		[SerializeField] private GameObject _Target;
+		[FormerlySerializedAs("_Target")]
+		[SerializeField] private GameObject _OldTarget;
+
 		[SerializeField] private string _MethodName;
 		[SerializeField] private Type _Type;
-		[SerializeField] private int _IntValue;
-		[SerializeField] private float _FloatValue;
-		[SerializeField] private bool _BoolValue;
+
+		[FormerlySerializedAs("_IntValue")]
+		[SerializeField] private int _OldIntValue;
+
+		[FormerlySerializedAs("_FloatValue")]
+		[SerializeField] private float _OldFloatValue;
+
+		[FormerlySerializedAs("_BoolValue")]
+		[SerializeField] private bool _OldBoolValue;
+
 		[SerializeField] private string _StringValue;
+
+		[SerializeField]
+		private int _SerializeVersion;
+		[SerializeField]
+		private FlexibleGameObject _Target;
+		[SerializeField]
+		private FlexibleFloat _FloatValue;
+		[SerializeField]
+		private FlexibleInt _IntValue;
+		[SerializeField]
+		private FlexibleBool _BoolValue;
+
+		public GameObject target
+		{
+			get
+			{
+				return _Target.value;
+			}
+		}
+
+		public float floatValue
+		{
+			get
+			{
+				return _FloatValue.value;
+			}
+		}
+
+		public int intValue
+		{
+			get
+			{
+				return _IntValue.value;
+			}
+		}
+
+		public bool boolValue
+		{
+			get
+			{
+				return _BoolValue.value;
+			}
+		}
+
+		void SerializeVer1()
+		{
+			_Target = (FlexibleGameObject)_OldTarget;
+			_FloatValue = (FlexibleFloat)_OldFloatValue;
+			_IntValue = (FlexibleInt)_OldIntValue;
+			_BoolValue = (FlexibleBool)_OldBoolValue;
+		}
+
+		public void OnBeforeSerialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+				_SerializeVersion = 1;
+			}
+		}
+
+		public void OnAfterDeserialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+			}
+		}
 
 		public override void OnStateBegin()
 		{
-			if( _Target != null )
+			if( target != null )
 			{
 				switch (_Type)
 				{
 					case Type.None:
-						_Target.SendMessage(_MethodName, SendMessageOptions.DontRequireReceiver);
+						target.SendMessage(_MethodName, SendMessageOptions.DontRequireReceiver);
 						break;
 					case Type.Int:
-						_Target.SendMessage(_MethodName, _IntValue,SendMessageOptions.DontRequireReceiver);
+						target.SendMessage(_MethodName, intValue,SendMessageOptions.DontRequireReceiver);
 						break;
 					case Type.Float:
-						_Target.SendMessage(_MethodName, _FloatValue, SendMessageOptions.DontRequireReceiver);
+						target.SendMessage(_MethodName, floatValue, SendMessageOptions.DontRequireReceiver);
 						break;
 					case Type.Bool:
-						_Target.SendMessage(_MethodName, _BoolValue, SendMessageOptions.DontRequireReceiver);
+						target.SendMessage(_MethodName, boolValue, SendMessageOptions.DontRequireReceiver);
 						break;
 					case Type.String:
-						_Target.SendMessage(_MethodName, _StringValue, SendMessageOptions.DontRequireReceiver);
+						target.SendMessage(_MethodName, _StringValue, SendMessageOptions.DontRequireReceiver);
 						break;
 				}
 			}

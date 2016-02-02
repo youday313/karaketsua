@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 #if UNITY_5
 using UnityEditor.Animations;
@@ -17,17 +17,23 @@ namespace ArborEditor
 	{
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
+			EditorGUI.BeginProperty(position, label, property);
+			int indentLevel = EditorGUI.indentLevel;
+			EditorGUI.indentLevel = 0;
+
 			SerializedProperty animatorProperty = property.FindPropertyRelative("animator");
 			SerializedProperty nameProperty = property.FindPropertyRelative("name");
 			SerializedProperty typeProperty = property.FindPropertyRelative("type");
 
-			Rect labelRect = new Rect(position.x, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
+			Rect labelRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
 			EditorGUI.LabelField(labelRect, label);
 
-			Rect containerRect = new Rect(labelRect.xMax, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-			Rect parameterRect = new Rect(containerRect.xMax, position.y, Mathf.Max(0.0f, position.xMax - containerRect.xMax), 16f);
+			EditorGUI.indentLevel++;
 
-			EditorGUI.PropertyField(containerRect, animatorProperty, GUIContent.none);
+			Rect containerRect = new Rect(position.x, labelRect.yMax, position.width, EditorGUIUtility.singleLineHeight);
+			Rect parameterRect = new Rect(position.x, containerRect.yMax, position.width, EditorGUIUtility.singleLineHeight);
+
+			EditorGUI.PropertyField(containerRect, animatorProperty);
 
 			Animator animator = animatorProperty.objectReferenceValue as Animator;
 
@@ -63,7 +69,7 @@ namespace ArborEditor
 						}
 					}
 
-					selected = EditorGUI.Popup(parameterRect, selected, names.ToArray());
+					selected = EditorGUI.Popup(parameterRect, "Parameter",selected, names.ToArray());
 
 					if (selected >= 0)
 					{
@@ -74,17 +80,21 @@ namespace ArborEditor
 			}
 			else
 			{
-				GUI.enabled = false;
+				EditorGUI.BeginDisabledGroup(true);
+				
+				EditorGUI.Popup(parameterRect, "Parameter",-1, new string[] { "" });
 
-				EditorGUI.Popup(parameterRect, -1, new string[] { "" });
-
-				GUI.enabled = true;
+				EditorGUI.EndDisabledGroup();
 			}
+
+			EditorGUI.indentLevel = indentLevel;
+
+			EditorGUI.EndProperty();
 		}
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
-			return 16f;
+            return EditorGUIUtility.singleLineHeight * 3;
 		}
 	}
 }

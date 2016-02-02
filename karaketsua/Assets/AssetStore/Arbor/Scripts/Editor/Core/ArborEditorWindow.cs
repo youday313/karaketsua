@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,13 +7,13 @@ using Arbor;
 
 namespace ArborEditor
 {
-	internal class ArborEditorWindow : EditorWindow
+	internal sealed class ArborEditorWindow : EditorWindow
 	{
 		[MenuItem("Window/Arbor Editor")]
 		public static void OpenFromMenu()
 		{
-			EditorWindow.GetWindow<ArborEditorWindow>("Arbor Editor");
-		}
+			EditorWindow.GetWindow<ArborEditorWindow>("Arbor Editor");			
+        }
 
 		public static void Open(ArborFSMInternal stateMachine)
 		{
@@ -25,6 +25,67 @@ namespace ArborEditor
 		[SerializeField] private int _StateMachineInstanceID = 0;
 
 		[SerializeField] private List<int> _Selection = new List<int>();
+
+		private Dictionary<State, StateEditor> _StateEditors = new Dictionary<State, StateEditor>();
+
+		private Dictionary<CommentNode, CommentEditor> _CommentEditors = new Dictionary<CommentNode, CommentEditor>();
+
+		static ArborEditorWindow _CurrentWindow;
+
+		public bool _DragBranchEnable = false;
+		public Vector2 _DragBranchStart;
+		public Vector2 _DragBranchStartTangent;
+		public Vector2 _DragBranchEnd;
+		public Vector2 _DragBranchEndTangent;
+		public int _DragBranchHoverStateID = 0;
+
+		private static readonly int _DragSelectionControlID = "DragSelection".GetHashCode();
+		private static readonly int _DragStatesControlID = "DragStates".GetHashCode();
+		private static readonly int _DragScrollHash = "DragScroll".GetHashCode();
+
+		private Vector2 _DragBeginPos;
+		private List<int> _OldSelection;
+		public enum SelectionMode
+		{
+			None,
+			Pick,
+			Rect,
+		};
+		private SelectionMode _SelectionMode = SelectionMode.None;
+		private bool _IsDragSelection = false;
+
+		private Dictionary<Node, Rect> _DragNodePositions = new Dictionary<Node, Rect>();
+		private Vector2 _LastMousePosition;
+		private Vector2 _DragStateDistance;
+		private bool _IsDragStates = false;
+
+		private Vector2 _ScrollPos = Vector2.zero;
+		private bool _ScrollDragging = false;
+		private int _CachedHotControl = 0;
+
+		bool _IsFrameSelected = false;
+		Vector2 _FrameSelectTarget = Vector2.zero;
+
+		Rect _ToolBarRect;
+		Rect _StateListRect;
+		Rect _GraphRect;
+		Rect _GraphViewArea;
+		Rect _GraphExtents;
+		Rect _LastGraphExtents;
+
+		Vector2 _StateListScrollPos = Vector2.zero;
+
+		enum SearchMode
+		{
+			All,
+			Name,
+			Type
+		};
+
+		SearchMode _SearchMode = SearchMode.All;
+		string _SearchText;
+
+		bool _FrameSelected = false;
 
 		private Node[] selection
 		{
@@ -46,8 +107,6 @@ namespace ArborEditor
 			}
 		}
 
-		private Dictionary<State,StateEditor> _StateEditors = new Dictionary<State,StateEditor>();
-		
 		StateEditor GetStateEditor( State state )
 		{
 			StateEditor stateEditor = null;
@@ -74,8 +133,6 @@ namespace ArborEditor
 			_StateEditors.Clear();
 		}
 
-		private Dictionary<CommentNode, CommentEditor> _CommentEditors = new Dictionary<CommentNode, CommentEditor>();
-
 		CommentEditor GetCommentEditor(CommentNode comment)
 		{
 			CommentEditor commentEditor = null;
@@ -97,15 +154,6 @@ namespace ArborEditor
 			}
 			_CommentEditors.Clear();
 		}
-
-		static ArborEditorWindow _CurrentWindow;
-
-		public bool _DragBranchEnable = false;
-		public Vector2 _DragBranchStart;
-		public Vector2 _DragBranchStartTangent;
-		public Vector2 _DragBranchEnd;
-		public Vector2 _DragBranchEndTangent;
-		public int _DragBranchHoverStateID = 0;
 
 		void OnEnable()
 		{
@@ -144,6 +192,8 @@ namespace ArborEditor
 			}
 
 			_Selection.Clear();
+
+			EditorUtility.SetDirty(this);
 
 			Repaint();
 		}
@@ -231,6 +281,8 @@ namespace ArborEditor
 			}
 
 			Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
+
+			EditorUtility.SetDirty(this);
 		}
 
 		void SelectNode(Node node)
@@ -271,6 +323,8 @@ namespace ArborEditor
 
 				Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
 
+				EditorUtility.SetDirty(this);
+
 				current.Use();
 			}
 			else
@@ -285,30 +339,13 @@ namespace ArborEditor
 					_Selection.Add(nodeID);
 
 					Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
+
+					EditorUtility.SetDirty(this);
 				}
 				HandleUtility.Repaint();
 			}
 			GUIUtility.keyboardControl = 0;
 		}
-
-		private static readonly int _DragSelectionControlID = "DragSelection".GetHashCode();
-		private static readonly int _DragStatesControlID = "DragStates".GetHashCode();
-
-		private Vector2 _DragBeginPos;
-		private List<int> _OldSelection;
-		public enum SelectionMode
-		{
-			None,
-			Pick,
-			Rect,
-		};
-		private SelectionMode _SelectionMode = SelectionMode.None;
-		private bool _IsDragSelection = false;
-
-		private Dictionary<Node,Rect> _DragNodePositions = new Dictionary<Node, Rect>();
-		private Vector2 _LastMousePosition;
-		private Vector2 _DragStateDistance;
-		private bool _IsDragStates = false;
 
 		static Rect FromToRect( Vector2 start, Vector2 end )
 		{
@@ -349,6 +386,8 @@ namespace ArborEditor
 			}
 
 			Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
+
+			EditorUtility.SetDirty(this);
 		}
 
 		Rect SnapPositionToGrid(Rect position)
@@ -375,8 +414,6 @@ namespace ArborEditor
 				if( current.button == 0 )
 				{
 					Undo.IncrementCurrentGroup();
-
-					Undo.RecordObject( _StateMachine,"Move State" );
 
 					_LastMousePosition = EditorGUIUtility.GUIToScreenPoint(current.mousePosition);
 					_DragStateDistance = Vector2.zero;
@@ -480,8 +517,6 @@ namespace ArborEditor
 				{
 					Undo.IncrementCurrentGroup();
 					
-					Undo.RecordObject( this,"Selection State" );
-
 					GUIUtility.hotControl = GUIUtility.keyboardControl = controlId;
 					_DragBeginPos = current.mousePosition;
 					_OldSelection = new List<int>( _Selection );
@@ -520,79 +555,100 @@ namespace ArborEditor
 
 					Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
 
+					EditorUtility.SetDirty(this);
+
 					current.Use();
 				}
 				break;
 			case EventType.Repaint:
 				if( _SelectionMode == SelectionMode.Rect )
 				{
-					UnityEditor.Graphs.Styles.selectionRect.Draw( FromToRect(_DragBeginPos, current.mousePosition), false, false, false, false );
+					Styles.selectionRect.Draw( FromToRect(_DragBeginPos, current.mousePosition), false, false, false, false );
 				}
 				break;
 			}
 
 			_IsDragSelection = GUIUtility.hotControl == controlId;
 		}
-		
+
 		void OnStateGUI( StateEditor stateEditor )
 		{
 			State state = stateEditor.state;
 			SelectNode( state );
 
+			Rect rect = EditorGUILayout.BeginVertical();
+
+			if (Event.current.type == EventType.Repaint)
+			{
+				Styles.hostview.Draw(rect, false, false, false, false);
+            }
+
 			EditorGUITools.StateTitlebar( state );
 
-			foreach( StateBehaviour behaviour in state.behaviours )
+			if (state.behaviours.Length > 0)
 			{
-				//if( behaviour != null )
+				float labelWidth = EditorGUIUtility.labelWidth;
+				EditorGUIUtility.labelWidth = 120.0f;
+
+				foreach (StateBehaviour behaviour in state.behaviours)
 				{
-					Editor editor = stateEditor.GetBehaviourEditor( behaviour );
-					if( editor!=null )
+					//if( behaviour != null )
 					{
-						bool expanded = EditorGUITools.BehaviourTitlebar( behaviour.expanded,behaviour );
-						if( behaviour.expanded != expanded )
+						Editor editor = stateEditor.GetBehaviourEditor(behaviour);
+						if (editor != null)
 						{
-							behaviour.expanded = expanded;
-
-							EditorUtility.SetDirty( behaviour );
-						}
-
-						bool missing = IsMissingStateBehaviourTarget( behaviour );
-
-						if( expanded )
-						{
-							if( missing )
+							bool expanded = EditorGUITools.BehaviourTitlebar(behaviour.expanded, behaviour);
+							if (behaviour.expanded != expanded)
 							{
-								missing = MissingStateBehaviourGUI( state,editor.serializedObject );
-							}
-							if( !missing )
-							{
-								GUIStyle marginStyle = (editor.UseDefaultMargins()) ? EditorStyles.inspectorDefaultMargins : EditorStyles.inspectorFullWidthMargins;
-                                EditorGUILayout.BeginVertical(marginStyle);
-								editor.OnInspectorGUI();
-								EditorGUILayout.EndVertical();
-							}
-						}
+								behaviour.expanded = expanded;
 
-						if( !missing )
-						{
-							editor.serializedObject.Update();
-							
-							SerializedProperty iterator = editor.serializedObject.GetIterator();
-
-							for( bool enterChildren=true;iterator.NextVisible(enterChildren);enterChildren=false )
-							{
-								EditorGUITools.StateLinkField( ObjectNames.NicifyVariableName( iterator.name ),iterator );
+								EditorUtility.SetDirty(behaviour);
 							}
-							
-							editor.serializedObject.ApplyModifiedProperties();
+
+							bool missing = IsMissingStateBehaviourTarget(behaviour);
+
+							if (expanded)
+							{
+								if (missing)
+								{
+									missing = MissingStateBehaviourGUI(state, editor.serializedObject);
+								}
+								if (!missing)
+								{
+									GUIStyle marginStyle = (editor.UseDefaultMargins()) ? EditorStyles.inspectorDefaultMargins : EditorStyles.inspectorFullWidthMargins;
+									EditorGUILayout.BeginVertical(marginStyle);
+									editor.OnInspectorGUI();
+									EditorGUILayout.EndVertical();
+								}
+							}
+
+							if (!missing)
+							{
+								editor.serializedObject.Update();
+
+								SerializedProperty iterator = editor.serializedObject.GetIterator();
+
+								for (bool enterChildren = true; iterator.NextVisible(enterChildren); enterChildren = false)
+								{
+									EditorGUITools.StateLinkField(ObjectNames.NicifyVariableName(iterator.name), iterator);
+								}
+
+								editor.serializedObject.ApplyModifiedProperties();
+							}
 						}
 					}
 				}
+
+				EditorGUIUtility.labelWidth = labelWidth;
 			}
 
+			EditorGUILayout.EndVertical();
+
 			Event current = Event.current;
-			
-			switch( current.type )
+
+			GUILayout.Space(0);
+
+			switch ( current.type )
 			{
 			case EventType.DragUpdated:
 			case EventType.DragPerform:
@@ -613,12 +669,8 @@ namespace ArborEditor
 							{
 								if( !findBehaviour )
 								{
-									Undo.RecordObject( state.stateMachine,"Add State Behaviour" );
-									
 									state.AddBehaviour( classType );
 									findBehaviour = true;
-									
-									EditorUtility.SetDirty( state.stateMachine );
 									
 									DragAndDrop.AcceptDrag();
 									DragAndDrop.activeControlID = 0;
@@ -689,44 +741,36 @@ namespace ArborEditor
 		{
 			Undo.IncrementCurrentGroup();
 			
-			Undo.RecordObject( _StateMachine,"Created State" );
-			
 			State state = _StateMachine.CreateState( resident );
 			
 			if( state != null )
 			{
+				Undo.RecordObject(_StateMachine, "Created State");
+
 				state.position = new Rect( position.x,position.y,300,100 );
+
+				EditorUtility.SetDirty(_StateMachine);
 			}
 			
 			Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
-			
-			if( state != null )
-			{
-				EditorUtility.SetDirty( _StateMachine );
-			}
 		}
 
 		void CreateComment(Vector2 position)
 		{
 			Undo.IncrementCurrentGroup();
 
-			Undo.RecordObject(_StateMachine, "Created State");
-
-			Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
-
 			CommentNode comment = _StateMachine.CreateComment();
 
 			if (comment != null)
 			{
+				Undo.RecordObject(_StateMachine, "Created Comment");
+
 				comment.position = new Rect(position.x, position.y, 300, 100);
+
+				EditorUtility.SetDirty(_StateMachine);
 			}
 
 			Undo.CollapseUndoOperations(Undo.GetCurrentGroup());
-
-			if (comment != null)
-			{
-				EditorUtility.SetDirty(_StateMachine);
-			}
 		}
 		
 		void CreateState( object obj )
@@ -761,15 +805,17 @@ namespace ArborEditor
 			
 			Undo.IncrementCurrentGroup();
 
-			Undo.RecordObjects(new Object[] { _StateMachine, this }, "Duplicate Nodes");
-			
+			Undo.RegisterCompleteObjectUndo(_StateMachine, "Duplicate Nodes");
+
 			Node[] nodes = EditorGUITools.DuplicateNodes( _StateMachine,position,selection );
-			
-			if(nodes != null )
+
+			if (nodes != null )
 			{
+				EditorUtility.SetDirty(_StateMachine);
+
+				Undo.RecordObject(this, "Duplicate Nodes");
+
 				_Selection.Clear();
-				
-				EditorUtility.SetDirty( _StateMachine );
 				
 				foreach( Node node in nodes )
 				{
@@ -792,7 +838,7 @@ namespace ArborEditor
 				
 				EditorUtility.SetDirty( this );
 			}
-			
+
 			Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
 		}
 
@@ -802,15 +848,17 @@ namespace ArborEditor
 
 			Undo.IncrementCurrentGroup();
 
-			Undo.RecordObjects(new Object[] { _StateMachine, this }, "Paste Nodes");
+			Undo.RegisterCompleteObjectUndo(_StateMachine, "Paste Nodes");
 			
 			Node[] nodes = EditorGUITools.PasteNodes( _StateMachine,position );
 
 			if(nodes != null )
 			{
-				_Selection.Clear();
+				EditorUtility.SetDirty(_StateMachine);
 
-				EditorUtility.SetDirty( _StateMachine );
+				Undo.RecordObject(this, "Paste Nodes");
+
+				_Selection.Clear();
 
 				foreach( Node node in nodes)
 				{
@@ -840,48 +888,20 @@ namespace ArborEditor
 		void DeleteNodes()
 		{
 			Undo.IncrementCurrentGroup();
+			int undoGroup = Undo.GetCurrentGroup();
 
-			List<Object> objects = new List<Object>();
-			objects.Add( _StateMachine );
-
-			foreach( State otherState in _StateMachine.states )
-			{
-				if( !_Selection.Contains( otherState.stateID ) )
-				{
-					foreach( StateBehaviour behaviour in otherState.behaviours )
-					{
-						objects.Add( behaviour );
-					}
-				}
-			}
-
-			objects.Add( this );
-			
-			Undo.RecordObjects( objects.ToArray(),"Delete Nodes" );
-
-			foreach( Node deleteNode in selection )
+			foreach ( Node deleteNode in selection )
 			{
 				_StateMachine.DeleteNode(deleteNode);
 			}
 
+			Undo.RecordObject(this, "Delete Nodes");
+
 			_Selection.Clear();
-			
-			Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
-			
-			foreach( Object target in objects )
-			{
-				EditorUtility.SetDirty( target );
-			}
-		}
 
-		private static readonly int s_DragScrollHash = "DragScroll".GetHashCode();
-		private Vector2 _ScrollPos = Vector2.zero;
-		private bool _ScrollDragging = false;
-		private int _CachedHotControl=0;
-
-		static GUIStyle GetStateStyle( UnityEditor.Graphs.Styles.Color color, bool on)
-		{
-			return UnityEditor.Graphs.Styles.GetNodeStyle( "node",color,on );
+			Undo.CollapseUndoOperations(undoGroup);
+			
+			EditorUtility.SetDirty( this );
 		}
 
 		void HandleContextMenu()
@@ -938,9 +958,6 @@ namespace ArborEditor
 			}
 		}
 
-		bool _IsFrameSelected = false;
-		Vector2 _FrameSelectTarget = Vector2.zero;
-
 		void FrameSelected()
 		{
 			_FrameSelectTarget = Vector2.zero;
@@ -950,8 +967,8 @@ namespace ArborEditor
 			}
 			_FrameSelectTarget /= (float)selection.Length;
 
-			_FrameSelectTarget.x -= _GraphArea.width * 0.5f;
-			_FrameSelectTarget.y -= _GraphArea.height * 0.5f;
+			_FrameSelectTarget.x -= _GraphRect.width * 0.5f;
+			_FrameSelectTarget.y -= _GraphRect.height * 0.5f;
 
 			_FrameSelectTarget.x -= _GraphExtents.x;
 			_FrameSelectTarget.y -= _GraphExtents.y;
@@ -1023,8 +1040,99 @@ namespace ArborEditor
 			}
 		}
 
+		void CalculateRect()
+		{
+			_ToolBarRect = new Rect(0.0f, 0.0f, this.position.width, EditorStyles.toolbar.fixedHeight);
+			if (ArborSettings.openStateList)
+			{
+				_StateListRect = new Rect(0.0f, _ToolBarRect.height, ArborSettings.stateListWidth, this.position.height- _ToolBarRect.height);
+				_GraphRect = new Rect(_StateListRect.width, _ToolBarRect.height, this.position.width- _StateListRect.width, this.position.height - _ToolBarRect.height);
+			}
+			else
+			{
+				_GraphRect = new Rect(0.0f, _ToolBarRect.height, this.position.width, this.position.height - _ToolBarRect.height);
+			}
+        }
+
+		static int s_MouseDeltaReaderHash = "s_MouseDeltaReaderHash".GetHashCode();
+		static Vector2 s_MouseDeltaReaderLastPos;
+
+		static Vector2 MouseDeltaReader(Rect position, bool activated)
+		{
+			int controlId = GUIUtility.GetControlID(s_MouseDeltaReaderHash, FocusType.Passive, position);
+			Event current = Event.current;
+			switch (current.GetTypeForControl(controlId))
+			{
+				case EventType.MouseDown:
+					if (activated && GUIUtility.hotControl == 0 && (position.Contains(current.mousePosition) && current.button == 0))
+					{
+						GUIUtility.hotControl = controlId;
+						GUIUtility.keyboardControl = 0;
+
+						s_MouseDeltaReaderLastPos = GUIUtility.GUIToScreenPoint(current.mousePosition);
+
+						current.Use();
+						break;
+					}
+					break;
+				case EventType.MouseUp:
+					if (GUIUtility.hotControl == controlId && current.button == 0)
+					{
+						GUIUtility.hotControl = 0;
+						current.Use();
+						break;
+					}
+					break;
+				case EventType.MouseDrag:
+					if (GUIUtility.hotControl == controlId)
+					{
+						Vector2 vector2_1 = GUIUtility.GUIToScreenPoint(current.mousePosition);
+						Vector2 vector2_2 = vector2_1 - s_MouseDeltaReaderLastPos;
+						s_MouseDeltaReaderLastPos = vector2_1;
+						current.Use();
+						return vector2_2;
+					}
+					break;
+			}
+			return Vector2.zero;
+		}
+
+		static readonly float k_MinDirectoriesAreaWidth = 110f;
+
+		void ResizeHandling(float width, float height)
+		{
+			if (!ArborSettings.openStateList)
+			{
+				return;
+			}
+
+			Rect position = new Rect(ArborSettings.stateListWidth, _ToolBarRect.height,5.0f, height);
+			if (Event.current.type == EventType.Repaint)
+			{
+				EditorGUIUtility.AddCursorRect(position, MouseCursor.SplitResizeLeftRight);
+			}
+			float num1 = 0.0f;
+			float num2 = MouseDeltaReader(position, true).x;
+			if ((double)num2 != 0.0)
+			{
+				ArborSettings.stateListWidth += num2;
+				num1 = Mathf.Clamp(ArborSettings.stateListWidth, k_MinDirectoriesAreaWidth, width - k_MinDirectoriesAreaWidth);
+			}
+			float num3 = 230f - k_MinDirectoriesAreaWidth;
+			if (width - ArborSettings.stateListWidth < num3)
+			{
+				num1 = width - num3;
+			}
+			if (num1 > 0.0)
+			{
+				ArborSettings.stateListWidth = num1;
+			}
+		}
+
 		void DrawToolbar()
 		{
+			GUILayout.BeginArea(_ToolBarRect);
+
 			EditorGUILayout.BeginHorizontal(EditorStyles.toolbar );
 			
 			if( _StateMachine == null && _StateMachineInstanceID != 0 )
@@ -1091,13 +1199,12 @@ namespace ArborEditor
 			helpButtonPosition.x += 5.0f;
 			helpButtonPosition.width -= 10.0f;
 
-            helpButtonPosition.y += 1.0f;
-			helpButtonPosition.height -= 2.0f;
-
-			string siteURL = Localization.GetWord("SiteURL");
+            string siteURL = Localization.GetWord("SiteURL");
 			EditorGUITools.HelpButton( helpButtonPosition, siteURL, "Open Reference" );
 			
 			EditorGUILayout.EndHorizontal();
+
+			GUILayout.EndArea();
 		}
 
 		private static int s_DrawBranchHash = "s_DrawBranchHash".GetHashCode();
@@ -1122,8 +1229,8 @@ namespace ArborEditor
 			{
 				Vector2 shadowPos = Vector2.one * 3;
 
-				EditorGUITools.BezierArrow(lineStart + shadowPos, lineStartTangent + shadowPos, lineEnd + shadowPos, lineEndTangent + shadowPos, new Color(0, 0, 0, 1.0f), 5.0f, 16.0f);
-				EditorGUITools.BezierArrow(lineStart, lineStartTangent, lineEnd, lineEndTangent, lineColor, 5.0f, 16.0f);
+				EditorGUITools.BezierArrow(lineStart + shadowPos, lineStartTangent + shadowPos, lineEnd + shadowPos, lineEndTangent + shadowPos, Styles.connectionTexture, new Color(0, 0, 0, 1.0f), 5.0f, 16.0f);
+				EditorGUITools.BezierArrow(lineStart, lineStartTangent, lineEnd, lineEndTangent, Styles.connectionTexture, lineColor, 5.0f, 16.0f);
 
 				int controlID = EditorGUIUtility.GetControlID(s_DrawBranchHash, EditorGUIUtility.native);
 
@@ -1205,95 +1312,11 @@ namespace ArborEditor
 			}
 		}
 
-		public class StateEditor
-		{
-			private State _State;
-			public State state
-			{
-				get
-				{
-					return _State;
-				}
-			}
-
-			public StateEditor( State state )
-			{
-				_State = state;
-			}
-
-			private Dictionary<StateBehaviour,Editor> _BehaviourEditors = new Dictionary<StateBehaviour, Editor>();
-
-			public Editor GetBehaviourEditor( StateBehaviour behaviour )
-			{
-				Editor editor = null;
-				if( !_BehaviourEditors.TryGetValue( behaviour,out editor ) )
-				{
-					editor = Editor.CreateEditor( behaviour );
-					
-					_BehaviourEditors.Add( behaviour,editor );
-				}
-				
-				return editor;
-			}
-
-			public void FinalizeBehaviourEditor()
-			{
-				if( _BehaviourEditors == null )
-				{
-					return;
-				}
-				foreach( Editor editor in _BehaviourEditors.Values )
-				{
-					Object.DestroyImmediate( editor );
-				}
-				_BehaviourEditors.Clear();
-			}
-		}
-
-		public class CommentEditor
-		{
-			private CommentNode _Comment;
-			public CommentNode comment
-			{
-				get
-				{
-					return _Comment;
-				}
-			}
-
-			public CommentEditor(CommentNode comment)
-			{
-				_Comment = comment;
-			}
-		}
-
-		Vector2 _StateListScrollPos = Vector2.zero;
-
-		enum SearchMode
-		{
-			All,
-			Name,
-			Type
-		};
-
-		SearchMode _SearchMode = SearchMode.All;
-		string _SearchText;
-
-		bool _FrameSelected = false;
-
-		private class Styles
-		{
-			public static GUIStyle background;
-			
-			static Styles()
-			{
-				background = (GUIStyle)"grey_border";
-			}
-		}
-
 		void DrawStateList()
 		{
-			EditorGUILayout.BeginVertical(Styles.background,GUILayout.Width(200.0f));
+			GUILayout.BeginArea(_StateListRect);
+
+			EditorGUILayout.BeginVertical(Styles.background);
 
 			State[] states = null;
 
@@ -1303,10 +1326,10 @@ namespace ArborEditor
 			}
 			else
 			{
-				GUI.enabled = false;
+				EditorGUI.BeginDisabledGroup(true);
 			}
 
-			Rect searchRect = GUILayoutUtility.GetRect(10.0f, 20.0f);
+			Rect searchRect = GUILayoutUtility.GetRect(0.0f, 20.0f);
 			searchRect.y += 4f;
             searchRect.x += 8f;
 			searchRect.width -= 16f;
@@ -1376,40 +1399,32 @@ namespace ArborEditor
 
 				foreach (State state in viewStates)
 				{
-					UnityEditor.Graphs.Styles.Color color = UnityEditor.Graphs.Styles.Color.Gray;
+					Styles.Color color = Styles.Color.Gray;
 
 					if (_StateMachine.currentState == state)
 					{
-						color = UnityEditor.Graphs.Styles.Color.Orange;
+						color = Styles.Color.Orange;
 					}
 					else if (_StateMachine.startStateID == state.stateID)
 					{
-						color = UnityEditor.Graphs.Styles.Color.Aqua;
+						color = Styles.Color.Aqua;
 					}
 					else if (state.resident)
 					{
-						color = UnityEditor.Graphs.Styles.Color.Green;
+						color = Styles.Color.Green;
 					}
 
 					bool on = _Selection.Contains(state.stateID);
-					GUIStyle nodeStyle = GetStateStyle(color, on);
+					GUIStyle nodeStyle = Styles.GetNodeStyle("node", color, on);
 					
-					EditorGUILayout.BeginHorizontal();
+					Rect rect = GUILayoutUtility.GetRect(0.0f,25.0f);
 
-					GUILayout.FlexibleSpace();
-
-					Rect rect = GUILayoutUtility.GetRect(100.0f, 190.0f,30.0f,30.0f);
-
-					if ( EditorGUITools.ButtonMouseDown(rect,new GUIContent(state.name), nodeStyle) )
+					if ( EditorGUITools.ButtonMouseDown(rect,new GUIContent(state.name), FocusType.Passive,nodeStyle) )
 					{
 						_Selection.Clear();
 						_Selection.Add(state.stateID);
 						_FrameSelected = true;
                     }
-
-					GUILayout.FlexibleSpace();
-
-					EditorGUILayout.EndHorizontal();
 
 					GUILayout.Space(5);
 				}
@@ -1419,16 +1434,13 @@ namespace ArborEditor
 
 			if (_StateMachine == null)
 			{
-				GUI.enabled = true;
+				EditorGUI.EndDisabledGroup();
 			}
 
 			EditorGUILayout.EndVertical();
-		}
 
-		Rect _GraphArea;
-		Rect _GraphViewArea;
-		Rect _GraphExtents;
-		Rect _LastGraphExtents;
+			GUILayout.EndArea();
+		}
 
 		void UpdateGraphExtents()
 		{
@@ -1462,10 +1474,10 @@ namespace ArborEditor
 				_GraphExtents = new Rect();
 			}
 
-			_GraphExtents.xMin -= _GraphArea.width * 0.6f;
-			_GraphExtents.xMax += _GraphArea.width * 0.6f;
-			_GraphExtents.yMin -= _GraphArea.height * 0.6f;
-			_GraphExtents.yMax += _GraphArea.height * 0.6f;
+			_GraphExtents.xMin -= _GraphRect.width * 0.6f;
+			_GraphExtents.xMax += _GraphRect.width * 0.6f;
+			_GraphExtents.yMin -= _GraphRect.height * 0.6f;
+			_GraphExtents.yMax += _GraphRect.height * 0.6f;
 		}
 
 		void UpdateScrollPosition()
@@ -1474,13 +1486,13 @@ namespace ArborEditor
 			_ScrollPos.y += _LastGraphExtents.y - _GraphExtents.y;
 
 			_LastGraphExtents = _GraphExtents;
-		}
+        }
 
 		void UpdateGraphViewArea()
 		{
 			Vector2 scrollPos = _ScrollPos + new Vector2(_GraphExtents.x, _GraphExtents.y);
 
-			_GraphViewArea = new Rect(scrollPos.x, scrollPos.y, _GraphArea.width, _GraphArea.height);
+			_GraphViewArea = new Rect(scrollPos.x, scrollPos.y, _GraphRect.width, _GraphRect.height);
 		}
 
 		private void DrawGrid()
@@ -1507,17 +1519,17 @@ namespace ArborEditor
 		private void DrawGridLines(float gridSize, UnityEngine.Color gridColor)
 		{
 			GL.Color(gridColor);
-			float x = _GraphViewArea.xMin - _GraphViewArea.xMin % gridSize;
-			while (x < _GraphViewArea.xMax)
+			float x = _GraphExtents.xMin - _GraphExtents.xMin % gridSize;
+			while (x < _GraphExtents.xMax)
 			{
-				DrawLine(new Vector2(x, _GraphViewArea.yMin), new Vector2(x, _GraphViewArea.yMax));
+				DrawLine(new Vector2(x, _GraphExtents.yMin), new Vector2(x, _GraphExtents.yMax));
 				x += gridSize;
 			}
 			GL.Color(gridColor);
-			float y = _GraphViewArea.yMin - _GraphViewArea.yMin % gridSize;
-			while (y < _GraphViewArea.yMax)
+			float y = _GraphExtents.yMin - _GraphExtents.yMin % gridSize;
+			while (y < _GraphExtents.yMax)
 			{
-				DrawLine(new Vector2(_GraphViewArea.xMin, y), new Vector2(_GraphViewArea.xMax, y));
+				DrawLine(new Vector2(_GraphExtents.xMin, y), new Vector2(_GraphExtents.xMax, y));
 				y += gridSize;
 			}
 		}
@@ -1530,7 +1542,7 @@ namespace ArborEditor
 
 		void DragGrid()
 		{
-			int controlID = GUIUtility.GetControlID(s_DragScrollHash, FocusType.Passive);
+			int controlID = GUIUtility.GetControlID(_DragScrollHash, FocusType.Passive);
 
 			Event current = Event.current;
 
@@ -1538,7 +1550,7 @@ namespace ArborEditor
 
 			if (current.alt || _ScrollDragging)
 			{
-				EditorGUIUtility.AddCursorRect(_GraphArea, MouseCursor.Pan, controlID);
+				EditorGUIUtility.AddCursorRect(_GraphRect, MouseCursor.Pan, controlID);
 			}
 
 			if (_DragBranchEnable || _IsDragSelection || _IsDragStates)
@@ -1610,11 +1622,9 @@ namespace ArborEditor
 			}
 		}
 
-		void BeginGraphGUI(Rect position)
+		void BeginGraphGUI()
 		{
-			_GraphArea = position;
-			
-			EditorGUITools.DrawGridBackground(_GraphArea);
+			EditorGUITools.DrawGridBackground(_GraphRect);
 
 			if (_IsFrameSelected)
 			{
@@ -1629,7 +1639,7 @@ namespace ArborEditor
 			}
 
 			EditorGUI.BeginChangeCheck();
-			_ScrollPos = GUI.BeginScrollView(_GraphArea, _ScrollPos, _GraphExtents );
+			_ScrollPos = GUI.BeginScrollView(_GraphRect, _ScrollPos, _GraphExtents );
 			if (EditorGUI.EndChangeCheck())
 			{
 				_IsFrameSelected = false;
@@ -1660,7 +1670,7 @@ namespace ArborEditor
 
 				Rect position = state.position;
 
-				position.width = Mathf.Max(position.width, 300);
+				position.width = 300;
 
 				string name = Localization.GetWord("State");
 
@@ -1673,23 +1683,23 @@ namespace ArborEditor
 					name = Localization.GetWord("Resident State");
 				}
 
-				UnityEditor.Graphs.Styles.Color color = UnityEditor.Graphs.Styles.Color.Gray;
+				Styles.Color color = Styles.Color.Gray;
 
 				if (_DragBranchEnable && _DragBranchHoverStateID == state.stateID)
 				{
-					color = UnityEditor.Graphs.Styles.Color.Red;
+					color = Styles.Color.Red;
 				}
 				else if (_StateMachine.currentState == state)
 				{
-					color = UnityEditor.Graphs.Styles.Color.Orange;
+					color = Styles.Color.Orange;
 				}
 				else if (_StateMachine.startStateID == state.stateID)
 				{
-					color = UnityEditor.Graphs.Styles.Color.Aqua;
+					color = Styles.Color.Aqua;
 				}
 				else if (state.resident)
 				{
-					color = UnityEditor.Graphs.Styles.Color.Green;
+					color = Styles.Color.Green;
 				}
 
 				StateEditor currentStateEditor = stateEditor;
@@ -1698,7 +1708,7 @@ namespace ArborEditor
 				};
 
 				bool on = _Selection.Contains(state.stateID);
-				GUIStyle nodeStyle = GetStateStyle(color, on);
+				GUIStyle nodeStyle = Styles.GetNodeStyle("node", color, on);
 
 				GUILayout.Window(state.stateID, position, func, name, nodeStyle);
 			}
@@ -1709,11 +1719,11 @@ namespace ArborEditor
 
 				Rect position = comment.position;
 
-				position.width = Mathf.Max(position.width, 300);
+				position.width = 300;
 
 				string name = Localization.GetWord("Comment");
 
-				UnityEditor.Graphs.Styles.Color color = UnityEditor.Graphs.Styles.Color.Yellow;
+				Styles.Color color = Styles.Color.Yellow;
 
 				CommentEditor currentCommentEditor = commentEditor;
 				GUI.WindowFunction func = (int id) => {
@@ -1721,7 +1731,7 @@ namespace ArborEditor
 				};
 
 				bool on = _Selection.Contains(comment.commentID);
-				GUIStyle nodeStyle = GetStateStyle(color, on);
+				GUIStyle nodeStyle = Styles.GetNodeStyle("node", color, on);
 
 				GUILayout.Window(comment.commentID, position, func, name, nodeStyle);
 			}
@@ -1732,9 +1742,8 @@ namespace ArborEditor
 			{
 				Vector2 shadowPos = Vector2.one * 3;
 
-				EditorGUITools.BezierArrow(_DragBranchStart + shadowPos, _DragBranchStartTangent + shadowPos, _DragBranchEnd + shadowPos, _DragBranchEndTangent + shadowPos, new Color(0, 0, 0, 1.0f), 5.0f, 16.0f);
-
-				EditorGUITools.BezierArrow(_DragBranchStart, _DragBranchStartTangent, _DragBranchEnd, _DragBranchEndTangent, new Color(1.0f, 0.8f, 0.8f, 1.0f), 5.0f, 16.0f);
+				EditorGUITools.BezierArrow(_DragBranchStart + shadowPos, _DragBranchStartTangent + shadowPos, _DragBranchEnd + shadowPos, _DragBranchEndTangent + shadowPos, Styles.connectionTexture, new Color(0, 0, 0, 1.0f), 5.0f, 16.0f);
+				EditorGUITools.BezierArrow(_DragBranchStart, _DragBranchStartTangent, _DragBranchEnd, _DragBranchEndTangent, Styles.connectionTexture, new Color(1.0f, 0.8f, 0.8f, 1.0f), 5.0f, 16.0f);
 			}
 
 			HandleContextMenu();
@@ -1758,18 +1767,15 @@ namespace ArborEditor
 			UpdateGraphViewArea();
             DragGrid();
 
-			GUI.EndScrollView(false);
-
-			if (Event.current.type == EventType.ScrollWheel && _GraphArea.Contains(Event.current.mousePosition) )
-			{
-				_ScrollPos += Event.current.delta * 20.0f;
-				Event.current.Use();
-			}
+			GUI.EndScrollView();
 		}
 
 		void OnGUI()
 		{
-			DrawToolbar();
+			ResizeHandling(this.position.width, this.position.height - EditorStyles.toolbar.fixedHeight);
+			CalculateRect();
+
+            DrawToolbar();
 
 			EditorGUILayout.BeginHorizontal();
 
@@ -1792,11 +1798,7 @@ namespace ArborEditor
 				HandleUtility.Repaint();
 			}
 
-			Rect rect = GUILayoutUtility.GetRect(0.0f,0.0f);
-
-			Rect windowArea = new Rect( rect.x,rect.y,this.position.width-rect.x,this.position.height-rect.y );
-
-			BeginGraphGUI(windowArea);
+			BeginGraphGUI();
 
 			OnGraphGUI();
 

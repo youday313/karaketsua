@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections;
 
 namespace Arbor
@@ -6,14 +7,58 @@ namespace Arbor
 	[AddComponentMenu("")]
 	[AddBehaviourMenu("Agent/AgentFollow")]
 	[BuiltInBehaviour]
-	public class AgentFollow : StateBehaviour
+	public class AgentFollow : StateBehaviour , ISerializationCallbackReceiver
 	{
 		[SerializeField] private AgentController _AgentController;
 		[SerializeField] private float _Speed;
 		[SerializeField] private float _StoppingDistance;
-		[SerializeField] private Transform _Target;
+
+		[FormerlySerializedAs("_Target")]
+		[SerializeField] private Transform _OldTarget;
 		[SerializeField] private float _MinInterval;
 		[SerializeField] private float _MaxInterval;
+
+		[SerializeField]
+		private int _SerializeVersion;
+		[SerializeField]
+		private FlexibleGameObject _Target;
+
+		public Transform target
+		{
+			get
+			{
+				if (_Target.value != null)
+				{
+					return _Target.value.transform;
+				}
+				return null;
+			}
+		}
+
+		void SerializeVer1()
+		{
+			if (_OldTarget != null)
+			{
+				_Target = (FlexibleGameObject)_OldTarget.gameObject;
+			}
+		}
+
+		public void OnBeforeSerialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+				_SerializeVersion = 1;
+			}
+		}
+
+		public void OnAfterDeserialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+			}
+		}
 
 		private float _Timer;
 
@@ -40,7 +85,7 @@ namespace Arbor
 			{
 				if (_AgentController != null)
 				{
-					_AgentController.Follow(_Speed, _StoppingDistance, _Target);
+					_AgentController.Follow(_Speed, _StoppingDistance, target);
 				}
 				_Timer = Random.Range(_MinInterval, _MaxInterval);
 			}

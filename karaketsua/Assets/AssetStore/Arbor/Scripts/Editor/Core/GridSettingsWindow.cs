@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
 namespace ArborEditor
 {
-	internal class GridSettingsWindow : EditorWindow
+	internal sealed class GridSettingsWindow : EditorWindow
 	{
 		private static GridSettingsWindow _Instance = null;
 
@@ -43,7 +43,7 @@ namespace ArborEditor
 
 			ArborSettings.showGrid = EditorGUILayout.ToggleLeft( Localization.GetWord("Show Grid"),ArborSettings.showGrid );
 
-			GUI.enabled = ArborSettings.showGrid;
+			EditorGUI.BeginDisabledGroup(!ArborSettings.showGrid);
 
 			ArborSettings.snapGrid = EditorGUILayout.ToggleLeft( Localization.GetWord("Snap Grid"),ArborSettings.snapGrid );
 
@@ -52,7 +52,7 @@ namespace ArborEditor
 			ArborSettings.gridSize = EditorGUILayout.Slider( Localization.GetWord("Grid Size"),ArborSettings.gridSize,1.0f,1000.0f );
 			ArborSettings.gridSplitNum = EditorGUILayout.IntSlider( Localization.GetWord("Grid Split Num"),ArborSettings.gridSplitNum,1,100 );
 
-			GUI.enabled = true;
+			EditorGUI.EndDisabledGroup();
 
 			if( GUILayout.Button( Localization.GetWord("Reset") ) )
 			{

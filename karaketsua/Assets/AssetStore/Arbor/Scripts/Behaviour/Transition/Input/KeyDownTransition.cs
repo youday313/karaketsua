@@ -4,7 +4,6 @@ using System.Collections;
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("KeyDownTransition")]
 	[AddBehaviourMenu("Transition/Input/KeyDownTransition")]
 	[BuiltInBehaviour]
 	public class KeyDownTransition : StateBehaviour

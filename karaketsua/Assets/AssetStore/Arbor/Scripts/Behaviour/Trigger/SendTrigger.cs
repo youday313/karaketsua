@@ -4,7 +4,6 @@ using System.Collections;
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("SendTrigger")]
 	[AddBehaviourMenu("Trigger/SendTrigger")]
 	[BuiltInBehaviour]
 	public class SendTrigger : StateBehaviour

@@ -1,4 +1,4 @@
-﻿-----------------------------------------------------
+-----------------------------------------------------
             Arbor: State Diagram Editor
           Copyright (c) 2014 Cait Sith Ware
           http://caitsithware.com/wordpress/
@@ -9,8 +9,10 @@ Arborを購入いただきありがとうございます！
 
 【更新方法】
 
-1. すでにあるArborフォルダを削除
-2. Arborをインポート
+1. 更新前に必ずプロジェクトのバックアップを取ってください。
+2. 念のため、メニューのFile > New Sceneからシーンを新規作成しておきます。
+3. 既にインポートされているArborフォルダを削除。
+4. Arborをインポート。
 
 【主な流れ】
 
@@ -24,7 +26,8 @@ Arborを購入いただきありがとうございます！
 
 1. Assets以下にPluginsフォルダがない場合、Pluginsフォルダを作成
 2. Pluginsフォルダの中にArborフォルダを作成
-3. Arbor/Scripts/にあるCoreフォルダをそのフォルダの中に移動
+3. Arbor/Internal/にあるScriptsフォルダを作成したArborフォルダの中に移動し、名前をInternalに変更。
+4. Arbor/Core/にあるScriptsフォルダを作成したArborフォルダの中に移動し、名前をCoreに変更。
 
 【サンプルシーン】
 
@@ -43,6 +46,180 @@ http://arbor.caitsithware.com/
 メール : support@caitsithware.com
 
 【更新履歴】
+
+Ver 1.7.7p2:
+* Arbor Editor
+- Fix : Unity5.2.1以降でエラーが出るのを修正。
+
+Ver 1.7.7p1:
+* Arbor Editor
+- Fix : ステートとコメントの作成と削除がUndoできなかったのを修正。
+
+Ver 1.7.7:
+* Arbor Editor
+- Add : ParameterContainerでGameObjectを保持できるように対応。
+- Change : 自分自身のステートへ遷移できるように変更。
+- Change : 挙動の背景を変更。
+- Change : ListGUIの背景を変更。
+- Change : コメントノードを内容によってリサイズするように変更。
+- Fix : Undo周りのバグ修正
+- Fix : 常駐ステートが開始ステートに設定できたのを修正。
+- Other : グリッドなどの設定をプロジェクトごとではなくUnityのメジャーバージョンごとに保存するように対応。
+
+* 組み込み挙動
+- Add : Collision/OnCollisionEnterStore
+- Add : Collision/OnCollisionExitStore
+- Add : Collision/OnControllerColliderHitStore
+- Add : Collision/OnTriggerEnterStore
+- Add : Collision/OnTriggerExitStore
+- Add : Collision2D/OnCollisionEnter2DStore
+- Add : Collision2D/OnCollisionExit2DStore
+- Add : Collision2D/OnTriggerEnter2DStore
+- Add : Collision2D/OnTriggerExit2DStore
+- Add : GameObject/FindGameObject
+- Add : GameObject/FindWithTagGameObject
+- Add : UITweenPositionに相対指定できるように追加。
+- Add : UITweenSizeに相対指定できるように追加。
+- Change : BroadcastMessageGameObjectの値をFlexibleIntなどを使用するように対応。
+- Change : CalcAnimatorParameterの値をFlexibleIntなどを使用するように対応。
+- Change : CalcParameterの値をFlexibleIntなどを使用するように対応。
+- Change : ParameterTransitionの値をFlexibleIntなどを使用するように対応。
+- Change : SendMessageGameObjectの値をFlexibleIntなどを使用するように対応。
+- Change : SendMessageUpwardsGameObjectの値をFlexibleIntなどを使用するように対応。
+- Change : AgentEscapeをArborGameObjectに対応。
+- Change : AgentFllowをArborGameObjectに対応。
+- Change : ActivateGameObjectをFlexibleGameObjectに対応。
+- Change : BroadastMessageGameObjectをFlexibleGameObjectに対応。
+- Change : DestroyGameObjectをFlexibleGameObjectに対応。
+- Change : LookatGameObjectをFlexibleGameObjectに対応。
+- Change : SendMessageGameObjectをFlexibleGameObjectに対応。
+- Change : SendMessageUpwardsGameObjectをFlexibleGameObjectに対応。
+- Change : BroadcastTriggerをFlexibleGameObjectに対応。
+- Change : SendTriggerGameObjectをFlexibleGameObjectに対応。
+- Change : SendTriggerUpwardsをFlexibleGameObjectに対応。
+- Change : InstantiateGameObjectで生成したオブジェクトをパラメータに格納できるように対応。
+
+* スクリプト
+- Add : FlexibleInt実装
+- Add : FlexibleFloat実装
+- Add : FlexibleBool実装
+- Add : FlexibleGameObject実装
+- Add : ContextMenuを使えるように対応。
+
+* その他
+- Change : Parameter関連をCoreフォルダとInternalフォルダに移動。
+- Other : コンポーネントにアイコン設定。
+
+Ver 1.7.6:
+* Arbor Editor
+- Add : StateLinkに名前設定追加。
+- Add : StateLinkに即時遷移フラグ追加。
+- Fix : 挙動追加での検索文字列が保存できていなかったのを修正。
+- Other : 挙動追加を開いた際、検索バーにフォーカスが移るように対応。
+- Other : 挙動追加での並び順で、グループが先に来るように調整。
+
+* コンポーネント
+- Add : GlobalParameterContainer
+
+* 組み込み挙動
+- Add : Audio/PlaySound
+- Add : Audio/StopSound
+- Add : Collision/OnCollisionEnterDestroy
+- Add : Collision/OnCollisionExitDestroy
+- Add : Collision/OnControllerColliderHitDestroy
+- Add : Collision2D/OnCollisionEnter2DDestroy
+- Add : Collision2D/OnCollisionExit2DDestroy
+- Add : GameObject/BroadcastMessageGameObject
+- Add : GameObject/SendMessageUpwardsGameObject
+- Add : Physics/AddForceRigidbody
+- Add : Physics/AddVelocityRigidbody
+- Add : Physics2D/AddForceRigidbody2D
+- Add : Physics2D/AddVelocityRigidbody2D
+- Add : Renderer/SetSprite
+- Add : Transition/Collision/OnCollisionEnterTransition
+- Add : Transition/Collision/OnCollisionExitTransition
+- Add : Transition/Collision/OnCollisionStayTransition
+- Add : Transition/Collision/OnControllerColliderHitTransition
+- Add : Transition/Collision2D/OnCollisionEnter2DTransition
+- Add : Transition/Collision2D/OnCollisionExit2DTransition
+- Add : Transition/Collision2D/OnCollisionStay2DTransition
+- Add : Transition/Input/ButtonTransition
+- Add : Transition/Input/KeyTransition
+- Add : Transition/Input/MouseButtonTransition
+- Add : Transition/ExistsGameObjectTransition
+- Add : Trigger/BroadcastTrigger
+- Add : Trigger/SendTriggerGameObject
+- Add : Trigger/SendTriggerUpwards
+- Add : Tween/TweenRigidbody2DPosition
+- Add : Tween/TweenRigidbody2DRotation
+- Add : Tween/TweenTextureOffset
+- Add : UI/UISetSlider
+- Add : UI/UISetSliderFromParameter
+- Add : UI/UISetToggle
+- Add : UI/UISetToggleFromParameter
+- Add : TimeTransitionに現在時間をプログレスバーで表示するように追加。
+- Add : Tween終了時に遷移できるように追加。
+- Add : TweenPositionに相対指定できるように追加。
+- Add : TweenRotationに相対指定できるように追加。
+- Add : TweenScaleに相対指定できるように追加。
+- Add : TweenRigidbodyPositionに相対指定できるように追加。
+- Add : TweenRigidbodyRotationに相対指定できるように追加。
+- Fix : OnTriggerExit2DDestroyがCollisionにあったのを修正。
+- Fix : CalcAnimatorParameterのfloatValueがintになっていたのを修正。
+- Fix : CalcParameterのfloatValueがintになっていたのを修正。
+- Fix : ParameterTransitionのfloatValueがintになっていたのを修正。
+- Other : SetRigidbodyVelocityをSetVelocityRigidbodyに改名。
+- Other : SetRigidbody2DVelocityをSetVelocityRigidbody2Dに改名。
+
+* スクリプト
+- Add : FixedImmediateTransition属性で即時遷移フラグを変更できないように対応。
+
+* その他
+- Add : Example9としてGlobalParameterContainerのサンプル追加。
+- Fix : TagsにCoinが追加されていたので修正。
+
+Ver 1.7.5:
+* Arbor Editor
+- Fix : グリッドが正しく表示されない時があるのを修正。
+- Other : ステートリストの横幅をリサイズできるように対応。
+
+* 組み込み挙動
+- Add : Collision/OnTriggerEnterDestroy
+- Add : Collision/OnTriggerExitDestroy
+- Add : Collision2D/OnTriggerEnter2DDestroy
+- Add : Collision2D/OnTriggerExit2DDestroy
+- Add : GameObject/LookAtGameObject
+- Add : Parameter/SetBoolParameterFromUIToggle
+- Add : Parameter/SetFloatParameterFromUISlider
+- Add : Physics/SetRigidbodyVelocity
+- Add : Physics2D/SetRigidbody2DVelocity
+- Add : Transition/EventSystems/OnPointerClickTransition
+- Add : Transition/EventSystems/OnPointerDownTransition
+- Add : Transition/EventSystems/OnPointerEnterTransition
+- Add : Transition/EventSystems/OnPointerExitTransition
+- Add : Transition/EventSystems/OnPointerUpTransition
+- Add : Tween/TweenCanvasGroupAlpha
+- Add : Tween/TweenRigidbodyPosition
+- Add : Tween/TweenRigidbodyRotation
+- Add : UI/UISetImage
+- Add : UI/UISetTextFromParameter
+- Add : InstantiateGameObjectで生成時の初期Transformを指定できるように追加。
+- Fix : CalcParameterでBool型の場合に正しく動作しなかったのを修正。
+- Fix : SendEventGameObjectで呼び出す方をわざわざ指定しないように修正。
+
+* スクリプト
+- Add : Parameterにvalueプロパティ追加。
+- Add : IntParameterReference追加。
+- Add : FloatParameterReference追加。
+- Add : BoolParameterReference追加。
+
+* その他
+- Add : HierarchyのCreateボタンからArborFSM付きGameObjectを作れるように追加。
+- Add : HierarchyのCreateボタンからParameterContainer付きGameObjectを作れるように追加。
+- Add : HierarchyのCreateボタンからAgentController付きGameObjectを作れるように追加。
+- Add : Example7としてコインプッシャーゲーム追加。
+- Add : Example8としてEventSystemのサンプル追加。
+- Other : フォルダ整理。
 
 Ver 1.7.4:
 - Add : Agent系Behaviour追加。

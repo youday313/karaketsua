@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,65 +10,105 @@ namespace ArborEditor
 	[CustomPropertyDrawer(typeof(ParameterReference))]
 	public class ParameterReferencePropertyDrawer : PropertyDrawer
 	{
+		protected virtual bool CheckType(Parameter.Type type)
+		{
+			return true;
+		}
+
+		int GetSelectParameter(int id,Parameter[] parameters, List<string> names, List<int> ids)
+		{
+			int selected = -1;
+
+			if (parameters.Length > 0)
+			{
+				for (int paramIndex = 0; paramIndex < parameters.Length; paramIndex++)
+				{
+					Parameter parameter = parameters[paramIndex];
+
+					if (!CheckType(parameter.type))
+					{
+						continue;
+					}
+
+					if (parameter.id == id)
+					{
+						selected = names.Count;
+					}
+
+					names.Add(parameter.name);
+					ids.Add(parameter.id);
+				}
+			}
+
+			return selected;
+		}
+
 		public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
 		{
+			EditorGUI.BeginProperty(position, label, property);
+			int indentLevel = EditorGUI.indentLevel;
+			EditorGUI.indentLevel = 0;
+
 			SerializedProperty containerProperty = property.FindPropertyRelative("container");
 			SerializedProperty idProperty = property.FindPropertyRelative("id");
 
-			Rect labelRect = new Rect(position.x, position.y, EditorGUIUtility.labelWidth*0.5f, 16f);
-			EditorGUI.LabelField(labelRect, label);
+			Rect labelRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
+			EditorGUI.LabelField(labelRect, label );
 
-			Rect containerRect = new Rect(labelRect.xMax, position.y, EditorGUIUtility.labelWidth * 0.5f, 16f);
-			Rect parameterRect = new Rect(containerRect.xMax, position.y, Mathf.Max(0.0f, position.xMax- containerRect.xMax), 16f);
+			EditorGUI.indentLevel++;
 
-			EditorGUI.PropertyField(containerRect, containerProperty, GUIContent.none);
+			Rect containerRect = new Rect(position.x, labelRect.yMax, position.width, EditorGUIUtility.singleLineHeight);
+			Rect parameterRect = new Rect(position.x, containerRect.yMax, position.width, EditorGUIUtility.singleLineHeight);
 
-			ParameterContainer container = containerProperty.objectReferenceValue as Arbor.ParameterContainer;
+			EditorGUI.PropertyField(containerRect, containerProperty);
+
+			ParameterContainerBase containerBase = containerProperty.objectReferenceValue as ParameterContainerBase;
+			ParameterContainerInternal container = null;
+			if (containerBase != null)
+			{
+				container = containerBase.defaultContainer;
+			}
+
+			Parameter[] parameters = null;
+
+            List<string> names = new List<string>();
+			List<int> ids = new List<int>();
+
+			int selected = -1;
 
 			if (container != null)
 			{
-				Parameter[] parameters = container.parameters;
+				parameters = container.parameters;
 
-				if (parameters.Length > 0)
+				selected = GetSelectParameter(idProperty.intValue, parameters, names, ids);
+			}
+
+			if (names.Count > 0)
+			{
+				selected = EditorGUI.Popup(parameterRect, "Parameter",selected, names.ToArray());
+
+				if (selected >= 0 && ids[selected] != idProperty.intValue)
 				{
-					int id = idProperty.intValue;
-
-					int selected = -1;
-
-					List<string> names = new List<string>();
-					List<int> ids = new List<int>();
-					for (int paramIndex = 0; paramIndex < parameters.Length; paramIndex++)
-					{
-						names.Add(parameters[paramIndex].name);
-						ids.Add(parameters[paramIndex].id);
-
-						if (parameters[paramIndex].id == id)
-						{
-							selected = paramIndex;
-						}
-					}
-
-					selected = EditorGUI.Popup(parameterRect, selected, names.ToArray());
-
-					if (selected >= 0 && ids[selected] != idProperty.intValue)
-					{
-						idProperty.intValue = ids[selected];
-					}
+					idProperty.intValue = ids[selected];
 				}
 			}
 			else
 			{
-				GUI.enabled = false;
+				EditorGUI.BeginDisabledGroup(true);
+				
+				EditorGUI.Popup(parameterRect, "Parameter", -1, new string[] { "" });
 
-				EditorGUI.Popup(parameterRect, -1, new string[] { "" });
-
-				GUI.enabled = true;
+				EditorGUI.EndDisabledGroup();
 			}
+
+			EditorGUI.indentLevel = indentLevel;
+
+			EditorGUI.EndProperty();
 		}
 
 		public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
 		{
-			return 16f;
+			return EditorGUIUtility.singleLineHeight * 3;
 		}
 	}
 }

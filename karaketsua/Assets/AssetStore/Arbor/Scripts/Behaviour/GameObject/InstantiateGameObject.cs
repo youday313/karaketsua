@@ -1,32 +1,85 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections;
 
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("InstantiateGameObject")]
 	[AddBehaviourMenu("GameObject/InstantiateGameObject")]
 	[BuiltInBehaviour]
-	public class InstantiateGameObject : StateBehaviour
+	public class InstantiateGameObject : StateBehaviour, ISerializationCallbackReceiver
 	{
 		[SerializeField] private GameObject _Prefab;
-		[SerializeField] private Transform _Parent;
+
+		[FormerlySerializedAs("_Parent")]
+		[SerializeField] private Transform _OldParent;
+
+		[FormerlySerializedAs("_InitTransform")]
+		[SerializeField] private Transform _OldInitTransform;
+
+		[SerializeField] private GameObjectParameterReference _Parameter;
+
+		[SerializeField]
+		private int _SerializeVersion;
+
+		[SerializeField]
+		private FlexibleGameObject _Parent;
+
+		[SerializeField]
+		private FlexibleGameObject _InitTransform;
+
+		void SerializeVer1()
+		{
+			if (_OldParent != null)
+			{
+				_Parent = (FlexibleGameObject)_OldParent.gameObject;
+			}
+			if (_OldInitTransform != null)
+			{
+				_InitTransform = (FlexibleGameObject)_OldInitTransform.gameObject;
+            }
+		}
+
+		public void OnBeforeSerialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+				_SerializeVersion = 1;
+			}
+		}
+
+		public void OnAfterDeserialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+			}
+		}
 
 		public override void OnStateBegin()
 		{
 			if( _Prefab != null )
 			{
-				GameObject obj = Instantiate( _Prefab ) as GameObject;
+				GameObject obj = null;
+                if (_InitTransform.value == null)
+				{
+					obj = Instantiate(_Prefab) as GameObject;
+                }
+				else
+				{
+					obj = Instantiate(_Prefab, _InitTransform.value.transform.position, _InitTransform.value.transform.rotation) as GameObject;
+				}
 
-				Vector3 localPosition = obj.transform.localPosition;
-				Quaternion localRotation = obj.transform.localRotation;
-				Vector3 localScale = obj.transform.localScale;
+				if (_Parent.value != null)
+				{
+					obj.transform.SetParent(_Parent.value.transform, _InitTransform.value != null);
+				}
 
-				obj.transform.parent = _Parent;
-
-				obj.transform.localPosition = localPosition;
-				obj.transform.localRotation = localRotation;
-				obj.transform.localScale = localScale;
+				if (_Parameter.parameter != null)
+				{
+					_Parameter.parameter.gameObjectValue = obj;
+				}
 			}
 		}
 	}

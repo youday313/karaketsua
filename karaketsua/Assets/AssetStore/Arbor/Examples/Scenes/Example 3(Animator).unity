@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1 &208595109
 GameObject:
@@ -215,7 +214,7 @@ MonoBehaviour:
       x: 97
       y: 132
       width: 300
-      height: 172
+      height: 184
     _StateID: 1976681210
     _Resident: 0
     _Behaviours:
@@ -270,14 +269,38 @@ MonoBehaviour:
   _StateID: 787814235
   expanded: 1
   _BehaviourEnabled: 1
-  reference:
+  _Reference:
     animator: {fileID: 2134339296}
     name: Trigger
     type: 9
-  function: 0
-  floatValue: 0
-  intValue: 0
-  boolValue: 0
+  _Function: 0
+  _OldFloatValue: 0
+  _OldIntValue: 0
+  _OldBoolValue: 0
+  _SerializeVersion: 1
+  _FloatValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
+  _IntValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _MinRange: 0
+    _MaxRange: 0
+  _BoolValue:
+    _Type: 0
+    _Value: 0
+    _Parameter:
+      container: {fileID: 0}
+      id: 0
+    _Probability: 0
 --- !u!114 &2134339294
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -294,7 +317,9 @@ MonoBehaviour:
   expanded: 1
   _BehaviourEnabled: 1
   _NextState:
+    name: 
     stateID: 787814235
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 308, y: 192}
     lineStartTangent: {x: 258, y: 192}
@@ -319,10 +344,12 @@ MonoBehaviour:
   expanded: 1
   _BehaviourEnabled: 1
   _NextState:
+    name: 
     stateID: 1746430907
+    immediateTransition: 0
     lineEnable: 1
-    lineStart: {x: 308, y: 387}
-    lineStartTangent: {x: 258, y: 387}
+    lineStart: {x: 308, y: 419}
+    lineStartTangent: {x: 258, y: 419}
     lineEnd: {x: 300, y: 488}
     lineEndTangent: {x: 250, y: 488}
     lineColorChanged: 0
@@ -375,7 +402,7 @@ MonoBehaviour:
       x: 300
       y: 252
       width: 300
-      height: 143
+      height: 175
     _StateID: 787814235
     _Resident: 0
     _Behaviours:
@@ -426,7 +453,9 @@ MonoBehaviour:
   layerName: Base Layer
   stateName: Wait Trigger
   nextState:
+    name: 
     stateID: 1976681210
+    immediateTransition: 0
     lineEnable: 1
     lineStart: {x: 592, y: 588}
     lineStartTangent: {x: 642, y: 588}

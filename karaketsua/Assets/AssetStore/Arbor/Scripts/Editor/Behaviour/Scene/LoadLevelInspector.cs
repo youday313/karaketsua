@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.LoadLevel))]
+	[CustomEditor(typeof(LoadLevel))]
 	public class LoadLevelInspector : Editor
 	{
 		public override void OnInspectorGUI ()

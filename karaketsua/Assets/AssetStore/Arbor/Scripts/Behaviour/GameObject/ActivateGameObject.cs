@@ -1,31 +1,68 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections;
 
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("ActivateGameObject")]
 	[AddBehaviourMenu("GameObject/ActivateGameObject")]
 	[BuiltInBehaviour]
-	public class ActivateGameObject : StateBehaviour
+	public class ActivateGameObject : StateBehaviour, ISerializationCallbackReceiver
 	{
-		[SerializeField] private GameObject _Target;
-		[SerializeField] private bool _BeginActive;
-		[SerializeField] private bool _EndActive;
+		[FormerlySerializedAs("_Target")]
+		[SerializeField] private GameObject _OldTarget;
+
+		[SerializeField]
+		private bool _BeginActive;
+		[SerializeField]
+		private bool _EndActive;
+
+		[SerializeField] private int _SerializeVersion;
+		[SerializeField] private FlexibleGameObject _Target;
+
+		public GameObject target
+		{
+			get
+			{
+				return _Target.value;
+			}
+		}
+
+		void SerializeVer1()
+		{
+			_Target = (FlexibleGameObject)_OldTarget;
+		}
+
+		public void OnBeforeSerialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+				_SerializeVersion = 1;
+			}
+		}
+
+		public void OnAfterDeserialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+			}
+		}
 
 		public override void OnStateBegin()
 		{
-			if( _Target != null )
+			if(target != null )
 			{
-				_Target.SetActive( _BeginActive );
+				target.SetActive( _BeginActive );
 			}
 		}
 
 		public override void OnStateEnd()
 		{
-			if( _Target != null )
+			if(target != null )
 			{
-				_Target.SetActive( _EndActive );
+				target.SetActive( _EndActive );
 			}
 		}
 	}

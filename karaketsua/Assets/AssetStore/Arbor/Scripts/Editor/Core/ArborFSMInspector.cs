@@ -1,8 +1,10 @@
 ﻿using UnityEditor;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.ArborFSM))]
+	[CustomEditor(typeof(ArborFSM))]
 	public class ArborFSMInspector : ArborFSMInternalInspector
 	{
 	}

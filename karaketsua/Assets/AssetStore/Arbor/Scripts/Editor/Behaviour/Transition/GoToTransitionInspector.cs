@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.GoToTransition))]
+	[CustomEditor(typeof(GoToTransition))]
 	public class GoToTransitionInspector : Editor
 	{
 		public override void OnInspectorGUI ()

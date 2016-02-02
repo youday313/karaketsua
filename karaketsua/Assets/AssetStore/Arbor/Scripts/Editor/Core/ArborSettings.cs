@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 using System.IO;
@@ -27,13 +27,15 @@ namespace ArborEditor
 			_Instance = this;
 		}
 
-		private static readonly string _FilePath = "Library/ArborSettings.asset";
+		private static readonly string _OldFilePath = "Library/ArborSettings.asset";
+		private static readonly string _FilePath = UnityEditorInternal.InternalEditorUtility.unityPreferencesFolder + "/ArborSettings.asset";
 
 		private static readonly bool _DefaultShowGrid = true;
 		private static readonly bool _DefaultSnapGrid = true;
 		private static readonly float _DefaultGridSize = 120.0f;
 		private static readonly int _DefaultGridSplitNum = 10;
 		private static readonly bool _DefaultOpenStateList = true;
+		private static readonly float _DefaultStateListWidth = 200.0f;
 
 		[SerializeField]private bool _ShowGrid = _DefaultShowGrid;
 		[SerializeField]private bool _SnapGrid = _DefaultSnapGrid;
@@ -203,15 +205,60 @@ namespace ArborEditor
 			}
 		}
 
+		[SerializeField]
+		private float _StateListWidth = _DefaultStateListWidth;
+		public static float stateListWidth
+		{
+			get
+			{
+				return instance._StateListWidth;
+			}
+			set
+			{
+				if (instance._StateListWidth != value)
+				{
+					instance._StateListWidth = value;
+
+					Save();
+				}
+			}
+		}
+
+		[SerializeField]
+		private string _BehaviourSearch = string.Empty;
+		public static string behaviourSearch
+		{
+			get
+			{
+				return instance._BehaviourSearch;
+			}
+			set
+			{
+				if (instance._BehaviourSearch != value)
+				{
+					instance._BehaviourSearch = value;
+
+					Save();
+				}
+			}
+		}
 
 		static void Load()
 		{
 			UnityEditorInternal.InternalEditorUtility.LoadSerializedFileAndForget( _FilePath );
-			if( _Instance == null )
+			if (_Instance != null)
 			{
-				ArborSettings instance = ScriptableObject.CreateInstance<ArborSettings>();
-				instance.hideFlags = HideFlags.HideAndDontSave;
+				return;
 			}
+
+			UnityEditorInternal.InternalEditorUtility.LoadSerializedFileAndForget(_OldFilePath);
+			if (_Instance != null)
+			{
+				return;
+			}
+
+			ArborSettings instance = ScriptableObject.CreateInstance<ArborSettings>();
+			instance.hideFlags = HideFlags.HideAndDontSave;
 		}
 
 		static void Save()

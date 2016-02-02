@@ -1,21 +1,55 @@
-﻿using UnityEngine;
+using UnityEngine;
+using UnityEngine.Serialization;
 using System.Collections;
 
 namespace Arbor
 {
 	[AddComponentMenu("")]
-	[BehaviourTitle("DestroyGameObject")]
 	[AddBehaviourMenu("GameObject/DestroyGameObject")]
 	[BuiltInBehaviour]
-    public class DestroyGameObject : StateBehaviour
+    public class DestroyGameObject : StateBehaviour, ISerializationCallbackReceiver
 	{
-		[SerializeField] private GameObject _Target;
+		[FormerlySerializedAs("_Target")]
+		[SerializeField] private GameObject _OldTarget;
+
+		[SerializeField] private int _SerializeVersion;
+		[SerializeField] private FlexibleGameObject _Target;
+
+		public GameObject target
+		{
+			get
+			{
+				return _Target.value;
+			}
+		}
+
+		void SerializeVer1()
+		{
+			_Target = (FlexibleGameObject)_OldTarget;
+		}
+
+		public void OnBeforeSerialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+				_SerializeVersion = 1;
+			}
+		}
+
+		public void OnAfterDeserialize()
+		{
+			if (_SerializeVersion == 0)
+			{
+				SerializeVer1();
+			}
+		}
 
 		public override void OnStateBegin()
 		{
-			if( _Target != null )
+			if(target != null )
 			{
-				GameObject.Destroy ( _Target );
+				GameObject.Destroy (target);
 			}
 		}
 	}

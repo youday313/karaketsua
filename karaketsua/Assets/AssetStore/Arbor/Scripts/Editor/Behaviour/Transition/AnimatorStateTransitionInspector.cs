@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 #if UNITY_5
 using UnityEditor.Animations;
@@ -25,7 +25,7 @@ namespace ArborEditor
 
 			Animator animator = animatorProperty.objectReferenceValue as Animator;
 
-			if (animator != null)
+			if (animator != null && animator.runtimeAnimatorController != null )
 			{
 				AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
 
@@ -86,7 +86,7 @@ namespace ArborEditor
 					selected = -1;
 					for (int i = 0; i < layer.stateMachine.stateCount; i++)
 					{
-						State state = layer.stateMachine.GetState(i);
+						UnityEditorInternal.State state = layer.stateMachine.GetState(i);
 
 						stateNames.Add(state.name);
 
@@ -105,15 +105,7 @@ namespace ArborEditor
 					}
 				}
 			}
-			else
-			{
-				GUI.enabled = false;
-
-				EditorGUILayout.Popup(-1, new string[] { "" });
-
-				GUI.enabled = true;
-			}
-
+			
 			serializedObject.ApplyModifiedProperties();
 		}
 	}

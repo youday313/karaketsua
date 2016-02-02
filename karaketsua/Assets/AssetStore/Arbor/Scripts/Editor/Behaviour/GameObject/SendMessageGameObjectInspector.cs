@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
@@ -24,13 +24,13 @@ namespace ArborEditor
 			switch (type)
 			{
 				case SendMessageGameObject.Type.Int:
-					EditorGUILayout.PropertyField(serializedObject.FindProperty("_IntValue"));
+					EditorGUILayout.PropertyField(serializedObject.FindProperty("_IntValue"),new GUIContent("Int Value"));
 					break;
 				case SendMessageGameObject.Type.Float:
-					EditorGUILayout.PropertyField(serializedObject.FindProperty("_FloatValue"));
+					EditorGUILayout.PropertyField(serializedObject.FindProperty("_FloatValue"), new GUIContent("Float Value"));
 					break;
 				case SendMessageGameObject.Type.Bool:
-					EditorGUILayout.PropertyField(serializedObject.FindProperty("_BoolValue"));
+					EditorGUILayout.PropertyField(serializedObject.FindProperty("_BoolValue"), new GUIContent("Bool Value"));
 					break;
 				case SendMessageGameObject.Type.String:
 					EditorGUILayout.PropertyField(serializedObject.FindProperty("_StringValue"));

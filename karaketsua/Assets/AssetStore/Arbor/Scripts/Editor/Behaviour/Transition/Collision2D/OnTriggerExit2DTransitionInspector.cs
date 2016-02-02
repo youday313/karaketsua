@@ -2,9 +2,11 @@
 using UnityEditor;
 using System.Collections;
 
+using Arbor;
+
 namespace ArborEditor
 {
-	[CustomEditor(typeof(Arbor.OnTriggerExit2DTransition))]
+	[CustomEditor(typeof(OnTriggerExit2DTransition))]
 	public class OnTriggerExit2DTransitionInspector : Editor
 	{
 		public override void OnInspectorGUI()

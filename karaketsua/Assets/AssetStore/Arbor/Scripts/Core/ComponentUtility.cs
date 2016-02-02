@@ -1,4 +1,4 @@
-﻿/// @cond
+/// @cond
 using UnityEngine;
 using System.Collections;
 
@@ -8,15 +8,23 @@ namespace Arbor
 	{
 		public delegate Component EditorAddComponent( GameObject gameObject,System.Type type );
 		public delegate void EditorDestroyObjectImmediate( Object obj );
-		public delegate void EditorRestoreBehaviour( State state,StateBehaviour behaviour );
+		public delegate void EditorRecordObject(Object obj, string name);
+		public delegate void EditorSetDirty(Object obj);
+		public delegate void EditorMoveBehaviour( State state,StateBehaviour behaviour );
+		public delegate void EditorRefreshBehaviours( ArborFSMInternal stateMachine );
 
 		public static EditorAddComponent editorAddComponent;
 		public static EditorDestroyObjectImmediate editorDestroyObjectImmediate;
-		public static EditorRestoreBehaviour editorRestoreBehaviour;
+		public static EditorRecordObject editorRecordObject;
+		public static EditorSetDirty editorSetDirty;
+		public static EditorMoveBehaviour editorMoveBehaviour;
+		public static EditorRefreshBehaviours editorRefreshBehaviours;
+
+		public static bool enabled = true;
 
 		public static Component AddComponent( GameObject gameObject,System.Type type )
 		{
-			if( Application.isEditor && !Application.isPlaying && editorAddComponent != null )
+			if(enabled && Application.isEditor && !Application.isPlaying && editorAddComponent != null )
 			{
 				return editorAddComponent( gameObject,type );
 			}
@@ -25,7 +33,7 @@ namespace Arbor
 
 		public static Type AddComponent<Type>( GameObject gameObject ) where Type : Component
 		{
-			if( Application.isEditor && !Application.isPlaying && editorAddComponent != null )
+			if(enabled && Application.isEditor && !Application.isPlaying && editorAddComponent != null )
 			{
 				return editorAddComponent( gameObject,typeof(Type) ) as Type;
 			}
@@ -34,7 +42,7 @@ namespace Arbor
 
 		public static void Destroy( Object obj )
 		{
-			if( Application.isEditor && !Application.isPlaying && editorDestroyObjectImmediate != null )
+			if(enabled && Application.isEditor && !Application.isPlaying && editorDestroyObjectImmediate != null )
 			{
 				editorDestroyObjectImmediate( obj );
 				return;
@@ -42,15 +50,42 @@ namespace Arbor
 			Object.Destroy( obj );
 		}
 
-		public static void RestoreBehaviour( State state,StateBehaviour behaviour )
+		public static void RecordObject(Object obj, string name)
 		{
-			if( Application.isEditor && !Application.isPlaying && editorRestoreBehaviour != null )
+			if (enabled && Application.isEditor && !Application.isPlaying && editorRecordObject != null)
 			{
-				editorRestoreBehaviour( state,behaviour );
+				editorRecordObject(obj,name);
+				return;
+			}
+		}
+
+		public static void SetDirty(Object obj)
+		{
+			if (enabled && Application.isEditor && !Application.isPlaying && editorSetDirty != null)
+			{
+				editorSetDirty(obj);
+				return;
+			}
+		}
+
+		public static void MoveBehaviour( State state,StateBehaviour behaviour )
+		{
+			if(enabled && Application.isEditor && !Application.isPlaying && editorMoveBehaviour != null && state != null )
+			{
+				editorMoveBehaviour( state,behaviour );
 				return;
 			}
 			
 			throw new System.NotSupportedException();
+		}
+
+		public static void RefreshBehaviours(ArborFSMInternal stateMachine)
+		{
+			if (enabled && Application.isEditor && !Application.isPlaying && editorRefreshBehaviours != null && stateMachine != null)
+			{
+				editorRefreshBehaviours(stateMachine);
+				return;
+			}
 		}
 	}
 }

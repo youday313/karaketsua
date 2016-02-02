@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -98,14 +98,10 @@ namespace Arbor
 		}
 
 #if ARBOR_TRIAL
-		static readonly int _LimitStateBehaviourNum = 2;
-#endif
-
-#if ARBOR_TRIAL
 		bool IsTrialLimit()
 		{
 			int count = _Behaviours.Count;
-			if( count >= _LimitStateBehaviourNum )
+			if( count >= 2 )
 			{
 				return true;
 			}
@@ -127,7 +123,11 @@ namespace Arbor
 #endif
 		public void AddBehaviour(StateBehaviour behaviour)
 		{
+			ComponentUtility.RecordObject(stateMachine, "Add Behaviour");
+
 			_Behaviours.Add(behaviour);
+
+			ComponentUtility.SetDirty(stateMachine);
 		}
 		
 #if ARBOR_DOC_JA
@@ -155,7 +155,11 @@ namespace Arbor
 
 			StateBehaviour behaviour = StateBehaviour.Create( _StateMachine,stateID,type );
 
+			ComponentUtility.RecordObject(stateMachine, "Add Behaviour");
+
 			_Behaviours.Add( behaviour );
+
+			ComponentUtility.SetDirty(stateMachine);
 
 			return behaviour;
 		}
@@ -185,8 +189,12 @@ namespace Arbor
 
 			T behaviour = StateBehaviour.Create<T>( _StateMachine,stateID );
 
+			ComponentUtility.RecordObject(stateMachine, "Add Behaviour");
+
 			_Behaviours.Add( behaviour );
-			
+
+			ComponentUtility.SetDirty(stateMachine);
+
 			return behaviour;
 		}
 		
@@ -344,7 +352,9 @@ namespace Arbor
 			int index = _Behaviours.IndexOf( behaviour );
 			if( index >= 0 )
 			{
+				ComponentUtility.RecordObject(stateMachine, "Add Behaviour");
 				_Behaviours.RemoveAt( index );
+				ComponentUtility.SetDirty(stateMachine);
 			}
 		}
 
@@ -410,7 +420,7 @@ namespace Arbor
 		/// For Editor.
 		/// </summary>
 #endif
-		public void Restore( ArborFSMInternal stateMachine )
+		public void Move( ArborFSMInternal stateMachine )
 		{
 			if( !Application.isEditor || Application.isPlaying )
 			{
@@ -422,9 +432,9 @@ namespace Arbor
 			StateBehaviour[] sourceBehaviours = _Behaviours.ToArray();
 			_Behaviours.Clear();
 
-			foreach( StateBehaviour sorceBehaviour in sourceBehaviours )
+			foreach( StateBehaviour sourceBehaviour in sourceBehaviours )
 			{
-				ComponentUtility.RestoreBehaviour( this,sorceBehaviour );
+				ComponentUtility.MoveBehaviour( this, sourceBehaviour);
 			}
 		}
 
@@ -446,21 +456,24 @@ namespace Arbor
 #endif
 		public void SendTrigger( string message )
 		{
-			foreach( StateBehaviour behaviour in _Behaviours )
+			if (stateMachine.gameObject.activeInHierarchy && stateMachine.enabled)
 			{
-				if( stateMachine.gameObject.activeInHierarchy && stateMachine.enabled && behaviour.enabled )
+				foreach (StateBehaviour behaviour in _Behaviours)
 				{
-					System.Type type = behaviour.GetType();
-					System.Reflection.MethodInfo methodInfo = null;
-					if( !_OnStateTriggerMethods.TryGetValue( type,out methodInfo) )
+					if( behaviour.enabled && behaviour.behaviourEnabled )
 					{
-						methodInfo = type.GetMethod("OnStateTrigger",_OnStateTriggerBindingAttr,null,_OnStateTriggerTypes,null );
-						_OnStateTriggerMethods.Add( type,methodInfo );
-					}
+						System.Type type = behaviour.GetType();
+						System.Reflection.MethodInfo methodInfo = null;
+						if (!_OnStateTriggerMethods.TryGetValue(type, out methodInfo))
+						{
+							methodInfo = type.GetMethod("OnStateTrigger", _OnStateTriggerBindingAttr, null, _OnStateTriggerTypes, null);
+							_OnStateTriggerMethods.Add(type, methodInfo);
+						}
 
-					if( methodInfo != null )
-					{
-						methodInfo.Invoke( behaviour,new object[]{ message } );
+						if (methodInfo != null)
+						{
+							methodInfo.Invoke(behaviour, new object[] { message });
+						}
 					}
 				}
 			}

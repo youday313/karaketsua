@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEditor;
+using System.Linq;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,22 +9,14 @@ using Arbor;
 
 namespace ArborEditor
 {
-	internal class EditorGUITools
+	internal sealed class EditorGUITools
 	{
 		private static int s_BehaviourTitlebarHash = "s_BehaviourTitlebarHash".GetHashCode();
 		private static int s_StateTitlebarHash = "s_StateTitlebarHash".GetHashCode();
 		private static int s_StateLinkHash = "s_StateLinkHash".GetHashCode();
 		
-		private static GUIStyle s_BehaviourTitlebar = (GUIStyle)"IN Title";
-		private static GUIStyle s_BehaviourTitlebarText = (GUIStyle)"IN TitleText";
-		private static GUIStyle s_StateTitlebar = (GUIStyle)"IN BigTitle";
-
-		private static GUIStyle s_GridBackground = UnityEditor.Graphs.Styles.graphBackground;
-
 		private static GUIContent s_ContextPopupContent = new GUIContent( EditorGUIUtility.FindTexture ( "_Popup" ) );
 		private static GUIContent s_HelpButtonContent = new GUIContent( EditorGUIUtility.FindTexture ( "_Help" ) );
-
-		private static Texture2D s_lineTexture = (Texture2D)UnityEditor.Graphs.Styles.connectionTexture.image;
 
 		private static Material s_HandleWireMaterial2D;
 
@@ -41,12 +34,17 @@ namespace ArborEditor
 
 		private static MethodInfo _SearchField;
 		private static MethodInfo _ToolbarSearchField;
-		
+		private static MethodInfo _ButtonMouseDown;
+		private static MethodInfo _GetFieldInfoFromProperty;
+
 		static EditorGUITools()
 		{
 			_SearchField = typeof(EditorGUI).GetMethod("SearchField", BindingFlags.Static | BindingFlags.NonPublic);
 			_ToolbarSearchField = typeof(EditorGUI).GetMethod("ToolbarSearchField", BindingFlags.Static | BindingFlags.NonPublic,null,
 				new System.Type[] {typeof(Rect),typeof(string[]),typeof(int).MakeByRefType(), typeof(string) },null);
+			_ButtonMouseDown = typeof(EditorGUI).GetMethod("ButtonMouseDown", BindingFlags.Static | BindingFlags.NonPublic, null, new System.Type[] { typeof(Rect), typeof(GUIContent), typeof(FocusType), typeof(GUIStyle) }, null);
+
+			_GetFieldInfoFromProperty = Types.GetType("UnityEditor.ScriptAttributeUtility","UnityEditor.dll").GetMethod("GetFieldInfoFromProperty", BindingFlags.Static | BindingFlags.NonPublic);
 		}
 
 		public static string SearchField(Rect position, string text)
@@ -72,6 +70,20 @@ namespace ArborEditor
 			searchMode = (int)args[2];
 
 			return text;
+		}
+
+		public static bool ButtonMouseDown(Rect position, GUIContent content, FocusType focusType, GUIStyle style)
+		{
+			var args = new object[] { position, content, focusType, style };
+			return (bool)_ButtonMouseDown.Invoke(null, args);
+		}
+
+		public static FieldInfo GetFieldInfoFromProperty(SerializedProperty property, out System.Type type)
+		{
+			object[] parameters = { property, null };
+			FieldInfo fieldInfo = (FieldInfo)_GetFieldInfoFromProperty.Invoke(null, parameters);
+			type = (System.Type)parameters[1];
+			return fieldInfo;
 		}
 
 		private static Dictionary<string,GUIContent> _TextContents = new Dictionary<string, GUIContent>();
@@ -109,11 +121,11 @@ namespace ArborEditor
 			GL.End();
 		}
 
-		public static void BezierArrow( Vector2 start, Vector2 startTangent, Vector2 end, Vector2 endTangent, Color color, float width,float arrowWidth )
+		public static void BezierArrow( Vector2 start, Vector2 startTangent, Vector2 end, Vector2 endTangent, Texture2D tex,Color color, float width,float arrowWidth )
 		{
 			Vector2 v = (end-endTangent).normalized*arrowWidth;
 			
-			Handles.DrawBezier( start,end-v,startTangent,endTangent-v,color,s_lineTexture,width );
+			Handles.DrawBezier( start,end-v,startTangent,endTangent-v,color, tex, width );
 
 			DrawArraw( end,v.normalized,color,arrowWidth );
 		}
@@ -122,7 +134,21 @@ namespace ArborEditor
 		{
 			if (Event.current.type == EventType.Repaint)
 			{
-				s_GridBackground.Draw(position, false, false, false, false);
+				Styles.graphBackground.Draw(position, false, false, false, false);
+			}
+		}
+
+		public static void DrawSeparator()
+		{
+			Rect rect = GUILayoutUtility.GetRect(0.0f, 1.0f);
+
+			rect = new RectOffset(2, 2, 0, 0).Remove(rect);
+
+			if (Event.current.type == EventType.Repaint)
+			{
+				Texture tex = Styles.titlebar.normal.background;
+
+				GUI.DrawTextureWithTexCoords(rect, tex, new Rect(0, 1.0f, 1.0f, 1.0f - 1.0f / (float)tex.height));
 			}
 		}
 
@@ -235,6 +261,9 @@ namespace ArborEditor
 					copyState.name = state.name;
 					copyState.position = state.position;
 
+					bool cachedEnabled = ComponentUtility.enabled;
+					ComponentUtility.enabled = false;
+
 					foreach (StateBehaviour behaviour in state.behaviours)
 					{
 						StateBehaviour copyBehaviour = copyState.AddBehaviour(behaviour.GetType());
@@ -243,6 +272,8 @@ namespace ArborEditor
 
 						EditorUtility.CopySerialized(behaviour, copyBehaviour);
 					}
+
+					ComponentUtility.enabled = cachedEnabled;
 
 					_CopyNodes.Add(copyState);
 				}
@@ -287,9 +318,6 @@ namespace ArborEditor
 						state.position.x += position.x;
 						state.position.y += position.y;
 
-						ComponentUtility.EditorAddComponent cachedAddComponent = ComponentUtility.editorAddComponent;
-						ComponentUtility.editorAddComponent = null;
-
 						foreach (StateBehaviour sourceBehaviour in sourceState.behaviours)
 						{
 							StateBehaviour behaviour = state.AddBehaviour(sourceBehaviour.GetType());
@@ -299,8 +327,6 @@ namespace ArborEditor
 								CopyBehaviour(sourceBehaviour, behaviour, true);
 							}
 						}
-
-						ComponentUtility.editorAddComponent = cachedAddComponent;
 
 						duplicateNodes.Add(state);
 					}
@@ -325,11 +351,11 @@ namespace ArborEditor
 			return duplicateNodes.ToArray();
 		}
 
-		public static void RestoreBehaviour( State state,StateBehaviour sourceBehaviour )
+		public static void MoveBehaviour( State state,StateBehaviour sourceBehaviour )
 		{
-			ComponentUtility.EditorAddComponent cachedAddComponent = ComponentUtility.editorAddComponent;
-			ComponentUtility.editorAddComponent = null;
-			
+			bool cachedEnabled = ComponentUtility.enabled;
+			ComponentUtility.enabled = false;
+
 			StateBehaviour destBehaviour = state.AddBehaviour( sourceBehaviour.GetType () );
 			
 			if( destBehaviour != null )
@@ -337,7 +363,7 @@ namespace ArborEditor
 				CopyBehaviour( sourceBehaviour,destBehaviour,false );
 			}
 
-			ComponentUtility.editorAddComponent = cachedAddComponent;
+			ComponentUtility.enabled = cachedEnabled;
 		}
 
 		public static Node[] PasteNodes( ArborFSMInternal stateMachine,Vector2 position )
@@ -394,7 +420,7 @@ namespace ArborEditor
 			position.y -= 5;
 			position.height += 5+3;
 			
-			Rect namePosition = s_StateTitlebar.padding.Remove(position);
+			Rect namePosition = Styles.header.padding.Remove(position);
 			namePosition.height = 16;
 			namePosition.width -= 16+8;
 			
@@ -402,7 +428,7 @@ namespace ArborEditor
 
 			if( current.type == EventType.Repaint )
 			{
-				s_StateTitlebar.Draw( position,GUIContent.none,controlId,false );
+				Styles.header.Draw( position,GUIContent.none,controlId,false );
 			}
 
 			string name = EditorGUI.TextField( namePosition,state.name );
@@ -427,16 +453,19 @@ namespace ArborEditor
 					SerializedObject serializedObject = new SerializedObject( state.stateMachine );
 					
 					SerializedProperty startStateIDPropery = serializedObject.FindProperty( "_StartStateID" );
-					
-					if( startStateIDPropery.intValue == state.stateID )
-					{
-						menu.AddDisabledItem( GetTextContent("Set Start State") );
-					}
-					else
-					{
-						menu.AddItem( GetTextContent("Set Start State"),false,SetStartStateContextMenu,state );
-					}
 
+					if (!state.resident)
+					{
+						if ( startStateIDPropery.intValue == state.stateID )
+						{
+							menu.AddDisabledItem(GetTextContent("Set Start State"));
+						}
+						else
+						{
+							menu.AddItem(GetTextContent("Set Start State"), false, SetStartStateContextMenu, state);
+						}
+					}
+					
 					//BehaviourMenuUtility.AddMenu( state,menu );
 
 					menu.AddItem(GetTextContent("Add Behaviour"), false, AddBehaviourToStateContextMenu, new KeyValuePair<State,Rect>(state, GUIToScreenRect( position) ) );
@@ -458,7 +487,7 @@ namespace ArborEditor
 				}
 				break;
 			case EventType.Repaint:
-				s_BehaviourTitlebarText.Draw(popupPosition, s_ContextPopupContent, controlId, false);
+				Styles.titlebarText.Draw(popupPosition, s_ContextPopupContent, controlId, false);
 				break;
 			}
 		}
@@ -466,47 +495,39 @@ namespace ArborEditor
 		public static void StateTitlebar( State state )
 		{
 			Rect position = GUILayoutUtility.GetRect( 0.0f,20.0f );
+
 			StateTitlebar( position,state );
-		}
-
-		public static void CommentField(Rect position, CommentNode comment)
-		{
-			RectOffset offset = new RectOffset(6, 6, 0, 6);
-			position = offset.Remove(position);
-			
-			string commentText = EditorGUI.TextArea(position, comment.comment);
-			if (commentText != comment.comment)
-			{
-				ArborFSMInternal stateMachine = comment.stateMachine;
-
-				Undo.RecordObject(stateMachine, "Change Comment");
-
-				comment.comment = commentText;
-
-				EditorUtility.SetDirty(stateMachine);
-			}
 		}
 
 		public static void CommentField(CommentNode comment)
 		{
-			Rect position = GUILayoutUtility.GetRect(0.0f,50.0f);
-			CommentField(position, comment);
+			GUIStyle style = new GUIStyle(EditorStyles.textArea);
+			style.wordWrap = true;
+			Rect position = GUILayoutUtility.GetRect(new GUIContent(comment.comment), style);
+
+			EditorGUI.BeginChangeCheck();
+            string commentText = EditorGUI.TextArea(position, comment.comment, style);
+			if( EditorGUI.EndChangeCheck() )
+			{
+				Undo.RecordObject(comment.stateMachine, "Change Comment");
+
+				comment.comment = commentText;
+
+				EditorUtility.SetDirty(comment.stateMachine);
+			}
 		}
 
 		static void DeleteBehaviourContextMenu( object obj )
 		{
 			StateBehaviour behaviour = obj as StateBehaviour;
-			ArborFSMInternal stateMachine = behaviour.stateMachine;
 
 			Undo.IncrementCurrentGroup();
-			
-			Undo.RecordObject( stateMachine,"Delete Behaviour" );
+			int undoGruop = Undo.GetCurrentGroup();
 
 			behaviour.Destroy();
-			
-			Undo.CollapseUndoOperations( Undo.GetCurrentGroup() );
+			behaviour = null;
 
-			EditorUtility.SetDirty( stateMachine );
+			Undo.CollapseUndoOperations(undoGruop);
 		}
 
 		static void MoveUpBehaviourContextMenu( object obj )
@@ -649,6 +670,95 @@ namespace ArborEditor
 			AssetDatabase.OpenAsset( script );
 		}
 
+		struct ContextMenuElement
+		{
+			public string menuItem;
+			public MethodInfo method;
+			public MethodInfo validateMethod;
+			public int index;
+			public int priority;
+		}
+
+		class CompareMenuIndex : IComparer
+		{
+			int IComparer.Compare(object xo, object yo)
+			{
+				ContextMenuElement element1 = (ContextMenuElement)xo;
+				ContextMenuElement element2 = (ContextMenuElement)yo;
+				if (element1.priority != element2.priority)
+					return element1.priority.CompareTo(element2.priority);
+				return element1.index.CompareTo(element2.index);
+			}
+		}
+
+		static ContextMenuElement[] ExtractEditorMenuItem(System.Type behaviourType)
+		{
+			Dictionary<string, ContextMenuElement> dic = new Dictionary<string, ContextMenuElement>();
+
+			foreach (BehaviourMenuItemUtilitty.Element element in BehaviourMenuItemUtilitty.elements)
+			{
+				if(element.menuItem.type == behaviourType || behaviourType.IsSubclassOf(element.menuItem.type))
+				{
+					ContextMenuElement menuEelement = dic.ContainsKey(element.menuItem.menuItem) ? dic[element.menuItem.menuItem] : new ContextMenuElement();
+					menuEelement.menuItem = element.menuItem.menuItem;
+					if (element.menuItem.validate)
+					{
+						menuEelement.validateMethod = element.method;
+					}
+					else
+					{
+						menuEelement.method = element.method;
+						menuEelement.index = element.index;
+						menuEelement.priority = element.menuItem.priority;
+					}
+					dic[element.menuItem.menuItem] = menuEelement;
+				}
+			}
+			
+			ContextMenuElement[] elements = dic.Values.ToArray();
+			System.Array.Sort(elements, new CompareMenuIndex());
+
+			return elements;
+		}
+
+		static ContextMenuElement[] ExtractContextMenu(System.Type type)
+		{
+			Dictionary<string, ContextMenuElement> dic = new Dictionary<string, ContextMenuElement>();
+
+			MethodInfo[] methods = type.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+			for (int index = 0; index < methods.Length; ++index)
+			{
+				MethodInfo method = methods[index];
+				foreach (ContextMenu contextMenu in method.GetCustomAttributes(typeof(ContextMenu), false))
+				{
+					ContextMenuElement element = dic.ContainsKey(contextMenu.menuItem) ? dic[contextMenu.menuItem] : new ContextMenuElement();
+					element.menuItem = contextMenu.menuItem;
+					element.method = method;
+					dic[contextMenu.menuItem] = element;
+                }
+			}
+
+			return dic.Values.ToArray();
+		}
+
+		static void ExecuteContextMenu(object obj)
+		{
+			KeyValuePair<StateBehaviour, ContextMenuElement> pair = (KeyValuePair<StateBehaviour, ContextMenuElement>)obj;
+			StateBehaviour behaviour = pair.Key;
+			ContextMenuElement contextMenu = pair.Value;
+
+			contextMenu.method.Invoke(behaviour, null);
+        }
+
+		static void ExecuteEditorContextMenu(object obj)
+		{
+			KeyValuePair<MenuCommand, ContextMenuElement> pair = (KeyValuePair<MenuCommand, ContextMenuElement>)obj;
+			MenuCommand command = pair.Key;
+			ContextMenuElement contextMenu = pair.Value;
+
+			contextMenu.method.Invoke(null, new object[] { command } );
+		}
+
 		public static bool BehaviourTitlebar( Rect position,bool foldout,StateBehaviour behaviour )
 		{
 			int controlId = GUIUtility.GetControlID(s_BehaviourTitlebarHash,EditorGUIUtility.native, position);
@@ -657,35 +767,15 @@ namespace ArborEditor
 
 			//foldout = EditorGUI.Foldout( position,foldout,GUIContent.none,s_BehaviourTitlebar );
 
-			Rect iconPosition = new Rect(position.x + (float) s_BehaviourTitlebar.padding.left , position.y + (float)s_BehaviourTitlebar.padding.top, 16f, 16f );
-
-			Rect checkPosition = new Rect( iconPosition.xMax,iconPosition.y,16f,16f );
-
-			Rect popupPosition = new Rect( position.xMax - (float)s_BehaviourTitlebar.padding.right - 2.0f - 16.0f, iconPosition.y, 16f, 16f);
-
-			Rect helpPosition = new Rect( popupPosition.x - 18.0f, iconPosition.y, 16f, 16f);
-
-			Rect textPosition = new Rect( checkPosition.xMax + 4.0f, iconPosition.y, helpPosition.x - iconPosition.xMax - 4.0f  - 4.0f, iconPosition.height);
-
-			string titleName = behaviour.GetType().Name;
-
-			object[] objs = behaviour.GetType ().GetCustomAttributes( typeof(BehaviourTitle),false );
-
-			if( objs!=null && objs.Length > 0 )
-			{
-				BehaviourTitle attr = (BehaviourTitle)objs[0];
-				titleName = attr.titleName;
-			}
-
 			System.Type classType = behaviour.GetType();
 
 			string siteURL = Localization.GetWord("SiteURL");
 
-			string helpUrl = siteURL;
+			string helpUrl = string.Empty;
 
 			string helpTooltip = "Open Arbor Document";
 
-			object[] attributes = classType.GetCustomAttributes( typeof(BehaviourHelp),false );
+			object[] attributes = classType.GetCustomAttributes(typeof(BehaviourHelp), false);
 			if (attributes != null && attributes.Length > 0)
 			{
 				BehaviourHelp help = attributes[0] as BehaviourHelp;
@@ -698,10 +788,39 @@ namespace ArborEditor
 				attributes = classType.GetCustomAttributes(typeof(BuiltInBehaviour), false);
 				if (attributes != null && attributes.Length > 0)
 				{
-					helpUrl = siteURL + "manual/behaviour-reference/"+ classType.Name.ToLower() + "/";
-					
+					helpUrl = siteURL + "manual/behaviour-reference/" + classType.Name.ToLower() + "/";
+
 					helpTooltip = string.Format("Open Reference for {0}.", classType.Name);
 				}
+			}
+
+			Rect iconPosition = new Rect(position.x + (float)Styles.titlebar.padding.left , position.y + (float)Styles.titlebar.padding.top, 16f, 16f );
+
+			Rect checkPosition = new Rect( iconPosition.xMax,iconPosition.y,16f,16f );
+
+			Rect popupPosition = new Rect( position.xMax - (float)Styles.titlebar.padding.right - 2.0f - 16.0f, iconPosition.y, 16f, 16f);
+
+			Rect helpPosition = new Rect();
+			Rect textPosition = new Rect();
+
+			if (string.IsNullOrEmpty(helpUrl))
+			{
+				textPosition = new Rect(checkPosition.xMax + 4.0f, iconPosition.y, popupPosition.x - iconPosition.xMax - 4.0f, iconPosition.height);
+			}
+			else
+			{
+				helpPosition = new Rect(popupPosition.x - 18.0f, iconPosition.y, 16f, 16f);
+				textPosition = new Rect(checkPosition.xMax + 4.0f, iconPosition.y, helpPosition.x - iconPosition.xMax - 4.0f - 4.0f, iconPosition.height);
+			}
+			
+			string titleName = behaviour.GetType().Name;
+
+			object[] objs = behaviour.GetType ().GetCustomAttributes( typeof(BehaviourTitle),false );
+
+			if( objs!=null && objs.Length > 0 )
+			{
+				BehaviourTitle attr = (BehaviourTitle)objs[0];
+				titleName = attr.titleName;
 			}
 
 			EditorGUI.BeginChangeCheck();
@@ -713,7 +832,10 @@ namespace ArborEditor
 				EditorUtility.SetDirty( behaviour );
 			}
 
-			HelpButton( helpPosition,helpUrl,helpTooltip );
+			if (!string.IsNullOrEmpty(helpUrl))
+			{
+				HelpButton(helpPosition, helpUrl, helpTooltip);
+			}
 
 			EventType typeForControl = current.GetTypeForControl(controlId);
 			switch (typeForControl)
@@ -780,6 +902,40 @@ namespace ArborEditor
 						menu.AddDisabledItem( GetTextContent("Edit Script") );
 					}
 
+					ContextMenuElement[] editorContextMenus = ExtractEditorMenuItem(behaviour.GetType());
+					ContextMenuElement[] contextMenus = ExtractContextMenu(behaviour.GetType());
+					if (editorContextMenus.Length > 0 || contextMenus.Length > 0)
+					{
+						menu.AddSeparator("");
+						if (editorContextMenus.Length > 0)
+						{
+							MenuCommand command = new MenuCommand(behaviour);
+							foreach (ContextMenuElement element in editorContextMenus)
+							{
+								bool enable = true;
+								if (element.validateMethod != null)
+								{
+									enable = (bool)element.validateMethod.Invoke(null, new object[] { command });
+                                }
+								if (enable)
+								{
+									menu.AddItem(new GUIContent(element.menuItem), false, ExecuteEditorContextMenu, new KeyValuePair<MenuCommand, ContextMenuElement>(command, element));
+								}
+								else
+								{
+									menu.AddDisabledItem(new GUIContent(element.menuItem));
+								}
+							}
+						}
+						if (contextMenus.Length > 0)
+						{
+							foreach (ContextMenuElement element in contextMenus)
+							{
+								menu.AddItem(new GUIContent(element.menuItem), false, ExecuteContextMenu, new KeyValuePair<StateBehaviour, ContextMenuElement>(behaviour, element));
+							}
+						}
+					}
+
 					menu.DropDown( popupPosition );
 					
 					current.Use();
@@ -829,10 +985,10 @@ namespace ArborEditor
 				}
 				break;
 			case EventType.Repaint:
-				s_BehaviourTitlebar.Draw ( position,GUIContent.none,controlId,foldout );
+				Styles.titlebar.Draw ( position,GUIContent.none,controlId,foldout );
 				GUIStyle.none.Draw( iconPosition,new GUIContent( AssetPreview.GetMiniThumbnail(behaviour) ),controlId,foldout );
-				s_BehaviourTitlebarText.Draw( textPosition, new GUIContent( ObjectNames.NicifyVariableName( titleName ) ),controlId,foldout );
-				s_BehaviourTitlebarText.Draw( popupPosition, s_ContextPopupContent,controlId,foldout );
+				Styles.titlebarText.Draw( textPosition, new GUIContent( ObjectNames.NicifyVariableName( titleName ) ),controlId,foldout );
+				Styles.titlebarText.Draw( popupPosition, s_ContextPopupContent,controlId,foldout );
 				break;
 			}
 
@@ -841,7 +997,7 @@ namespace ArborEditor
 
 		public static bool BehaviourTitlebar( bool foldout,StateBehaviour behaviour )
 		{
-			Rect position = GUILayoutUtility.GetRect(GUIContent.none, s_BehaviourTitlebar );
+			Rect position = GUILayoutUtility.GetRect(GUIContent.none, Styles.titlebar);
 
 			return BehaviourTitlebar( position,foldout,behaviour );
 		}
@@ -1011,6 +1167,7 @@ namespace ArborEditor
 			State state = stateMachine.GetStateFromID( behaviour.stateID );
 			
 			SerializedProperty stateIDProperty = property.FindPropertyRelative( "stateID" );
+			SerializedProperty nameProperty = property.FindPropertyRelative("name");
 			SerializedProperty lineEnableProperty = property.FindPropertyRelative( "lineEnable" );
 			SerializedProperty lineStartProperty = property.FindPropertyRelative( "lineStart" );
 			SerializedProperty lineStartTangentProperty = property.FindPropertyRelative( "lineStartTangent" );
@@ -1018,6 +1175,11 @@ namespace ArborEditor
 			SerializedProperty lineEndTangentProperty = property.FindPropertyRelative( "lineEndTangent" );
 			SerializedProperty lineColorProperty = property.FindPropertyRelative( "lineColor" );
 			SerializedProperty lineColorChangedProperty = property.FindPropertyRelative( "lineColorChanged" );
+
+			if (!string.IsNullOrEmpty(nameProperty.stringValue))
+			{
+				label = new GUIContent(nameProperty.stringValue);
+			}
 
 			ArborEditorWindow window = ArborEditorWindow.GetCurrent();
 
@@ -1055,10 +1217,10 @@ namespace ArborEditor
 			bezier.endPos += statePosition;
 			bezier.endTangent += statePosition;
 
-			Rect colorRect = position;
-			
-			colorRect.x += colorRect.width - 32 - 16;
-			colorRect.width = 32;
+			Rect settingRect = position;
+
+			settingRect.x += settingRect.width - 16 - 16;
+			settingRect.width = 16;
 
 			Color lineColor = Color.white;
 			
@@ -1070,8 +1232,8 @@ namespace ArborEditor
 			switch( eventType )
 			{
 			case EventType.MouseDown:
-				if( position.Contains( nowPos ) && !colorRect.Contains( nowPos ) )
-				{
+					if (position.Contains(nowPos) && !settingRect.Contains(nowPos) )
+					{
 					if (currentEvent.button == 0)
 					{
 						GUIUtility.hotControl = GUIUtility.keyboardControl = controlID;
@@ -1098,7 +1260,7 @@ namespace ArborEditor
 
 					State nextState = GetStateFromPosition( stateMachine, nowPos+statePosition );
 					
-					if( nextState != null && nextState != state )
+					if( nextState != null )
 					{
 						if( window )
 						{
@@ -1145,7 +1307,7 @@ namespace ArborEditor
 							lineEndProperty.vector2Value = bezier.endPos;
 							lineEndTangentProperty.vector2Value = bezier.endTangent;
 
-							//EditorUtility.SetDirty( behaviour );
+							EditorUtility.SetDirty( behaviour );
 						}
 						
 						if( window != null )
@@ -1191,12 +1353,9 @@ namespace ArborEditor
 				break;
 			}
 
-			EditorGUI.BeginChangeCheck();
-			lineColor = EditorGUI.ColorField( colorRect,lineColor );
-			if( EditorGUI.EndChangeCheck() )
+			if (ButtonMouseDown(settingRect, s_ContextPopupContent, FocusType.Passive,GUIStyle.none))
 			{
-				lineColorProperty.colorValue = new Color( lineColor.r,lineColor.g,lineColor.b );
-				lineColorChangedProperty.boolValue = true;
+				StateLinkSettingWindow.instance.Init(property, settingRect);
 			}
 		}
 
@@ -1265,7 +1424,7 @@ namespace ArborEditor
 			GUIContent content = new GUIContent(s_HelpButtonContent);
 			content.tooltip = tooltip;
 
-			if( GUI.Button( position,content,s_BehaviourTitlebarText ) )
+			if( GUI.Button( position,content, Styles.titlebarText) )
 			{
 				Help.BrowseURL( url );
 			}
@@ -1281,28 +1440,24 @@ namespace ArborEditor
 			HelpButton( position,url,tooltip );
 		}
 
-		static int s_ButtonMouseDownHash = "ButtonMouseDownHash".GetHashCode();
-
-		public static bool ButtonMouseDown(Rect position, GUIContent content, GUIStyle style)
+		public static Rect GetPopupRect(Rect position)
 		{
-			Event current = Event.current;
+			position.xMin = position.xMax - 13f;
+			return position;
+		}
 
-			int controlId = GUIUtility.GetControlID(s_ButtonMouseDownHash, FocusType.Passive, position);
+		public static Rect SubtractPopupWidth(Rect position)
+		{
+			position.width -= 14f;
+			return position;
+		}
 
-			switch (current.type)
-			{
-				case EventType.MouseDown:
-					if (position.Contains(current.mousePosition) && current.button == 0)
-					{
-						Event.current.Use();
-						return true;
-					}
-					break;
-				case EventType.Repaint:
-					style.Draw(position, content, controlId, false);
-					break;
-			}
-			return false;
+		public static Rect PrefixLabel(Rect totalPosition, GUIContent label)
+		{
+			Rect labelPosition = new Rect(totalPosition.x + EditorGUI.indentLevel * 15f, totalPosition.y, EditorGUIUtility.labelWidth - EditorGUI.indentLevel * 15f, EditorGUIUtility.singleLineHeight);
+			Rect rect = new Rect(totalPosition.x + EditorGUIUtility.labelWidth, totalPosition.y, totalPosition.width - EditorGUIUtility.labelWidth, totalPosition.height);
+			EditorGUI.HandlePrefixLabel(totalPosition, labelPosition, label, 0, EditorStyles.label);
+			return rect;
 		}
 	}
 }
