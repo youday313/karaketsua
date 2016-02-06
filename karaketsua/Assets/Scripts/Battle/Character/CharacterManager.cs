@@ -47,4 +47,14 @@ public class CharacterManager : Singleton<CharacterManager> {
 	void Update () {
 	
 	}
+
+    Character activeCharacter;
+    public Character GetNowActiveCharacter()
+    {
+        return activeCharacter;
+    }
+    public void SetNowActiveCharacter(Character chara)
+    {
+        activeCharacter = chara;
+    }
 }

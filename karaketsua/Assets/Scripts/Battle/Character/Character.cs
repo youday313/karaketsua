@@ -80,6 +80,10 @@ public class Character : MonoBehaviour
 
     ActiveTime activeTime;
 
+
+    public bool isAttacked = false;
+    public bool isMoved = false;
+
     //移動用
     public CharacterMover mover;
     //特殊技
