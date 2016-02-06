@@ -14,6 +14,7 @@ public enum CommandState { None, Moved, TargetSelect, Attack, Skill, Wait, End }
 
 public enum CharacterState { Wait, Attack, Skill, End }
 public enum AttackDistance { Near, Middle, Far }
+public enum ElementKind{None,Fire,Water, Earth,Wind,Thunder }
 
 [System.Serializable]
 [RequireComponent(typeof(CharacterMover))]
@@ -31,11 +32,12 @@ public class CharacterParameter
     public int power;
     //防御力
     public int deffence;
-    //精神力
+    //精神力,MP
     public int skillPoint;
     //知力
     public int intellect;
-
+    //気力,移動攻撃用
+    public int movePoint;
 
 
 }
@@ -49,13 +51,13 @@ public class AttackParameter
     //攻撃種類
     public AttackDistance attackDistance;
 
+    public ElementKind element;
     //範囲攻撃
     //範囲内の全ての敵にダメージ
     public bool isMultiAttack;
 
     //技の威力
     public int power;
-
 
 }
 
