@@ -3,7 +3,9 @@ using System.Collections;
 using Arbor;
 
 public class BCharacterWaitState : StateBehaviour {
-	// Use this for initialization
+	
+    
+    // Use this for initialization
 	void Start () {
 	
 	}
@@ -20,4 +22,10 @@ public class BCharacterWaitState : StateBehaviour {
 	void Update () {
 	
 	}
+
+    public void OnActive()
+    {
+
+    }
+
 }

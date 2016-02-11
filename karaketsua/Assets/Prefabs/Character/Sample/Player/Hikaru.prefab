@@ -22,6 +22,7 @@ GameObject:
   - 114: {fileID: 11455152}
   - 114: {fileID: 11464212}
   - 114: {fileID: 11402838}
+  - 114: {fileID: 11477362}
   m_Layer: 0
   m_Name: Hikaru
   m_TagString: BattleCharacter
@@ -3003,6 +3004,7 @@ MonoBehaviour:
       - x: 0
         y: -1
       attackDistance: 0
+      element: 0
       isMultiAttack: 0
       power: 0
     - attackRange:
@@ -3015,6 +3017,7 @@ MonoBehaviour:
       - x: 0
         y: -3
       attackDistance: 1
+      element: 0
       isMultiAttack: 0
       power: 0
     - attackRange:
@@ -3027,6 +3030,7 @@ MonoBehaviour:
       - x: 0
         y: -3
       attackDistance: 2
+      element: 0
       isMultiAttack: 0
       power: 0
     activeSpeed: 2400
@@ -3034,11 +3038,12 @@ MonoBehaviour:
     deffence: 2700
     skillPoint: 2700
     intellect: 100
+    movePoint: 0
+  mover: {fileID: 0}
   deathEffect: {fileID: 0}
   activeCircle: {fileID: 191974}
   isAttacked: 0
   isMoved: 0
-  mover: {fileID: 0}
 --- !u!114 &11430008
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -3126,6 +3131,32 @@ MonoBehaviour:
   changeTimeSingleMode: 1
   attackEffectPrefab: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
   resetInterval: 3
+--- !u!114 &11477362
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100656}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a0ffa05d7023f44aacdfada32c15663, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _StateMachine: {fileID: 11477396}
+  _StateID: 1976681210
+  expanded: 1
+  _BehaviourEnabled: 1
+  _NextState:
+    name: 
+    stateID: 1746430907
+    immediateTransition: 0
+    lineEnable: 1
+    lineStart: {x: 104, y: -77}
+    lineStartTangent: {x: 54, y: -77}
+    lineEnd: {x: 96, y: 32}
+    lineEndTangent: {x: 46, y: 32}
+    lineColorChanged: 0
+    lineColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &11477396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3144,19 +3175,20 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 96
-      y: -72
+      y: -192
       width: 300
-      height: 88
+      height: 123
     _StateID: 1976681210
     _Resident: 0
     _Behaviours:
     - {fileID: 11402838}
+    - {fileID: 11477362}
     name: Start
   - _StateMachine: {fileID: 11477396}
     position:
       serializedVersion: 2
       x: 96
-      y: 48
+      y: 0
       width: 300
       height: 88
     _StateID: 1746430907
@@ -3241,7 +3273,7 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 396
-      y: -72
+      y: -192
       width: 300
       height: 45
     _CommentID: 787814235
@@ -3250,7 +3282,7 @@ MonoBehaviour:
     position:
       serializedVersion: 2
       x: 396
-      y: 48
+      y: 0
       width: 300
       height: 45
     _CommentID: 1516180604
@@ -3367,6 +3399,10 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: _States.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: skillTiles.Array.size
       value: 7
       objectReference: {fileID: 0}
@@ -3408,7 +3444,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _States.Array.data[0]._Behaviours.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackParameter.Array.size
@@ -3436,7 +3472,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.attackRange.Array.data[0].x
@@ -3657,6 +3693,122 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _States.Array.data[0].position.height
       value: 88
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[0].position.y
+      value: -192
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _Comments.Array.data[0].position.y
+      value: -192
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[8].position.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[8].position.y
+      value: -120
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[8]._StateMachine
+      value: 
+      objectReference: {fileID: 11477396}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[8].position.width
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[8].position.height
+      value: 49
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[8]._StateID
+      value: 1784046367
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[8].name
+      value: New State
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _StateMachine
+      value: 
+      objectReference: {fileID: 11477396}
+    - target: {fileID: 0}
+      propertyPath: _StateID
+      value: 825429695
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.stateID
+      value: 1746430907
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineEnable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineStart.x
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineStart.y
+      value: -77
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineStartTangent.x
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineStartTangent.y
+      value: -77
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineEnd.x
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineEnd.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineEndTangent.x
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _NextState.lineEndTangent.y
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[1].position.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _Comments.Array.data[1].position.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _Reference.animator
+      value: 
+      objectReference: {fileID: 9550826}
+    - target: {fileID: 0}
+      propertyPath: _Reference.name
+      value: Move
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _Reference.type
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _BoolValue._Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[1]._Behaviours.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: _States.Array.data[7]._Behaviours.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

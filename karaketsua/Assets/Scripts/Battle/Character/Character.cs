@@ -63,29 +63,34 @@ public class AttackParameter
 
 public class Character : MonoBehaviour
 {
-
-
-    [System.NonSerialized]
-    public CharacterState characterState = CharacterState.Wait;
-    //現在のキャラクター位置配列
-    [System.NonSerialized]
-    public IntVect2D positionArray = new IntVect2D(0, 0);
+    ///public変数
     //アクティブか
     [System.NonSerialized]
     public bool isNowSelect = false;
 
-    public CharacterParameter characterParameter;
-    public GameObject deathEffect;
+    //現在のキャラクター位置配列
+    [System.NonSerialized]
+    public IntVect2D positionArray = new IntVect2D(0, 0);
     [System.NonSerialized]
     public bool isEnemy = false;
-    public GameObject activeCircle;
 
+
+    ///インスペクタから編集
+    public CharacterParameter characterParameter;
+
+
+
+
+    ///他クラス参照
+
+
+
+
+    ///private変数
+    //ステートマシン
+
+    //アクティブタイム
     ActiveTime activeTime;
-
-
-    public bool isAttacked = false;
-    public bool isMoved = false;
-
     //移動用
     public CharacterMover mover;
     //特殊技
@@ -95,8 +100,26 @@ public class Character : MonoBehaviour
     Animator animator;
     CharacterStateUI StateUI;
     CharacterDetailStateUI detailStateUI;
-
     CameraMove cameraMove;
+
+
+
+
+
+
+    [System.NonSerialized]
+    public CharacterState characterState = CharacterState.Wait;
+
+
+    public GameObject deathEffect;
+
+    public GameObject activeCircle;
+
+
+
+    public bool isAttacked = false;
+    public bool isMoved = false;
+
 
     #region::初期化
 
@@ -135,7 +158,6 @@ public class Character : MonoBehaviour
         }
         positionArray.x = array.x;
         positionArray.y = array.y;
-
     }
     void DisableActionMode()
     {

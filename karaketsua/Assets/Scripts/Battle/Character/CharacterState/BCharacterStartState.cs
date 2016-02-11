@@ -14,6 +14,7 @@ public class BCharacterStartState : StateBehaviour {
 
 	// Use this for exit state
 	public override void OnStateEnd() {
+
 	}
 	
 	// Update is called once per frame
