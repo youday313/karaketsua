@@ -72,7 +72,6 @@ public class BattleStage : Singleton<BattleStage>
         {
             ResetAllTileColor();
             ChangeColor(positionArray, state);
-            
         }
 
 
@@ -86,17 +85,57 @@ public class BattleStage : Singleton<BattleStage>
 	}
 
     //ゲット関連
+    //タイルを返す
     public TileBase GetTile(IntVect2D position)
     {
         return tileBases.Where(t => position.IsEqual(t.positionArray)).FirstOrDefault();
     }
-    //xとzを返すことに注意
+    //引数はスクリーン座標
+    public TileBase GetTileFromScreenPostion(Vector2 touchPosition)
+    {
+        RaycastHit hit;  // 光線に当たったオブジェクトを受け取るクラス 
+        Ray ray;  // 光線クラス
+
+        // スクリーン座標に対してマウスの位置の光線を取得
+        var camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        ray = camera.ScreenPointToRay(touchPosition);
+        // マウスの光線の先にオブジェクトが存在していたら hit に入る 
+        //Tileのlayer番号は8
+        var layerMask = 1 << 8;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            if (hit.collider.tag == "Tile")
+            {
+                // 当たったオブジェクトのTileBaseクラスを取得
+                return hit.collider.GetComponent<TileBase>();
+            }
+        }
+        return null;
+    }
+
+    //タイルのVect2Dを返す
+    public IntVect2D GetTilePosition(IntVect2D position)
+    {
+        var tile=GetTile(position);
+        if (tile == null) return null;
+        return GetTile(position).positionArray;
+    }
+    //引数はスクリーン座標
+    public IntVect2D GetTilePositionFromScreenPosition(Vector2 touchPosition)
+    {
+        var tile = GetTileFromScreenPostion(touchPosition);
+        if (tile == null) return null;
+        return tile.positionArray;
+    }
+
+    //実座標のxとzを返す
     public Vector2 GetTileXAndZPosition(IntVect2D position)
     {
         var tile=GetTile(position);
         return new Vector2(tile.transform.position.x, tile.transform.position.z);
 
     }
+
     public List<TileBase> GetVerticalHorizontalTiles(IntVect2D position)
     {
 
@@ -108,6 +147,7 @@ public class BattleStage : Singleton<BattleStage>
         (Vector2.Distance(new Vector2(t.positionArray.x, t.positionArray.y), new Vector2(position.x, position.y)) <= distance)
         && !(position.IsEqual(t.positionArray))).ToList();
     }
+
 
     //色変更
     public void ResetAllTileColor()
@@ -146,4 +186,5 @@ public class BattleStage : Singleton<BattleStage>
             tile.ChangeColor(toState);
         }
     }
+
 }

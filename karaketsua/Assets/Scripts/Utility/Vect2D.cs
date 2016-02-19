@@ -60,6 +60,24 @@ public class IntVect2D
     {
         return new IntVect2D(newVect.x - oldVect.x, newVect.y - oldVect.y);
     }
+
+    //最大方向の取得
+
+    public static IntVect2D GetDirectionFromVector2(Vector2 delta)
+    {
+        //x方向
+        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        {
+            return new IntVect2D((int)Mathf.Sign(delta.x), 0);
+
+        }
+        //y方向
+        else
+        {
+            return new IntVect2D(0, (int)Mathf.Sign(delta.y));
+        }
+    }
+
 }
 
 #endregion

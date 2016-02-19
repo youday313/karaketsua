@@ -13,7 +13,6 @@ GameObject:
   - 114: {fileID: 11443902}
   - 114: {fileID: 11468130}
   - 114: {fileID: 11490028}
-  - 114: {fileID: 11477396}
   - 114: {fileID: 11497362}
   - 114: {fileID: 11401470}
   - 114: {fileID: 11427062}
@@ -2930,7 +2929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efc81744b42b45e1a0911756322cdb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 97063326
   expanded: 1
   _BehaviourEnabled: 1
@@ -2945,7 +2944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 301637eac84734205b5603605c6e292a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 1976681210
   expanded: 1
   _BehaviourEnabled: 1
@@ -2960,7 +2959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc943326e0f3041b0a1565602625a276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 1055679998
   expanded: 1
   _BehaviourEnabled: 1
@@ -2975,7 +2974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f8e5bf98c23400491a45c5195b008b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 825429695
   expanded: 1
   _BehaviourEnabled: 1
@@ -3055,7 +3054,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85a5b027723b7439694d9925fac54a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 2014296670
   expanded: 1
   _BehaviourEnabled: 1
@@ -3082,7 +3081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07c3b075de8f5475fac1591dcf019c40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 1285930301
   expanded: 1
   _BehaviourEnabled: 1
@@ -3097,7 +3096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568eb95bd2355400cb3c40ff7d91706e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 1746430907
   expanded: 1
   _BehaviourEnabled: 1
@@ -3142,7 +3141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a0ffa05d7023f44aacdfada32c15663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 1976681210
   expanded: 1
   _BehaviourEnabled: 1
@@ -3157,145 +3156,6 @@ MonoBehaviour:
     lineEndTangent: {x: 46, y: 32}
     lineColorChanged: 0
     lineColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &11477396
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3982f3d49853bb44283cd1fcef05a3dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fsmName: PlayerCharacterFSM
-  _StartStateID: 1976681210
-  _States:
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 96
-      y: -192
-      width: 300
-      height: 123
-    _StateID: 1976681210
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11402838}
-    - {fileID: 11477362}
-    name: Start
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 96
-      y: 0
-      width: 300
-      height: 88
-    _StateID: 1746430907
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11464212}
-    name: Wait
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 96
-      y: 192
-      width: 300
-      height: 88
-    _StateID: 557563932
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11497362}
-    name: Active
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: -108
-      y: 312
-      width: 300
-      height: 88
-    _StateID: 1285930301
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11455152}
-    name: Move
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 240
-      y: 312
-      width: 300
-      height: 88
-    _StateID: 97063326
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11401470}
-    name: Attack
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 96
-      y: 444
-      width: 300
-      height: 88
-    _StateID: 1055679998
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11418286}
-    name: End
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: -276
-      y: 48
-      width: 300
-      height: 88
-    _StateID: 2014296670
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11430008}
-    name: Damage
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: -276
-      y: 156
-      width: 300
-      height: 88
-    _StateID: 825429695
-    _Resident: 0
-    _Behaviours:
-    - {fileID: 11427062}
-    name: Death
-  _Comments:
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 396
-      y: -192
-      width: 300
-      height: 45
-    _CommentID: 787814235
-    comment: "\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF"
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 396
-      y: 0
-      width: 300
-      height: 45
-    _CommentID: 1516180604
-    comment: "\u5F85\u6A5F"
-  - _StateMachine: {fileID: 11477396}
-    position:
-      serializedVersion: 2
-      x: 396
-      y: 192
-      width: 300
-      height: 45
-    _CommentID: 327313629
-    comment: "\u884C\u52D5\u9078\u629E\u958B\u59CB"
 --- !u!114 &11490028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3320,10 +3180,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25671cbae54ae445ebcedb47d8ef8ac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 11477396}
+  _StateMachine: {fileID: 0}
   _StateID: 557563932
   expanded: 1
   _BehaviourEnabled: 1
+  mover: {fileID: 0}
 --- !u!137 &13730464
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3713,7 +3574,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _States.Array.data[8]._StateMachine
       value: 
-      objectReference: {fileID: 11477396}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _States.Array.data[8].position.width
       value: 300
@@ -3733,7 +3594,7 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: _StateMachine
       value: 
-      objectReference: {fileID: 11477396}
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _StateID
       value: 825429695

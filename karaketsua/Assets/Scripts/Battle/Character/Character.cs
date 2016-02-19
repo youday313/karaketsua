@@ -87,7 +87,7 @@ public class Character : MonoBehaviour
 
 
     ///private変数
-    //ステートマシン
+
 
     //アクティブタイム
     ActiveTime activeTime;
@@ -101,10 +101,6 @@ public class Character : MonoBehaviour
     CharacterStateUI StateUI;
     CharacterDetailStateUI detailStateUI;
     CameraMove cameraMove;
-
-
-
-
 
 
     [System.NonSerialized]
@@ -140,7 +136,7 @@ public class Character : MonoBehaviour
         //Init();
     }
 
-
+    //タイルの上に移動
     void SetPositionOnTile()
     {
         var tilePosition = BattleStage.Instance.GetTile(positionArray).transform.position;
@@ -159,6 +155,7 @@ public class Character : MonoBehaviour
         positionArray.x = array.x;
         positionArray.y = array.y;
     }
+    //非選択状態
     void DisableActionMode()
     {
         isNowSelect = false;

@@ -8,7 +8,6 @@ public class CameraChange : Singleton<CameraChange> {
 
     public GameObject leanCameraObject;
     public GameObject upCameraObject;
-    public GameObject actionUI;
     CameraMove leanCamera;
 	// Use this for initialization
 	void Start () {
@@ -56,17 +55,18 @@ public class CameraChange : Singleton<CameraChange> {
 
     void ActiveLeanCamera(CameraMode _cameraMode)
     {
-        
-
         leanCamera.ChangeFrontMode(_cameraMode);
-
-
-        
     }
     void ActiveUpMode()
     {
         leanCameraObject.SetActive(false);
         upCameraObject.SetActive(true);
-        actionUI.SetActive(false);
+    }
+
+    void ActiveLeanMode()
+    {
+        leanCameraObject.SetActive(true);
+        upCameraObject.SetActive(false);
+ 
     }
 }

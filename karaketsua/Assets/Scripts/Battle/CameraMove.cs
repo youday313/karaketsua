@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using BattleScene;
 
 public class CameraMove : MonoBehaviour
 {
@@ -198,15 +199,19 @@ public class CameraMove : MonoBehaviour
         SetCameraButtonActivity(false);
     }
 
-    public void MoveToTapAttack(CharacterAttacker attackCharacter, Vector3 targetPosition,float changeTimeTapMode)
+    //タップ位置
+    //Tweenはなし
+    public void MoveToTapAttack(BCharacterAttacker attackCharacter, Vector3 targetPosition,float changeTimeTapMode)
     {
 
         var centerPosition = (targetPosition - attackCharacter.transform.position) / 2;
         var newPosition = attackCharacter.transform.position + centerPosition;
+        transform.position = newPosition + attackCamera[(int)CameraState.TapAttack].position;
+        transform.eulerAngles = new Vector3(attackCamera[(int)CameraState.TapAttack].rotation.x, GetInverseRotationFromFrontMode() + attackCamera[(int)CameraState.TapAttack].rotation.y,attackCamera[(int)CameraState.TapAttack].rotation.z);
 
-        iTween.MoveTo(gameObject, iTween.Hash("x", newPosition.x + attackCamera[(int)CameraState.TapAttack].position.x, "y", newPosition.y + attackCamera[(int)CameraState.TapAttack].position.y, "z", newPosition.z + attackCamera[(int)CameraState.TapAttack].position.z,
-                   "time", changeTimeTapMode));
-        iTween.RotateTo(gameObject, iTween.Hash("x", attackCamera[(int)CameraState.TapAttack].rotation.x, "y", GetInverseRotationFromFrontMode() + attackCamera[(int)CameraState.TapAttack].rotation.y, "z", attackCamera[(int)CameraState.TapAttack].rotation.z, "time", changeTimeTapMode, "islocal", true));
+        //iTween.MoveTo(gameObject, iTween.Hash("x", newPosition.x + attackCamera[(int)CameraState.TapAttack].position.x, "y", newPosition.y + attackCamera[(int)CameraState.TapAttack].position.y, "z", newPosition.z + attackCamera[(int)CameraState.TapAttack].position.z,
+        //           "time", changeTimeTapMode));
+        //iTween.RotateTo(gameObject, iTween.Hash("x", attackCamera[(int)CameraState.TapAttack].rotation.x, "y", GetInverseRotationFromFrontMode() + attackCamera[(int)CameraState.TapAttack].rotation.y, "z", attackCamera[(int)CameraState.TapAttack].rotation.z, "time", changeTimeTapMode, "islocal", true));
     }
 
     void StartCameraMoveUseiTween(Vector3 pos,AttackDistance distance)
