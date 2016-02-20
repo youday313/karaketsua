@@ -2934,9 +2934,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 242296ccc2a621241b2efcc19e344e5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singleAttack: {fileID: 0}
-  moveAttack: {fileID: 0}
-  IsAttacked: 0
   activeCircle: {fileID: 131162}
   characterParameter:
     charaName: "\u4E00\u4E4B\u702C"
@@ -3146,7 +3143,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 113980}

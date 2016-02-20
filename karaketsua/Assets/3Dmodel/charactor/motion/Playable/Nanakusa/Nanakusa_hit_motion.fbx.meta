@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: d34312da30465d840917c6fb6e0e0756
+timeCreated: 1455948269
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: back_kimono
+    100002: back_kimono_midle
+    100004: back_kimono_tip
+    100006: front_kimono
+    100008: front_kimono_midle
+    100010: front_kimono_tip
+    100012: holder_poly
+    100014: holder_poly1
+    100016: katanugi
+    100018: katanugi_tip
+    100020: left_gun_rig
+    100022: Nana_gun_poly1
+    100024: Nana_gun_poly2
+    100026: Nanakusa_Head
+    100028: Nanakusa_Hips
+    100030: //RootNode
+    100032: Nanakusa_LeftArm
+    100034: Nanakusa_LeftFoot
+    100036: Nanakusa_LeftForeArm
+    100038: Nanakusa_LeftHand
+    100040: Nanakusa_LeftHandMiddle1
+    100042: Nanakusa_LeftHandMiddle2
+    100044: Nanakusa_LeftHandThumb1
+    100046: Nanakusa_LeftHandThumb2
+    100048: Nanakusa_LeftLeg
+    100050: Nanakusa_LeftToeBase
+    100052: Nanakusa_LeftUpLeg
+    100054: Nanakusa_Neck
+    100056: Nanakusa_RightArm
+    100058: Nanakusa_RightFoot
+    100060: Nanakusa_RightForeArm
+    100062: Nanakusa_RightHand
+    100064: Nanakusa_RightHandMiddle1
+    100066: Nanakusa_RightHandMiddle2
+    100068: Nanakusa_RightHandThumb1
+    100070: Nanakusa_RightHandThumb2
+    100072: Nanakusa_RightLeg
+    100074: Nanakusa_RightToeBase
+    100076: Nanakusa_RightUpLeg
+    100078: Nanakusa_setup_Nanakusa_poly
+    100080: Nanakusa_setup_Nanakusa_Reference
+    100082: Nanakusa_Spine
+    100084: Nanakusa_Spine1
+    100086: Nanakusa_Spine2
+    100088: right_gun_rig
+    400000: back_kimono
+    400002: back_kimono_midle
+    400004: back_kimono_tip
+    400006: front_kimono
+    400008: front_kimono_midle
+    400010: front_kimono_tip
+    400012: holder_poly
+    400014: holder_poly1
+    400016: katanugi
+    400018: katanugi_tip
+    400020: left_gun_rig
+    400022: Nana_gun_poly1
+    400024: Nana_gun_poly2
+    400026: Nanakusa_Head
+    400028: Nanakusa_Hips
+    400030: //RootNode
+    400032: Nanakusa_LeftArm
+    400034: Nanakusa_LeftFoot
+    400036: Nanakusa_LeftForeArm
+    400038: Nanakusa_LeftHand
+    400040: Nanakusa_LeftHandMiddle1
+    400042: Nanakusa_LeftHandMiddle2
+    400044: Nanakusa_LeftHandThumb1
+    400046: Nanakusa_LeftHandThumb2
+    400048: Nanakusa_LeftLeg
+    400050: Nanakusa_LeftToeBase
+    400052: Nanakusa_LeftUpLeg
+    400054: Nanakusa_Neck
+    400056: Nanakusa_RightArm
+    400058: Nanakusa_RightFoot
+    400060: Nanakusa_RightForeArm
+    400062: Nanakusa_RightHand
+    400064: Nanakusa_RightHandMiddle1
+    400066: Nanakusa_RightHandMiddle2
+    400068: Nanakusa_RightHandThumb1
+    400070: Nanakusa_RightHandThumb2
+    400072: Nanakusa_RightLeg
+    400074: Nanakusa_RightToeBase
+    400076: Nanakusa_RightUpLeg
+    400078: Nanakusa_setup_Nanakusa_poly
+    400080: Nanakusa_setup_Nanakusa_Reference
+    400082: Nanakusa_Spine
+    400084: Nanakusa_Spine1
+    400086: Nanakusa_Spine2
+    400088: right_gun_rig
+    2300000: holder_poly
+    2300002: holder_poly1
+    2300004: left_gun_rig
+    2300006: Nana_gun_poly1
+    2300008: Nana_gun_poly2
+    2300010: right_gun_rig
+    3300000: holder_poly
+    3300002: holder_poly1
+    3300004: left_gun_rig
+    3300006: Nana_gun_poly1
+    3300008: Nana_gun_poly2
+    3300010: right_gun_rig
+    4300000: left_gun_rig
+    4300002: right_gun_rig
+    4300004: holder_poly
+    4300006: holder_poly1
+    4300008: Nanakusa_setup_Nanakusa_poly
+    4300010: Nana_gun_poly1
+    4300012: Nana_gun_poly2
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Nanakusa_setup_Nanakusa_poly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

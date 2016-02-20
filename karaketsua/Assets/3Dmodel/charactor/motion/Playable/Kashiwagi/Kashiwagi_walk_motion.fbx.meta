@@ -1,0 +1,175 @@
+fileFormatVersion: 2
+guid: f35884fcb5b9b824d8a38a667ebec7a3
+timeCreated: 1455950390
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: back_kimono
+    100002: back_kimono_tip
+    100004: front1
+    100006: front_kimono
+    100008: front_kimono_tip
+    100010: Kashi_left_sword
+    100012: Kashi_right_sword
+    100014: Kashi_saya_poly
+    100016: Kashiwagi_Head
+    100018: Kashiwagi_Hips
+    100020: Kashiwagi_LeftArm
+    100022: Kashiwagi_LeftFoot
+    100024: Kashiwagi_LeftForeArm
+    100026: Kashiwagi_LeftHand
+    100028: Kashiwagi_LeftHandMiddle1
+    100030: Kashiwagi_LeftHandMiddle2
+    100032: Kashiwagi_LeftHandThumb1
+    100034: Kashiwagi_LeftHandThumb2
+    100036: Kashiwagi_LeftLeg
+    100038: Kashiwagi_LeftToeBase
+    100040: Kashiwagi_LeftUpLeg
+    100042: Kashiwagi_Neck
+    100044: Kashiwagi_poly
+    100046: Kashiwagi_Reference
+    100048: Kashiwagi_RightArm
+    100050: Kashiwagi_RightFoot
+    100052: Kashiwagi_RightForeArm
+    100054: Kashiwagi_RightHand
+    100056: Kashiwagi_RightHandMiddle1
+    100058: Kashiwagi_RightHandMiddle2
+    100060: Kashiwagi_RightHandThumb1
+    100062: Kashiwagi_RightHandThumb2
+    100064: Kashiwagi_RightLeg
+    100066: Kashiwagi_RightToeBase
+    100068: Kashiwagi_RightUpLeg
+    100070: Kashiwagi_Spine
+    100072: Kashiwagi_Spine1
+    100074: Kashiwagi_Spine2
+    100076: //RootNode
+    100078: ponite
+    100080: ponite_midle
+    100082: ponite_tip
+    100084: skinWrangler_jointBboxLocator
+    100086: sword_rig
+    400000: back_kimono
+    400002: back_kimono_tip
+    400004: front1
+    400006: front_kimono
+    400008: front_kimono_tip
+    400010: Kashi_left_sword
+    400012: Kashi_right_sword
+    400014: Kashi_saya_poly
+    400016: Kashiwagi_Head
+    400018: Kashiwagi_Hips
+    400020: Kashiwagi_LeftArm
+    400022: Kashiwagi_LeftFoot
+    400024: Kashiwagi_LeftForeArm
+    400026: Kashiwagi_LeftHand
+    400028: Kashiwagi_LeftHandMiddle1
+    400030: Kashiwagi_LeftHandMiddle2
+    400032: Kashiwagi_LeftHandThumb1
+    400034: Kashiwagi_LeftHandThumb2
+    400036: Kashiwagi_LeftLeg
+    400038: Kashiwagi_LeftToeBase
+    400040: Kashiwagi_LeftUpLeg
+    400042: Kashiwagi_Neck
+    400044: Kashiwagi_poly
+    400046: Kashiwagi_Reference
+    400048: Kashiwagi_RightArm
+    400050: Kashiwagi_RightFoot
+    400052: Kashiwagi_RightForeArm
+    400054: Kashiwagi_RightHand
+    400056: Kashiwagi_RightHandMiddle1
+    400058: Kashiwagi_RightHandMiddle2
+    400060: Kashiwagi_RightHandThumb1
+    400062: Kashiwagi_RightHandThumb2
+    400064: Kashiwagi_RightLeg
+    400066: Kashiwagi_RightToeBase
+    400068: Kashiwagi_RightUpLeg
+    400070: Kashiwagi_Spine
+    400072: Kashiwagi_Spine1
+    400074: Kashiwagi_Spine2
+    400076: //RootNode
+    400078: ponite
+    400080: ponite_midle
+    400082: ponite_tip
+    400084: skinWrangler_jointBboxLocator
+    400086: sword_rig
+    2300000: Kashi_left_sword
+    2300002: Kashi_right_sword
+    2300004: Kashi_saya_poly
+    2300006: sword_rig
+    3300000: Kashi_left_sword
+    3300002: Kashi_right_sword
+    3300004: Kashi_saya_poly
+    3300006: sword_rig
+    4300000: sword_rig
+    4300002: Kashi_saya_poly
+    4300004: Kashi_left_sword
+    4300006: Kashi_right_sword
+    4300008: Kashiwagi_poly
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Kashiwagi_poly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

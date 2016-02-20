@@ -3556,6 +3556,10 @@ Prefab:
       propertyPath: _States.Array.data[7]._Behaviours.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100656}

@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 866a38685025f464d843150b61e30888
+timeCreated: 1455942573
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Basara_Base
+    100002: //RootNode
+    100004: Basara_mesh
+    100006: Head
+    100008: Hip
+    100010: joint1
+    100012: L_B_Foot
+    100014: L_B_Knee
+    100016: L_B_leg
+    100018: L_B_Toe
+    100020: L_F_Foot
+    100022: L_F_Knee
+    100024: L_F_leg
+    100026: L_F_Toe
+    100028: Left_ForeArm
+    100030: Left_Hand
+    100032: Left_Shoulder
+    100034: Neck
+    100036: R_B_Foot
+    100038: R_B_Knee
+    100040: R_B_leg
+    100042: R_B_Toe
+    100044: R_F_Foot
+    100046: R_F_Knee
+    100048: R_F_leg1
+    100050: R_F_Toe
+    100052: Right_ForeArm
+    100054: Right_Shoulder
+    100056: Spine
+    100058: Spine1
+    400000: Basara_Base
+    400002: //RootNode
+    400004: Basara_mesh
+    400006: Head
+    400008: Hip
+    400010: joint1
+    400012: L_B_Foot
+    400014: L_B_Knee
+    400016: L_B_leg
+    400018: L_B_Toe
+    400020: L_F_Foot
+    400022: L_F_Knee
+    400024: L_F_leg
+    400026: L_F_Toe
+    400028: Left_ForeArm
+    400030: Left_Hand
+    400032: Left_Shoulder
+    400034: Neck
+    400036: R_B_Foot
+    400038: R_B_Knee
+    400040: R_B_leg
+    400042: R_B_Toe
+    400044: R_F_Foot
+    400046: R_F_Knee
+    400048: R_F_leg1
+    400050: R_F_Toe
+    400052: Right_ForeArm
+    400054: Right_Shoulder
+    400056: Spine
+    400058: Spine1
+    4300000: Basara_mesh
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Basara_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

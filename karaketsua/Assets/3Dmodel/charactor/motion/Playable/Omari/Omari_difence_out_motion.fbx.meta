@@ -1,0 +1,141 @@
+fileFormatVersion: 2
+guid: cb6ba2e94f932644fa2e8fc0372fb837
+timeCreated: 1455949444
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Left_sleeve_half
+    100002: Left_sleeve_tip
+    100004: Left_tail_haif
+    100006: Left_tail_root
+    100008: //RootNode
+    100010: Omari_Head
+    100012: Omari_Hips
+    100014: Omari_LeftArm
+    100016: Omari_LeftFoot
+    100018: Omari_LeftForeArm
+    100020: Omari_LeftHand
+    100022: Omari_LeftHandMiddle1
+    100024: Omari_LeftHandThumb1
+    100026: Omari_LeftLeg
+    100028: Omari_LeftUpLeg
+    100030: Omari_Neck
+    100032: Omari_poly
+    100034: Omari_RightArm
+    100036: Omari_RightFoot
+    100038: Omari_RightForeArm
+    100040: Omari_RightHand
+    100042: Omari_RightHandMiddle1
+    100044: Omari_RightHandThumb1
+    100046: Omari_RightLeg
+    100048: Omari_RightUpLeg
+    100050: Omari_setup_Omari_Reference1
+    100052: Omari_Spine
+    100054: Omari_Spine1
+    100056: Omari_Spine2
+    100058: Right_sleeve_half
+    100060: Right_sleeve_tip
+    100062: Right_tail_haif
+    100064: Right_tail_root
+    400000: Left_sleeve_half
+    400002: Left_sleeve_tip
+    400004: Left_tail_haif
+    400006: Left_tail_root
+    400008: //RootNode
+    400010: Omari_Head
+    400012: Omari_Hips
+    400014: Omari_LeftArm
+    400016: Omari_LeftFoot
+    400018: Omari_LeftForeArm
+    400020: Omari_LeftHand
+    400022: Omari_LeftHandMiddle1
+    400024: Omari_LeftHandThumb1
+    400026: Omari_LeftLeg
+    400028: Omari_LeftUpLeg
+    400030: Omari_Neck
+    400032: Omari_poly
+    400034: Omari_RightArm
+    400036: Omari_RightFoot
+    400038: Omari_RightForeArm
+    400040: Omari_RightHand
+    400042: Omari_RightHandMiddle1
+    400044: Omari_RightHandThumb1
+    400046: Omari_RightLeg
+    400048: Omari_RightUpLeg
+    400050: Omari_setup_Omari_Reference1
+    400052: Omari_Spine
+    400054: Omari_Spine1
+    400056: Omari_Spine2
+    400058: Right_sleeve_half
+    400060: Right_sleeve_tip
+    400062: Right_tail_haif
+    400064: Right_tail_root
+    4300000: Omari_poly
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Omari_poly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

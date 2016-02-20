@@ -95,6 +95,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _ShadowTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ToonShade
         second:
           m_Texture: {fileID: 0}
@@ -158,13 +165,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _ShadowTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _FalloffTex
         second:
           m_Texture: {fileID: 0}
@@ -182,15 +182,15 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: .5
+        second: 0.5
       data:
         first:
           name: _Shininess
-        second: .078125
+        second: 0.078125
       data:
         first:
           name: _Smoothness
-        second: .5
+        second: 0.5
       data:
         first:
           name: _WindQuality
@@ -206,7 +206,7 @@ Material:
       data:
         first:
           name: _Parallax
-        second: .0799999982
+        second: 0.08
       data:
         first:
           name: _ZWrite
@@ -214,7 +214,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .5
+        second: 0.5
       data:
         first:
           name: _BumpScale
@@ -242,7 +242,7 @@ Material:
       data:
         first:
           name: _Outline
-        second: .00499999989
+        second: 0.005
       data:
         first:
           name: _Stencil
@@ -278,7 +278,7 @@ Material:
       data:
         first:
           name: _Strength
-        second: .200000003
+        second: 0.2
       data:
         first:
           name: _Rotation
@@ -295,7 +295,7 @@ Material:
       data:
         first:
           name: _SpecColor
-        second: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
       data:
         first:
           name: _OutlineColor
@@ -303,8 +303,8 @@ Material:
       data:
         first:
           name: _HueVariation
-        second: {r: 1, g: .5, b: 0, a: .100000001}
+        second: {r: 1, g: 0.5, b: 0, a: 0.1}
       data:
         first:
           name: _Tint
-        second: {r: .5, g: .5, b: .5, a: .5}
+        second: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
