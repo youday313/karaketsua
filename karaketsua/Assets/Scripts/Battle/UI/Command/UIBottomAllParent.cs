@@ -1,43 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BattleScene;
 
-//UIのオンオフ
-public class UIBottomAllParent : UIBottomBase
+namespace BattleScene
 {
-
-    GameObject bottomParent;
-    public UIBottomButtonParent bottomScript;
-    GameObject commandParent;
-    public UIBottomCommandParent commandScript;
-
-	// Use this for initialization
-	void Start () {
-        bottomParent = bottomParent.gameObject;
-        commandParent = commandParent.gameObject;
-        //BSceneState.Instance.UpdateStateE += UpdateUI;
-        Off();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public override void UpdateUI()
+    //UIのオンオフ
+    public class UIBottomAllParent : Singleton<UIBottomAllParent>
     {
-    }
-    public void On()
-    {
-        bottomParent.SetActive(true);
-        commandParent.SetActive(true);
 
-        bottomScript.UpdateUI();
-        commandScript.UpdateUI();
-    }
+        GameObject commandParent;
+        public UIBottomCommandParent commandScript;
 
-    public void Off()
-    {
-        bottomParent.SetActive(false);
-        commandParent.SetActive(false);
+        // Use this for initialization
+        void Start()
+        {
+            commandParent = commandScript.gameObject;
+            BSceneState.Instance.StartWave += StartWave;
+        }
+
+        public void StartWave()
+        {
+            CreateAction();
+        }
+
+
+        //public void UpdateUI()
+        //{
+        //    //bottomParent.SetActive(true);
+        //    commandParent.SetActive(true);
+
+        //    //bottomScript.UpdateUI();
+        //    commandScript.UpdateUI();
+        //}
+        public void CreateAction()
+        {
+            //bottomParent.SetActive(true);
+            commandParent.SetActive(true);
+
+            //bottomScript.UpdateUI();
+            commandScript.CreateAction();
+        }
+
+        public void Off()
+        {
+            //bottomParent.SetActive(false);
+            commandParent.SetActive(false);
+        }
+
+
     }
 }

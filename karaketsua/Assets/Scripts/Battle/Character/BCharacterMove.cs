@@ -17,7 +17,6 @@ namespace BattleScene
         //移動方向のオブジェクト
         public GameObject directionIcon;
 
-        CameraMove cameraMove;
         
         public override void Init()
         {
@@ -34,8 +33,6 @@ namespace BattleScene
 
                 return;
             }
-            cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
-
 
             //OnActiveCharacter();
             //キャラクター移動選択
@@ -46,28 +43,29 @@ namespace BattleScene
 
 
         }
-        //選択不可能時、行動は可能
+        //行動終了時
         public override void Disable()
+        {
+            isMoved = false;
+            Reset();
+            base.Disable();
+        }
+        //選択不可能時、行動は可能
+        public override void Reset()
         {
             //キャラクター移動選択
             IT_Gesture.onDraggingStartE -= OnChargeForMove;
             IT_Gesture.onDraggingEndE -= OnDragMove;
             directionIcon.SetActive(false);
-            base.Disable();
-        }
-        //行動終了時
-        public override void Reset()
-        {
             base.Reset();
-            isMoved = false;
-            IsEnable = false;
         }
 
         //スワイプによる移動操作検知
         void OnChargeForMove(DragInfo dragInfo)
         {
             //自分キャラ
-            if (Character.GetCharacterOnTile(dragInfo.pos) != this.character) return;
+            if (CharacterManager.Instance.GetCharacterOnTile(dragInfo.pos) != this.character) return;
+
 
             //キャラクター移動用
             IT_Gesture.onDraggingEndE += OnDragMove;
@@ -83,19 +81,18 @@ namespace BattleScene
         //一連の移動判定処理の開始
         void RequestMove(Vector2 delta)
         {
-
             //カメラから方向取得
-            var toVect = cameraMove.GetMoveDirection(delta);
+            var toVect = BCameraMove.Instance.GetMoveDirection(delta);
             //Vect2D化
             var toVect2D = IntVect2D.GetDirectionFromVector2(toVect);
 
             //新しいタイルポジション
             var newPosition = new IntVect2D(
-                Mathf.Clamp(character.positionArray.x + toVect2D.x, -BattleStage.stageSizeX, BattleStage.stageSizeX),
-                Mathf.Clamp(character.positionArray.y + toVect2D.y, -BattleStage.stageSizeY, BattleStage.stageSizeY));
-            
+                Mathf.Clamp(character.positionArray.x + toVect2D.x, -BBattleStage.stageSizeX, BBattleStage.stageSizeX),
+                Mathf.Clamp(character.positionArray.y + toVect2D.y, -BBattleStage.stageSizeY, BBattleStage.stageSizeY));
+
             //ステージが移動可能
-            if (CharacterManager.Instance.IsExistCharacterOnTile(newPosition)==false) return;
+            if (CharacterManager.Instance.IsExistCharacterOnTile(newPosition)==true) return;
 
             //移動実行
             UpdatePosition(newPosition);
@@ -112,19 +109,20 @@ namespace BattleScene
             //移動方向
             var direction = IntVect2D.GetDirection(character.positionArray, newPosition);
             //現在のタイルの実座標
-            var oldTilePosition = BattleStage.Instance.GetTileXAndZPosition(character.positionArray);
+            var oldTilePosition = BBattleStage.Instance.GetTileXAndZPosition(character.positionArray);
 
             //移動先のタイル位置
-            var toTilePostion = BattleStage.Instance.GetTileXAndZPosition(newPosition);
+            var toTilePostion = BBattleStage.Instance.GetTileXAndZPosition(newPosition);
             var table = GetMoveTable(toTilePostion);
 
             //座標変更
             iTween.MoveTo(gameObject, table);
 
            //カメラをアップデート
-            cameraMove.FollowCharacter(toTilePostion - oldTilePosition, animator.moveTime);
+            BCameraMove.Instance.FollowCharacter(toTilePostion - oldTilePosition, animator.moveTime);
             
             isMoved = true;
+            IT_Gesture.onDraggingStartE -= OnChargeForMove;
             isNowAction = true;
 
             //配列値変更
@@ -133,6 +131,8 @@ namespace BattleScene
             directionIcon.SetActive(false);
             StartRotateAnimation(direction);
 
+            //UI
+            UIBottomCommandParent.Instance.CreateAction();
         }
         
         Hashtable GetMoveTable(Vector2 position)
@@ -150,7 +150,8 @@ namespace BattleScene
         {
             isNowAction = false;
             StopAnimation();
-            BattleStage.Instance.ResetAllTileColor();
+            BBattleStage.Instance.ResetAllTileColor();
+            UIBottomCommandParent.Instance.CreateAction();
         }
         void StopAnimation()
         {

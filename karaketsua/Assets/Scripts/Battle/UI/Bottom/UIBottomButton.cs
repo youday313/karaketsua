@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+using UnityEngine.UI;
+
+using BattleScene;
 
 namespace BattleScene
 {
 
-    public class BCameraMove : MonoBehaviour
+    public class UIBottomButton : MonoBehaviour
     {
 
+
+        [SerializeField]
+        Button button;
         // Use this for initialization
         void Start()
         {
@@ -20,5 +24,10 @@ namespace BattleScene
         {
 
         }
+        public virtual void OnClick()
+        {
+
+        }
+
     }
 }

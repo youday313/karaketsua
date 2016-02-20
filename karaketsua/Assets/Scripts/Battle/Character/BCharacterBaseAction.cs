@@ -8,7 +8,7 @@ namespace BattleScene
 
         protected BCharacter character;
         protected BCharacterAnimator animator;
-        protected CameraMove cameraMove;
+        //protected BCameraMove cameraMove;
         //行動可能時に有効化
         protected bool isEnable = false;
         public bool IsEnable
@@ -16,11 +16,19 @@ namespace BattleScene
             get { return isEnable; }
             set
             {
-                if (isEnable == false && value == true)
+                //if (isEnable == false && value == true)
+                //{
+                //    Enable();
+                //}
+                //else if (isEnable == true && value == false)
+                //{
+                //    Disable();
+                //}
+                if (value == true)
                 {
                     Enable();
                 }
-                else if (isEnable == true && value == false)
+                else if (value == false)
                 {
                     Disable();
                 }

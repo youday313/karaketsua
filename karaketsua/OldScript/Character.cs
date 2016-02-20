@@ -96,7 +96,7 @@ public class Character : MonoBehaviour
     //特殊技
     CharacterMoveAttack skill;
     //通常攻撃
-    CharacterSingleAttack singleAttack;
+    //CharacterSingleAttack singleAttack;
     Animator animator;
     CharacterStateUI StateUI;
     CharacterDetailStateUI detailStateUI;
@@ -124,7 +124,7 @@ public class Character : MonoBehaviour
         mover = GetComponent<CharacterMover>();
         animator = GetComponent<Animator>();
         skill = GetComponent<CharacterMoveAttack>();
-        singleAttack = GetComponent<CharacterSingleAttack>();
+        //singleAttack = GetComponent<CharacterSingleAttack>();
         cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
 
         activeTime = ActiveTimeCreater.Instance.CreateActiveTime(this);
@@ -161,7 +161,7 @@ public class Character : MonoBehaviour
         isNowSelect = false;
         mover.ResetMoveParamEndAction();
         //attacker.IsEnable = false;
-        singleAttack.IsEnable = false;
+        //singleAttack.IsEnable = false;
         skill.IsEnable = false;
         activeCircle.SetActive(false);
     }
@@ -208,7 +208,7 @@ public class Character : MonoBehaviour
     {
         if (mover.isNowAction == true) return true;
         //if (attacker.isNowAction == true) return true;
-        if (singleAttack.isNowAction == true) return true;
+        //if (singleAttack.isNowAction == true) return true;
         if (skill.isNowAction == true) return true;
         return false;
     }
@@ -235,7 +235,7 @@ public class Character : MonoBehaviour
     void SetInitialActionState()
     {
         //attacker.IsEnable = false;
-        singleAttack.IsEnable = false;
+        //singleAttack.IsEnable = false;
         skill.IsEnable = false;
         cameraMove.SetActiveCharacter(this);
         mover.IsEnable = true;
@@ -251,14 +251,14 @@ public class Character : MonoBehaviour
         mover.IsEnable=false;
 
         //attacker.IsEnable = true;
-        singleAttack.IsEnable = true;
+        //singleAttack.IsEnable = true;
 
         //BattleStage.Instance.UpdateTileColors(this, TileState.Attack);
     }
     public void ExecuteAttack()
     {
         //attacker.Attack();
-        StartCoroutine(singleAttack.AttackWithTap());
+        //StartCoroutine(singleAttack.AttackWithTap());
     }
     public void ExcuteMoveAttack()
     {
@@ -353,7 +353,7 @@ public class Character : MonoBehaviour
     {
         if (detailStateUI == null)
         {
-            if (CameraChange.Instance.nowCameraMode != CameraMode.Up) return;
+            //if (CameraChange.Instance.nowCameraMode != CameraMode.Up) return;
             OnStartTouchForDisplayState(touch);
         }
         else

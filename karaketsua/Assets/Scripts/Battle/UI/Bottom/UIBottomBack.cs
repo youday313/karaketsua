@@ -2,46 +2,58 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using BattleScene;
 
-public class UIBottomBack : UIBottomBase
+namespace BattleScene
 {
-
-    Button button;
-    public event Action OnClickE;
-    public UIBottomCommandParent commad;
-    // Use this for initialization
-    void Start()
-    {
-        button = GetComponent<Button>();
-        commad.UpdateCommandUI += SetEnable;
-        button.interactable = false;
-    }
-
-    // Update is called once per frame
-    void Update()
+    public class UIBottomBack : UIBottomBase
     {
 
-    }
+        [SerializeField]Button button;
+        public event Action OnClickE;
+        public UIBottomCommandParent command;
+        // Use this for initialization
 
-    public override void UpdateUI()
-    {
-        button.interactable = false;
-    }
-
-    public void SetEnable()
-    {
-        button.interactable = false;
-
-        if (commad.enableCommand == UIBottomCommandParent.EnableCommandUIState.Waza ||
-            commad.enableCommand == UIBottomCommandParent.EnableCommandUIState.ExecuteAttack ||
-            commad.enableCommand == UIBottomCommandParent.EnableCommandUIState.ExecuteDeffence)
+        void Awake()
         {
-            button.interactable = true;
+            button = GetComponent<Button>();
+            button.interactable = false;
         }
-    }
 
-    public void OnClick()
-    {
-        OnClickE();
+        void Start()
+        {
+            //command.UpdateCommandUI += SetEnable;
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public override void UpdateUI()
+        {
+
+            button.interactable = false;
+
+        }
+
+        //public void SetEnable()
+        //{
+        //    button.interactable = false;
+
+        //    if (command.enableCommand == UIBottomCommandParent.EnableCommandUIState.Waza ||
+        //        command.enableCommand == UIBottomCommandParent.EnableCommandUIState.ExecuteAttack ||
+        //        command.enableCommand == UIBottomCommandParent.EnableCommandUIState.ExecuteDeffence)
+        //    {
+        //        button.interactable = true;
+        //    }
+        //}
+
+
+        public void OnClick()
+        {
+            OnClickE();
+        }
     }
 }

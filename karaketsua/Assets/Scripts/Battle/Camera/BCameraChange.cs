@@ -4,22 +4,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 
+using BattleScene;
+
 namespace BattleScene
 {
-    //public enum CameraMode { FromBack = 0, FromFront, Up }
+    public enum CameraMode { FromBack = 0, FromFront, Up }
     public class BCameraChange : Singleton<BCameraChange>
     {
 
         public GameObject leanCameraObject;
         public GameObject upCameraObject;
-        CameraMove leanCamera;
+        BCameraMove leanCamera;
         //現在のモード
         public CameraMode nowCameraMode;
         // Use this for initialization
         void Start()
         {
 
-            leanCamera = leanCameraObject.GetComponent<CameraMove>();
+            leanCamera = leanCameraObject.GetComponent<BCameraMove>();
             leanCameraObject.SetActive(true);
             upCameraObject.SetActive(false);
             nowCameraMode = CameraMode.FromBack;

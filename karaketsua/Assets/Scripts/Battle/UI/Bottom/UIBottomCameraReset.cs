@@ -1,21 +1,35 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BattleScene;
+using UnityEngine.UI;
 
-public class UIBottomCameraReset : UIBottomBase {
-    public UIBottomCameraParent cameraParent;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    public void OnClick()
+namespace BattleScene
+{
+    public class UIBottomCameraReset : UIBottomBase
     {
+        [SerializeField]Button button;
+        public UIBottomCameraParent cameraParent;
+        // Use this for initialization
+        void Awake()
+        {
+            button = GetComponent<Button>();
+        }
 
+        public override void UpdateUI()
+        {
+            base.UpdateUI();
+            //カメラを動かしている
+            if (BCameraMove.Instance.IsMoved == false)
+            {
+                button.interactable = false;
+            }
+            button.interactable = true;
+        }
 
-        cameraParent.Reset();
+        public void OnClick()
+        {
+            BCameraMove.Instance.ResetCamera();
+            cameraParent.Reset();
+        }
     }
 }

@@ -9,19 +9,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 478740}
   - 95: {fileID: 9550826}
-  - 114: {fileID: 11429824}
-  - 114: {fileID: 11443902}
-  - 114: {fileID: 11468130}
-  - 114: {fileID: 11490028}
-  - 114: {fileID: 11497362}
-  - 114: {fileID: 11401470}
-  - 114: {fileID: 11427062}
-  - 114: {fileID: 11430008}
-  - 114: {fileID: 11418286}
-  - 114: {fileID: 11455152}
-  - 114: {fileID: 11464212}
-  - 114: {fileID: 11402838}
-  - 114: {fileID: 11477362}
+  - 114: {fileID: 11474364}
+  - 114: {fileID: 11465050}
+  - 114: {fileID: 11475118}
+  - 114: {fileID: 11454082}
+  - 114: {fileID: 11415008}
+  - 114: {fileID: 11451084}
+  - 114: {fileID: 11428854}
   m_Layer: 0
   m_Name: Hikaru
   m_TagString: BattleCharacter
@@ -2918,67 +2912,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11401470
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3efc81744b42b45e1a0911756322cdb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 97063326
-  expanded: 1
-  _BehaviourEnabled: 1
---- !u!114 &11402838
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 301637eac84734205b5603605c6e292a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 1976681210
-  expanded: 1
-  _BehaviourEnabled: 1
---- !u!114 &11418286
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc943326e0f3041b0a1565602625a276, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 1055679998
-  expanded: 1
-  _BehaviourEnabled: 1
---- !u!114 &11427062
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f8e5bf98c23400491a45c5195b008b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 825429695
-  expanded: 1
-  _BehaviourEnabled: 1
---- !u!114 &11429824
+--- !u!114 &11415008
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -2986,79 +2920,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c45f2eab33333f04889a179cfc31dd05, type: 3}
+  m_Script: {fileID: 11500000, guid: 6931647c0ed2d41409c8d1ce66681f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterParameter:
-    charaName: "\u4E00\u4E4B\u702C\u5149"
-    HP: 100
-    attackParameter:
-    - attackRange:
-      - x: 1
-        y: 0
-      - x: -1
-        y: 0
-      - x: 0
-        y: 1
-      - x: 0
-        y: -1
-      attackDistance: 0
-      element: 0
-      isMultiAttack: 0
-      power: 0
-    - attackRange:
-      - x: 3
-        y: 0
-      - x: -3
-        y: 0
-      - x: 0
-        y: 3
-      - x: 0
-        y: -3
-      attackDistance: 1
-      element: 0
-      isMultiAttack: 0
-      power: 0
-    - attackRange:
-      - x: 3
-        y: 0
-      - x: -3
-        y: 0
-      - x: 0
-        y: 3
-      - x: 0
-        y: -3
-      attackDistance: 2
-      element: 0
-      isMultiAttack: 0
-      power: 0
-    activeSpeed: 2400
-    power: 2200
-    deffence: 2700
-    skillPoint: 2700
-    intellect: 100
-    movePoint: 0
-  mover: {fileID: 0}
-  deathEffect: {fileID: 0}
-  activeCircle: {fileID: 191974}
-  isAttacked: 0
-  isMoved: 0
---- !u!114 &11430008
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85a5b027723b7439694d9925fac54a80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 2014296670
-  expanded: 1
-  _BehaviourEnabled: 1
---- !u!114 &11443902
+--- !u!114 &11428854
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3066,97 +2931,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2fdfcc603de0ff41bddc023b473ac8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  directionIcon: {fileID: 161040}
---- !u!114 &11455152
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c3b075de8f5475fac1591dcf019c40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 1285930301
-  expanded: 1
-  _BehaviourEnabled: 1
---- !u!114 &11464212
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 568eb95bd2355400cb3c40ff7d91706e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 1746430907
-  expanded: 1
-  _BehaviourEnabled: 1
---- !u!114 &11468130
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beb648cd08b384e49bc91786781b8551, type: 3}
+  m_Script: {fileID: 11500000, guid: 629d17c566354064dbd8cde7a0fef5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   singleActionParamaters:
   - judgeTime: 1
-    startInterval: 1
-    actionKind: 0
+    startInterval: 2
     attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
-    attackEffectKind: 0
-  - judgeTime: 1
+  - judgeTime: 0.5
     startInterval: 0.5
-    actionKind: 0
     attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
-    attackEffectKind: 0
-  - judgeTime: 2
-    startInterval: 0.5
-    actionKind: 0
-    attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
-    attackEffectKind: 0
   changeTimeSingleMode: 1
   attackEffectPrefab: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
+  selectActionNumber: 0
   resetInterval: 3
---- !u!114 &11477362
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100656}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a0ffa05d7023f44aacdfada32c15663, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 1976681210
-  expanded: 1
-  _BehaviourEnabled: 1
-  _NextState:
-    name: 
-    stateID: 1746430907
-    immediateTransition: 0
-    lineEnable: 1
-    lineStart: {x: 104, y: -77}
-    lineStartTangent: {x: 54, y: -77}
-    lineEnd: {x: 96, y: 32}
-    lineEndTangent: {x: 46, y: 32}
-    lineColorChanged: 0
-    lineColor: {r: 1, g: 1, b: 1, a: 1}
---- !u!114 &11490028
+--- !u!114 &11451084
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -3164,27 +2953,123 @@ MonoBehaviour:
   m_GameObject: {fileID: 100656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04caba61515b44049bb9b6c0868e20b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 015044e273de48c479ad46b2ab9957fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRange: 12
+  moveRange: 13
   attackMotionTime: 3
---- !u!114 &11497362
+--- !u!114 &11454082
 MonoBehaviour:
-  m_ObjectHideFlags: 3
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100656}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25671cbae54ae445ebcedb47d8ef8ac3, type: 3}
+  m_Script: {fileID: 11500000, guid: f0994295963e21344afc95157cbff8d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _StateMachine: {fileID: 0}
-  _StateID: 557563932
-  expanded: 1
-  _BehaviourEnabled: 1
-  mover: {fileID: 0}
+--- !u!114 &11465050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c4aa2e2de32d648bd60cae4ec516c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 1.6
+--- !u!114 &11474364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242296ccc2a621241b2efcc19e344e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeCircle: {fileID: 191974}
+  characterParameter:
+    charaName: "\u4E00\u4E4B\u702C"
+    HP: 100
+    attackParameter:
+    - attackRange:
+      - x: -1
+        y: 0
+      - x: 1
+        y: 0
+      - x: 0
+        y: -1
+      - x: 0
+        y: 1
+      attackDistance: 0
+      element: 0
+      isMultiAttack: 0
+      power: 10
+    - attackRange:
+      - x: -1
+        y: 0
+      - x: 1
+        y: 0
+      - x: 0
+        y: -1
+      - x: 0
+        y: 1
+      attackDistance: 0
+      element: 0
+      isMultiAttack: 0
+      power: 10
+    - attackRange:
+      - x: -1
+        y: 0
+      - x: 1
+        y: 0
+      - x: 0
+        y: -1
+      - x: 0
+        y: 1
+      attackDistance: 0
+      element: 0
+      isMultiAttack: 0
+      power: 10
+    - attackRange:
+      - x: -1
+        y: 0
+      - x: 1
+        y: 0
+      - x: 0
+        y: -1
+      - x: 0
+        y: 1
+      attackDistance: 0
+      element: 0
+      isMultiAttack: 0
+      power: 10
+    activeSpeed: 100
+    power: 100
+    elementPower: 
+    deffence: 10
+    elementDeffence: 
+    skillPoint: 100
+    intellect: 100
+    movePoint: 100
+    stateError: 
+--- !u!114 &11475118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71386e94137394e47b3d808f551d1625, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directionIcon: {fileID: 161040}
 --- !u!137 &13730464
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -3517,7 +3402,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: moveRange
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _States.Array.data[0].name

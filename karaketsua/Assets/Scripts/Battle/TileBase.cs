@@ -22,11 +22,15 @@ public class TileBase : MonoBehaviour
     
     Renderer renderer;
 
+    void Awake()
+    {
+        renderer = gameObject.GetComponent<Renderer>();
+    }
     // Use this for initialization
     void Start()
     {
         // このクラスが付属しているマテリアルを取得 
-        renderer = gameObject.GetComponent<Renderer>();
+        //renderer = gameObject.GetComponent<Renderer>();
         // 選択時と非選択時のカラーを保持 
         //tileColors[(int)TileState.Default] = material.color;
         //tileColors[(int)TileState.Default] = new Color(material.color.r, material.color.g, material.color.b);

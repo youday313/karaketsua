@@ -21,7 +21,17 @@ public class BCharacterAnimator : MonoBehaviour {
     {
         animator.SetTrigger("TapAttack" + number.ToString());
     }
-
-
+    public void SetMoveAttack()
+    {
+        animator.SetTrigger("TraceAttack");
+    }
+    public void SetDamage()
+    {
+        animator.SetTrigger("Damage");
+    }
+    public void SetDeath()
+    {
+        animator.SetTrigger("Death");
+    }
 	
 }

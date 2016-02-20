@@ -14,7 +14,7 @@ namespace BattleScene
         public float judgeTime;
         public float startInterval;
         public GameObject attackMakerPrefab;
-        public AttackEffectKind attackEffectKind;
+        //public AttackEffectKind attackEffectKind;
     }
     //一つの攻撃のパラメーター
     [System.Serializable]
@@ -65,14 +65,13 @@ namespace BattleScene
             IT_Gesture.onShortTapE += OnShortTap;
             selectAttackParameter = character.characterParameter.attackParameter[selectActionNumber];
             
-            //カメラの移動
-            BCameraChange.Instance.ActiveUpMode();
             //BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange, this.character);
         }
         public override void Disable()
         {
             IT_Gesture.onShortTapE -= OnShortTap;
             isTapDetect = false;
+            
             //CameraChange.Instance.
             base.Disable();
         }
@@ -102,14 +101,11 @@ namespace BattleScene
         {
             //ターゲットの検索
             var target = GetOpponentCharacterFromTouch(touchPosition);
-
             //ターゲットが存在しないマスをタップ
             if (target == null) return;
-
             //攻撃範囲内
             //if (Mathf.Abs(target.positionArray.x - character.positionArray.x) + Mathf.Abs(target.positionArray.y - character.positionArray.y) > character.characterParameter.attackRange) return;
             if (IsInAttackRange(target.positionArray) == false) return;
-
             //複数攻撃
             if (selectAttackParameter.isMultiAttack == true)
             {
@@ -136,7 +132,7 @@ namespace BattleScene
                 {
                     //タイル変更
                     //除く
-                    attackTarget = new List<Character>();
+                    attackTarget = new List<BCharacter>();
                 }
                 //再設定
                 attackTarget.Add(target);
@@ -162,12 +158,14 @@ namespace BattleScene
             {
                 isSetTarget = false;
                 //UIの変更
+                UIBottomCommandParent.Instance.CreateExecuteAttack();
                 //攻撃決定ボタンの取り消し
             }
             else
             {
                 isSetTarget = true;
                 //UIの変更
+                UIBottomCommandParent.Instance.CreateExecuteAttack();
                 //攻撃決定ボタンの有効化
                 //ActionSelect.Instance.EnableAttackButton();
             }
@@ -179,7 +177,7 @@ namespace BattleScene
         //攻撃モーション時間
 
         //UIボタンから押す
-        public void StartAttack()
+        public void ExecuteAttack()
         {
             StartCoroutine("AttackWithTap");
             IT_Gesture.onShortTapE -= OnShortTap;
@@ -189,10 +187,10 @@ namespace BattleScene
         {
             if (attackTarget.Count == 0) yield return null;
 
+
             //カメラ切り替え
             BCameraChange.Instance.ActiveLeanMode();
-            cameraMove = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>();
-            cameraMove.MoveToTapAttack(this, attackTarget[0].transform.position, changeTimeSingleMode);
+            BCameraMove.Instance.MoveToTapAttack(this, attackTarget[0].transform.position, changeTimeSingleMode);
             yield return new WaitForSeconds(changeTimeSingleMode);
 
 
@@ -241,20 +239,20 @@ namespace BattleScene
 
                 //target.Damage(character.characterParameter.power);
                 //攻撃力に関わらず秒数
-                target.Damage(totalDamage);
+                target.Life.Damage(totalDamage);
             }
 
             foreach (var target in attackTarget)
             {
-                target.CheckDestroy();
+                target.Life.CheckDestroy();
             }
 
 
             attackTarget = null;
-
+            character.IsAttacked = true;
             Invoke("OnCompleteAnimation", resetInterval);
             //攻撃時にUI非表示
-            ActionSelect.Instance.EndActiveAction();
+            //ActionSelect.Instance.EndActiveAction();
             yield return null;
 
         }
@@ -282,7 +280,8 @@ namespace BattleScene
         {
             isNowAction = false;
             //行動終了
-            //character.EndActiveCharacterAction();
+
+            character.EndActiveCharacterAction();
             
         }
     }

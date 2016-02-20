@@ -2,34 +2,39 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class UIBottomDeffence : UIBottomBase
+using BattleScene;
+namespace BattleScene
 {
-    Button button;
-    public UIBottomCommandParent commandParent;
-    // Use this for initialization
-    void Start()
+    public class UIBottomDeffence : UIBottomBase
     {
-        button = GetComponent<Button>();
-    }
+        Button button;
+        public UIBottomCommandParent commandParent;
+        // Use this for initialization
+        void Awake()
+        {
+            button = GetComponent<Button>();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
+        // Update is called once per frame
+        void Update()
+        {
 
-    }
+        }
 
-    public override void UpdateUI()
-    {
-        button.interactable = false;
-        //キャラクター状態取得
-        var chara = CharacterManager.Instance.GetNowActiveCharacter();
-        if (chara == null) return;
+        public override void UpdateUI()
+        {
+            button.interactable = false;
+            //キャラクター状態取得
+            var chara = CharacterManager.Instance.GetActiveCharacter();
+            if (chara == null) return;
 
-        button.interactable = true;
-    }
+            button.interactable = true;
+        }
 
-    public void OnClick()
-    {
-        commandParent.CreateExecuteDeffence();
+        public void OnClick()
+        {
+            CharacterManager.Instance.GetActiveCharacter().SelectDisable();
+            commandParent.CreateExecuteDeffence();
+        }
     }
 }

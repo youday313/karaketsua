@@ -1,22 +1,50 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
-public class UIBottomExecuteAttack : UIBottomBase {
+using BattleScene;
 
-    public UIBottomAllParent allParent;
-    // Use this for initialization
-    void Start()
+namespace BattleScene
+{
+    public class UIBottomExecuteAttack : UIBottomBase
     {
 
-    }
+        public UIBottomAllParent allParent;
+        // Use this for initialization
+        [SerializeField]Button button;
 
-    // Update is called once per frame
-    void Update()
-    {
+        void Awake()
+        {
+            button = GetComponent<Button>();
+        }
 
-    }
-    public void OnClick()
-    {
-        allParent.Off();
+        // Update is called once per frame
+        public override void UpdateUI()
+        {
+            button.interactable = false;
+            var chara=CharacterManager.Instance.GetActiveCharacter();
+            if (chara == null) return;
+            if (chara.singleAttack.IsSetTarget == true)
+            {
+                button.interactable = true;
+            }
+            else if(chara.moveAttack.IsSetTarget==true){
+                button.interactable = true;
+            }
+        }
+        public void OnClick()
+        {
+            allParent.Off();
+            var chara = CharacterManager.Instance.GetActiveCharacter();
+            if (chara == null) return;
+            if (chara.singleAttack.IsSetTarget == true)
+            {
+                chara.singleAttack.ExecuteAttack();
+            }
+            else if (chara.moveAttack.IsSetTarget == true)
+            {
+                chara.moveAttack.ExcuteAttack();
+            }
+              }
     }
 }

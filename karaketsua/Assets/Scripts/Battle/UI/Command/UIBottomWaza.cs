@@ -1,24 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UIBottomWaza : UIBottomBase {
+using BattleScene;
 
-    public UIBottomCommandParent commandParent;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-    public override void UpdateUI()
+namespace BattleScene
+{
+
+    public class UIBottomWaza : UIBottomBase
     {
-        base.UpdateUI();
-    }
-    public void OnClick()
-    {
-        commandParent.CreateExecuteAttack();
+
+        public UIBottomCommandParent commandParent;
+        public int attackNumber;
+        // Use this for initialization
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+        public override void UpdateUI()
+        {
+            base.UpdateUI();
+        }
+        public void OnClick()
+        {
+            CharacterManager.Instance.GetActiveCharacter().singleAttack.selectActionNumber = attackNumber;
+            CharacterManager.Instance.GetActiveCharacter().SelectSingleAttack();
+            commandParent.CreateExecuteAttack();
+        }
     }
 }

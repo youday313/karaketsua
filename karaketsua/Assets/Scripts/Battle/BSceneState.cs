@@ -2,27 +2,39 @@
 using System.Collections;
 using System;
 
-public class BSceneState : Singleton<BSceneState> {
+using BattleScene;
 
-    public enum State
+namespace BattleScene
+{
+
+    public class BSceneState : Singleton<BSceneState>
     {
-        StartWave,
-        SelectAttack,//攻撃選択
-        SelectDeffence,//防御選択
-        SelectWaza,//技選択
-        
 
-        Attacking,//攻撃開始
+        public enum State
+        {
+            StartWave,
+            UnSelect,
+            Selectable,
+            UnSelectable,
+            EndWave
+        }
+        public event Action UpdateStateE;
+        public event Action StartWave;
 
-    }
-    //キャラクター行動選択時
-    public event Action UpdateStateE;
+        public State nowState = State.StartWave;
+        public void UpdateState(State _state)
+        {
+            nowState = _state;
+            UpdateStateE();
+        }
 
-
-    public State nowstate = State.StartWave;
-    public void UpdateState(State _state)
-    {
-        nowstate = _state;
-        UpdateStateE();
+        void Update()
+        {
+            if (nowState == State.StartWave)
+            {
+                StartWave();
+                nowState = State.UnSelect;
+            }
+        }
     }
 }

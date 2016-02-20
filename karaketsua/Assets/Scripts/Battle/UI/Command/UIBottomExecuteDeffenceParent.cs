@@ -1,21 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BattleScene;
 
-public class UIBottomExecuteDeffenceParent : UIBottomBase {
-
-    public UIBottomExecuteDeffence execute;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public override void UpdateUI()
+namespace BattleScene
+{
+    public class UIBottomExecuteDeffenceParent : UIBottomBase
     {
-        execute.UpdateUI();
+
+        public UIBottomExecuteDeffence execute;
+        // Use this for initialization
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        public override void UpdateUI()
+        {
+            execute.UpdateUI();
+        }
     }
 }
