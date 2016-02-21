@@ -24,6 +24,8 @@ namespace BattleScene
             Moving
         }
         CameraState nowCameraState;
+
+        bool isBack = true;
         //public
         [System.Serializable]
         public class CameraVector

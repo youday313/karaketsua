@@ -10,6 +10,7 @@ namespace BattleScene
     {
 
         public BActiveTime activeTimePrefab;
+        public float enemyOffset;
 
         public BActiveTime CreateActiveTime(BCharacter chara)
         {
@@ -29,7 +30,7 @@ namespace BattleScene
         void SetEnemyPosition(BActiveTime aTime)
         {
             var rectTransform = aTime.GetComponent<RectTransform>();
-            rectTransform.position = new Vector3(rectTransform.position.x, rectTransform.position.y - 50f, rectTransform.position.z);
+            rectTransform.position = new Vector3(rectTransform.position.x, rectTransform.position.y - enemyOffset, rectTransform.position.z);
         }
     }
 }

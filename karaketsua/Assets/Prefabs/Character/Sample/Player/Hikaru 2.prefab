@@ -2936,7 +2936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activeCircle: {fileID: 131162}
   characterParameter:
-    charaName: "\u4E00\u4E4B\u702C"
+    charaName: "\u4E00\u4E4B\u702C\u5149"
     HP: 100
     attackParameter:
     - attackRange:
@@ -3147,6 +3147,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.charaName
+      value: "\u4E00\u4E4B\u702C\u5149"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
