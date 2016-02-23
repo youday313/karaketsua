@@ -44,7 +44,7 @@ namespace BattleScene
 
     [RequireComponent(typeof(BCharacterMove))]
 
-    public class BCharacter : MonoBehaviour
+    public class BCharacterPlayer : MonoBehaviour
     {
 
         BCharacterMove move;

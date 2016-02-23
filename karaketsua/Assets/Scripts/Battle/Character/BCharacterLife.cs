@@ -10,10 +10,10 @@ namespace BattleScene
     {
         CharacterParameter characterParameter;
         BCharacterAnimator animator;
-        BCharacter character;
+        BCharacterPlayer character;
         void Start()
         {
-            character = GetComponent<BCharacter>();
+            character = GetComponent<BCharacterPlayer>();
             animator = GetComponent<BCharacterAnimator>();
         }
 

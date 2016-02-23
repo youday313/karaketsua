@@ -6,7 +6,7 @@ namespace BattleScene
     public class BCharacterBaseAction : MonoBehaviour
     {
 
-        protected BCharacter character;
+        protected BCharacterPlayer character;
         protected BCharacterAnimator animator;
         //protected BCameraMove cameraMove;
         //行動可能時に有効化
@@ -49,7 +49,7 @@ namespace BattleScene
         //作成時に初期化処理
         public virtual void Init()
         {
-            character = GetComponent<BCharacter>();
+            character = GetComponent<BCharacterPlayer>();
             animator = GetComponent<BCharacterAnimator>();
 
         }

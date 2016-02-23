@@ -42,7 +42,7 @@ namespace BattleScene
         //攻撃によってカメラ位置が変わる
         public List<CameraVector> attackCamera = new List<CameraVector>();
 
-        BCharacter activeCharacter;
+        BCharacterPlayer activeCharacter;
         CameraMode nowCameraMode = CameraMode.FromBack;
         //private
         public float changeTime = 1f;
@@ -173,7 +173,7 @@ namespace BattleScene
         #endregion::行動選択時カメラ移動
 
 
-        public void SetActiveCharacter(BCharacter _activeCharacter)
+        public void SetActiveCharacter(BCharacterPlayer _activeCharacter)
         {
             activeCharacter = _activeCharacter;
             MoveToBack();

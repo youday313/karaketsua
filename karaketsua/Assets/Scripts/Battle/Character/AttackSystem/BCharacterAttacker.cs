@@ -24,7 +24,7 @@ namespace BattleScene
         }
 
         //ターゲット
-        protected List<BCharacter> attackTarget = new List<BCharacter>();
+        protected List<BCharacterPlayer> attackTarget = new List<BCharacterPlayer>();
 
 
         public override void Enable()
@@ -36,25 +36,25 @@ namespace BattleScene
         protected void OnActiveCharacter()
         {
             isSetTarget = false;
-            attackTarget = new List<BCharacter>();
+            attackTarget = new List<BCharacterPlayer>();
         }
         public override void Disable()
         {
             BBattleStage.Instance.ResetAllTileColor();
             isSetTarget = false;
-            attackTarget = new List<BCharacter>();
+            attackTarget = new List<BCharacterPlayer>();
             base.Disable();
         }
 
         //タイル上のキャラが自身にとっての敵キャラなら取得
-        protected BCharacter GetOpponentCharacterOnTile(IntVect2D toPos)
+        protected BCharacterPlayer GetOpponentCharacterOnTile(IntVect2D toPos)
         {
             var chara = CharacterManager.Instance.GetCharacterOnTile(toPos);
             if (chara == null) return null;
             if (chara.isEnemy != this.character.isEnemy) return chara;
             return null;
         }
-        protected BCharacter GetOpponentCharacterFromTouch(Vector2 touchPosition)
+        protected BCharacterPlayer GetOpponentCharacterFromTouch(Vector2 touchPosition)
         {
             var chara = CharacterManager.Instance.GetCharacterOnTile(touchPosition);
             if (chara == null) return null;

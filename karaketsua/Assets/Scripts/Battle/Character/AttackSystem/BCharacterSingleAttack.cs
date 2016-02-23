@@ -132,7 +132,7 @@ namespace BattleScene
                 {
                     //タイル変更
                     //除く
-                    attackTarget = new List<BCharacter>();
+                    attackTarget = new List<BCharacterPlayer>();
                 }
                 //再設定
                 attackTarget.Add(target);

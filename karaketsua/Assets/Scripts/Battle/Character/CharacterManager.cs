@@ -13,21 +13,21 @@ namespace BattleScene
 
 
         [System.NonSerialized]
-        public List<BCharacter> characters = new List<BCharacter>();
-        BCharacter activeCharacter;
+        public List<BCharacterPlayer> characters = new List<BCharacterPlayer>();
+        BCharacterPlayer activeCharacter;
         // Use this for initialization
         void Start()
         {
             foreach (var chara in BStageData.Instance.playerCharacters)
             {
-                var cha = Instantiate(chara.prefab) as BCharacter;
+                var cha = Instantiate(chara.prefab) as BCharacterPlayer;
                 cha.Init(new IntVect2D((int)chara.position.x, (int)chara.position.y), false);
                 characters.Add(cha);
                 cha.transform.SetParent(transform);
             }
             foreach (var chara in BStageData.Instance.enemyCharacters)
             {
-                var cha = Instantiate(chara.prefab) as BCharacter;
+                var cha = Instantiate(chara.prefab) as BCharacterPlayer;
                 //向き変更
                 cha.Init(new IntVect2D((int)chara.position.x, (int)chara.position.y), true);
                 characters.Add(cha);
@@ -36,7 +36,7 @@ namespace BattleScene
             activeCharacter = null;
         }
 
-        public void DestroyCharacter(BCharacter chara)
+        public void DestroyCharacter(BCharacterPlayer chara)
         {
             characters.Remove(chara);
             //Destroy(chara.gameObject);
@@ -48,11 +48,11 @@ namespace BattleScene
         }
 
 
-        public BCharacter GetActiveCharacter()
+        public BCharacterPlayer GetActiveCharacter()
         {
             return activeCharacter;
         }
-        public void SetNowActiveCharacter(BCharacter chara)
+        public void SetNowActiveCharacter(BCharacterPlayer chara)
         {
             activeCharacter = chara;
         }
@@ -60,7 +60,7 @@ namespace BattleScene
         #region::Utility
         //タイル上のキャラを取得
         //いない時はnull
-        BCharacter GetCharacterFromVect2D(IntVect2D toPos)
+        BCharacterPlayer GetCharacterFromVect2D(IntVect2D toPos)
         {
             return characters.
             Where(t => IntVect2D.IsEqual(toPos, t.positionArray)).
@@ -68,7 +68,7 @@ namespace BattleScene
         }
 
         //スクリーン座標からキャラクター取得
-        public BCharacter GetCharacterOnTile(Vector2 screenPos)
+        public BCharacterPlayer GetCharacterOnTile(Vector2 screenPos)
         {
             //タイルをスクリーン座標から取得
             var targetPosition = BBattleStage.instance.GetTilePositionFromScreenPosition(screenPos);
@@ -77,7 +77,7 @@ namespace BattleScene
 
         }
         //Vect2Dからキャラクター取得
-        public BCharacter GetCharacterOnTile(IntVect2D vect)
+        public BCharacterPlayer GetCharacterOnTile(IntVect2D vect)
         {
             //タイル以外
             if (vect == null) return null;

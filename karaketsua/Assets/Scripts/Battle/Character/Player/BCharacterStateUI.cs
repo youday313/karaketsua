@@ -13,11 +13,11 @@ namespace BattleScene
         public Slider HPbar;
         public Slider skillBar;
 
-        BCharacter character;
+        BCharacterPlayer character;
         float holdTime;
         public float displayEnableTime=1f;
 
-        public void Init(BCharacter _character)
+        public void Init(BCharacterPlayer _character)
         {
             character = _character;
             transform.SetParent(GameObject.FindGameObjectWithTag("CharacterStateUIParent").transform, false);

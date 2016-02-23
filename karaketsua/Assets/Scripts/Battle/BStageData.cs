@@ -14,7 +14,7 @@ namespace BattleScene
         [System.Serializable]
         public class CharacterData
         {
-            public BCharacter prefab;
+            public BCharacterPlayer prefab;
             public Vector2 position;
         }
     }

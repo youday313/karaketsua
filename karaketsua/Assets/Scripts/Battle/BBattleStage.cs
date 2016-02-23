@@ -54,7 +54,7 @@ namespace BattleScene
             }
         }
 
-        public void UpdateTileColors(BCharacter chara, TileState state)
+        public void UpdateTileColors(BCharacterPlayer chara, TileState state)
         {
             var positionArray = chara.positionArray;
             if (state == TileState.Attack)
@@ -78,7 +78,7 @@ namespace BattleScene
 
 
         }
-        public void ChangeTileColorsToAttack(List<IntVect2D> attackRange, BCharacter character)
+        public void ChangeTileColorsToAttack(List<IntVect2D> attackRange, BCharacterPlayer character)
         {
             ResetAllTileColor();
             foreach (var range in attackRange)

@@ -26,7 +26,7 @@ namespace BattleScene
 
         //関連付けられたキャラ
         [System.NonSerialized]
-        public BCharacter character;
+        public BCharacterPlayer character;
 
         Slider slider;
         [SerializeField]
@@ -61,7 +61,7 @@ namespace BattleScene
             //slider.value = initTimeValue;
             isActive = true;
         }
-        public void Init(BCharacter chara)
+        public void Init(BCharacterPlayer chara)
         {
             character = chara;
             activeSpeed = character.characterParameter.activeSpeed;

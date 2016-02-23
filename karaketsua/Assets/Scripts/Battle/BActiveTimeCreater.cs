@@ -12,7 +12,7 @@ namespace BattleScene
         public BActiveTime activeTimePrefab;
         public float enemyOffset;
 
-        public BActiveTime CreateActiveTime(BCharacter chara)
+        public BActiveTime CreateActiveTime(BCharacterPlayer chara)
         {
             var newActiveTime = Instantiate(activeTimePrefab) as BActiveTime;
             newActiveTime.Init(chara);
