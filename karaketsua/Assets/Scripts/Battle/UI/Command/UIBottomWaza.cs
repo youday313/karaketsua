@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 using BattleScene;
 
@@ -8,13 +9,14 @@ namespace BattleScene
 
     public class UIBottomWaza : UIBottomBase
     {
-
+        Button button;
+        Text wazaName;
         public UIBottomCommandParent commandParent;
         public int attackNumber;
         // Use this for initialization
-        void Start()
-        {
-
+        void Awake(){
+            button=GetComponent<Button>();
+            wazaName = GetComponentInChildren<Text>();
         }
 
         // Update is called once per frame
@@ -24,13 +26,29 @@ namespace BattleScene
         }
         public override void UpdateUI()
         {
-            base.UpdateUI();
+
+            wazaName.text = "なし";
+            button.interactable = false;
+
+            //テキストの変更
+            var chara = BCharacterManager.Instance.GetActiveCharacter();
+            if (chara == null) return;
+
+            var param=chara.characterParameter.singleAttackParameter;
+            //技がある
+            if(param.Count>attackNumber){
+                var waza = param[attackNumber];
+                wazaName.text = waza.wazaName;
+                button.interactable = true;
+            }
         }
         public void OnClick()
         {
-            CharacterManager.Instance.GetActiveCharacter().singleAttack.selectActionNumber = attackNumber;
-            CharacterManager.Instance.GetActiveCharacter().SelectSingleAttack();
-            commandParent.CreateExecuteAttack();
+            //BCharacterManager.Instance.GetActiveCharacter().singleAttack.selectActionNumber = attackNumber;
+            //BCharacterManager.Instance.GetActiveCharacter().SelectSingleAttack();
+
+            UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
+            UIBottomAllParent.Instance.UpdateUI();
         }
     }
 }

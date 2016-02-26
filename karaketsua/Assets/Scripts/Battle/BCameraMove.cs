@@ -94,7 +94,7 @@ namespace BattleScene
         //攻撃時カメラ追従
         void OnDraggingInAttackMode(DragInfo dragInfo)
         {
-            if (activeCharacter.IsNowAction() == false) return;
+            if (activeCharacter.IsNowAction == false) return;
             //x方向
             var moveVect = GetMoveDirection(dragInfo.delta);
             CSTransform.SetX(transform, transform.position.x - moveVect.x);
@@ -124,9 +124,9 @@ namespace BattleScene
         #region::行動選択時カメラ移動
         void OnDraggingStartInActionMode(DragInfo dragInfo)
         {
-            var chara = CharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.GetActiveCharacter();
             if (chara == null) return;
-            if (CharacterManager.Instance.GetCharacterOnTile(dragInfo.pos) == CharacterManager.Instance.GetActiveCharacter()) return;
+            if (BCharacterManager.Instance.GetCharacterOnTile(dragInfo.pos) == BCharacterManager.Instance.GetActiveCharacter()) return;
             if (nowCameraState != CameraState.Back) return;
             IT_Gesture.onDraggingE += OnDraggingInActionModeForCameraMove;
             IT_Gesture.onDraggingEndE += OnDraggingEndForCameraMove;
@@ -210,7 +210,7 @@ namespace BattleScene
         }
 
         //攻撃時
-        public void MoveToAttack(BCharacterSingleAttack attackCharacter, Vector3 targetPosition)
+        public void MoveToAttack(BCharacterAttackerSingle attackCharacter, Vector3 targetPosition)
         {
             var centerPosition = (targetPosition - attackCharacter.transform.position) / 2;
             var newPosition = attackCharacter.transform.position + centerPosition;
@@ -234,7 +234,7 @@ namespace BattleScene
 
         //タップ位置
         //Tweenはなし
-        public void MoveToTapAttack(BCharacterAttacker attackCharacter, Vector3 targetPosition, float changeTimeTapMode)
+        public void MoveToTapAttack(BCharacterAttackerBase attackCharacter, Vector3 targetPosition, float changeTimeTapMode)
         {
 
             var centerPosition = (targetPosition - attackCharacter.transform.position) / 2;

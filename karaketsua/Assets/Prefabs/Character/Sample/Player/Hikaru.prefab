@@ -1327,7 +1327,7 @@ GameObject:
   - 64: {fileID: 6421932}
   - 23: {fileID: 2377968}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: ActiveCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

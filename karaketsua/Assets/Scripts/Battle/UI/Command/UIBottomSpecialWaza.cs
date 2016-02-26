@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 using BattleScene;
 
 namespace BattleScene
@@ -7,7 +9,8 @@ namespace BattleScene
 
     public class UIBottomSpecialWaza : UIBottomBase
     {
-
+        Button button;
+        Text wazaName;
         public UIBottomCommandParent commandParent;
         // Use this for initialization
         void Start()
@@ -23,12 +26,27 @@ namespace BattleScene
 
         public override void UpdateUI()
         {
-            base.UpdateUI();
+            wazaName.text = "なし";
+            button.interactable = false;
+
+            //テキストの変更
+            var chara = BCharacterManager.Instance.GetActiveCharacter();
+            if (chara == null) return;
+
+            var param = chara.characterParameter.moveAttackParameter;
+            //技がある
+            if (param!=null)
+            {
+                wazaName.text = param.wazaName;
+                button.interactable = true;
+            }
         }
         public void OnClick()
         {
-            CharacterManager.Instance.GetActiveCharacter().SelectMoveAttack();
-            commandParent.CreateExecuteAttack();
+            //BCharacterManager.Instance.GetActiveCharacter().SelectMoveAttack();
+            //commandParent.CreateExecuteAttack();
+            UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
+            UIBottomAllParent.Instance.UpdateUI();
         }
     }
 }

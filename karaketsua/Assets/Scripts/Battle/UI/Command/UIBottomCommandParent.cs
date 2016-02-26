@@ -6,6 +6,15 @@ using BattleScene;
 
 namespace BattleScene
 {
+
+    public enum EUICommandState
+    {
+        None,
+        Action,
+        Waza,
+        ExecuteAttack,
+        ExecuteDeffence
+    }
     public class UIBottomCommandParent : Singleton<UIBottomCommandParent>
     {
 
@@ -19,6 +28,9 @@ namespace BattleScene
         public UIBottomExecuteAttackParent executeAttackScript;
         public UIBottomExecuteDeffenceParent executeDeffenceScript;
 
+        public static EUICommandState UICommandState=EUICommandState.None;
+
+
         //public UIBottomBack backButton;
         public event Action UpdateCommandUI=null;
         public event Action UpdateCameraUIMode=null;
@@ -26,58 +38,33 @@ namespace BattleScene
         // Use this for initialization
         void Start()
         {
-            BSceneState.Instance.StartWave += StartWave;
-        }
-        public void StartWave()
-        {
-            CreateAction();
+            //BSceneState.Instance.StartWave += StartWave;
+            //BCharacterBase.OnActiveStaticE += CreateAction;
+
         }
 
-        //public void UpdateUI()
-        //{
-        //    actionScript.UpdateUI();
-        //    wazaSelectScript.UpdateUI();
-        //    executeAttackScript.UpdateUI();
-        //    executeDeffenceScript.UpdateUI();
-        //}
-
-
-
-        public void CreateAction()
+        public void UpdateUI()
         {
             Off();
-            actionParent.SetActive(true);
-            actionScript.UpdateUI();
-            UpdateCameraUIMode();
-            BCameraChange.Instance.ActiveLeanMode();
-        }
-
-        public void CreateWazaSelect()
-        {
-            Off();
-            wazaSelectParent.SetActive(true);
-            wazaSelectScript.UpdateUI();
-            //UpdateCommandUI();
-            UpdateCameraUIMode();
-            BCameraChange.Instance.ActiveLeanMode();
-        }
-        public void CreateExecuteAttack()
-        {
-            Off();
-            executeAttackParent.SetActive(true);
-            executeAttackScript.UpdateUI();
-            //UpdateCommandUI();
-            UpdateCameraUIMode();
-            BCameraChange.Instance.ActiveUpMode();
-        }
-        public void CreateExecuteDeffence()
-        {
-            Off();
-            executeDeffenceParent.SetActive(true);
-            executeDeffenceScript.UpdateUI();
-            //UpdateCommandUI();
-            UpdateCameraUIMode();
-            BCameraChange.Instance.ActiveLeanMode();
+            switch (UICommandState)
+            {
+                case EUICommandState.Action:
+                    actionParent.SetActive(true);
+                    actionScript.UpdateUI();
+                    break;
+                case EUICommandState.Waza:
+                    wazaSelectParent.SetActive(true);
+                    wazaSelectScript.UpdateUI();
+                    break;
+                case EUICommandState.ExecuteAttack:
+                    executeAttackParent.SetActive(true);
+                    executeAttackScript.UpdateUI();
+                    break;
+                case EUICommandState.ExecuteDeffence:
+                    executeDeffenceParent.SetActive(true);
+                    executeDeffenceScript.UpdateUI();
+                    break;
+            }
         }
 
         void Off()
@@ -89,22 +76,5 @@ namespace BattleScene
             //UpdateCommandUI();
             UpdateCameraUIMode();
         }
-
-        //public void OnBack()
-        //{
-        //    if (enableCommand == EnableCommandUIState.Waza)
-        //    {
-        //        CreateAction();
-        //    }
-        //    else if (enableCommand == EnableCommandUIState.ExecuteAttack)
-        //    {
-        //        CreateWazaSelect();
-
-        //    }
-        //    else if (enableCommand == EnableCommandUIState.ExecuteDeffence)
-        //    {
-        //        CreateAction();
-        //    }
-        //}
     }
 }

@@ -4,142 +4,72 @@ using System.Collections.Generic;
 using System.Linq;
 
 using BattleScene;
+using System;
 
 namespace BattleScene
 {
 
-    public class BCharacterEnemy:MonoBehaviour
+    public class BCharacterEnemy:BCharacterBase
     {
 
-        ///インスペクタから編集
-        public CharacterParameter characterParameter;
-        //現在のキャラクター位置配列
-        [System.NonSerialized]
-        public IntVect2D positionArray = new IntVect2D(0, 0);
+        //移動
+        BCharacterMoverManagerEnemy mover;
 
-        public BCharacterLife Life
+        //攻撃
+        BCharacterAttackerManagerEnemy attacker;
+
+        public static event Action OnActiveEnemyStaticE;
+
+        public override void Init(IntVect2D array)
         {
-            get { return life; }
-        }
-        BCharacterLife life;
-        BActiveTime activeTime;
-
-        //アクティブか
-        [System.NonSerialized]
-        public bool isNowSelect = false;
-        [System.NonSerialized]
-        public bool IsAttacked = false;
-        public GameObject activeCircle;
-
-        public void Init(IntVect2D array)
-        {
-
+            
+            base.Init(array);
+            isEnemy = true;
+            //回転
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            positionArray.x = array.x;
-            positionArray.y = array.y;
         }
 
         // Use this for initialization
-        void Start()
+        public override void Awake()
         {
-            //move = GetComponent<BCharacterMove>();
+            base.Awake();
+            mover = GetComponent<BCharacterMoverManagerEnemy>();
+            attacker = GetComponent<BCharacterAttackerManagerEnemy>();
+
+        }
+
+        public override void Start()
+        {
+            base.Start();
             //singleAttack = GetComponent<BCharacterSingleAttack>();
-            life = GetComponent<BCharacterLife>();
-            life.Init(characterParameter);
-            //アクティブタイム作成
-            //activeTime = BActiveTimeCreater.Instance.CreateActiveTime(this);
-            SetActiveTimeEventHandler();
+            //moveAttack = GetComponent<BCharacterMoveAttack>()
 
-            //位置変更
-            SetPositionOnTile();
+            SetWaitState();
 
-            //選択マーカー表示
-            activeCircle.SetActive(false);
-
-            DisableActionMode();
-
-
-        }
-        //アクティブタイムに登録
-        void SetActiveTimeEventHandler()
-        {
-            activeTime.OnStopActiveTimeE += OnActive;
-        }
-        //アクティブタイムから削除
-        void RemoveActiveTimeEventHandler()
-        {
-            activeTime.OnStopActiveTimeE -= OnActive;
-        }
-        //タイルの上に移動
-        void SetPositionOnTile()
-        {
-            var tilePosition = BBattleStage.Instance.GetTile(positionArray).transform.position;
-            CSTransform.SetX(transform, tilePosition.x);
-            CSTransform.SetZ(transform, tilePosition.z);
         }
 
         //非選択状態
-        void DisableActionMode()
+        public override void SetWaitState()
         {
-            isNowSelect = false;
-            StartWave();
-            IsAttacked = false;
-            activeCircle.SetActive(false);
+            mover.IsEnable = false;
+            attacker.IsEnable = false;
         }
 
-        public void StartWave()
-        {
-            //move.IsEnable = false;
-            //singleAttack.IsEnable = false;
-        }
 
 
         //キャラクターを行動選択状態にする
-        public void OnActive(BActiveTime aTime)
+        public void OnActive()
         {
-            isNowSelect = true;
-            EnableInitialActionMode();
-            //CharacterManager.Instance.SetNowActiveCharacter(this);
-            UIBottomAllParent.Instance.CreateAction();
-            //ActionSelect.Instance.OnActiveCharacter(this);
-            activeCircle.SetActive(true);
-            //タイル変更
-            //BattleStage.Instance.UpdateTileColors(this, TileState.Move);
+            base.OnActive();
+            if (OnActiveEnemyStaticE != null) OnActiveEnemyStaticE();
+
         }
 
-        //アクティブ状態
-        void EnableInitialActionMode()
+        public void OnEndActive()
         {
-            //GetCamera().SetActiveCharacter(this);
-            SelectMove();
-        }
+            base.OnEndActive();
 
-        //移動可能
-        public void SelectMove()
-        {
-            //move.IsEnable = true;
-            //moveAttack.IsEnable = false;
-            //singleAttack.IsEnable = false;
-        }
-
-        //死の実行
-        public void DeathMyself()
-        {
-            //爆発エフェクト
-            //Instantiate(Resources.Load<GameObject>("DeathEffect"), transform.position, Quaternion.identity);
-            //リストから除く
-            //WaitTimeManager.Instance.DestroyWaitTime(this.activeTime);
-            RemoveActiveTimeEventHandler();
-            activeTime.DeathCharacter();
-            //CharacterManager.Instance.DestroyCharacter(this);
-            Destroy(gameObject);
-        }
-
-
-
-        BCameraMove GetCamera()
-        {
-            return GameObject.FindGameObjectWithTag("MainCamera").GetComponent<BCameraMove>();
+            SetWaitState();
         }
 
     }

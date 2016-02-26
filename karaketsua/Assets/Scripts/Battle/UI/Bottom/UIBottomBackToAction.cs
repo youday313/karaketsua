@@ -9,7 +9,7 @@ namespace BattleScene
         public override void OnClick()
         {
             UIBottomCommandParent.Instance.CreateAction();
-            CharacterManager.Instance.GetActiveCharacter().SelectMove();
+            BCharacterManager.Instance.GetActiveCharacter().SelectMove();
         }
     }
 }

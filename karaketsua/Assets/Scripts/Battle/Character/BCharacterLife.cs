@@ -10,11 +10,12 @@ namespace BattleScene
     {
         CharacterParameter characterParameter;
         BCharacterAnimator animator;
-        BCharacterPlayer character;
+        BCharacterBase character;
         void Start()
         {
-            character = GetComponent<BCharacterPlayer>();
+            character = GetComponent<BCharacterBase>();
             animator = GetComponent<BCharacterAnimator>();
+
         }
 
         public void Init(CharacterParameter param)
@@ -27,9 +28,8 @@ namespace BattleScene
             var calcDamage = CalcDamage(enemyPower);
             characterParameter.HP -= calcDamage;
             CreateDamageText(calcDamage);
-            //DamageAnimation();
+
             animator.SetDamage();
-            if (character.isEnemy == false) return;
             //character.StateUI.UpdateUI();
 
         }

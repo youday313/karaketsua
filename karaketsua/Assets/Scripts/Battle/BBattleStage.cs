@@ -52,40 +52,48 @@ namespace BattleScene
                     }
                 }
             }
+            SetEvent();
         }
-
-        public void UpdateTileColors(BCharacterPlayer chara, TileState state)
+        void SetEvent()
         {
-            var positionArray = chara.positionArray;
-            if (state == TileState.Attack)
-            {
-                ResetAllTileColor();
-                ChangeColor(positionArray, state);
-                //ChangeNeighborTilesColor(positionArray, state);
-
-            }
-            else if (state == TileState.Move)
-            {
-                ResetAllTileColor();
-                ChangeColor(positionArray, state);
-                ChangeNeighborTilesColor(positionArray, state);
-            }
-            else if (state == TileState.Skill)
-            {
-                ResetAllTileColor();
-                ChangeColor(positionArray, state);
-            }
-
+            BCharacterBase.OnActiveStaticE += OnActiveCharacter;
 
         }
-        public void ChangeTileColorsToAttack(List<IntVect2D> attackRange, BCharacterPlayer character)
+
+        //アクティブ時
+        public void OnActiveCharacter(BCharacterBase chara)
+        {
+            ChangeColor(chara.positionArray, TileState.Active,true);
+            ChangeNeighborTilesColor(chara.positionArray, TileState.Move);
+
+        }
+
+        //攻撃選択
+        public void OnSlectWaza(BCharacterPlayer chara,SingleAttackParameter selectWaza)
         {
             ResetAllTileColor();
-            foreach (var range in attackRange)
-            {
-                ChangeColor(IntVect2D.Add(character.positionArray, range), TileState.Attack);
+            //攻撃範囲取得
+            foreach(var range in selectWaza.attackRange){
+                var pos = IntVect2D.Clone(chara.positionArray);
+                pos = IntVect2D.Add(pos, range);
+                ChangeColor(pos, TileState.Attack);
             }
         }
+
+        //ターゲット選択
+        //移動攻撃も同様
+        public void OnSelecSkillTarget(IntVect2D targetPosition)
+        {
+            ChangeColor(targetPosition, TileState.Skill);
+        }
+        //ターゲット解除
+        public void OnCancelSkillTarget(IntVect2D targetPosition)
+        {
+            ChangeColor(targetPosition, TileState.Default);
+        }
+        
+        
+
 
         //ゲット関連
         //タイルを返す

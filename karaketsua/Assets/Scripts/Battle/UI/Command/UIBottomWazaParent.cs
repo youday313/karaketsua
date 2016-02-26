@@ -18,9 +18,12 @@ public class UIBottomWazaParent : UIBottomBase
 
     public override void UpdateUI()
     {
+        
         foreach(var waza in wazas){
+            waza.gameObject.SetActive(true);
             waza.UpdateUI();
         }
+        special.gameObject.SetActive(true);
         special.UpdateUI();
     }
 }

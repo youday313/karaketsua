@@ -20,13 +20,11 @@ namespace BattleScene
 
         //イベントで通知
         //キャラクター行動選択時
-        public event Action<BActiveTime> OnStopActiveTimeE;
-        //WaitTimerが動く時
-        public event Action<BActiveTime> OnStartActiveTimeE;
+        public event Action OnStopActiveTimeE;
 
         //関連付けられたキャラ
         [System.NonSerialized]
-        public BCharacterPlayer character;
+        public BCharacterBase character;
 
         Slider slider;
         [SerializeField]
@@ -61,11 +59,12 @@ namespace BattleScene
             //slider.value = initTimeValue;
             isActive = true;
         }
-        public void Init(BCharacterPlayer chara)
+        public void Init(BCharacterBase chara)
         {
             character = chara;
             activeSpeed = character.characterParameter.activeSpeed;
             iconImage.sprite = Resources.Load<Sprite>("Icon/" + character.characterParameter.charaName);
+            character.OnDeathE += Delete;
             //slider.maxValue = initTimeValue;
             //nowWaitTime = initTimeValue;
 
@@ -116,11 +115,8 @@ namespace BattleScene
         //行動キャラ選択
         void StopActive()
         {
-            if (OnStopActiveTimeE != null)
-            {
-                //イベント通知
-                OnStopActiveTimeE(this);
-            }
+            character.OnActive();
+            
             //他のActiveTime停止
             foreach (var time in GameObject.FindGameObjectsWithTag("ActiveTime").Select(x => x.GetComponent<BActiveTime>()).Where(x => x.character != this))
             {
@@ -139,7 +135,7 @@ namespace BattleScene
                 time.IsActive = true;
             }
         }
-        public void DeathCharacter()
+        public void Delete(BCharacterBase chara)
         {
             Destroy(this.gameObject);
         }

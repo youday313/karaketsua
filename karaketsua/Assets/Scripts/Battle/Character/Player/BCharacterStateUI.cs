@@ -13,22 +13,34 @@ namespace BattleScene
         public Slider HPbar;
         public Slider skillBar;
 
-        BCharacterPlayer character;
+        //BCharacterBase character;
         float holdTime;
         public float displayEnableTime=1f;
 
-        public void Init(BCharacterPlayer _character)
+        public void Init(BCharacterBase _character)
         {
-            character = _character;
-            transform.SetParent(GameObject.FindGameObjectWithTag("CharacterStateUIParent").transform, false);
+            var character = _character;
+            var objectType= character.isEnemy==false?"Player":"Enemy";
+            transform.SetParent(GameObject.FindGameObjectWithTag("CharacterStateUIParent").transform.FindChild(objectType).transform, false);
+            character.OnDeathE += Delete;
+            character.OnStatusUpdateE += UpdateUI;
+
             faceImage = Resources.Load<Image>("Icon/" + _character.characterParameter.charaName);
             HPbar.maxValue = _character.characterParameter.HP;
             skillBar.maxValue = _character.characterParameter.skillPoint;
-            UpdateUI();
+            UpdateUI(character);
 
         }
-        public void UpdateUI()
+        public void Delete(BCharacterBase chara)
         {
+
+
+            Destroy(this.gameObject);
+        }
+
+        public void UpdateUI(BCharacterBase chara)
+        {
+            var character = chara;
             HPbar.value = character.characterParameter.HP;
             skillBar.value = character.characterParameter.skillPoint;
         }

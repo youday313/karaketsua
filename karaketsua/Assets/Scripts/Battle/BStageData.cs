@@ -8,15 +8,24 @@ namespace BattleScene
     public class BStageData : DontDestroySingleton<BStageData>
     {
 
-        public List<CharacterData> playerCharacters;
-        public List<CharacterData> enemyCharacters;
+        public List<PlayerCharacterData> playerCharacters;
+        public List<EnemyCharacterData> enemyCharacters;
 
         [System.Serializable]
         public class CharacterData
         {
-            public BCharacterPlayer prefab;
+            //public BCharacterBase prefab;
             public Vector2 position;
         }
+        public class PlayerCharacterData:CharacterData
+        {
+            public BCharacterPlayer prefab;
+        }
+        public class EnemyCharacterData:CharacterData
+        {
+            public BCharacterEnemy prefab;
+        }
+
     }
 
 }

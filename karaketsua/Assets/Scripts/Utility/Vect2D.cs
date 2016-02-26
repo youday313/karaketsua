@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 
-#region::vect2D
 //C#のジェネリックはC++のテンプレートと異なり演算子オーバーロードはできない
 [System.Serializable]
 public struct Vect2D<T>
@@ -60,9 +61,12 @@ public class IntVect2D
     {
         return new IntVect2D(newVect.x - oldVect.x, newVect.y - oldVect.y);
     }
+    public static IntVect2D Clone(IntVect2D vect)
+    {
+        return new IntVect2D(vect.x, vect.y);
+    }
 
     //最大方向の取得
-
     public static IntVect2D GetDirectionFromVector2(Vector2 delta)
     {
         //x方向
@@ -78,6 +82,41 @@ public class IntVect2D
         }
     }
 
+
+
 }
 
-#endregion
+//IntVect2D
+public static class IntVect2DExtend
+{
+    //シャッフル
+    public static IntVect2D[] Shuffle(this IntVect2D[] array)
+    {
+        return Shuffle(array, new System.Random());
+    }
+    public static IntVect2D[] Shuffle(this IntVect2D[] array, System.Random random)
+    {
+        if (array == null)
+            throw new ArgumentNullException("array");
+        if (random == null)
+            throw new ArgumentNullException("random");
+
+        var shuffled = (IntVect2D[])array.Clone();
+
+        if (shuffled.Length < 2)
+            return shuffled;
+
+        for (var i = 1; i < shuffled.Length; i++)
+        {
+            var j = random.Next(0, i + 1);
+
+            // swap
+            var temp = shuffled[i];
+            shuffled[i] = shuffled[j];
+            shuffled[j] = temp;
+        }
+
+        return shuffled;
+    }
+
+}

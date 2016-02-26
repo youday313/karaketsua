@@ -10,31 +10,33 @@ namespace BattleScene
         Button button;
         public UIBottomCommandParent commandParent;
         // Use this for initialization
+        // Use this for initialization
         void Awake()
         {
             button = GetComponent<Button>();
+
+
         }
-
-        // Update is called once per frame
-        void Update()
+        void Start()
         {
-
+           
         }
 
         public override void UpdateUI()
         {
             button.interactable = false;
-            //キャラクター状態取得
-            var chara = CharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.GetActiveCharacter();
             if (chara == null) return;
-
+            if (chara.isEnemy || chara.IsNowAction) return;  
             button.interactable = true;
         }
 
+
         public void OnClick()
         {
-            CharacterManager.Instance.GetActiveCharacter().SelectDisable();
-            commandParent.CreateExecuteDeffence();
+            //BCharacterManager.Instance.GetActiveCharacter().SelectDisable();
+            UIBottomCommandParent.UICommandState = EUICommandState.ExecuteDeffence;
+            UIBottomAllParent.Instance.UpdateUI();
         }
     }
 }

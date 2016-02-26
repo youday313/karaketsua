@@ -22,9 +22,12 @@ namespace BattleScene
 
         public void OnClick()
         {
+            UIBottomCommandParent.UICommandState = EUICommandState.None;
+            UIBottomAllParent.Instance.UpdateUI();
+
             //防御の実行
-            CharacterManager.Instance.GetActiveCharacter().ExecuteDeffence();
-            commandParent.CreateAction();
+            //BCharacterManager.Instance.GetActiveCharacter().ExecuteDeffence();
+            //commandParent.CreateAction();
         }
     }
 }

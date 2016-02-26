@@ -11,39 +11,31 @@ namespace BattleScene
         GameObject commandParent;
         public UIBottomCommandParent commandScript;
 
+        
+
         // Use this for initialization
         void Start()
         {
             commandParent = commandScript.gameObject;
-            BSceneState.Instance.StartWave += StartWave;
+            BCharacterBase.OnActiveStaticE+=UpdateUI;
+
+            
+            //BSceneState.Instance.StartWave += StartWave;
         }
 
         public void StartWave()
         {
-            CreateAction();
+            UpdateUI();
         }
 
-
-        //public void UpdateUI()
-        //{
-        //    //bottomParent.SetActive(true);
-        //    commandParent.SetActive(true);
-
-        //    //bottomScript.UpdateUI();
-        //    commandScript.UpdateUI();
-        //}
-        public void CreateAction()
+        public void UpdateUI(BCharacterBase chara=null)
         {
-            //bottomParent.SetActive(true);
             commandParent.SetActive(true);
-
-            //bottomScript.UpdateUI();
-            commandScript.CreateAction();
+            commandScript.UpdateUI();
         }
 
         public void Off()
         {
-            //bottomParent.SetActive(false);
             commandParent.SetActive(false);
         }
 

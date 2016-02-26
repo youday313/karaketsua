@@ -8,23 +8,25 @@ namespace BattleScene
     public class UIBottomAttack : UIBottomBase
     {
         Button button;
-        public UIBottomCommandParent commandParent;
+        //public UIBottomCommandParent commandParent;
         // Use this for initialization
         void Awake()
         {
             button = GetComponent<Button>();
+            
 
         }
-
+        void Start()
+        {
+            
+        }
 
         public override void UpdateUI()
         {
             button.interactable = false;
-            //キャラクター状態取得
-            var chara = CharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.GetActiveCharacter();
             if (chara == null) return;
-            if (chara.IsAttacked == true) return;
-
+            if (chara.IsAttacked || chara.isEnemy||chara.IsNowAction) return;         
             button.interactable = true;
 
         }
@@ -32,8 +34,9 @@ namespace BattleScene
         //ボタンクリック
         public void OnClick()
         {
-            CharacterManager.Instance.GetActiveCharacter().SelectDisable();
-            commandParent.CreateWazaSelect();
+            //BCharacterManager.Instance.GetActiveCharacter().SelectDisable();
+            UIBottomCommandParent.UICommandState = EUICommandState.Waza;
+            UIBottomAllParent.Instance.UpdateUI();
         }
     }
 }
