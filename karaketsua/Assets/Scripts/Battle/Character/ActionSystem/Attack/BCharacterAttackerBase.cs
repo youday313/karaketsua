@@ -38,7 +38,7 @@ namespace BattleScene
 
 
         // Use this for initialization
-        public void Awake()
+        public virtual void Awake()
         {
             character = GetComponent<BCharacterBase>();
             animator = GetComponent<BCharacterAnimator>();
@@ -69,7 +69,7 @@ namespace BattleScene
         {
             isDone = false;
         }
-        public void Disable()
+        public virtual void Disable()
         {
             attackTarget = new List<BCharacterBase>();
         }

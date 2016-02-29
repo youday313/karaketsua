@@ -35,7 +35,6 @@ namespace BattleScene
             base.Awake();
             mover = GetComponent<BCharacterMoverManagerEnemy>();
             attacker = GetComponent<BCharacterAttackerManagerEnemy>();
-
         }
 
         public override void Start()
@@ -43,9 +42,17 @@ namespace BattleScene
             base.Start();
             //singleAttack = GetComponent<BCharacterSingleAttack>();
             //moveAttack = GetComponent<BCharacterMoveAttack>()
-
             SetWaitState();
+        }
 
+        public override bool IsNowAction()
+        {
+            return attacker.IsNowAction() == true && mover.IsNowAction() == true;
+        }
+
+        public override bool IsAttacked()
+        {
+            return attacker.IsDone();
         }
 
         //非選択状態
@@ -54,6 +61,8 @@ namespace BattleScene
             mover.IsEnable = false;
             attacker.IsEnable = false;
         }
+
+
 
 
 

@@ -9,8 +9,8 @@ namespace BattleScene
     {
         public override void OnClick()
         {
-            UIBottomCommandParent.Instance.CreateWazaSelect();
-            BCharacterManager.Instance.GetActiveCharacter().SelectDisable();
+            //UIBottomCommandParent.Instance.CreateWazaSelect();
+            //BCharacterManager.Instance.GetActiveCharacter().SelectDisable();
         }
     }
 }

@@ -11123,7 +11123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eacddb35360c7df4ca007fddebbe804b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  commandParent: {fileID: 1542084615}
 --- !u!1 &1370371679
 GameObject:
   m_ObjectHideFlags: 0

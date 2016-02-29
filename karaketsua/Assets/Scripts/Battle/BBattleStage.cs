@@ -73,7 +73,7 @@ namespace BattleScene
         {
             ResetAllTileColor();
             //攻撃範囲取得
-            foreach(var range in selectWaza.attackRange){
+            foreach(var range in selectWaza.attackRanges){
                 var pos = IntVect2D.Clone(chara.positionArray);
                 pos = IntVect2D.Add(pos, range);
                 ChangeColor(pos, TileState.Attack);

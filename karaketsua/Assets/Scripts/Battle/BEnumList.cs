@@ -17,20 +17,16 @@ namespace BattleScene
         public string charaName;
         //体力
         public int HP;
-        //攻撃技関連
-        public List<SingleAttackParameter> singleAttackParameter = new List<SingleAttackParameter>();
-        //移動攻撃
-        public MoveAttackParameter moveAttackParameter=null;
         //行動力
         public int activeSpeed;
         //攻撃力
         public int power;
         //属性攻撃力
-        public List<int> elementPower = new List<int>();
+        public List<int> elementPowers = new List<int>();
         //防御力
         public int deffence;
         //属性防御力
-        public List<int> elementDeffence = new List<int>();
+        public List<int> elementDeffences = new List<int>();
         //精神力,MP
         public int skillPoint;
         //知力
@@ -38,7 +34,14 @@ namespace BattleScene
         //気力,移動攻撃用
         public int movePoint;
         //状態異常
-        public List<StateError> stateError = new List<StateError>();
+        public List<StateError> stateErrors = new List<StateError>();
+
+        //攻撃技関連
+        public List<SingleAttackParameter> singleAttackParameters = new List<SingleAttackParameter>();
+        //移動攻撃
+        public MoveAttackParameter moveAttackParameter = null;
+        //自動攻撃
+        public AutoAttackParameter autoAttackParameter = new AutoAttackParameter();
 
     }
 
@@ -50,7 +53,6 @@ namespace BattleScene
         public string wazaName;
 
         public ElementKind element;
-        //範囲攻撃
 
         //使用MP
         public int needSkillPoint;
@@ -60,7 +62,7 @@ namespace BattleScene
     public class SingleAttackParameter : AttackParameter
     {
         //攻撃範囲
-        public List<IntVect2D> attackRange;
+        public List<IntVect2D> attackRanges;
 
         //攻撃種類
         public AttackDistance attackDistance;
@@ -70,7 +72,7 @@ namespace BattleScene
 
         //タップアクション
         //リスト数＝タップ回数
-        public List<SingleActionParameter> actionParameter = null;
+        public List<SingleActionParameter> actionParameters = null;
 
     }
 
@@ -81,6 +83,14 @@ namespace BattleScene
         public float startInterval;
         public GameObject attackMakerPrefab;
         //public AttackEffectKind attackEffectKind;
+        public float power;
+    }
+
+    [System.Serializable]
+    public class AutoAttackParameter : AttackParameter
+    {
+        public List<IntVect2D> attackRanges;
+        public AttackDistance attackDistance;
         public float power;
     }
 

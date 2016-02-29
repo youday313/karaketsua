@@ -34,7 +34,7 @@ namespace BattleScene
             var chara = BCharacterManager.Instance.GetActiveCharacter();
             if (chara == null) return;
 
-            var param=chara.characterParameter.singleAttackParameter;
+            var param=chara.characterParameter.singleAttackParameters;
             //技がある
             if(param.Count>attackNumber){
                 var waza = param[attackNumber];

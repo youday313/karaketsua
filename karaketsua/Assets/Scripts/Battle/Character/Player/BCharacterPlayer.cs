@@ -15,6 +15,7 @@ namespace BattleScene
 
     public class BCharacterPlayer : BCharacterBase
     {
+
         //移動
         BCharacterMoverManagerPlayer mover;
 
@@ -47,6 +48,21 @@ namespace BattleScene
         {
             base.Init(array);
             isEnemy = false;
+        }
+
+        public override bool IsNowAction()
+        {
+            return attacker.IsNowAction() == true && mover.IsNowAction() == true;
+        }
+
+        public override bool IsAttacked()
+        {
+            return attacker.IsDone();
+        }
+
+        public override bool IsSetTarget()
+        {
+            return attacker.IsSetTarget();
         }
 
         //非選択状態

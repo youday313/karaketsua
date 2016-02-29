@@ -94,7 +94,7 @@ namespace BattleScene
         //攻撃時カメラ追従
         void OnDraggingInAttackMode(DragInfo dragInfo)
         {
-            if (activeCharacter.IsNowAction == false) return;
+            if (activeCharacter.IsNowAction() == false) return;
             //x方向
             var moveVect = GetMoveDirection(dragInfo.delta);
             CSTransform.SetX(transform, transform.position.x - moveVect.x);
@@ -245,6 +245,10 @@ namespace BattleScene
             //iTween.MoveTo(gameObject, iTween.Hash("x", newPosition.x + attackCamera[(int)CameraState.TapAttack].position.x, "y", newPosition.y + attackCamera[(int)CameraState.TapAttack].position.y, "z", newPosition.z + attackCamera[(int)CameraState.TapAttack].position.z,
             //           "time", changeTimeTapMode));
             //iTween.RotateTo(gameObject, iTween.Hash("x", attackCamera[(int)CameraState.TapAttack].rotation.x, "y", GetInverseRotationFromFrontMode() + attackCamera[(int)CameraState.TapAttack].rotation.y, "z", attackCamera[(int)CameraState.TapAttack].rotation.z, "time", changeTimeTapMode, "islocal", true));
+        }
+        public void MoveToAutoAttack(BCharacterAttackerBase attackCharacter, Vector3 targetPosition)
+        {
+            MoveToTapAttack(attackCharacter,targetPosition,0);
         }
 
         void StartCameraMoveUseiTween(Vector3 pos, AttackDistance distance)

@@ -10,7 +10,14 @@ namespace BattleScene
     public class BCharacterMoverManagerPlayer : BCharacterActionManagerBase
     {
         BCharacterMoverManual mover;
-
+        public void Awake()
+        {
+            mover = GetComponent<BCharacterMoverManual>();
+        }
+        public void Start()
+        {
+            Reset();
+        }
         public override void Enable()
         {
             if (IsDone() == true)

@@ -13,10 +13,6 @@ namespace BattleScene
 
         BCharacterAttackerAuto autoAttack;
 
-        
-        
-        
-
         public void Awake()
         {
             autoAttack = GetComponent<BCharacterAttackerAuto>();

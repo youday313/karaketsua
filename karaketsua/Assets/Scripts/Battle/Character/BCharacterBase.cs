@@ -38,17 +38,10 @@ namespace BattleScene
         //現在のキャラクター位置配列
         [System.NonSerialized]
         public IntVect2D positionArray = new IntVect2D(0, 0);
-        
-        //攻撃
-        BCharacterActionManagerBase attacker;
-
-        //移動
-        BCharacterActionManagerBase mover;
 
         //行動中
-        public bool IsNowAction {
-            get { return attacker.IsNowAction() == true && mover.IsNowAction() == true; } 
-        }
+        public virtual bool IsNowAction()
+        { return false; }
 
         BCharacterAnimator animator;
 
@@ -73,7 +66,7 @@ namespace BattleScene
         GameObject activeCircle;
         
 
-        public void Init(IntVect2D array)
+        public virtual void Init(IntVect2D array)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
             positionArray.x = array.x;
@@ -92,7 +85,6 @@ namespace BattleScene
         public virtual void Awake()
         {
             life = GetComponent<BCharacterLife>();
-            attacker = GetComponent<BCharacterAttackerManagerBase>();
         }
 
         public virtual void Start()
@@ -107,6 +99,22 @@ namespace BattleScene
             CreateCharacterUI();
 
         }
+
+        #region::継承の仮想関数
+
+        public virtual bool IsAttacked()
+        {
+            return false;
+        }
+        public virtual bool IsSetTarget()
+        {
+            return false;
+        }
+        public virtual void SetWaitState() {
+
+        }
+
+        #endregion
 
         void CreateActiveTime()
         {
@@ -134,9 +142,7 @@ namespace BattleScene
         {
 
             if(OnActiveE!=null)OnActiveE(this);
-            if (OnActiveStaticE != null) OnActiveStaticE(this);
-
-            
+            if (OnActiveStaticE != null) OnActiveStaticE(this);      
             activeCircle.SetActive(true);
             //タイル変更
             //BattleStage.Instance.UpdateTileColors(this, TileState.Move);
@@ -165,7 +171,6 @@ namespace BattleScene
             if(OnDeathE!=null)OnDeathE(this);
             Destroy(gameObject);
         }
-
 
         public BCameraMove GetCamera()
         {

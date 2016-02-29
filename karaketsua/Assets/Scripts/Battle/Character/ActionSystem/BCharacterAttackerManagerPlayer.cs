@@ -19,6 +19,7 @@ namespace BattleScene
 
         public void Awake()
         {
+            
             singleAttack = GetComponent<BCharacterAttackerSingle>();
             moveAttack = GetComponent<BCharacterAttackerMove>();
         }
@@ -27,9 +28,11 @@ namespace BattleScene
             Reset();
         }
 
-        public void SelectSingleAttack()
+        public void SelectSingleAttack(int selectNumber)
         {
             singleAttack.IsEnable = true;
+            singleAttack.SelectWazaNumber = selectNumber;
+
         }
         public void SelectMoveAttack()
         {
@@ -57,6 +60,11 @@ namespace BattleScene
         public override bool IsDone()
         {
             return singleAttack.IsDone || moveAttack.IsDone;
+        }
+
+        public bool IsSetTarget()
+        {
+            return singleAttack.IsSetTarget == true || moveAttack.IsSetTarget == true;
         }
     }
 

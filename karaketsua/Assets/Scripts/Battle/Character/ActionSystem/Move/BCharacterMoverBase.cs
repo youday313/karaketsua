@@ -47,22 +47,22 @@ namespace BattleScene
 
 
         // Use this for initialization
-        public void Awake()
+        public virtual void Awake()
         {
             character = GetComponent<BCharacterBase>();
             animator = GetComponent<BCharacterAnimator>();
         }
 
-        public void Enable()
+        public virtual void Enable()
         {
 
         }
-        void Disable()
+        public virtual void Disable()
         {
         }
 
 
-        public void Reset()
+        public virtual void Reset()
         {
             isDone = false;
             isNowAction = false;

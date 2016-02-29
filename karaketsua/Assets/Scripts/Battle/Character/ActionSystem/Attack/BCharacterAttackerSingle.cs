@@ -40,6 +40,7 @@ namespace BattleScene
         public int SelectWazaNumber
         {
             get { return selectActionNumber; }
+            set { selectActionNumber=value; }
         }
 
         Transform effectCanvas;
@@ -66,7 +67,7 @@ namespace BattleScene
         {
             IT_Gesture.onShortTapE -= OnShortTap;
             isTapDetect = false;
-
+            selectActionNumber = 0;
             //CameraChange.Instance.
             base.Disable();
         }
@@ -134,7 +135,7 @@ namespace BattleScene
 
         bool IsInAttackRange(IntVect2D targetPositionArray)
         {
-            return selectAttackParameter.attackRange.Any(x => x.IsEqual(IntVect2D.Sub(targetPositionArray, character.positionArray)));
+            return selectAttackParameter.attackRanges.Any(x => x.IsEqual(IntVect2D.Sub(targetPositionArray, character.positionArray)));
         }
 
         #endregion::ターゲット選択
@@ -167,7 +168,7 @@ namespace BattleScene
 
             popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(attackTarget[0].transform.position.x, attackTarget[0].transform.position.y + 1f, attackTarget[0].transform.position.z));
 
-            var attackList = selectAttackParameter.actionParameter;
+            var attackList = selectAttackParameter.actionParameters;
             var totalDamage = 0;
             foreach (var action in attackList)
             {

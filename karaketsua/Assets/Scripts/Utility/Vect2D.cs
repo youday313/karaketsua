@@ -82,6 +82,11 @@ public class IntVect2D
         }
     }
 
+    //距離の取得
+    public static float Distance(IntVect2D v1,IntVect2D v2)
+    {
+        return Vector2.Distance(new Vector2(v1.x, v1.y), new Vector2(v2.x, v2.y));
+    }
 
 
 }
