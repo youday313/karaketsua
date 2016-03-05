@@ -9,6 +9,8 @@ using System;
 namespace BattleScene
 {
 
+    [RequireComponent(typeof(BCharacterMoverManagerEnemy))]
+    [RequireComponent(typeof(BCharacterAttackerManagerEnemy))]
     public class BCharacterEnemy:BCharacterBase
     {
 

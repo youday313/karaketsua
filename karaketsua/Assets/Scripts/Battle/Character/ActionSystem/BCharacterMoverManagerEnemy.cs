@@ -7,6 +7,7 @@ using BattleScene;
 
 namespace BattleScene
 {
+    [RequireComponent(typeof(BCharacterMoverAuto))]
     public class BCharacterMoverManagerEnemy : BCharacterActionManagerBase
     {
         BCharacterMoverAuto mover;

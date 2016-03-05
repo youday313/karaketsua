@@ -7,6 +7,8 @@ using BattleScene;
 
 namespace BattleScene
 {
+    [RequireComponent(typeof(BCharacterMoverManual))]
+
     public class BCharacterMoverManagerPlayer : BCharacterActionManagerBase
     {
         BCharacterMoverManual mover;

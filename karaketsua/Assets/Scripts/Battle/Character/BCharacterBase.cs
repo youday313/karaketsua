@@ -11,6 +11,8 @@ namespace BattleScene
 
 
 //敵、味方キャラクターの基本クラス
+    [RequireComponent(typeof(BCharacterAnimator))]
+    [RequireComponent(typeof(BCharacterLife))]
 
     public class BCharacterBase : MonoBehaviour
     {

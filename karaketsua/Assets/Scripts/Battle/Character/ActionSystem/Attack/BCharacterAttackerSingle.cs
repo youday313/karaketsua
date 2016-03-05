@@ -22,7 +22,7 @@ namespace BattleScene
 
         GameObject nowAttackMaker;
         SingleActionParameter nowSingleAction;
-        public GameObject attackEffectPrefab;
+        public GameObject onTapEffect;
         Vector3 popupPositionInScreen;
 
         //選択した攻撃方法
@@ -235,7 +235,7 @@ namespace BattleScene
             leftTime = Mathf.Clamp(nowTime, 0, nowSingleAction.judgeTime);
             Destroy(nowAttackMaker);
             nowAttackMaker = null;
-            var attackEffect = Instantiate(attackEffectPrefab, popupPositionInScreen, Quaternion.identity) as GameObject;
+            var attackEffect = Instantiate(onTapEffect, popupPositionInScreen, Quaternion.identity) as GameObject;
             attackEffect.transform.SetParent(effectCanvas);
         }
         //ダメージ量計算

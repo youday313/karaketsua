@@ -3,7 +3,7 @@ guid: 02637f30b03151b4e8d853b21a592440
 timeCreated: 1455945638
 licenseType: Free
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: Arrow
     100002: Arrow_poly
@@ -85,6 +85,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -92,12 +93,104 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: Arrow/Tsuru
+        weight: 1
+      - path: Arrow_poly
+        weight: 1
+      - path: Hip
+        weight: 1
+      - path: Hip/Left_Leg_Root
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee/Left_Midle_Knee
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee/Left_Midle_Knee/Left_Foot
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee/Left_Midle_Knee/Left_Foot/Left_Toe
+        weight: 1
+      - path: Hip/Right_Leg_Root
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee/Right_Midle_Knee
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee/Right_Midle_Knee/Right_Foot
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee/Right_Midle_Knee/Right_Foot/Right_Toe
+        weight: 1
+      - path: Hip/Spine
+        weight: 1
+      - path: Hip/Spine/Neck
+        weight: 1
+      - path: Hip/Spine/Neck/Head
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm/Left_Midle_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm/Left_Midle_Arm/Left_Hand
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm/Left_Midle_Arm/Left_Hand/Left_Nail
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm/Right_Midle_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm/Right_Midle_Arm/Right_Hand
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm/Right_Midle_Arm/Right_Hand/Right_Nail
+        weight: 1
+      - path: Ya_poly
+        weight: 1
+      - path: Yumigumo_poly
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -118,20 +211,19 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0

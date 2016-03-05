@@ -66,7 +66,6 @@ namespace BattleScene
         {
             isDone = false;
             isNowAction = false;
-            Disable();
 
         }
 

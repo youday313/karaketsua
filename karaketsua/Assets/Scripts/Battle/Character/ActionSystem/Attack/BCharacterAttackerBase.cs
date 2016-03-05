@@ -13,6 +13,7 @@ namespace BattleScene
         protected BCharacterAnimator animator;
 
         //ターゲット
+        [System.NonSerialized]
         public List<BCharacterBase> attackTarget = new List<BCharacterBase>();
 
         [System.NonSerialized]
