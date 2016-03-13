@@ -33,5 +33,9 @@ public class BCharacterAnimator : MonoBehaviour {
     {
         animator.SetTrigger("Death");
     }
+    public void SetDeffence(bool isEnable)
+    {
+        animator.SetBool("Deffence", isEnable);
+    }
 	
 }

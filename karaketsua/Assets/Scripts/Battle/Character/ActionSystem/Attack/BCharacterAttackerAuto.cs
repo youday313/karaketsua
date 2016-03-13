@@ -2,8 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 using BattleScene;
+
 
 namespace BattleScene
 {
@@ -12,7 +14,6 @@ namespace BattleScene
 
         Transform effectCanvas;
         AutoAttackParameter nowAutoAction;
-  
 
         void Awake()
         {
@@ -24,7 +25,7 @@ namespace BattleScene
         public override void Enable()
         {
             base.Enable();
-            StartAutoAttack();
+            
             //技のセット
             //selectAttackParameter = character.characterParameter.attackParameter[selectActionNumber];
 
@@ -39,12 +40,15 @@ namespace BattleScene
         }
 
         
-        void StartAutoAttack()
+        public void StartAutoAttack()
         {
             //ターゲットの検索と設定
             var target = SetTarget();
-            if (target == false) return;
-
+            if (target == false)
+            {
+                OnCompleteAction();
+                return;
+            }
             //攻撃の実行
             StartCoroutine("ExecuteAttack");
         }
@@ -55,15 +59,17 @@ namespace BattleScene
             var attackablePosition = nowAutoAction.attackRanges.Select(x => IntVect2D.Add(x, character.positionArray)).ToList();
             if (attackablePosition == null) return false;
             //デバッグ出力
-            attackablePosition.ForEach(x => Debug.Log(x.x));
-
             //攻撃可能位置にいるキャラクター
-            var opponentCharacters = attackablePosition
-                .Select(x => BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(x, character.isEnemy))
-                .TakeWhile(x=> x!= null)
-                .ToList();
-
-            if (opponentCharacters == null) return false;
+            var opponentCharacters = new List<BCharacterBase>();
+            foreach (var pos in attackablePosition)
+            {
+                var chara=BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(pos,character.isEnemy);
+                if (chara != null)
+                {
+                    opponentCharacters.Add(chara);
+                }
+            }
+            if (opponentCharacters.Count==0) return false;
 
             //一番近い位置がターゲット
             attackTarget.Add(opponentCharacters.OrderBy(c=> IntVect2D.Distance(c.positionArray,character.positionArray)).First());
@@ -116,10 +122,11 @@ namespace BattleScene
         {
             isNowAction = false;
             //行動終了
-
-            character.OnEndActive();
+            OnCompleteAction();
+            //character.OnEndActive();
 
         }
+
 
 
 

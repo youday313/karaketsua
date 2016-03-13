@@ -11,24 +11,25 @@ namespace BattleScene
 
     [RequireComponent(typeof(BCharacterMoverManagerEnemy))]
     [RequireComponent(typeof(BCharacterAttackerManagerEnemy))]
-    public class BCharacterEnemy:BCharacterBase
+    public class BCharacterEnemy : BCharacterBase
     {
-
+        public EnemyState nowState = EnemyState.Wait;
         //移動
         BCharacterMoverManagerEnemy mover;
 
         //攻撃
         BCharacterAttackerManagerEnemy attacker;
 
-        public static event Action OnActiveEnemyStaticE;
+        public event Action<BCharacterEnemy> OnActiveEnemyE;
 
         public override void Init(IntVect2D array)
         {
-            
+
             base.Init(array);
             isEnemy = true;
             //回転
             transform.rotation = Quaternion.Euler(0, 180, 0);
+            OnActiveEnemyE += BCharacterManager.Instance.SetActiveEnemy;
         }
 
         // Use this for initialization
@@ -69,18 +70,45 @@ namespace BattleScene
 
 
         //キャラクターを行動選択状態にする
-        public void OnActive()
+        public override void OnActive()
         {
             base.OnActive();
-            if (OnActiveEnemyStaticE != null) OnActiveEnemyStaticE();
-
+            if (OnActiveEnemyE != null) OnActiveEnemyE(this);
+            nowState = EnemyState.Active;
         }
 
-        public void OnEndActive()
+        public override void OnEndActive()
         {
+            mover.Reset();
+            attacker.Reset();
+            nowState = EnemyState.Wait;
             base.OnEndActive();
 
             SetWaitState();
+        }
+        void Update()
+        {
+            switch (nowState)
+            {
+                case EnemyState.Active:
+                    {
+                        nowState = EnemyState.MoveStart;
+                        mover.IsEnable = true;
+                        break;
+                    }
+                case EnemyState.Moved:
+                    {
+                        nowState = EnemyState.AttackStart;
+                        attacker.IsEnable = true;
+                        break;
+                    }
+                case EnemyState.Attacked:
+                    {
+                        OnEndActive();
+                        break;
+                    }
+                default: break;
+            }
         }
 
     }

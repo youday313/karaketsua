@@ -18,11 +18,11 @@ namespace BattleScene
 
         //移動
         BCharacterMoverManagerPlayer mover;
-
         //攻撃
         BCharacterAttackerManagerPlayer attacker;
 
-        public static event Action OnActivePlayerStaticE;
+        public event Action<BCharacterPlayer> OnActivePlayerE;
+        public static event Action<BCharacterPlayer> OnActivePlayerStaticE;
 
 
         // Use this for initialization
@@ -37,6 +37,7 @@ namespace BattleScene
         public override void Start()
         {
             base.Start();
+
             //singleAttack = GetComponent<BCharacterSingleAttack>();
             //moveAttack = GetComponent<BCharacterMoveAttack>()
 
@@ -48,11 +49,14 @@ namespace BattleScene
         {
             base.Init(array);
             isEnemy = false;
+
+
+            OnActivePlayerE += BCharacterManager.Instance.SetActivePlayer;
         }
 
         public override bool IsNowAction()
         {
-            return attacker.IsNowAction() == true && mover.IsNowAction() == true;
+            return attacker.IsNowAction() || mover.IsNowAction();
         }
 
         public override bool IsAttacked()
@@ -75,16 +79,26 @@ namespace BattleScene
 
 
         //キャラクターを行動選択状態にする
-        public void OnActive()
+        //isReactive=true:同一行動内での呼び出し
+        public override void OnActive()
         {
-            base.OnActive();
-            if (OnActivePlayerStaticE != null) OnActivePlayerStaticE();
+            ResetActive();
             EnableMove();
+            animator.SetDeffence(false);
+        }
+        public void ResetActive()
+        {
+            if (OnActivePlayerE != null) OnActivePlayerE(this);
+            if (OnActivePlayerStaticE != null) OnActivePlayerStaticE(this);
+            base.OnActive();
         }
 
-        public void OnEndActive()
+        public override void OnEndActive()
         {
+            mover.Reset();
+            attacker.Reset();
             base.OnEndActive();
+
             //BCharacterManager.Instance.SetNowActiveCharacter(null);
             //BBattleStage.Instance.ResetAllTileColor();
             //activeTime.ResetValue();
@@ -103,50 +117,49 @@ namespace BattleScene
         }
 
 
-
-
-        //ボタンからの行動
-        public void ExecuteDeffence()
+        #region::UIからの行動
+        //攻撃選択
+        public void SelectAttack()
         {
-            OnEndActive();
+            mover.IsEnable = false;
+            attacker.IsEnable = false;
+        }
+        //通常攻撃選択
+        public void SelectSingleAttack(int number)
+        {
+            attacker.IsEnable = true;
+            attacker.SelectSingleAttack(number);
+        }
+        //移動攻撃選択
+        public void SelectMoveAttack()
+        {
+            attacker.IsEnable = true;
+            attacker.SelectMoveAttack();
+        }
+        public void ExecuteAttack()
+        {
+            attacker.ExecuteAttack();
         }
 
+        //防御選択
+        public void SelectDeffence()
+        {
+            mover.IsEnable=false;
+        }
 
-        ////移動可能
-        //public void SelectMove()
-        //{
-        //    mover.IsEnable = true;
-        //    moveAttack.IsEnable = false;
-        //    singleAttack.IsEnable = false;
-        //}
-        ////攻撃選択
-        //public void SelectSingleAttack()
-        //{
-        //    mover.Reset();
-        //    singleAttack.IsEnable = true;
-        //    moveAttack.IsEnable = false;
-        //}
-        ////移動攻撃選択
-        //public void SelectMoveAttack()
-        //{
-        //    mover.Reset();
-        //    singleAttack.IsEnable = false;
-        //    moveAttack.IsEnable = true;
-        //}
-        ////行動不可能
-        //public void SelectDisable()
-        //{
-        //    mover.Reset();
-        //    singleAttack.IsEnable = false;
-        //    moveAttack.IsEnable = false;
-        //}
-        //public void StartWave()
-        //{
-        //    mover.IsEnable = false;
-        //    singleAttack.IsEnable = false;
-        //    moveAttack.IsEnable = false;
-        //}
+        //防御決定
+        public void ExecuteDeffence()
+        {
+            animator.SetDeffence(true);
+            OnEndActive();
+        }
+        public void BackToActionSelect()
+        {
+            ResetActive();
+            mover.IsEnable = true;
+        }
 
+        #endregion::UIからの行動
 
         ////死の実行
         //public void DeathMyself()

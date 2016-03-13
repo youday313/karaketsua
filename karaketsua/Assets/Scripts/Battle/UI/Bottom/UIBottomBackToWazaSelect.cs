@@ -9,8 +9,16 @@ namespace BattleScene
     {
         public override void OnClick()
         {
-            //UIBottomCommandParent.Instance.CreateWazaSelect();
-            //BCharacterManager.Instance.GetActiveCharacter().SelectDisable();
+            //BCharacterManager.Instance.ActiveCharacter.SelectDisable();
+            UIBottomCommandParent.UICommandState = EUICommandState.Waza;
+            UIBottomAllParent.Instance.UpdateUI();
+            var chara = BCharacterManager.Instance.ActivePlayer;
+            if (chara == null) return;
+            chara.SelectAttack();
+
+            //カメラが横から
+            BCameraChange.Instance.ActiveLeanMode();
+
         }
     }
 }

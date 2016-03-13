@@ -519,24 +519,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &198752
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 441058}
-  - 33: {fileID: 3372352}
-  - 64: {fileID: 6454864}
-  - 23: {fileID: 2395024}
-  m_Layer: 0
-  m_Name: ActiveCircle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &401582
 Transform:
   m_ObjectHideFlags: 1
@@ -651,7 +633,6 @@ Transform:
   m_Children:
   - {fileID: 432616}
   - {fileID: 414746}
-  - {fileID: 441058}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &431664
@@ -730,18 +711,6 @@ Transform:
   - {fileID: 470242}
   m_Father: {fileID: 467158}
   m_RootOrder: 0
---- !u!4 &441058
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198752}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 1, z: 0.3}
-  m_Children: []
-  m_Father: {fileID: 427972}
-  m_RootOrder: 2
 --- !u!4 &441246
 Transform:
   m_ObjectHideFlags: 1
@@ -991,51 +960,6 @@ Transform:
   - {fileID: 471404}
   m_Father: {fileID: 494090}
   m_RootOrder: 0
---- !u!23 &2395024
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198752}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 17febca75f825c242be21e1b2244c2ef, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &3372352
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198752}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!64 &6454864
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198752}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!95 &9544012
 Animator:
   serializedVersion: 3
@@ -1109,7 +1033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterParameter:
-    charaName: "\u9ED2\u5E02\u8B70"
+    charaName: "\u9ED2\u571F\u87FB"
     HP: 100
     activeSpeed: 10
     power: 10
@@ -1132,17 +1056,18 @@ MonoBehaviour:
       element: 0
       needSkillPoint: 0
       attackRanges:
-      - x: -1
+      - x: -2
         y: 0
-      - x: 1
+      - x: 2
         y: 0
       - x: 0
-        y: 1
+        y: 2
       - x: 0
-        y: 1
+        y: -2
       attackDistance: 0
       power: 10
   isEnemy: 1
+  nowState: 0
 --- !u!114 &11499414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1242,7 +1167,31 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: characterParameter.charaName
+      value: "\u9ED2\u571F\u87FB"
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.activeSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[3].y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[0].x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[1].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[2].y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180570}

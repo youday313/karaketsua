@@ -22,11 +22,11 @@ namespace BattleScene
 
         //キャタクターアクティブ時
         public event Action<BCharacterBase> OnActiveE;
-
         public static event Action<BCharacterBase> OnActiveStaticE;
 
         //キャタクター非アクティブ時
         public event Action<BCharacterBase> OnEndActiveE;
+        public static event Action OnEndActiveStaticE;
 
         //キャラクター死亡時
         public event Action<BCharacterBase> OnDeathE;
@@ -45,7 +45,8 @@ namespace BattleScene
         public virtual bool IsNowAction()
         { return false; }
 
-        BCharacterAnimator animator;
+        //アニメーター
+        protected BCharacterAnimator animator;
 
         //ライフ
         public BCharacterLife Life
@@ -67,27 +68,31 @@ namespace BattleScene
         //アクティブサークル
         GameObject activeCircle;
         
+        //ターゲットサークル
+        GameObject targetCircle;
 
         public virtual void Init(IntVect2D array)
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            
             positionArray.x = array.x;
             positionArray.y = array.y;
 
             //ライフ設定
             life.Init(characterParameter);
 
-
-            //選択マーカー表示
-            activeCircle = transform.FindChild("ActiveCircle").gameObject;
-            activeCircle.SetActive(false);
-
         }
+
 
         public virtual void Awake()
         {
             life = GetComponent<BCharacterLife>();
+            animator = GetComponent<BCharacterAnimator>();
+            //選択マーカー作成
+            activeCircle= CreateCircle("ActiveCircle");
+            targetCircle=CreateCircle("TargetCircle");
         }
+
+
 
         public virtual void Start()
         {
@@ -140,20 +145,27 @@ namespace BattleScene
         }
 
         //キャラクターを行動選択状態にする
-        public void OnActive()
+        public virtual void OnActive()
         {
 
             if(OnActiveE!=null)OnActiveE(this);
-            if (OnActiveStaticE != null) OnActiveStaticE(this);      
+            if (OnActiveStaticE != null)
+            {
+                UIBottomCommandParent.UICommandState = EUICommandState.Action;
+                OnActiveStaticE(this);
+            }
+   
             activeCircle.SetActive(true);
-            //タイル変更
-            //BattleStage.Instance.UpdateTileColors(this, TileState.Move);
         }
 
-        public void OnEndActive()
+        public virtual void OnEndActive()
         {
             if (OnEndActiveE != null) OnEndActiveE(this);
-
+            if (OnEndActiveStaticE != null)
+            {
+                UIBottomCommandParent.UICommandState = EUICommandState.Action;
+                OnEndActiveStaticE();
+            }
             activeCircle.SetActive(false);
         }
 
@@ -177,6 +189,17 @@ namespace BattleScene
         public BCameraMove GetCamera()
         {
             return GameObject.FindGameObjectWithTag("MainCamera").GetComponent<BCameraMove>();
+        }
+        GameObject CreateCircle(string _name)
+        {
+            var obj = Instantiate(Resources.Load<GameObject>(_name));
+            obj.transform.SetParent(this.gameObject.transform);
+            obj.SetActive(false);
+            return obj;
+        }
+        public void SetTargeted(bool isTarget)
+        {
+            targetCircle.SetActive(isTarget);
         }
 
     }

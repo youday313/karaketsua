@@ -26,7 +26,6 @@ namespace BattleScene
             character.OnStatusUpdateE += UpdateUI;
 
             faceImage.sprite = Resources.Load<Sprite>("StatusUIIcon/Status" + _character.characterParameter.charaName);
-            Debug.Log(_character.characterParameter.charaName);
             HPbar.maxValue = _character.characterParameter.HP;
             skillBar.maxValue = _character.characterParameter.skillPoint;
             UpdateUI(character);
@@ -34,8 +33,6 @@ namespace BattleScene
         }
         public void Delete(BCharacterBase chara)
         {
-
-
             Destroy(this.gameObject);
         }
 

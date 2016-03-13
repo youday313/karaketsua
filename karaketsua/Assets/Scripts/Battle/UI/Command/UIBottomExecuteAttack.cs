@@ -11,7 +11,8 @@ namespace BattleScene
 
         public UIBottomAllParent allParent;
         // Use this for initialization
-        [SerializeField]Button button;
+        [SerializeField]
+        Button button;
 
         void Awake()
         {
@@ -22,7 +23,7 @@ namespace BattleScene
         public override void UpdateUI()
         {
             button.interactable = false;
-            var chara=BCharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.ActiveCharacter;
             if (chara == null) return;
 
             if (chara.IsSetTarget() == false) return;
@@ -34,9 +35,12 @@ namespace BattleScene
 
             UIBottomCommandParent.UICommandState = EUICommandState.None;
             UIBottomAllParent.Instance.UpdateUI();
+            var chara = BCharacterManager.Instance.ActivePlayer;
+            if (chara == null) return;
+            chara.ExecuteAttack();
 
             //allParent.Off();
-            //var chara = BCharacterManager.Instance.GetActiveCharacter();
+            //var chara = BCharacterManager.Instance.ActiveCharacter;
             //if (chara == null) return;
             //if (chara.singleAttack.IsSetTarget == true)
             //{
@@ -46,6 +50,6 @@ namespace BattleScene
             //{
             //    chara.moveAttack.ExcuteAttack();
             //}
-              }
+        }
     }
 }

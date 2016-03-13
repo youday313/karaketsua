@@ -24,10 +24,9 @@ namespace BattleScene
         {
             UIBottomCommandParent.UICommandState = EUICommandState.None;
             UIBottomAllParent.Instance.UpdateUI();
-
-            //防御の実行
-            //BCharacterManager.Instance.GetActiveCharacter().ExecuteDeffence();
-            //commandParent.CreateAction();
+            var chara = BCharacterManager.Instance.ActivePlayer;
+            if (chara == null) return;
+            chara.ExecuteDeffence();
         }
     }
 }

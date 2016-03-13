@@ -27,6 +27,10 @@ namespace BattleScene
         {
             Reset();
         }
+        public override void Enable()
+        {
+            base.Enable();
+        }
 
         public void SelectSingleAttack(int selectNumber)
         {
@@ -37,6 +41,17 @@ namespace BattleScene
         public void SelectMoveAttack()
         {
             moveAttack.IsEnable = true;
+        }
+        public void ExecuteAttack()
+        {
+            if (singleAttack.IsEnable == true)
+            {
+                singleAttack.ExecuteAttack();
+            }
+            else if (moveAttack.IsEnable == true)
+            {
+                moveAttack.ExecuteAttack();
+            }
         }
 
         public override void Disable()

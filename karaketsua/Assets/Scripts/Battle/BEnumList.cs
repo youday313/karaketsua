@@ -107,4 +107,5 @@ namespace BattleScene
     //属性
     public enum ElementKind { なし, 火, 水, 地, 風, 雷 }
 
+    public enum EnemyState {Wait, Active,MoveStart,Moving,Moved,AttackStart,Attacking,Attacked,End}
 }

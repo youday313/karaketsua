@@ -13,6 +13,17 @@ namespace BattleScene
 
 
         BCharacterBase activeCharacter;
+        public BCharacterBase ActiveCharacter
+        {
+            get { return activeCharacter;}
+            set { activeCharacter = value; }
+        }
+        BCharacterPlayer activePlayer=null;
+        public BCharacterPlayer ActivePlayer
+        {
+            get { return activePlayer; }
+            set{activePlayer=value;}
+        }
         List<BCharacterBase> characters=new List<BCharacterBase>();
         // Use this for initialization
 
@@ -25,6 +36,7 @@ namespace BattleScene
                 var cha = Instantiate(chara.prefab) as BCharacterPlayer;
                 cha.Init(new IntVect2D((int)chara.position.x, (int)chara.position.y));
                 characters.Add(cha);
+
             }
             //敵セット
             foreach (var chara in BStageData.Instance.enemyCharacters)
@@ -37,25 +49,27 @@ namespace BattleScene
             //共通初期化
             foreach (var chara in characters)
             {
-                chara.OnActiveE += SetActiveCharacter;
-                chara.OnEndActiveE += ResetActiveCharacter;
+                //chara.OnActiveE += SetActiveCharacter;
+                //chara.OnEndActiveE += ResetActiveCharacter;
                 chara.transform.SetParent(transform);
             }
             activeCharacter = null;
         }
 
 
-        public BCharacterBase GetActiveCharacter()
+        public void SetActivePlayer(BCharacterPlayer chara)
         {
-            return activeCharacter;
+            activePlayer = chara;
+            activeCharacter = chara;
         }
-        public void SetActiveCharacter(BCharacterBase chara)
+        public void SetActiveEnemy(BCharacterEnemy chara)
         {
             activeCharacter = chara;
         }
         public void ResetActiveCharacter(BCharacterBase chara)
         {
             activeCharacter = null;
+            activePlayer = null;
         }
 
 
@@ -129,6 +143,10 @@ namespace BattleScene
             if (chara == null) return null;
             if (chara.isEnemy != isEnemy) return chara;
             return null;
+        }
+        public List<BCharacterBase> GetOpponentCharacters(bool isEnemy)
+        {
+            return characters.Where(x => x.isEnemy != isEnemy).ToList();
         }
 
         #endregion::Utillity

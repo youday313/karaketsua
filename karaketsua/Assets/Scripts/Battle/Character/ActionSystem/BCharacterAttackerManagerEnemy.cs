@@ -10,12 +10,14 @@ namespace BattleScene
     [RequireComponent(typeof(BCharacterAttackerAuto))]
     public class BCharacterAttackerManagerEnemy : BCharacterActionManagerBase
     {
-
+        BCharacterEnemy character;
         BCharacterAttackerAuto autoAttack;
 
         public void Awake()
         {
+            character = GetComponent<BCharacterEnemy>();
             autoAttack = GetComponent<BCharacterAttackerAuto>();
+            autoAttack.OnComplete += OnComplete;
         }
         public void Start()
         {
@@ -25,6 +27,7 @@ namespace BattleScene
         public override void Enable()
         {
             autoAttack.IsEnable = true;
+            autoAttack.StartAutoAttack();
         }
 
         public override void Disable()
@@ -47,6 +50,9 @@ namespace BattleScene
         {
             return autoAttack.IsDone;
         }
-
+        public void OnComplete()
+        {
+            character.nowState = EnemyState.Attacked;
+        }
     }
 }

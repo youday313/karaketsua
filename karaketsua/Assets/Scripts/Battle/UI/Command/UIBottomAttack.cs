@@ -24,7 +24,7 @@ namespace BattleScene
         public override void UpdateUI()
         {
             button.interactable = false;
-            var chara = BCharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.ActiveCharacter;
             if (chara == null) return;
             if (chara.IsAttacked()==true || chara.isEnemy==true||chara.IsNowAction()==true) return;
             button.interactable = true;
@@ -33,9 +33,12 @@ namespace BattleScene
         //ボタンクリック
         public void OnClick()
         {
-            //BCharacterManager.Instance.GetActiveCharacter().SelectDisable();
+            //BCharacterManager.Instance.ActiveCharacter.SelectDisable();
             UIBottomCommandParent.UICommandState = EUICommandState.Waza;
             UIBottomAllParent.Instance.UpdateUI();
+            var chara = BCharacterManager.Instance.ActivePlayer;
+            if (chara == null) return;
+            chara.SelectAttack();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace BattleScene
             button.interactable = false;
 
             //テキストの変更
-            var chara = BCharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.ActiveCharacter;
             if (chara == null) return;
 
             var param=chara.characterParameter.singleAttackParameters;
@@ -44,9 +44,15 @@ namespace BattleScene
         }
         public void OnClick()
         {
-            //BCharacterManager.Instance.GetActiveCharacter().singleAttack.selectActionNumber = attackNumber;
-            //BCharacterManager.Instance.GetActiveCharacter().SelectSingleAttack();
+            //キャラクターに攻撃選択通知
+            var chara = BCharacterManager.Instance.ActivePlayer;
+            if (chara == null) return;
+            chara.SelectSingleAttack(attackNumber);
 
+            //カメラが上から
+            BCameraChange.Instance.ActiveUpMode();
+
+            //UI
             UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
             UIBottomAllParent.Instance.UpdateUI();
         }

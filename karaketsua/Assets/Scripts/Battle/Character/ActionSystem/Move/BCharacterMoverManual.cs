@@ -10,7 +10,17 @@ namespace BattleScene
     public class BCharacterMoverManual : BCharacterMoverBase
     {
         //移動方向のオブジェクト
-        public GameObject directionIcon;
+        GameObject directionIcon;
+
+        public override void Awake()
+        {
+            base.Awake();
+            //矢印マーカー表示
+            var obj = Instantiate(Resources.Load<GameObject>("DirectionIcons"));
+            obj.transform.SetParent(this.gameObject.transform);
+            directionIcon = obj;
+            directionIcon.SetActive(false);
+        }
 
         //選択可能時
         public override void Enable()
@@ -20,8 +30,8 @@ namespace BattleScene
             //OnActiveCharacter();
             //キャラクター移動選択
             IT_Gesture.onDraggingStartE += OnChargeForMove;
-
             directionIcon.SetActive(true);
+            BBattleStage.Instance.OnMoverable(this.character.positionArray);
         }
         
 
@@ -31,6 +41,7 @@ namespace BattleScene
             IT_Gesture.onDraggingStartE -= OnChargeForMove;
             IT_Gesture.onDraggingEndE -= OnDragMove;
             directionIcon.SetActive(false);
+            BBattleStage.Instance.ResetAllTileColor();
         }
         
         public override void Reset()

@@ -49,6 +49,7 @@ namespace BattleScene
         {
             leanCameraObject.SetActive(false);
             upCameraObject.SetActive(true);
+            nowCameraMode = CameraMode.Up;
         }
 
         public void ActiveLeanMode()

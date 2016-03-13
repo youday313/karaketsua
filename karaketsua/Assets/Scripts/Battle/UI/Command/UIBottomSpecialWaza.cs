@@ -13,6 +13,12 @@ namespace BattleScene
         Text wazaName;
         public UIBottomCommandParent commandParent;
         // Use this for initialization
+
+        void Awake()
+        {
+            button = GetComponent<Button>();
+            wazaName = GetComponentInChildren<Text>();
+        }
         void Start()
         {
 
@@ -30,7 +36,7 @@ namespace BattleScene
             button.interactable = false;
 
             //テキストの変更
-            var chara = BCharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.ActiveCharacter;
             if (chara == null) return;
 
             var param = chara.characterParameter.moveAttackParameter;
@@ -43,8 +49,9 @@ namespace BattleScene
         }
         public void OnClick()
         {
-            //BCharacterManager.Instance.GetActiveCharacter().SelectMoveAttack();
-            //commandParent.CreateExecuteAttack();
+            var chara = BCharacterManager.Instance.ActivePlayer;
+            if (chara == null) return;
+            chara.SelectMoveAttack();
             UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
             UIBottomAllParent.Instance.UpdateUI();
         }

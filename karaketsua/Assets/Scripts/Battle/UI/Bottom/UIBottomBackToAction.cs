@@ -8,8 +8,13 @@ namespace BattleScene
     {
         public override void OnClick()
         {
-            //UIBottomCommandParent.Instance.CreateAction();
-            //BCharacterManager.Instance.GetActiveCharacter().SelectMove();
+
+            //BCharacterManager.Instance.ActiveCharacter.SelectDisable();
+            UIBottomCommandParent.UICommandState = EUICommandState.Action;
+            UIBottomAllParent.Instance.UpdateUI();
+            var chara = BCharacterManager.Instance.ActivePlayer;
+            if (chara == null) return;
+            chara.BackToActionSelect();
         }
     }
 }

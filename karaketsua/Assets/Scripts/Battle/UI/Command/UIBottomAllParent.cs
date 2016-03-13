@@ -18,9 +18,10 @@ namespace BattleScene
         {
             commandParent = commandScript.gameObject;
             BCharacterBase.OnActiveStaticE+=UpdateUI;
-
+            BCharacterBase.OnEndActiveStaticE += UpdateUI;
+            Off();
             
-            //BSceneState.Instance.StartWave += StartWave;
+            StartWave();
         }
 
         public void StartWave()
@@ -28,10 +29,14 @@ namespace BattleScene
             UpdateUI();
         }
 
-        public void UpdateUI(BCharacterBase chara=null)
+        public void UpdateUI(BCharacterBase chara)
         {
             commandParent.SetActive(true);
             commandScript.UpdateUI();
+        }
+        public void UpdateUI()
+        {
+            UpdateUI(null);
         }
 
         public void Off()

@@ -79,6 +79,8 @@ namespace BattleScene
         {
             SetActiveTimeValue();
             BSceneState.Instance.StartWave += StartWave;
+            character.OnEndActiveE += ResetValue;
+            BCharacterBase.OnEndActiveStaticE += Resume;
         }
         void SetActiveTimeValue()
         {
@@ -104,7 +106,7 @@ namespace BattleScene
             NowWaitTime = NowWaitTime - Time.deltaTime * CalcDecreaseSpeedFromActiveSpeed();
             if (NowWaitTime == 0)
             {
-                StopActive();
+                OnActive();
             }
         }
 
@@ -113,7 +115,7 @@ namespace BattleScene
             return activeSpeed;
         }
         //行動キャラ選択
-        void StopActive()
+        void OnActive()
         {
             character.OnActive();
             
@@ -125,18 +127,20 @@ namespace BattleScene
         }
 
         //行動終了とActiveTime再開
-        public void ResetValue()
+        public void ResetValue(BCharacterBase _activeCharacter)
         {
             NowWaitTime = minOneCycleValue;
-            //OnStartActiveTimeE(this);
-            //activeTime再開
-            foreach (var time in GameObject.FindGameObjectsWithTag("ActiveTime").Select(x => x.GetComponent<BActiveTime>()))
-            {
-                time.IsActive = true;
-            }
+
+        }
+        public void Resume()
+        {
+            IsActive = true;
         }
         public void Delete(BCharacterBase chara)
         {
+            chara.OnEndActiveE -= ResetValue;
+            BCharacterBase.OnEndActiveStaticE -= Resume;
+
             Destroy(this.gameObject);
         }
 

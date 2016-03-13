@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using BattleScene;
+using System;
 
 namespace BattleScene
 {
@@ -12,6 +13,7 @@ namespace BattleScene
         protected BCharacterBase character;
         protected BCharacterAnimator animator;
 
+        public event Action OnComplete;
         //ターゲット
         [System.NonSerialized]
         public List<BCharacterBase> attackTarget = new List<BCharacterBase>();
@@ -82,6 +84,11 @@ namespace BattleScene
             isDone = false;
 
         }
+        public virtual void OnCompleteAction()
+        {
+            if (OnComplete != null) OnComplete();
+        }
+        
 
 
     }

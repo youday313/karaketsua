@@ -28,7 +28,7 @@ namespace BattleScene
         public UIBottomExecuteAttackParent executeAttackScript;
         public UIBottomExecuteDeffenceParent executeDeffenceScript;
 
-        public static EUICommandState UICommandState=EUICommandState.None;
+        public static EUICommandState UICommandState=EUICommandState.Action;
 
 
         //public UIBottomBack backButton;
@@ -65,16 +65,19 @@ namespace BattleScene
                     executeDeffenceScript.UpdateUI();
                     break;
             }
+
         }
 
         void Off()
         {
+
             actionParent.SetActive(false);
             wazaSelectParent.SetActive(false);
             executeAttackParent.SetActive(false);
             executeDeffenceParent.SetActive(false);
             //UpdateCommandUI();
             UpdateCameraUIMode();
+
         }
     }
 }

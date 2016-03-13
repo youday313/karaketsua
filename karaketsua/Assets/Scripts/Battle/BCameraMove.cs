@@ -13,6 +13,7 @@ using BattleScene;
 
 namespace BattleScene
 {
+    //斜めからのカメラ
     public class BCameraMove : Singleton<BCameraMove>
     {
         enum CameraState
@@ -24,6 +25,7 @@ namespace BattleScene
             Moving
         }
         CameraState nowCameraState;
+        BCharacterBase activeCharacter;
 
         bool isBack = true;
         //public
@@ -42,7 +44,6 @@ namespace BattleScene
         //攻撃によってカメラ位置が変わる
         public List<CameraVector> attackCamera = new List<CameraVector>();
 
-        BCharacterPlayer activeCharacter;
         CameraMode nowCameraMode = CameraMode.FromBack;
         //private
         public float changeTime = 1f;
@@ -65,9 +66,10 @@ namespace BattleScene
         #region::初期化
         void Start()
         {
-            MoveToLean();
+            MoveToLeanForWait();
             SetResetCameraVector();
-            activeCharacter = null;
+            BCharacterBase.OnActiveStaticE += SetActiveCharacter;
+            BCharacterBase.OnEndActiveStaticE += DisableActiveCharacter;
         }
 
         void SetResetCameraVector()
@@ -76,20 +78,15 @@ namespace BattleScene
             resetPosition.rotation = transform.eulerAngles;
         }
 
-
         void OnEnable()
         {
-            //IT_Gesture.onDraggingE += OnDraggingInAttackMode;
             IT_Gesture.onDraggingStartE += OnDraggingStartInActionMode;
-            //IT_Gesture.onDraggingE += OnDraggingInActionModeForCameraMove;
         }
-
         void OnDisable()
         {
-            //IT_Gesture.onDraggingE -= OnDraggingInAttackMode;
             IT_Gesture.onDraggingStartE -= OnDraggingStartInActionMode;
-            //IT_Gesture.onDraggingE -= OnDraggingInActionModeForCameraMove;
         }
+
         #endregion::初期化
         //攻撃時カメラ追従
         void OnDraggingInAttackMode(DragInfo dragInfo)
@@ -124,9 +121,9 @@ namespace BattleScene
         #region::行動選択時カメラ移動
         void OnDraggingStartInActionMode(DragInfo dragInfo)
         {
-            var chara = BCharacterManager.Instance.GetActiveCharacter();
+            var chara = BCharacterManager.Instance.ActiveCharacter;
             if (chara == null) return;
-            if (BCharacterManager.Instance.GetCharacterOnTile(dragInfo.pos) == BCharacterManager.Instance.GetActiveCharacter()) return;
+            if (BCharacterManager.Instance.GetCharacterOnTile(dragInfo.pos) == BCharacterManager.Instance.ActiveCharacter) return;
             if (nowCameraState != CameraState.Back) return;
             IT_Gesture.onDraggingE += OnDraggingInActionModeForCameraMove;
             IT_Gesture.onDraggingEndE += OnDraggingEndForCameraMove;
@@ -136,7 +133,7 @@ namespace BattleScene
         void OnDraggingInActionModeForCameraMove(DragInfo dragInfo)
         {
             if (nowCameraState != CameraState.Back) return;
-            //if (activeCharacter.IsNowOnFinger()== true) return;
+            if (activeCharacter.IsNowAction()== true) return;
             var delta = dragInfo.delta * IT_Gesture.GetDPIFactor();
             transform.position -= new Vector3(GetSignFromFrontMode() * delta.x, 0, GetSignFromFrontMode() * delta.y);
             ClampOnFromFront();
@@ -173,19 +170,19 @@ namespace BattleScene
         #endregion::行動選択時カメラ移動
 
 
-        public void SetActiveCharacter(BCharacterPlayer _activeCharacter)
+        public void SetActiveCharacter(BCharacterBase _activeCharacter)
         {
             activeCharacter = _activeCharacter;
-            MoveToBack();
+            MoveToBackForActive();
         }
         public void DisableActiveCharacter()
         {
             activeCharacter = null;
-            MoveToLean();
+            MoveToLeanForWait();
         }
 
         //キャラクター背面に移動
-        public void MoveToBack()
+        public void MoveToBackForActive()
         {
             Vector3 charaPosition = activeCharacter.transform.position;
             //SetResetCameraVector();
@@ -194,12 +191,11 @@ namespace BattleScene
             iTween.RotateTo(gameObject, iTween.Hash("x", backCamera.rotation.x, "y", GetInverseRotationFromFrontMode() + backCamera.rotation.y, "z", backCamera.rotation.z, "time", changeTime, "islocal", true));
             nowCameraState = CameraState.Moving;
             SetCameraButtonActivity(false);
-
         }
 
 
         //固定点
-        public void MoveToLean()
+        public void MoveToLeanForWait()
         {
             iTween.MoveTo(gameObject, iTween.Hash("x", leanCamera.position.x, "y", leanCamera.position.y, "z", GetSignFromFrontMode() * leanCamera.position.z,
                 "time", changeTime, "oncomplete", "OnCompleteMove", "oncompletetarget", gameObject, "oncompleteparams", CameraState.Lean));
@@ -210,7 +206,7 @@ namespace BattleScene
         }
 
         //攻撃時
-        public void MoveToAttack(BCharacterAttackerSingle attackCharacter, Vector3 targetPosition)
+        public void MoveForAttack(BCharacterAttackerSingle attackCharacter, Vector3 targetPosition)
         {
             var centerPosition = (targetPosition - attackCharacter.transform.position) / 2;
             var newPosition = attackCharacter.transform.position + centerPosition;

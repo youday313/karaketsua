@@ -31,6 +31,7 @@ namespace BattleScene
         }
         public override void Disable()
         {
+            mover.IsEnable = false;
             base.Disable();
         }
         public override void Reset()
@@ -42,6 +43,10 @@ namespace BattleScene
         public override bool IsDone()
         {
             return mover.IsDone;
+        }
+        public override bool IsNowAction()
+        {
+            return mover.IsNowAction;
         }
     }
 }

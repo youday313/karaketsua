@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using BattleScene;
+using System;
 
 namespace BattleScene
 {
@@ -36,11 +37,11 @@ namespace BattleScene
 
 
         //選択した技番号
-        public int selectActionNumber = 0;
+        public int selectWazaNumber = 0;
         public int SelectWazaNumber
         {
-            get { return selectActionNumber; }
-            set { selectActionNumber=value; }
+            get { return selectWazaNumber; }
+            set { selectWazaNumber=value; }
         }
 
         Transform effectCanvas;
@@ -59,7 +60,7 @@ namespace BattleScene
             isTapDetect = false;
 
             //技のセット
-            //selectAttackParameter = character.characterParameter.attackParameter[selectActionNumber];
+            selectAttackParameter = character.characterParameter.singleAttackParameters[selectWazaNumber];
 
             //BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange, this.character);
         }
@@ -67,8 +68,9 @@ namespace BattleScene
         {
             IT_Gesture.onShortTapE -= OnShortTap;
             isTapDetect = false;
-            selectActionNumber = 0;
-            //CameraChange.Instance.
+            selectWazaNumber = 0;
+            //タイル変更
+            foreach (var tar in attackTarget) tar.SetTargeted(false);
             base.Disable();
         }
 
@@ -100,7 +102,7 @@ namespace BattleScene
                 if (attackTarget.Contains(target) == false)
                 {
                     //タイル変更
-
+                    target.SetTargeted(true);
                     attackTarget.Add(target);
 
                 }
@@ -108,6 +110,7 @@ namespace BattleScene
                 else
                 {
                     //タイル変更
+                    target.SetTargeted(false);
                     attackTarget.Remove(target);
 
                     return;
@@ -120,14 +123,19 @@ namespace BattleScene
                 if (attackTarget.Count != 0)
                 {
                     //タイル変更
+                    foreach (var tar in attackTarget) tar.SetTargeted(false);
                     //除く
                     attackTarget = new List<BCharacterBase>();
                 }
-                //再設定
-                attackTarget.Add(target);
-
+                else
+                {
+                    //再設定
+                    attackTarget.Add(target);
+                    target.SetTargeted(true);
+                }
             }
 
+            //UI更新
             UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
             UIBottomCommandParent.Instance.UpdateUI();
 
@@ -154,7 +162,7 @@ namespace BattleScene
         {
             if (attackTarget.Count == 0) yield return null;
 
-
+            isNowAction = true;
             //カメラ切り替え
             BCameraChange.Instance.ActiveLeanMode();
             BCameraMove.Instance.MoveToTapAttack(this, attackTarget[0].transform.position, changeTimeSingleMode);
@@ -162,9 +170,7 @@ namespace BattleScene
 
 
             //攻撃アニメーション
-            animator.SetSingleAttack(selectActionNumber);
-
-            isNowAction = true;
+            animator.SetSingleAttack(selectWazaNumber);
 
             popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(attackTarget[0].transform.position.x, attackTarget[0].transform.position.y + 1f, attackTarget[0].transform.position.z));
 
@@ -215,6 +221,10 @@ namespace BattleScene
                 target.Life.CheckDestroy();
             }
 
+            foreach (var tar in attackTarget.Where(x => x != null))
+            {
+                tar.SetTargeted(false);
+            }
 
             attackTarget = new List<BCharacterBase>();
 
@@ -249,7 +259,7 @@ namespace BattleScene
         {
             isNowAction = false;
             //行動終了
-
+            OnCompleteAction();
             character.OnEndActive();
 
         }

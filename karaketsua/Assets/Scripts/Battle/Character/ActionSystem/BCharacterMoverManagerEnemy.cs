@@ -10,11 +10,14 @@ namespace BattleScene
     [RequireComponent(typeof(BCharacterMoverAuto))]
     public class BCharacterMoverManagerEnemy : BCharacterActionManagerBase
     {
+        BCharacterEnemy character;
         BCharacterMoverAuto mover;
 
         public void Awake()
         {
+            character = GetComponent<BCharacterEnemy>();
             mover = GetComponent<BCharacterMoverAuto>();
+            mover.OnCompleteMove += OnComplete;
         }
         public void Start()
         {
@@ -28,6 +31,10 @@ namespace BattleScene
 
             base.Enable();
             mover.IsEnable = true;
+
+
+            StartCoroutine(mover.StartAutoMove());
+            
         }
 
         public override void Disable()
@@ -44,5 +51,14 @@ namespace BattleScene
         {
             return mover.IsDone;
         }
+        public override bool IsNowAction()
+        {
+            return mover.IsNowAction;
+        }
+        public void OnComplete()
+        {
+            character.nowState = EnemyState.Moved;
+        }
+
     }
 }

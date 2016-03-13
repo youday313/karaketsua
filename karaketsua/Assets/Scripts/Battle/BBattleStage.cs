@@ -57,15 +57,18 @@ namespace BattleScene
         void SetEvent()
         {
             BCharacterBase.OnActiveStaticE += OnActiveCharacter;
-
         }
 
         //アクティブ時
         public void OnActiveCharacter(BCharacterBase chara)
         {
-            ChangeColor(chara.positionArray, TileState.Active,true);
-            ChangeNeighborTilesColor(chara.positionArray, TileState.Move);
+            ResetAllTileColor();
+        }
 
+        public void OnMoverable(IntVect2D position)
+        {
+            ChangeColor(position, TileState.Active, true);
+            ChangeNeighborTilesColor(position, TileState.Move);
         }
 
         //攻撃選択
