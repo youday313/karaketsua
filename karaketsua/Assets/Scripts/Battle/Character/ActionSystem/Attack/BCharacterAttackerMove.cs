@@ -157,17 +157,17 @@ namespace BattleScene
 
             if (attackTarget.Count == 0) return;
 
-            //攻撃
-            foreach (var target in attackTarget)
-            {
-                target.Life.Damage(character.characterParameter.power);
-                target.Life.CheckDestroy();
-            }
+            ////攻撃
+            //foreach (var target in attackTarget)
+            //{
+            //    target.Life.Damage(character.characterParameter.power);
+            //    target.Life.CheckDestroy();
+            //}
 
-            attackTarget = null;
+            //attackTarget = null;
 
 
-            StartAttackAnimation();
+            StartMoveForAttack();
             isDone = true;
             //攻撃時にUI非表示
             UIBottomCommandParent.UICommandState = EUICommandState.None;
@@ -175,7 +175,7 @@ namespace BattleScene
 
             Disable();
         }
-        void StartAttackAnimation()
+        void StartMoveForAttack()
         {
             animator.SetMoveAttack();
             isNowAction = true;
@@ -194,10 +194,9 @@ namespace BattleScene
             {
 
                 UpdatePosition(trace);
-
+                DamageInMoving();
                 yield return new WaitForSeconds(tileMoveTime);
             }
-
 
         }
         //実際に移動
@@ -215,6 +214,19 @@ namespace BattleScene
             //配列値変更
             character.positionArray = newPosition;
         }
+        //ダメージを与える
+        void DamageInMoving()
+        {
+            //この関数内では攻撃後でもターゲットからはずさない、死のチェックは移動攻撃が終わった後
+            var target=attackTarget.Where(x=>x.positionArray==character.positionArray).FirstOrDefault();
+            if (target != null)
+            {
+                var damageMagnification = CalcDamageMagnification();
+                var characterPower = selectAttackParameter.element == ElementKind.なし ? character.characterParameter.power : character.characterParameter.elementPower;
+                target.Life.Damage(characterPower,selectAttackParameter.element,damageMagnification);
+            }
+
+        }
 
         Hashtable GetMoveTable(Vector2 position)
         {
@@ -230,13 +242,24 @@ namespace BattleScene
 
         void OnCompleteAnimation()
         {
+            //死のチェック
+            foreach (var target in attackTarget)
+            {
+                target.Life.CheckDestroy();
+            }
+            attackTarget = null;
 
             isNowAction = false;
             BCameraChange.Instance.ActiveLeanMode();
             //行動終了
             character.OnEndActive();
         }
-
+        //倍率の算出
+        float CalcDamageMagnification()
+        {
+            //会心＊振れ幅＊技倍率＊タップ倍率
+            return 1 * 1 * selectAttackParameter.powerMagnification * 1;
+        }
 
 
 

@@ -19,18 +19,16 @@ namespace BattleScene
         public int HP;
         //行動力
         public int activeSpeed;
-        //攻撃力
+        //無属性攻撃力
         public int power;
         //属性攻撃力
-        public List<int> elementPowers = new List<int>();
-        //防御力
+        public int elementPower;
+        //無属性防御力
         public int deffence;
         //属性防御力
-        public List<int> elementDeffences = new List<int>();
+        public int elementDeffence;
         //精神力,MP
         public int skillPoint;
-        //知力
-        public int intellect;
         //気力,移動攻撃用
         public int movePoint;
         //状態異常
@@ -57,6 +55,10 @@ namespace BattleScene
         //使用MP
         public int needSkillPoint;
 
+        //攻撃倍率
+        public float powerMagnification;
+
+
     }
     [System.Serializable]
     public class SingleAttackParameter : AttackParameter
@@ -82,8 +84,6 @@ namespace BattleScene
         public float judgeTime;
         public float startInterval;
         public GameObject attackMakerPrefab;
-        //public AttackEffectKind attackEffectKind;
-        public float power;
     }
 
     [System.Serializable]
@@ -91,16 +91,14 @@ namespace BattleScene
     {
         public List<IntVect2D> attackRanges;
         public AttackDistance attackDistance;
-        public float power;
     }
 
     [System.Serializable]
     public class MoveAttackParameter:AttackParameter
     {
-        //技の威力
-        public int power;
         //移動可能距離
         public int moveRange;
+        public int needMovePoint;
     }
 
     public enum AttackDistance { 近, 中, 遠 }

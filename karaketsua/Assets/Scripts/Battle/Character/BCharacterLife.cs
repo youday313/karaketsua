@@ -23,9 +23,11 @@ namespace BattleScene
             characterParameter = param;
         }
 
-        public void Damage(int enemyPower)
+        //攻撃力と他のステータスを受け取り、防御力を適用しダメージ算出
+        public void Damage(int attackPower,ElementKind element, float magnification)
         {
-            var calcDamage = CalcDamage(enemyPower);
+
+            var calcDamage = CalcDamage(attackPower, element, magnification);
             characterParameter.HP -= calcDamage;
             CreateDamageText(calcDamage);
 
@@ -51,12 +53,11 @@ namespace BattleScene
 
         }
         //ここを変えるとダメージが変わる
-        //計算式
-        int CalcDamage(int power)
+        //計算式(ATK-1/2DEF)*magnification
+        int CalcDamage(int power,ElementKind element, float magnification)
         {
-            //相手攻撃力 - 自分防御力 がダメージ量
-            //相手攻撃力<自分防御力 だったらダメージ0
-            return Mathf.Max(0, power - (1 / 2 * characterParameter.deffence));
+            var deffence = element == ElementKind.なし ? character.characterParameter.deffence : character.characterParameter.elementDeffence;
+            return Mathf.Max(0, (int)((power - (1 / 2 * deffence)) * magnification));
         }
 
 

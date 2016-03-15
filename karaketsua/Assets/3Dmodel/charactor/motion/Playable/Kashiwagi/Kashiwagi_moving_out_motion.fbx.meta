@@ -3,7 +3,7 @@ guid: ac13139c737298c48a5f18b6ed4b353b
 timeCreated: 1456242464
 licenseType: Free
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: back_kimono
     100002: back_kimono_tip
@@ -97,7 +97,7 @@ ModelImporter:
     4300002: Kashi_saya_poly
     4300004: Kashi_left_sword
     4300006: Kashiwagi_poly
-    7400000: Take 001
+    7400000: KashiwagiMoveAttackOut
     9500000: //RootNode
     13700000: Kashiwagi_poly
   materials:
@@ -107,6 +107,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -114,12 +115,122 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: KashiwagiMoveAttackOut
+      takeName: Take 001
+      firstFrame: 250
+      lastFrame: 380
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Kashiwagi_poly
+        weight: 1
+      - path: Kashiwagi_Reference
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/back_kimono
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/back_kimono/back_kimono_tip
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/front_kimono
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/front_kimono/front_kimono_tip
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashi_saya_poly
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashi_saya_poly/Kashi_left_sword
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg/Kashiwagi_LeftLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg/Kashiwagi_LeftLeg/Kashiwagi_LeftFoot
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg/Kashiwagi_LeftLeg/Kashiwagi_LeftFoot/Kashiwagi_LeftToeBase
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg/Kashiwagi_RightLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg/Kashiwagi_RightLeg/Kashiwagi_RightFoot
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg/Kashiwagi_RightLeg/Kashiwagi_RightFoot/Kashiwagi_RightToeBase
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashi_right_sword
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandMiddle1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandMiddle1/Kashiwagi_LeftHandMiddle2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandThumb1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandThumb1/Kashiwagi_LeftHandThumb2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head/ponite
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head/ponite/ponite_midle
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head/ponite/ponite_midle/ponite_tip
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandMiddle1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandMiddle1/Kashiwagi_RightHandMiddle2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandThumb1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandThumb1/Kashiwagi_RightHandThumb2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -140,20 +251,19 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0

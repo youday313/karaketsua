@@ -1339,7 +1339,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &228970071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4188,7 +4188,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400352, guid: 73586178264f6404a84ccc1701ffe587, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 574204911}
-  m_LocalRotation: {x: 0.35297632, y: -0.35297632, z: -0.61270523, w: 0.61270523}
+  m_LocalRotation: {x: 0.35297635, y: -0.35297635, z: -0.6127053, w: 0.6127053}
   m_LocalPosition: {x: -8.885426, y: 1.3844692, z: 9.631286}
   m_LocalScale: {x: 1.9790813, y: 1.1236278, z: 2.0629773}
   m_Children: []
@@ -5743,7 +5743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandParent: {fileID: 1542084615}
-  attackNumber: 0
+  attackNumber: 2
 --- !u!1 &730408314
 GameObject:
   m_ObjectHideFlags: 0
@@ -6345,7 +6345,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415120, guid: d9a1dfc2b7075384fa9281d88bd01f44, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d9a1dfc2b7075384fa9281d88bd01f44, type: 2}
@@ -7761,7 +7761,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 417260, guid: e0ea6f71eb634214f9bbc049cc37d768, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11493248, guid: e0ea6f71eb634214f9bbc049cc37d768, type: 2}
       propertyPath: playerCharacters.Array.data[0].position.y
@@ -7778,7 +7778,7 @@ Prefab:
     - target: {fileID: 11493248, guid: e0ea6f71eb634214f9bbc049cc37d768, type: 2}
       propertyPath: playerCharacters.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 11486344, guid: 78a158100c1d6224f99a1d29cb989e6f,
+      objectReference: {fileID: 11430350, guid: f109cc2747125f14d87decf4ac554849,
         type: 2}
     - target: {fileID: 11493248, guid: e0ea6f71eb634214f9bbc049cc37d768, type: 2}
       propertyPath: enemyCharacters.Array.data[0].prefab
@@ -7801,7 +7801,7 @@ Prefab:
     - target: {fileID: 11493248, guid: e0ea6f71eb634214f9bbc049cc37d768, type: 2}
       propertyPath: playerCharacters.Array.data[1].prefab
       value: 
-      objectReference: {fileID: 11486344, guid: 78a158100c1d6224f99a1d29cb989e6f,
+      objectReference: {fileID: 11430350, guid: f109cc2747125f14d87decf4ac554849,
         type: 2}
     - target: {fileID: 11493248, guid: e0ea6f71eb634214f9bbc049cc37d768, type: 2}
       propertyPath: playerCharacters.Array.data[1].position.x
@@ -12562,7 +12562,7 @@ RectTransform:
   - {fileID: 2139727014}
   - {fileID: 1304791101}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -14386,7 +14386,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22452342, guid: 96d7fda2a1cba7442ac9bd21c9e79d3c, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 22452342, guid: 96d7fda2a1cba7442ac9bd21c9e79d3c, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -14426,6 +14426,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22452342, guid: 96d7fda2a1cba7442ac9bd21c9e79d3c, type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 123128, guid: 96d7fda2a1cba7442ac9bd21c9e79d3c, type: 2}
+      propertyPath: m_Name
+      value: EffectCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 123128, guid: 96d7fda2a1cba7442ac9bd21c9e79d3c, type: 2}
+      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16732,7 +16740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   commandParent: {fileID: 1542084615}
-  attackNumber: 0
+  attackNumber: 1
 --- !u!1 &2115267864
 GameObject:
   m_ObjectHideFlags: 0

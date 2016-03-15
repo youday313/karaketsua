@@ -1034,14 +1034,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterParameter:
     charaName: "\u9ED2\u571F\u87FB"
-    HP: 100
+    HP: 150
     activeSpeed: 10
-    power: 10
-    elementPowers: 
-    deffence: 5
-    elementDeffences: 
-    skillPoint: 10
-    intellect: 10
+    power: 120
+    elementPower: 0
+    deffence: 150
+    elementDeffence: 0
+    skillPoint: 150
     movePoint: 0
     stateErrors: 
     singleAttackParameters: []
@@ -1049,23 +1048,24 @@ MonoBehaviour:
       wazaName: 
       element: 0
       needSkillPoint: 0
-      power: 0
+      powerMagnification: 0
       moveRange: 0
+      needMovePoint: 0
     autoAttackParameter:
-      wazaName: "\u653B\u6483"
+      wazaName: "\u565B\u307F\u3064\u304F"
       element: 0
       needSkillPoint: 0
+      powerMagnification: 1
       attackRanges:
-      - x: -2
+      - x: -1
         y: 0
-      - x: 2
+      - x: 1
         y: 0
       - x: 0
-        y: 2
+        y: 1
       - x: 0
-        y: -2
+        y: -1
       attackDistance: 0
-      power: 10
   isEnemy: 1
   nowState: 0
 --- !u!114 &11499414
@@ -1178,19 +1178,43 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[3].y
-      value: -2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[0].x
-      value: -2
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[1].x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.autoAttackParameter.attackRanges.Array.data[2].y
-      value: 2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.HP
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.skillPoint
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.power
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.deffence
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.autoAttackParameter.wazaName
+      value: "\u565B\u307F\u3064\u304F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.autoAttackParameter.powerMagnification
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

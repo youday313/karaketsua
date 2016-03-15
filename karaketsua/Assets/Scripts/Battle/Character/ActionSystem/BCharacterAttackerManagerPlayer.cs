@@ -34,8 +34,9 @@ namespace BattleScene
 
         public void SelectSingleAttack(int selectNumber)
         {
-            singleAttack.IsEnable = true;
             singleAttack.SelectWazaNumber = selectNumber;
+            singleAttack.IsEnable = true;
+
 
         }
         public void SelectMoveAttack()

@@ -168,14 +168,13 @@ namespace BattleScene
             BCameraMove.Instance.MoveToTapAttack(this, attackTarget[0].transform.position, changeTimeSingleMode);
             yield return new WaitForSeconds(changeTimeSingleMode);
 
-
             //攻撃アニメーション
             animator.SetSingleAttack(selectWazaNumber);
 
             popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(attackTarget[0].transform.position.x, attackTarget[0].transform.position.y + 1f, attackTarget[0].transform.position.z));
 
             var attackList = selectAttackParameter.actionParameters;
-            var totalDamage = 0;
+            List<float> totalTapRatios = new List<float>();
             foreach (var action in attackList)
             {
 
@@ -194,6 +193,7 @@ namespace BattleScene
                 //タップ判定
                 startTime = Time.time;
                 //タップできなかったら最大時間
+                //leftTimheは大きい程よい。leftTime=judgeTimeがパーフェクト
                 leftTime = 0;
                 IT_Gesture.onShortTapE += OnTapForAttack;
                 yield return new WaitForSeconds(action.judgeTime);
@@ -204,16 +204,15 @@ namespace BattleScene
                     Destroy(nowAttackMaker);
 
                 }
-                totalDamage += CalcDamageFromLeftTime(leftTime);
+                totalTapRatios.Add(leftTime/action.judgeTime);
             }
 
             //攻撃
             foreach (var target in attackTarget)
             {
-
-                //target.Damage(character.characterParameter.power);
-                //攻撃力に関わらず秒数
-                target.Life.Damage(totalDamage);
+                var damageMagnification = CalcDamageMagnification(CalcDamageFromTapMagnificationRation(totalTapRatios));
+                var characterPower = selectAttackParameter.element == ElementKind.なし ? character.characterParameter.power : character.characterParameter.elementPower;
+                target.Life.Damage(characterPower, selectAttackParameter.element, damageMagnification);
             }
 
             foreach (var target in attackTarget)
@@ -262,6 +261,38 @@ namespace BattleScene
             OnCompleteAction();
             character.OnEndActive();
 
+        }
+        //会心（5%）
+        public static float criticalMagnification = 1.5f;
+        public static float criticalProbability = 5f;
+        float CalcCriticalDamage()
+        {
+            return UnityEngine.Random.Range(0,100)<criticalProbability ? criticalMagnification:1.0f;
+        }
+        //ダメージ振れ幅
+        public static float minRandamAmplitude=0.9f;
+        public static float maxRandamAmplitude = 0.9f;
+        float CalcRandamAmplitudeDamage()
+        {
+            return UnityEngine.Random.Range(minRandamAmplitude, maxRandamAmplitude);
+        }
+        //倍率の算出
+        float CalcDamageMagnification(float tapMagnification)
+        {
+            //会心＊振れ幅＊技倍率＊タップ倍率
+            return CalcCriticalDamage() * CalcRandamAmplitudeDamage() * selectAttackParameter.powerMagnification*tapMagnification;
+        }
+        //タップ倍率の算出
+        public static List<float> judgeRange = new List<float>(){0.9f, 0.51f};
+        public static List<float> judgeAmplitude = new List<float>() { 1.3f, 1.1f, 1 };
+        float CalcDamageFromTapMagnificationRation(List<float> timeRatios)
+        {
+            var ave = timeRatios.Average();
+            for (var i=0;i<judgeRange.Count;i++)
+            {
+                if (ave >= judgeRange[i]) return judgeAmplitude[i];
+            }
+            return judgeAmplitude.Last();
         }
 
     }

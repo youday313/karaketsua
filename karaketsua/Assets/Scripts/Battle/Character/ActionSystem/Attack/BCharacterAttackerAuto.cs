@@ -13,13 +13,13 @@ namespace BattleScene
     {
 
         Transform effectCanvas;
-        AutoAttackParameter nowAutoAction;
+        AutoAttackParameter selectAttackParameter;
 
         void Awake()
         {
             base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
-            nowAutoAction = GetComponent<BCharacterEnemy>().characterParameter.autoAttackParameter;
+            selectAttackParameter = GetComponent<BCharacterEnemy>().characterParameter.autoAttackParameter;
         }
 
         public override void Enable()
@@ -56,7 +56,7 @@ namespace BattleScene
         bool SetTarget()
         {
             //攻撃可能位置の設定
-            var attackablePosition = nowAutoAction.attackRanges.Select(x => IntVect2D.Add(x, character.positionArray)).ToList();
+            var attackablePosition = selectAttackParameter.attackRanges.Select(x => IntVect2D.Add(x, character.positionArray)).ToList();
             if (attackablePosition == null) return false;
             //デバッグ出力
             //攻撃可能位置にいるキャラクター
@@ -98,7 +98,9 @@ namespace BattleScene
             //ダメージ
             foreach (var target in attackTarget)
             {
-                target.Life.Damage((int)nowAutoAction.power);
+                var damageMagnification = CalcDamageMagnification();
+                var characterPower = selectAttackParameter.element == ElementKind.なし ? character.characterParameter.power : character.characterParameter.elementPower;
+                target.Life.Damage(characterPower, selectAttackParameter.element, damageMagnification);
             }
             //死亡
             foreach (var target in attackTarget)
@@ -112,12 +114,6 @@ namespace BattleScene
             yield return null;
         }
 
-        //ダメージ量計算
-        float CalcDamage()
-        {
-            return nowAutoAction.power;
-        }
-
         void OnCompleteAnimation()
         {
             isNowAction = false;
@@ -125,6 +121,12 @@ namespace BattleScene
             OnCompleteAction();
             //character.OnEndActive();
 
+        }
+        //倍率の算出
+        float CalcDamageMagnification()
+        {
+            //会心＊振れ幅＊技倍率＊タップ倍率
+            return 1 * 1 * selectAttackParameter.powerMagnification * 1;
         }
 
 
