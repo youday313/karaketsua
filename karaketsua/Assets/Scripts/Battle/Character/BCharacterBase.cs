@@ -79,7 +79,7 @@ namespace BattleScene
 
             //ライフ設定
             life.Init(characterParameter);
-
+			OnEndActiveStaticE += BCharacterManager.Instance.ResetActiveCharacter;
         }
 
 

@@ -83,6 +83,9 @@ namespace BattleScene
         {
             //横を向く
 
+			//UIOff
+			UIBottomCommandParent.UICommandState = EUICommandState.None;
+			UIBottomAllParent.Instance.UpdateUI();
             //カメラ移動
             BCameraChange.Instance.ActiveLeanMode();
             BCameraMove.Instance.MoveToAutoAttack(this, attackTarget[0].transform.position);

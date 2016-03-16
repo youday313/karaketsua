@@ -66,7 +66,7 @@ namespace BattleScene
         {
             activeCharacter = chara;
         }
-        public void ResetActiveCharacter(BCharacterBase chara)
+        public void ResetActiveCharacter()
         {
             activeCharacter = null;
             activePlayer = null;
