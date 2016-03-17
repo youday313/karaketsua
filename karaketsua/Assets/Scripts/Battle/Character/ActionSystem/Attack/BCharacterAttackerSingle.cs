@@ -48,7 +48,7 @@ namespace BattleScene
 
 
         #region::初期化
-        void Awake()
+		public override void Awake()
         {
             base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
@@ -62,7 +62,8 @@ namespace BattleScene
             //技のセット
             selectAttackParameter = character.characterParameter.singleAttackParameters[selectWazaNumber];
 
-            //BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange, this.character);
+			//攻撃範囲の表示
+			BBattleStage.Instance.OnSlectWaza(character,selectAttackParameter);
         }
         public override void Disable()
         {

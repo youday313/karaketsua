@@ -67,12 +67,12 @@ namespace BattleScene
 
         public void OnMoverable(IntVect2D position)
         {
-            ChangeColor(position, TileState.Active, true);
+            //ChangeColor(position, TileState.Active, true);
             ChangeNeighborTilesColor(position, TileState.Move);
         }
 
         //攻撃選択
-        public void OnSlectWaza(BCharacterPlayer chara,SingleAttackParameter selectWaza)
+		public void OnSlectWaza(BCharacterBase chara,SingleAttackParameter selectWaza)
         {
             ResetAllTileColor();
             //攻撃範囲取得

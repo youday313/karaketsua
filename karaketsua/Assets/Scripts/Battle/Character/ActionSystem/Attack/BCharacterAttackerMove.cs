@@ -19,8 +19,6 @@ namespace BattleScene
         [System.NonSerialized]
         public bool isNowCharge = false;
         GameObject startAttackPanel;
-        //移動攻撃可能になった
-        bool isNowAttackable = false;
         //攻撃モーション時間
         //モーション時間＋猶予時間の案もありか
         public float attackMotionTime = 3f;
@@ -42,13 +40,15 @@ namespace BattleScene
         public override void Enable()
         {
             base.Enable();
+			selectAttackParameter = character.characterParameter.moveAttackParameter;
             IT_Gesture.onDraggingStartE += OnDraggingStart;
+			BCameraChange.Instance.ActiveUpMode ();
         }
         public override void Disable()
         {
             IT_Gesture.onDraggingStartE -= OnDraggingStart;
             nowTraceTiles = new List<IntVect2D>();
-            isNowAttackable = false;
+            
 
             //ActionSelect.Instance.DisableMoveAttackButton();
             base.Disable();
@@ -56,7 +56,7 @@ namespace BattleScene
         //なぞり開始
         void OnDraggingStart(DragInfo dragInfo)
         {
-            isNowAttackable = false;
+			if(isDone== true)return;
             //タイル上
             var tilePosition = BBattleStage.Instance.GetTilePositionFromScreenPosition(dragInfo.pos);
             if (tilePosition == null) return;
@@ -67,13 +67,18 @@ namespace BattleScene
 
             nowTraceTiles = new List<IntVect2D>();
             nowTraceTiles.Add(tilePosition);
+			foreach (var target in attackTarget) {
+				target.SetTargeted (false);
+			}
+			attackTarget = new List<BCharacterBase>();
 
+			UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
+			UIBottomCommandParent.Instance.UpdateUI();
             //タイル
             BBattleStage.Instance.OnSelecSkillTarget(tilePosition);
 
             IT_Gesture.onDraggingE += OnDragging;
             IT_Gesture.onDraggingEndE += OnDraggingEnd;
-            isNowCharge = true;
             //ActionSelect.Instance.DisableMoveAttackButton();
         }
         void OnDragging(DragInfo dragInfo)
@@ -102,7 +107,7 @@ namespace BattleScene
             CheckTraceComplete();
             //nowTraceTiles = new List<IntVect2D>();
             IT_Gesture.onDraggingE -= OnDragging;
-            isNowCharge = false;
+            
             IT_Gesture.onDraggingEndE -= OnDraggingEnd;
         }
 
@@ -147,7 +152,9 @@ namespace BattleScene
             {
                 var target = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(traceTile,character.isEnemy);
                 if (target == null) continue;
+
                 attackTarget.Add(target);
+				target.SetTargeted (true);
             }
         }
 
@@ -173,7 +180,7 @@ namespace BattleScene
             UIBottomCommandParent.UICommandState = EUICommandState.None;
             UIBottomAllParent.Instance.Off();
 
-            Disable();
+            //Disable();
         }
         void StartMoveForAttack()
         {
@@ -187,9 +194,10 @@ namespace BattleScene
         }
 
         //移動コルーチン
-        float tileMoveTime = 0.03f;
+        float tileMoveTime = 0.1f;
         IEnumerator Move()
         {
+
             foreach (var trace in nowTraceTiles)
             {
 
@@ -217,10 +225,15 @@ namespace BattleScene
         //ダメージを与える
         void DamageInMoving()
         {
+			
             //この関数内では攻撃後でもターゲットからはずさない、死のチェックは移動攻撃が終わった後
-            var target=attackTarget.Where(x=>x.positionArray==character.positionArray).FirstOrDefault();
+		
+			var target=attackTarget.Where(x=>x.positionArray.IsEqual(character.positionArray)).FirstOrDefault();
+
+
             if (target != null)
             {
+				
                 var damageMagnification = CalcDamageMagnification();
                 var characterPower = selectAttackParameter.element == ElementKind.なし ? character.characterParameter.power : character.characterParameter.elementPower;
                 target.Life.Damage(characterPower,selectAttackParameter.element,damageMagnification);

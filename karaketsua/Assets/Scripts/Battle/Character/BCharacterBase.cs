@@ -38,7 +38,7 @@ namespace BattleScene
 
         //座標
         //現在のキャラクター位置配列
-        [System.NonSerialized]
+        
         public IntVect2D positionArray = new IntVect2D(0, 0);
 
         //行動中

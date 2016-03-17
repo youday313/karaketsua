@@ -1380,7 +1380,7 @@ MonoBehaviour:
       - x: 0
         y: 1
       - x: 0
-        y: 1
+        y: -1
       attackDistance: 0
       isMultiAttack: 0
       actionParameters:
@@ -1417,7 +1417,7 @@ MonoBehaviour:
       element: 0
       needSkillPoint: 100
       powerMagnification: 2.5
-      moveRange: 2
+      moveRange: 3
       needMovePoint: 8
     autoAttackParameter:
       wazaName: 
@@ -1427,6 +1427,9 @@ MonoBehaviour:
       attackRanges: []
       attackDistance: 0
   isEnemy: 0
+  positionArray:
+    x: 0
+    y: 0
 --- !u!114 &11446480
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1550,7 +1553,15 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: characterParameter.moveAttackParameter.moveRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].attackRanges.Array.data[3].y
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147566}

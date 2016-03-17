@@ -15,7 +15,7 @@ namespace BattleScene
         Transform effectCanvas;
         AutoAttackParameter selectAttackParameter;
 
-        void Awake()
+		public override void Awake()
         {
             base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
