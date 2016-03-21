@@ -111,9 +111,10 @@ namespace BattleScene
             Ray ray;  // 光線クラス
 
             // スクリーン座標に対してマウスの位置の光線を取得
-            var camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+			var camera=FindObjectOfType<Camera>();
+            //var camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             ray = camera.ScreenPointToRay(touchPosition);
-            // マウスの光線の先にオブジェクトが存在していたら hit に入る 
+            // マウスの光線の先にオブジェクトが存在していたら hit に入る
             //Tileのlayer番号は8
             var layerMask = 1 << 8;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))

@@ -79,34 +79,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _SpecGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _GlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _TranslucencyMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _ShadowOffset
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -119,15 +91,15 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.5
+        second: .5
       data:
         first:
-          name: _Shininess
-        second: 0.078125
+          name: _Occlusion
+        second: 0
       data:
         first:
           name: _Parallax
-        second: 0.02
+        second: .0199999996
       data:
         first:
           name: _ZWrite
@@ -135,7 +107,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0.271
+        second: .270999998
       data:
         first:
           name: _BumpScale
@@ -166,20 +138,8 @@ Material:
         second: 1
       data:
         first:
-          name: _TranslucencyViewDependency
-        second: 0.7
-      data:
-        first:
-          name: _ShadowStrength
-        second: 1
-      data:
-        first:
-          name: _Occlusion
-        second: 0
-      data:
-        first:
           name: _BaseLight
-        second: 0.79
+        second: .790000021
       data:
         first:
           name: _AO
@@ -195,17 +155,9 @@ Material:
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
-          name: _SpecColor
-        second: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-      data:
-        first:
           name: _TreeInstanceColor
         second: {r: 1, g: 1, b: 1, a: 1}
       data:
         first:
           name: _TreeInstanceScale
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _TranslucencyColor
-        second: {r: 0.73, g: 0.85, b: 0.41, a: 1}
