@@ -45,9 +45,15 @@ public class FCharacter : MonoBehaviour {
 			
 			var delta = touch - dragPosition;
 			isMovIng = delta.magnitude > 1;
+			if (isMovIng == false) {
+				return;
+			}
 			var speed = delta.normalized * moveSpeed * Time.deltaTime;
 			var newPos = new Vector3 (speed.x,0,speed.y);
 			transform.position+=newPos;
+
+			transform.rotation = Quaternion.LookRotation(newPos);
+
 		}
 			
 		void OnDraggingEnd(DragInfo drag){
