@@ -11,7 +11,7 @@ public class FFollowPlayer : MonoBehaviour {
 
 		public Transform target;    // ターゲットへの参照
 	[SerializeField]	
-    private Vector3 offset;     // 相対座標
+    protected Vector3 offset;     // 相対座標
 
 		void Start ()
 		{
@@ -22,7 +22,7 @@ public class FFollowPlayer : MonoBehaviour {
 		void Update ()
 		{
 			// 自分自身の座標に、targetの座標に相対座標を足した値を設定する
-			GetComponent<Transform>().position = target.position + offset;
+			transform.position = target.position + offset;
 		}
 }
 

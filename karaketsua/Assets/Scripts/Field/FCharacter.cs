@@ -20,6 +20,9 @@ namespace FieldScene
 
         public float MoveTime { get { return moveTime; } }
         float moveTime;
+
+        public FFollowPlayerIn2D backCamera;
+
         // Use this for initialization
         void Start()
         {
@@ -62,10 +65,14 @@ namespace FieldScene
             var speed = delta.normalized * moveSpeed * Time.deltaTime;
             var newPos = new Vector3(speed.x, 0, speed.y);
             //transform.position += newPos;
-            controller.Move(newPos);
-            moveTime +=Time.deltaTime;
-
+            var flag=controller.Move(newPos);
+            if (flag == CollisionFlags.None)
+            {
+                moveTime += Time.deltaTime;
+            }
             transform.rotation = Quaternion.LookRotation(newPos);
+
+            
 
 
         }
