@@ -15,6 +15,7 @@ TagManager:
   - EffectCanvas
   - SceneState
   - Field/Wall
+  - Debug/Text
   layers:
   - Default
   - TransparentFX

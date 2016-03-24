@@ -556,6 +556,8 @@ public class IT_Gesture : MonoBehaviour {
 		if(onDualFDraggingEndE!=null) onDualFDraggingEndE(dragInfo.pos);
 	}
 	
+
+    
 	
 }
 

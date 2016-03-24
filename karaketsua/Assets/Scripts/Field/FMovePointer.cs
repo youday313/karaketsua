@@ -2,85 +2,80 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine.UI;
 
 using FieldScene;
 
 namespace FieldScene
 {
-
-    public class FCharacter : MonoBehaviour
+    public class FMovePointer : MonoBehaviour
     {
-
-        CharacterController controller;
-
-        float moveSpeed = 2.5f;
-        Animator animator;
+        RectTransform rectTransform;
+        Vector2 DragPosition
+        {
+            get { return dragPosition; }
+            set { dragPosition = value;
+            UpdatePosition();
+            }
+        }
         Vector2 dragPosition;
-        bool isMovIng;
-
-        public float MoveTime { get { return moveTime; } }
-        float moveTime;
+        Image pointer;
+        
         // Use this for initialization
         void Start()
         {
+            rectTransform = GetComponent<RectTransform>();
+            pointer = GetComponent<Image>();
+            pointer.enabled = false;
 
-            animator = GetComponent<Animator>();
-            controller = GetComponent<CharacterController>();
             IT_Gesture.onDraggingStartE += OnDraggingStart;
-            moveTime = 0;
         }
 
         // Update is called once per frame
         void Update()
         {
-
-            SetMoveAnimation(isMovIng);
-            isMovIng = false;
         }
         //移動開始
         void OnDraggingStart(DragInfo drag)
         {
             //タッチ位置取得
-
-            dragPosition = drag.pos;
+            pointer.enabled = true;
+            DragPosition = drag.pos;
             IT_Gesture.onMouse1E += OnTouch;
 
             IT_Gesture.onDraggingEndE += OnDraggingEnd;
 
         }
-
         //移動中
         void OnTouch(Vector2 touch)
         {
-
             var delta = touch - dragPosition;
-            isMovIng = delta.magnitude > 1;
-            if (isMovIng == false)
-            {
-                return;
-            }
-            var speed = delta.normalized * moveSpeed * Time.deltaTime;
-            var newPos = new Vector3(speed.x, 0, speed.y);
-            //transform.position += newPos;
-            controller.Move(newPos);
-            moveTime +=Time.deltaTime;
 
-            transform.rotation = Quaternion.LookRotation(newPos);
+            rectTransform.localEulerAngles = new Vector3(0,0, CalcRadian(dragPosition, touch));
 
 
         }
 
         void OnDraggingEnd(DragInfo drag)
         {
+            pointer.enabled = false;
 
             IT_Gesture.onMouse1E -= OnTouch;
 
             IT_Gesture.onDraggingEndE -= OnDraggingEnd;
         }
 
-        void SetMoveAnimation(bool isTrue)
+        void UpdatePosition()
         {
-            animator.SetBool("Walk", isTrue);
+            rectTransform.position = DragPosition;
+        }
+        //2点間の角度を求める
+        private float CalcRadian(Vector2 from, Vector2 to)
+        {
+            float dx = to.x - from.x;
+            float dy = to.y - from.y;
+            float radian = Mathf.Atan2(dy, dx);
+            return radian*180/Mathf.PI-90;
         }
 
         public void OnDisable()
@@ -90,10 +85,6 @@ namespace FieldScene
             IT_Gesture.onDraggingEndE -= OnDraggingEnd;
         }
 
-
-
-
-
-
     }
+
 }
