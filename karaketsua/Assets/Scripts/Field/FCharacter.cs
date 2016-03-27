@@ -21,7 +21,7 @@ namespace FieldScene
         public float MoveTime { get { return moveTime; } }
         float moveTime;
 
-        public FFollowPlayerIn2D backCamera;
+		public FFollowPlayerIn2D backCamera;
 
         // Use this for initialization
         void Start()
