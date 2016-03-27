@@ -16,6 +16,7 @@ TagManager:
   - SceneState
   - Field/Wall
   - Debug/Text
+  - Edit/Character
   layers:
   - Default
   - TransparentFX

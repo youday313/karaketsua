@@ -8,7 +8,6 @@ namespace EditScene{
 public class ETileCreater : MonoBehaviour {
 
 		public ETile tilePrefab;
-		public bool isColorTile;
 
 	void Start()
 	{
