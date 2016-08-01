@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--ステージデータ -->
+<ArrayOfEnemyWave xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--EnemyWaveタグで一区切りが1Wave -->
+  <敵リスト>
+      <敵1体データ>
+        <X>-1</X>
+        <Y>2</Y>
+        <Name>名前</Name>
+      </敵1体データ>
+      <敵1体データ>
+        <X>1</X>
+        <Y>2</Y>
+        <Name>名前</Name>
+      </敵1体データ>
+  </敵リスト>
+</ArrayOfEnemyWave>

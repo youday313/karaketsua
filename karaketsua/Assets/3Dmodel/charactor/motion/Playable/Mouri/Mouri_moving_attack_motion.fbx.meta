@@ -132,7 +132,125 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 240
+      lastFrame: 280
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Mouri_poly
+        weight: 1
+      - path: Mouri_Reference
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_haori_up
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_haori_up/Mouri_haori_half
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_haori_up/Mouri_haori_half/Mouri_haori_tip
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Left_haori_up
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Left_haori_up/Mouri_Left_haori_half
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Left_haori_up/Mouri_Left_haori_half/Mouri_Left_haori_tip
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_LeftUpLeg
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_LeftUpLeg/Mouri_LeftLeg
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_LeftUpLeg/Mouri_LeftLeg/Mouri_LeftFoot
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_LeftUpLeg/Mouri_LeftLeg/Mouri_LeftFoot/Mouri_LeftToeBase
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Right_haori_up
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Right_haori_up/Mouri_Right_haori_half
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Right_haori_up/Mouri_Right_haori_half/Mouri_Right_haori_tip
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_RightUpLeg
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_RightUpLeg/Mouri_RightLeg
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_RightUpLeg/Mouri_RightLeg/Mouri_RightFoot
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_RightUpLeg/Mouri_RightLeg/Mouri_RightFoot/Mouri_RightToeBase
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_saya_poly
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm/Mouri_LeftForeArm
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm/Mouri_LeftForeArm/Mouri_Left_sode
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm/Mouri_LeftForeArm/Mouri_LeftHand
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm/Mouri_LeftForeArm/Mouri_LeftHand/Mouri_LeftHandMiddle1
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm/Mouri_LeftForeArm/Mouri_LeftHand/Mouri_LeftHandMiddle1/Mouri_LeftHandMiddle2
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm/Mouri_LeftForeArm/Mouri_LeftHand/Mouri_LeftHandThumb1
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_LeftArm/Mouri_LeftForeArm/Mouri_LeftHand/Mouri_LeftHandThumb1/Mouri_LeftHandThumb2
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_Neck
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_Neck/Mouri_Head
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm/Mouri_RightForeArm
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm/Mouri_RightForeArm/Mouri_Right_sode
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm/Mouri_RightForeArm/Mouri_RightHand
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm/Mouri_RightForeArm/Mouri_RightHand/Mouri_RightHandMiddle1
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm/Mouri_RightForeArm/Mouri_RightHand/Mouri_RightHandMiddle1/Mouri_RightHandMiddle2
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm/Mouri_RightForeArm/Mouri_RightHand/Mouri_RightHandThumb1
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_Spine/Mouri_Spine1/Mouri_Spine2/Mouri_RightArm/Mouri_RightForeArm/Mouri_RightHand/Mouri_RightHandThumb1/Mouri_RightHandThumb2
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Mouri_sword_poly
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Saya
+        weight: 1
+      - path: Mouri_Reference/Mouri_Hips/Saya/pCube3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []

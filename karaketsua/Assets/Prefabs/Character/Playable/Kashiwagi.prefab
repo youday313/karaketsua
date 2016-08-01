@@ -284,7 +284,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 440472}
   - 95: {fileID: 9562260}
-  - 114: {fileID: 11468878}
   - 114: {fileID: 11446480}
   - 114: {fileID: 11405556}
   - 114: {fileID: 11473200}
@@ -292,6 +291,7 @@ GameObject:
   - 114: {fileID: 11404970}
   - 114: {fileID: 11408522}
   - 114: {fileID: 11430350}
+  - 114: {fileID: 11477290}
   m_Layer: 0
   m_Name: Kashiwagi
   m_TagString: BattleCharacter
@@ -1386,7 +1386,7 @@ MonoBehaviour:
       actionParameters:
       - judgeTime: 1
         startInterval: 1
-        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+        attackMakerPrefab: {fileID: 156432, guid: 7f5e6f974ffd75b4ea111904ab70488f,
           type: 2}
     - wazaName: "\u65AC\u6483"
       element: 0
@@ -1441,17 +1441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8a3619d045ee44ead2255c4017b8b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11468878
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a90d50fc3a35407488c69b7ca8b78417, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11473200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1464,6 +1453,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackMotionTime: 3
+--- !u!114 &11477290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90d50fc3a35407488c69b7ca8b78417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11493470
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1562,6 +1562,10 @@ Prefab:
       propertyPath: characterParameter.singleAttackParameters.Array.data[0].attackRanges.Array.data[3].y
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].actionParameters.Array.data[0].attackMakerPrefab
+      value: 
+      objectReference: {fileID: 156432, guid: 7f5e6f974ffd75b4ea111904ab70488f, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147566}

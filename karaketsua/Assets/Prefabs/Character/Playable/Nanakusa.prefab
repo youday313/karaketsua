@@ -358,6 +358,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 479456}
   - 95: {fileID: 9588412}
+  - 114: {fileID: 11403300}
+  - 114: {fileID: 11412440}
+  - 114: {fileID: 11498166}
+  - 114: {fileID: 11479132}
+  - 114: {fileID: 11480078}
+  - 114: {fileID: 11416074}
+  - 114: {fileID: 11445770}
+  - 114: {fileID: 11492942}
   m_Layer: 0
   m_Name: Nanakusa
   m_TagString: Untagged
@@ -1362,6 +1370,178 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11403300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a90d50fc3a35407488c69b7ca8b78417, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11412440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3a1603485ffdbc48ae59ae5d0dec8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeTimeSingleMode: 1
+  onTapEffect: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
+  selectWazaNumber: 0
+  resetInterval: 3
+--- !u!114 &11416074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6931647c0ed2d41409c8d1ce66681f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11445770
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3c4aa2e2de32d648bd60cae4ec516c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 1.6
+--- !u!114 &11479132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01b21a1da6b6644b897c4d03303e43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11480078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8a3619d045ee44ead2255c4017b8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11492942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 242296ccc2a621241b2efcc19e344e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterParameter:
+    charaName: "\u4E03\u8349"
+    HP: 200
+    activeSpeed: 25
+    power: 200
+    elementPower: 250
+    deffence: 150
+    elementDeffence: 150
+    skillPoint: 300
+    movePoint: 0
+    stateErrors: 
+    singleAttackParameters:
+    - wazaName: "\u5207\u308A\u3064\u3051\u308B"
+      element: 0
+      needSkillPoint: 0
+      powerMagnification: 0
+      attackRanges:
+      - x: -1
+        y: 0
+      - x: 1
+        y: 0
+      - x: 0
+        y: -1
+      - x: 0
+        y: 1
+      attackDistance: 0
+      isMultiAttack: 0
+      actionParameters:
+      - judgeTime: 0.83
+        startInterval: 0
+        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+          type: 2}
+    - wazaName: "\u5207\u308A\u3064\u3051\u308B"
+      element: 5
+      needSkillPoint: 0
+      powerMagnification: 0.8
+      attackRanges:
+      - x: 1
+        y: 3
+      - x: -1
+        y: 3
+      attackDistance: 0
+      isMultiAttack: 0
+      actionParameters:
+      - judgeTime: 0.5976
+        startInterval: 0
+        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+          type: 2}
+      - judgeTime: 0.166
+        startInterval: 0
+        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+          type: 2}
+      - judgeTime: 0.4482
+        startInterval: 0
+        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+          type: 2}
+      - judgeTime: 0.166
+        startInterval: 0
+        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+          type: 2}
+    moveAttackParameter:
+      wazaName: "\u5207\u308A\u3064\u3051\u308B"
+      element: 3
+      needSkillPoint: 0
+      powerMagnification: 0.5
+      moveRange: 5
+      needMovePoint: 0
+    autoAttackParameter:
+      wazaName: 
+      element: 0
+      needSkillPoint: 0
+      powerMagnification: 0
+      attackRanges: []
+      attackDistance: 0
+  isEnemy: 0
+  positionArray:
+    x: 0
+    y: 0
+--- !u!114 &11498166
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79cbf4bcfa2db324c8c7c64458e4a8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackMotionTime: 3
 --- !u!137 &13763374
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

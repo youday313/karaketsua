@@ -93,7 +93,7 @@ namespace BattleScene
             yield return new WaitForSeconds(cameraInterval);
 
             //攻撃アニメーション
-            animator.SetSingleAttack(0);
+			animator.SetAutoAttack();
 
 
             isNowAction = true;

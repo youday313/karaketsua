@@ -1035,20 +1035,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterParameter:
     charaName: "\u5C0F\u6BEC"
-    HP: 100
-    activeSpeed: 15
-    power: 10
-    elementPowers: 0000000000000000000000000000000000000000
-    deffence: 5
-    elementDeffences: 0000000000000000000000000000000000000000
-    skillPoint: 10
-    intellect: 10
-    movePoint: 10
+    HP: 250
+    activeSpeed: 13
+    power: 0
+    elementPower: 250
+    deffence: 150
+    elementDeffence: 200
+    skillPoint: 700
+    movePoint: 0
     stateErrors: 
     singleAttackParameters:
-    - wazaName: "\u5358\u4F53\u653B\u6483"
-      element: 0
+    - wazaName: "\u7642\u8853"
+      element: 2
       needSkillPoint: 1
+      powerMagnification: -0.5
       attackRanges:
       - x: -1
         y: 0
@@ -1065,26 +1065,52 @@ MonoBehaviour:
         startInterval: 1
         attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
           type: 2}
-        power: 10
-      - judgeTime: 0.5
+    - wazaName: "\u6C37\u7D50"
+      element: 2
+      needSkillPoint: 1
+      powerMagnification: 1.2
+      attackRanges:
+      - x: -2
+        y: 0
+      - x: 2
+        y: 0
+      - x: 0
+        y: 2
+      - x: 0
+        y: -2
+      attackDistance: 0
+      isMultiAttack: 0
+      actionParameters:
+      - judgeTime: 0.64
+        startInterval: 1
+        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+          type: 2}
+      - judgeTime: 0.288
         startInterval: 0
         attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
           type: 2}
-        power: 10
+      - judgeTime: 0.288
+        startInterval: 0
+        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
+          type: 2}
     moveAttackParameter:
       wazaName: "\u79FB\u52D5\u653B\u6483"
       element: 0
       needSkillPoint: 10
-      power: 10
+      powerMagnification: -1
       moveRange: 4
+      needMovePoint: 0
     autoAttackParameter:
       wazaName: 
       element: 0
       needSkillPoint: 0
+      powerMagnification: 0
       attackRanges: []
       attackDistance: 0
-      power: 0
   isEnemy: 0
+  positionArray:
+    x: 0
+    y: 0
 --- !u!114 &11496490
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1171,6 +1197,18 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].actionParameters.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].actionParameters.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_TagString
       value: BattleCharacter
       objectReference: {fileID: 0}
@@ -1180,7 +1218,99 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: characterParameter.activeSpeed
-      value: 15
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.HP
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.skillPoint
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.power
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.elementPower
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.elementDeffence
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.deffence
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.movePoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].wazaName
+      value: "\u7642\u8853"
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].wazaName
+      value: "\u6C37\u7D50"
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].attackRanges.Array.data[0].x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].attackRanges.Array.data[1].x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].attackRanges.Array.data[2].y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].attackRanges.Array.data[3].y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].actionParameters.Array.data[0].judgeTime
+      value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].actionParameters.Array.data[1].judgeTime
+      value: 0.288
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].actionParameters.Array.data[2].judgeTime
+      value: 0.288
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].actionParameters.Array.data[1].judgeTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].actionParameters.Array.data[1].attackMakerPrefab
+      value: 
+      objectReference: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be, type: 2}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].powerMagnification
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[1].element
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.moveAttackParameter.powerMagnification
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].element
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: characterParameter.singleAttackParameters.Array.data[0].powerMagnification
+      value: -0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

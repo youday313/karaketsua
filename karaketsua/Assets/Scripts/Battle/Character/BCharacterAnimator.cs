@@ -21,6 +21,9 @@ public class BCharacterAnimator : MonoBehaviour {
     {
         animator.SetTrigger("TapAttack" + number.ToString());
     }
+	public void SetAutoAttack(){
+		animator.SetTrigger ("Attack");
+	}
     public void SetMoveAttack()
     {
         animator.SetTrigger("TraceAttack");

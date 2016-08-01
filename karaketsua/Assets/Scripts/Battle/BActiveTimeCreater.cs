@@ -18,19 +18,21 @@ namespace BattleScene
             //newActiveTime.Init(chara);
             //waitTimes.Add(wTime);
             //位置補正
-            //if (chara.isEnemy == true)
-            //{
-            //    SetEnemyPosition(newActiveTime);
-            //}
+//			if (newActiveTime.character.isEnemy == true)
+//            {
+//                SetEnemyPosition(newActiveTime);
+//            }
             newActiveTime.transform.SetParent(transform, false);
 
 
             return newActiveTime;
         }
-        void SetEnemyPosition(BActiveTime aTime)
+        public void SetEnemyPosition(BActiveTime aTime)
         {
             var rectTransform = aTime.GetComponent<RectTransform>();
-            rectTransform.position = new Vector3(rectTransform.position.x, rectTransform.position.y - enemyOffset, rectTransform.position.z);
+
+			rectTransform.anchoredPosition3D = new Vector3(rectTransform.anchoredPosition3D.x, rectTransform.anchoredPosition3D.y - enemyOffset, rectTransform.anchoredPosition3D.z);
+
         }
     }
 }

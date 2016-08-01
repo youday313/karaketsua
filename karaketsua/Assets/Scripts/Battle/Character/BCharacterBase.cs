@@ -127,6 +127,10 @@ namespace BattleScene
         {
             var activeTime = BActiveTimeCreater.Instance.CreateActiveTime();
             activeTime.Init(this);
+			if(isEnemy==true){
+				BActiveTimeCreater.Instance.SetEnemyPosition (activeTime);
+
+			}
             //SetActiveTimeEventHandler();
         }
 

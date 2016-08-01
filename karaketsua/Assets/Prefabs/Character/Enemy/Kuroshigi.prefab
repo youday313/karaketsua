@@ -1067,6 +1067,9 @@ MonoBehaviour:
         y: -1
       attackDistance: 0
   isEnemy: 1
+  positionArray:
+    x: 0
+    y: 0
   nowState: 0
 --- !u!114 &11499414
 MonoBehaviour:

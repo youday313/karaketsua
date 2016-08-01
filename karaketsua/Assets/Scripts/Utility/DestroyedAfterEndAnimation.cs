@@ -18,6 +18,6 @@ public class DestroyedAfterEndAnimation : MonoBehaviour
 	//private
     public void DestroyObject()
     {
-        Destroy(transform.parent.gameObject);
+        Destroy(transform.gameObject);
     }
 }

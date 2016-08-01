@@ -54,6 +54,18 @@ namespace FieldScene
 
         }
 
+		//キャラクター敵リスト
+		public List<BattleScene.BCharacterEnemy> enemys = new List<BattleScene.BCharacterEnemy> ();
+
+		//出現キャラクターのセット
+		void SetNextEnemy(){
+			//BattleScene.BStageData.Instance.ResetEnemy ();
+
+
+
+
+		}
+
 
 
 
