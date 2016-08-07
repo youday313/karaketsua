@@ -16,28 +16,20 @@ namespace BattleScene
         public event Action OnComplete;
         //ターゲット
         [System.NonSerialized]
-        public List<BCharacterBase> attackTarget = new List<BCharacterBase>();
+        public List<BCharacterBase> attackTargetList = new List<BCharacterBase>();
 
-        [System.NonSerialized]
-        protected bool isNowAction = false;
-        public bool IsNowAction
-        {
-            get { return isNowAction; }
-        }
+        public bool IsNowAction { get; set;}
+
 
         //ターゲット選択済み
         //protected bool isSetTarget = false;
         public bool IsSetTarget
         {
-            get { return attackTarget.Count() != 0; }
+            get { return attackTargetList.Count() != 0; }
         }
 
-        [System.NonSerialized]
-        protected bool isDone = false;
-        public bool IsDone
-        {
-            get { return isDone; }
-        }
+        public bool IsDone { get; set;}
+
 
 
         // Use this for initialization
@@ -70,18 +62,18 @@ namespace BattleScene
 
         public virtual void Enable()
         {
-            isDone = false;
+            IsDone = false;
         }
         public virtual void Disable()
         {
-            attackTarget = new List<BCharacterBase>();
+            attackTargetList = new List<BCharacterBase>();
         }
 
 
         public virtual void Reset()
         {
             Disable();
-            isDone = false;
+            IsDone = false;
 
         }
         public virtual void OnCompleteAction()

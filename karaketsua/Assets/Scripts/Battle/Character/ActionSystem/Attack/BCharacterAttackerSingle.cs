@@ -32,7 +32,7 @@ namespace BattleScene
 
         public bool IsAttackable
         {
-            get { return attackTarget.Count != 0; }
+            get { return attackTargetList.Count != 0; }
         }
 
 
@@ -71,7 +71,7 @@ namespace BattleScene
             isTapDetect = false;
             selectWazaNumber = 0;
             //タイル変更
-            foreach (var tar in attackTarget) tar.SetTargeted(false);
+            foreach (var tar in attackTargetList) tar.SetTargeted(false);
             base.Disable();
         }
 
@@ -79,7 +79,7 @@ namespace BattleScene
 
         void OnShortTap(Vector2 pos)
         {
-            if (isNowAction == true) return;
+            if (IsNowAction == true) return;
             SetTarget(pos);
         }
 
@@ -100,11 +100,11 @@ namespace BattleScene
             if (selectAttackParameter.isMultiAttack == true)
             {
                 //未選択からの選択
-                if (attackTarget.Contains(target) == false)
+                if (attackTargetList.Contains(target) == false)
                 {
                     //タイル変更
                     target.SetTargeted(true);
-                    attackTarget.Add(target);
+                    attackTargetList.Add(target);
 
                 }
                 //選択からの解除
@@ -112,7 +112,7 @@ namespace BattleScene
                 {
                     //タイル変更
                     target.SetTargeted(false);
-                    attackTarget.Remove(target);
+                    attackTargetList.Remove(target);
 
                     return;
                 }
@@ -121,17 +121,17 @@ namespace BattleScene
             else
             {
                 //他のキャラが既に選択されていた場合は除く
-                if (attackTarget.Count != 0)
+                if (attackTargetList.Count != 0)
                 {
                     //タイル変更
-                    foreach (var tar in attackTarget) tar.SetTargeted(false);
+                    foreach (var tar in attackTargetList) tar.SetTargeted(false);
                     //除く
-                    attackTarget = new List<BCharacterBase>();
+                    attackTargetList = new List<BCharacterBase>();
                 }
                 else
                 {
                     //再設定
-                    attackTarget.Add(target);
+                    attackTargetList.Add(target);
                     target.SetTargeted(true);
                 }
             }
@@ -161,18 +161,18 @@ namespace BattleScene
 
         IEnumerator AttackWithTap()
         {
-            if (attackTarget.Count == 0) yield return null;
+            if (attackTargetList.Count == 0) yield return null;
 
-            isNowAction = true;
+            IsNowAction = true;
             //カメラ切り替え
             BCameraChange.Instance.ActiveLeanMode();
-            BCameraMove.Instance.MoveToTapAttack(this, attackTarget[0].transform.position, changeTimeSingleMode);
+            BCameraMove.Instance.MoveToTapAttack(this, attackTargetList[0].transform.position, changeTimeSingleMode);
             yield return new WaitForSeconds(changeTimeSingleMode);
 
             //攻撃アニメーション
             animator.SetSingleAttack(selectWazaNumber);
 
-            popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(attackTarget[0].transform.position.x, attackTarget[0].transform.position.y + 1f, attackTarget[0].transform.position.z));
+            popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(attackTargetList[0].transform.position.x, attackTargetList[0].transform.position.y + 1f, attackTargetList[0].transform.position.z));
 
             var attackList = selectAttackParameter.actionParameters;
             List<float> totalTapRatios = new List<float>();
@@ -209,26 +209,26 @@ namespace BattleScene
             }
 
             //攻撃
-            foreach (var target in attackTarget)
+            foreach (var target in attackTargetList)
             {
                 var damageMagnification = CalcDamageMagnification(CalcDamageFromTapMagnificationRation(totalTapRatios));
                 var characterPower = character.characterParameter.power;
                 target.Life.Damage(characterPower, damageMagnification);
             }
 
-            foreach (var target in attackTarget)
+            foreach (var target in attackTargetList)
             {
                 target.Life.CheckDestroy();
             }
 
-            foreach (var tar in attackTarget.Where(x => x != null))
+            foreach (var tar in attackTargetList.Where(x => x != null))
             {
                 tar.SetTargeted(false);
             }
 
-            attackTarget = new List<BCharacterBase>();
+            attackTargetList = new List<BCharacterBase>();
 
-            isDone = true;
+            IsDone = true;
             Invoke("OnCompleteAnimation", resetInterval);
             //攻撃時にUI非表示
             //ActionSelect.Instance.EndActiveAction();
@@ -257,7 +257,7 @@ namespace BattleScene
         public float resetInterval = 3f;
         void OnCompleteAnimation()
         {
-            isNowAction = false;
+            IsNowAction = false;
             //行動終了
             OnCompleteAction();
             character.OnEndActive();

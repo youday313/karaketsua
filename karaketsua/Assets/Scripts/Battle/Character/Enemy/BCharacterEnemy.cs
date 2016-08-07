@@ -15,10 +15,12 @@ namespace BattleScene
     {
         public EnemyState nowState = EnemyState.Wait;
         //移動
-        BCharacterMoverManagerEnemy mover;
+        [SerializeField]
+        private BCharacterMoverManagerEnemy mover;
 
         //攻撃
-        BCharacterAttackerManagerEnemy attacker;
+        [SerializeField]
+        private BCharacterAttackerManagerEnemy attacker;
 
         public event Action<BCharacterEnemy> OnActiveEnemyE;
 
@@ -37,8 +39,6 @@ namespace BattleScene
         public override void Awake()
         {
             base.Awake();
-            mover = GetComponent<BCharacterMoverManagerEnemy>();
-            attacker = GetComponent<BCharacterAttackerManagerEnemy>();
         }
 
         public override void Start()

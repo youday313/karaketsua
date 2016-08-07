@@ -5,28 +5,32 @@ using BattleScene;
 namespace BattleScene
 {
 
-    public class BCharacterStateUI : MonoBehaviour
+    public class BCharacterStateUI: MonoBehaviour
     {
 
-        public Image faceImage;
+        [SerializeField]
+        private Image faceImage;
         //public Text name;
-        public Slider HPbar;
-        public Slider skillBar;
+        [SerializeField]
+        private Slider hpbar;
+        [SerializeField]
+        private Slider skillBar;
 
         //BCharacterBase character;
-        float holdTime;
-        public float displayEnableTime=1f;
+        private float holdTime;
+        [SerializeField]
+        private float displayEnableTime = 1f;
 
         public void Init(BCharacterBase _character)
         {
             var character = _character;
-            var objectType= character.isEnemy==false?"Player":"Enemy";
-            transform.SetParent(GameObject.FindGameObjectWithTag("CharacterStateUIParent").transform.FindChild(objectType).transform, false);
+            var objectType = character.isEnemy == false ? "Player" : "Enemy";
+            transform.SetParent(GameObject.FindGameObjectWithTag("CharacterStateUIParent").transform.FindChild(objectType).transform,false);
             character.OnDeathE += Delete;
             character.OnStatusUpdateE += UpdateUI;
 
             faceImage.sprite = Resources.Load<Sprite>("StatusUIIcon/Status" + _character.characterParameter.charaName);
-            HPbar.maxValue = _character.characterParameter.hp;
+            hpbar.maxValue = _character.characterParameter.hp;
             skillBar.maxValue = _character.characterParameter.skillPoint;
             UpdateUI(character);
 
@@ -39,13 +43,12 @@ namespace BattleScene
         public void UpdateUI(BCharacterBase chara)
         {
             var character = chara;
-            HPbar.value = character.characterParameter.hp;
+            hpbar.value = character.characterParameter.hp;
             skillBar.value = character.characterParameter.skillPoint;
         }
         public void Update()
         {
-            if (holdTime != 0)
-            {
+            if(holdTime != 0) {
                 OnHold();
             }
 
@@ -61,8 +64,7 @@ namespace BattleScene
         public void OnHold()
         {
             holdTime += Time.deltaTime;
-            if (holdTime > displayEnableTime)
-            {
+            if(holdTime > displayEnableTime) {
 
             }
         }

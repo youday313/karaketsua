@@ -8,15 +8,11 @@ namespace BattleScene
 {
     public class BCharacterLife : MonoBehaviour
     {
-        CharacterParameter characterParameter;
-        BCharacterAnimator animator;
-        BCharacterBase character;
-        void Start()
-        {
-            character = GetComponent<BCharacterBase>();
-            animator = GetComponent<BCharacterAnimator>();
-
-        }
+        private CharacterParameter characterParameter;
+        [SerializeField]
+        private BCharacterAnimator animator;
+        [SerializeField]
+        private BCharacterBase character;
 
         public void Init(CharacterParameter param)
         {
@@ -27,9 +23,9 @@ namespace BattleScene
         public void Damage(int attackPower, float magnification)
         {
 
-            var calcDamage = CalcDamage(attackPower, magnification);
-            characterParameter.hp -= calcDamage;
-            CreateDamageText(calcDamage);
+            var damage = calcDamage(attackPower, magnification);
+            characterParameter.hp -= damage;
+            createDamageText(damage);
 
             animator.SetDamage();
             //character.StateUI.UpdateUI();
@@ -43,7 +39,7 @@ namespace BattleScene
                 character.DeathMyself();
             }
         }
-        void CreateDamageText(float damage)
+        private void createDamageText(float damage)
         {
             //ダメージ表示
             var popupPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
@@ -54,12 +50,10 @@ namespace BattleScene
         }
         //ここを変えるとダメージが変わる
         //計算式(ATK-1/2DEF)*magnification
-        int CalcDamage(int power, float magnification)
+        private int calcDamage(int power, float magnification)
         {
             var deffence = character.characterParameter.deffence;
             return Mathf.Max(0, (int)((power - (1 / 2 * deffence)) * magnification));
         }
-
-
     }
 }

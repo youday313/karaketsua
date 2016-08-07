@@ -17,9 +17,11 @@ namespace BattleScene
     {
 
         //移動
-        BCharacterMoverManagerPlayer mover;
+        [SerializeField]
+        private BCharacterMoverManagerPlayer mover;
         //攻撃
-        BCharacterAttackerManagerPlayer attacker;
+        [SerializeField]
+        private BCharacterAttackerManagerPlayer attacker;
 
         public event Action<BCharacterPlayer> OnActivePlayerE;
         public static event Action<BCharacterPlayer> OnActivePlayerStaticE;
@@ -29,8 +31,6 @@ namespace BattleScene
         public override void Awake()
         {
             base.Awake();
-            mover = GetComponent<BCharacterMoverManagerPlayer>();
-            attacker = GetComponent<BCharacterAttackerManagerPlayer>();
 
         }
 

@@ -12,19 +12,15 @@ namespace BattleScene
     {
 
 
-        BCharacterBase activeCharacter;
         public BCharacterBase ActiveCharacter
         {
-            get { return activeCharacter;}
-            set { activeCharacter = value; }
+            get;set;
         }
-        BCharacterPlayer activePlayer=null;
         public BCharacterPlayer ActivePlayer
         {
-            get { return activePlayer; }
-            set{activePlayer=value;}
+            get;set;
         }
-        List<BCharacterBase> characters=new List<BCharacterBase>();
+        private List<BCharacterBase> characters=new List<BCharacterBase>();
         // Use this for initialization
 
         public void Start()
@@ -53,23 +49,23 @@ namespace BattleScene
                 //chara.OnEndActiveE += ResetActiveCharacter;
                 chara.transform.SetParent(transform);
             }
-            activeCharacter = null;
+            ActiveCharacter = null;
         }
 
 
         public void SetActivePlayer(BCharacterPlayer chara)
         {
-            activePlayer = chara;
-            activeCharacter = chara;
+            ActivePlayer = chara;
+            ActiveCharacter = chara;
         }
         public void SetActiveEnemy(BCharacterEnemy chara)
         {
-            activeCharacter = chara;
+            ActiveCharacter = chara;
         }
         public void ResetActiveCharacter()
         {
-            activeCharacter = null;
-            activePlayer = null;
+            ActiveCharacter = null;
+            ActivePlayer = null;
         }
 
 

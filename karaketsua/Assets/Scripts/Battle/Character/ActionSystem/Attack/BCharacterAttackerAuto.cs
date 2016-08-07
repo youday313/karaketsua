@@ -9,13 +9,18 @@ using BattleScene;
 
 namespace BattleScene
 {
-    public class BCharacterAttackerAuto : BCharacterAttackerBase
+    public class BCharacterAttackerAuto: BCharacterAttackerBase
     {
+        [SerializeField]
+        private float cameraInterval = 1f;
+        [SerializeField]
+        private float attackTime = 2f;
 
-        Transform effectCanvas;
-        AutoAttackParameter selectAttackParameter;
 
-		public override void Awake()
+        private Transform effectCanvas;
+        private AutoAttackParameter selectAttackParameter;
+
+        public override void Awake()
         {
             base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
@@ -25,7 +30,7 @@ namespace BattleScene
         public override void Enable()
         {
             base.Enable();
-            
+
             //技のセット
             //selectAttackParameter = character.characterParameter.attackParameter[selectActionNumber];
 
@@ -39,94 +44,87 @@ namespace BattleScene
             base.Disable();
         }
 
-        
+
         public void StartAutoAttack()
         {
             //ターゲットの検索と設定
-            var target = SetTarget();
-            if (target == false)
-            {
+            var target = setTarget();
+            if(target == false) {
                 OnCompleteAction();
                 return;
             }
             //攻撃の実行
-            StartCoroutine("ExecuteAttack");
+            StartCoroutine(executeAttack());
         }
 
-        bool SetTarget()
+        private bool setTarget()
         {
             //攻撃可能位置の設定
-            var attackablePosition = selectAttackParameter.attackRanges.Select(x => IntVect2D.Add(x, character.positionArray)).ToList();
-            if (attackablePosition == null) return false;
+            var attackablePosition = selectAttackParameter.attackRanges.Select(x => IntVect2D.Add(x,character.positionArray)).ToList();
+            if(attackablePosition == null) return false;
             //デバッグ出力
             //攻撃可能位置にいるキャラクター
             var opponentCharacters = new List<BCharacterBase>();
-            foreach (var pos in attackablePosition)
-            {
-                var chara=BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(pos,character.isEnemy);
-                if (chara != null)
-                {
+            foreach(var pos in attackablePosition) {
+                var chara = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(pos,character.isEnemy);
+                if(chara != null) {
                     opponentCharacters.Add(chara);
                 }
             }
-            if (opponentCharacters.Count==0) return false;
+            if(opponentCharacters.Count == 0) return false;
 
             //一番近い位置がターゲット
-            attackTarget.Add(opponentCharacters.OrderBy(c=> IntVect2D.Distance(c.positionArray,character.positionArray)).First());
+            attackTargetList.Add(opponentCharacters.OrderBy(c => IntVect2D.Distance(c.positionArray,character.positionArray)).First());
             return true;
 
         }
 
-        public float cameraInterval = 1f;
-        public float attackTime = 2f;
-        IEnumerator ExecuteAttack()
+        private IEnumerator executeAttack()
         {
             //横を向く
 
-			//UIOff
-			UIBottomCommandParent.UICommandState = EUICommandState.None;
-			UIBottomAllParent.Instance.UpdateUI();
+            //UIOff
+            UIBottomCommandParent.UICommandState = EUICommandState.None;
+            UIBottomAllParent.Instance.UpdateUI();
             //カメラ移動
             BCameraChange.Instance.ActiveLeanMode();
-            BCameraMove.Instance.MoveToAutoAttack(this, attackTarget[0].transform.position);
+            BCameraMove.Instance.MoveToAutoAttack(this,attackTargetList[0].transform.position);
 
             yield return new WaitForSeconds(cameraInterval);
 
             //攻撃アニメーション
-			animator.SetAutoAttack();
+            animator.SetAutoAttack();
 
 
-            isNowAction = true;
+            IsNowAction = true;
 
             //ダメージ
-            foreach (var target in attackTarget)
-            {
-                var damageMagnification = CalcDamageMagnification();
+            foreach(var target in attackTargetList) {
+                var damageMagnification = calcDamageMagnification();
                 var characterPower = character.characterParameter.power;
-                target.Life.Damage(characterPower, damageMagnification);
+                target.Life.Damage(characterPower,damageMagnification);
             }
             //死亡
-            foreach (var target in attackTarget)
-            {
+            foreach(var target in attackTargetList) {
                 target.Life.CheckDestroy();
             }
 
             //攻撃終了
-            Invoke("OnCompleteAnimation", attackTime);
-            isDone = true;
+            Invoke("onCompleteAnimation",attackTime);
+            IsDone = true;
             yield return null;
         }
 
-        void OnCompleteAnimation()
+        private void onCompleteAnimation()
         {
-            isNowAction = false;
+            IsNowAction = false;
             //行動終了
             OnCompleteAction();
             //character.OnEndActive();
 
         }
         //倍率の算出
-        float CalcDamageMagnification()
+        private float calcDamageMagnification()
         {
             //会心＊振れ幅＊技倍率＊タップ倍率
             return 1 * 1 * selectAttackParameter.powerMagnification * 1;

@@ -12,9 +12,11 @@ namespace BattleScene
     public class BCameraChange : Singleton<BCameraChange>
     {
 
-        public GameObject leanCameraObject;
-        public GameObject upCameraObject;
-        BCameraMove leanCamera;
+		[SerializeField] 
+		private GameObject leanCameraObject;
+        [SerializeField]
+		private GameObject upCameraObject;
+        private BCameraMove leanCamera;
         //現在のモード
         public CameraMode nowCameraMode;
         // Use this for initialization

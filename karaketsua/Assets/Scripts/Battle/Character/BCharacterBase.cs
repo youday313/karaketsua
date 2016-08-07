@@ -51,25 +51,23 @@ namespace BattleScene
         //ライフ
         public BCharacterLife Life
         {
-            get { return life; }
+			get; private set;
         }
-        BCharacterLife life;
 
         //画面UIへの参照
         public BCharacterStateUI StateUI
         {
-            get { return stateUI; }
+			get; private set;
         }
-        BCharacterStateUI stateUI;
 
         //詳細UIへの参照
-        CharacterDetailStateUI detailUI=null;
+        private CharacterDetailStateUI detailUI=null;
         
         //アクティブサークル
-        GameObject activeCircle;
+        private GameObject activeCircle;
         
         //ターゲットサークル
-        GameObject targetCircle;
+        private GameObject targetCircle;
 
         public virtual void Init(IntVect2D array)
         {
@@ -78,18 +76,18 @@ namespace BattleScene
             positionArray.y = array.y;
 
             //ライフ設定
-            life.Init(characterParameter);
+			Life.Init(characterParameter);
 			OnEndActiveStaticE += BCharacterManager.Instance.ResetActiveCharacter;
         }
 
 
         public virtual void Awake()
         {
-            life = GetComponent<BCharacterLife>();
+            Life = GetComponent<BCharacterLife>();
             animator = GetComponent<BCharacterAnimator>();
             //選択マーカー作成
-            activeCircle= CreateCircle("ActiveCircle");
-            targetCircle=CreateCircle("TargetCircle");
+            activeCircle= createCircle("ActiveCircle");
+            targetCircle=createCircle("TargetCircle");
         }
 
 
@@ -97,13 +95,13 @@ namespace BattleScene
         public virtual void Start()
         {
             //アクティブタイム作成
-            CreateActiveTime();
+            createActiveTime();
 
             //位置変更
-            SetPositionOnTile();
+            setPositionOnTile();
 
             //UI作成
-            CreateCharacterUI();
+            createCharacterUI();
 
         }
 
@@ -123,7 +121,7 @@ namespace BattleScene
 
         #endregion
 
-        void CreateActiveTime()
+		private void createActiveTime()
         {
             var activeTime = BActiveTimeCreater.Instance.CreateActiveTime();
             activeTime.Init(this);
@@ -135,17 +133,17 @@ namespace BattleScene
         }
 
         //タイルの上に移動
-        void SetPositionOnTile()
+		private void setPositionOnTile()
         {
             var tilePosition = BBattleStage.Instance.GetTileXAndZPosition(positionArray);
             CSTransform.SetX(transform, tilePosition.x);
             CSTransform.SetZ(transform, tilePosition.y);
         }
 
-        void CreateCharacterUI()
+		private void createCharacterUI()
         {
-            stateUI = Instantiate(Resources.Load<BCharacterStateUI>("CharacterStateUI")) as BCharacterStateUI;
-            stateUI.Init(this);
+            StateUI = Instantiate(Resources.Load<BCharacterStateUI>("CharacterStateUI")) as BCharacterStateUI;
+            StateUI.Init(this);
         }
 
         //キャラクターを行動選択状態にする
@@ -194,9 +192,9 @@ namespace BattleScene
         {
             return GameObject.FindGameObjectWithTag("MainCamera").GetComponent<BCameraMove>();
         }
-        GameObject CreateCircle(string _name)
+        private GameObject createCircle(string objName)
         {
-            var obj = Instantiate(Resources.Load<GameObject>(_name));
+            var obj = Instantiate(Resources.Load<GameObject>(objName));
             obj.transform.SetParent(this.gameObject.transform);
             obj.SetActive(false);
             return obj;

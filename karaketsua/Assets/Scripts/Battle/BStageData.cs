@@ -11,8 +11,6 @@ namespace BattleScene
 {
     public class BStageData : DontDestroySingleton<BStageData>
     {
-
-
         public List<PlayerCharacterData> playerCharacters;
 		public List<EnemyCharacterData> enemyCharacters;
 
