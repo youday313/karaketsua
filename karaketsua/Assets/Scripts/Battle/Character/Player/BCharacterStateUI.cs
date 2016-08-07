@@ -26,7 +26,7 @@ namespace BattleScene
             character.OnStatusUpdateE += UpdateUI;
 
             faceImage.sprite = Resources.Load<Sprite>("StatusUIIcon/Status" + _character.characterParameter.charaName);
-            HPbar.maxValue = _character.characterParameter.HP;
+            HPbar.maxValue = _character.characterParameter.hp;
             skillBar.maxValue = _character.characterParameter.skillPoint;
             UpdateUI(character);
 
@@ -39,7 +39,7 @@ namespace BattleScene
         public void UpdateUI(BCharacterBase chara)
         {
             var character = chara;
-            HPbar.value = character.characterParameter.HP;
+            HPbar.value = character.characterParameter.hp;
             skillBar.value = character.characterParameter.skillPoint;
         }
         public void Update()

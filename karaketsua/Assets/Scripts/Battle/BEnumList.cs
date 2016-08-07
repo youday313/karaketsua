@@ -16,17 +16,13 @@ namespace BattleScene
         //キャラ名
         public string charaName;
         //体力
-        public int HP;
+        public int hp;
         //行動力
         public int activeSpeed;
-        //無属性攻撃力
+        //攻撃力
         public int power;
-        //属性攻撃力
-        public int elementPower;
-        //無属性防御力
+        //防御力
         public int deffence;
-        //属性防御力
-        public int elementDeffence;
         //精神力,MP
         public int skillPoint;
         //気力,移動攻撃用
@@ -49,8 +45,6 @@ namespace BattleScene
     {
         //技名
         public string wazaName;
-
-        public ElementKind element;
 
         //使用MP
         public int needSkillPoint;
@@ -102,8 +96,6 @@ namespace BattleScene
     }
 
     public enum AttackDistance { 近, 中, 遠 }
-    //属性
-    public enum ElementKind { なし, 火, 水, 地, 風, 雷 }
 
     public enum EnemyState {Wait, Active,MoveStart,Moving,Moved,AttackStart,Attacking,Attacked,End}
 }

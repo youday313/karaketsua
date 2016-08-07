@@ -102,8 +102,8 @@ namespace BattleScene
             foreach (var target in attackTarget)
             {
                 var damageMagnification = CalcDamageMagnification();
-                var characterPower = selectAttackParameter.element == ElementKind.なし ? character.characterParameter.power : character.characterParameter.elementPower;
-                target.Life.Damage(characterPower, selectAttackParameter.element, damageMagnification);
+                var characterPower = character.characterParameter.power;
+                target.Life.Damage(characterPower, damageMagnification);
             }
             //死亡
             foreach (var target in attackTarget)
