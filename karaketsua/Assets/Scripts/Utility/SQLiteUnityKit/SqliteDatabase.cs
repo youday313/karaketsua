@@ -284,7 +284,7 @@ public class SqliteDatabase
 	{
 		IntPtr stmHandle;
         
-		if (sqlite3_prepare_v2 (_connection, query, query.Length, out stmHandle, IntPtr.Zero) != SQLITE_OK) {
+		if (sqlite3_prepare_v2 (_connection, query, -1, out stmHandle, IntPtr.Zero) != SQLITE_OK) {
 			IntPtr errorMsg = sqlite3_errmsg (_connection);
 			throw new SqliteException (Marshal.PtrToStringAnsi (errorMsg));
 		}
