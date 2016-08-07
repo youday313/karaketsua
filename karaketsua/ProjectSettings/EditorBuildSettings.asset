@@ -11,7 +11,7 @@ EditorBuildSettings:
     path: Assets/myBad Studios/TurnBasedBattles/Demo/Scenes/MainGame.unity
   - enabled: 0
     path: Assets/myBad Studios/TurnBasedBattles/Demo/Scenes/TBBDemoScene.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainScene.unity
   - enabled: 0
     path: Assets/Scenes/CharacterSelectScene.unity
