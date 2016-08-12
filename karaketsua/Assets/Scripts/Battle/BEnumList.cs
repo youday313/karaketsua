@@ -7,11 +7,8 @@ using BattleScene;
 
 namespace BattleScene
 {
-
-    //状態異常
-    public enum StateError { 炎焼, 凍結, 裂傷, 感電, 石化, 毒, 封印, 混乱 }
-    [System.Serializable]
-    public class CharacterParameter
+    [Serializable]
+    public class CharacterMasterParameter
     {
         //キャラ名
         public string charaName;
@@ -25,17 +22,16 @@ namespace BattleScene
         public int deffence;
         //精神力,MP
         public int skillPoint;
-        //気力,移動攻撃用
-        public int movePoint;
-        //状態異常
-        public List<StateError> stateErrors = new List<StateError>();
 
         //攻撃技関連
         public List<SingleAttackParameter> singleAttackParameters = new List<SingleAttackParameter>();
+
         //移動攻撃
         public MoveAttackParameter moveAttackParameter = null;
+
         //自動攻撃
         public AutoAttackParameter autoAttackParameter = new AutoAttackParameter();
+
 
     }
 
@@ -61,7 +57,7 @@ namespace BattleScene
         public List<IntVect2D> attackRanges;
 
         //攻撃種類
-        public AttackDistance attackDistance;
+        public int attackDistance;
 
         //範囲内の全ての敵にダメージ
         public bool isMultiAttack;
@@ -69,6 +65,11 @@ namespace BattleScene
         //タップアクション
         //リスト数＝タップ回数
         public List<SingleActionParameter> actionParameters = null;
+
+        public AttackDistance GetAttackDistance()
+        {
+            return (AttackDistance)attackDistance;
+        }
 
     }
 
@@ -80,11 +81,18 @@ namespace BattleScene
         public GameObject attackMakerPrefab;
     }
 
+
+
     [System.Serializable]
     public class AutoAttackParameter : AttackParameter
     {
         public List<IntVect2D> attackRanges;
-        public AttackDistance attackDistance;
+        public int attackDistance;
+
+        public AttackDistance GetAttackDistance()
+        {
+            return (AttackDistance)attackDistance;
+        }
     }
 
     [System.Serializable]

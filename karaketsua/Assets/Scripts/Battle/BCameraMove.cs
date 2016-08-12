@@ -211,7 +211,8 @@ namespace BattleScene
             var centerPosition = (targetPosition - attackCharacter.transform.position) / 2;
             var newPosition = attackCharacter.transform.position + centerPosition;
 
-            switch (attackCharacter.selectAttackParameter.attackDistance)
+            var distanceEnum = attackCharacter.selectAttackParameter.GetAttackDistance();
+            switch (distanceEnum)
             {
                 case AttackDistance.近:
                     StartCameraMoveUseiTween(newPosition, AttackDistance.近);

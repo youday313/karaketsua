@@ -8,13 +8,13 @@ namespace BattleScene
 {
     public class BCharacterLife : MonoBehaviour
     {
-        private CharacterParameter characterParameter;
+        private CharacterMasterParameter characterParameter;
         [SerializeField]
         private BCharacterAnimator animator;
         [SerializeField]
         private BCharacterBase character;
 
-        public void Init(CharacterParameter param)
+        public void Init(CharacterMasterParameter param)
         {
             characterParameter = param;
         }

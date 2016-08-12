@@ -14,7 +14,7 @@ public class CharacterDetailStateUI : MonoBehaviour
     {
         //myRectTrans = GetComponent<RectTransform>();
     }
-    public void Init(Vector2 touchPosition,CharacterParameter param)
+    public void Init(Vector2 touchPosition,CharacterMasterParameter param)
     {
      
         //親の設定
@@ -24,7 +24,7 @@ public class CharacterDetailStateUI : MonoBehaviour
         //UpdateUiLocalPosFromTargetPos(touchPosition);
         SetParam(param);
     }
-    void SetParam(CharacterParameter param)
+    void SetParam(CharacterMasterParameter param)
     {
 
     }

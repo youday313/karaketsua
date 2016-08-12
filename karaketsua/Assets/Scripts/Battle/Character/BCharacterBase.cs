@@ -18,7 +18,7 @@ namespace BattleScene
     {
         //キャラクターパラメーター
         ///インスペクタから編集
-        public CharacterParameter characterParameter;
+        public CharacterMasterParameter characterParameter;
 
         //キャタクターアクティブ時
         public event Action<BCharacterBase> OnActiveE;
