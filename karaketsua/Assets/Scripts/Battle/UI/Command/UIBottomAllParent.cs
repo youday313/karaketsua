@@ -5,7 +5,7 @@ using BattleScene;
 namespace BattleScene
 {
     //UIのオンオフ
-    public class UIBottomAllParent : Singleton<UIBottomAllParent>
+    public class UIBottomAllParent : SingletonMonoBehaviour<UIBottomAllParent>
     {
 
         GameObject commandParent;

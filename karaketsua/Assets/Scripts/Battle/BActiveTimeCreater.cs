@@ -6,7 +6,7 @@ using BattleScene;
 
 namespace BattleScene
 {
-    public class BActiveTimeCreater : Singleton<BActiveTimeCreater>
+    public class BActiveTimeCreater : SingletonMonoBehaviour<BActiveTimeCreater>
     {
 
         public BActiveTime activeTimePrefab;

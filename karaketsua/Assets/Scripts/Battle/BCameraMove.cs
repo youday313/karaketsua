@@ -14,7 +14,7 @@ using BattleScene;
 namespace BattleScene
 {
     //斜めからのカメラ
-    public class BCameraMove : Singleton<BCameraMove>
+    public class BCameraMove : SingletonMonoBehaviour<BCameraMove>
     {
         enum CameraState
         {

@@ -7,7 +7,7 @@ using BattleScene;
 namespace BattleScene
 {
 
-    public class BSceneState : Singleton<BSceneState>
+    public class BSceneState : SingletonMonoBehaviour<BSceneState>
     {
 
         public enum State

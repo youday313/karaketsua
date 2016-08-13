@@ -9,7 +9,7 @@ using BattleScene;
 namespace BattleScene
 {
     public enum CameraMode { FromBack = 0, FromFront, Up }
-    public class BCameraChange : Singleton<BCameraChange>
+    public class BCameraChange : SingletonMonoBehaviour<BCameraChange>
     {
 
 		[SerializeField] 

@@ -60,7 +60,6 @@ public class SoundManager : DontDestroySingleton<SoundManager>
 
     void Awake()
     {
-        base.onAwake();
 
         // 全てのAudioSourceコンポーネントを追加する
 

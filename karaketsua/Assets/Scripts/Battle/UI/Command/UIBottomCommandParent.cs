@@ -15,7 +15,7 @@ namespace BattleScene
         ExecuteAttack,
         ExecuteDeffence
     }
-    public class UIBottomCommandParent : Singleton<UIBottomCommandParent>
+    public class UIBottomCommandParent : SingletonMonoBehaviour<UIBottomCommandParent>
     {
 
         public GameObject actionParent;

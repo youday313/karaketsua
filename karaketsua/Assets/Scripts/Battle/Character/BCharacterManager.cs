@@ -8,7 +8,7 @@ using BattleScene;
 namespace BattleScene
 {
 
-    public class BCharacterManager : Singleton<BCharacterManager>
+    public class BCharacterManager : SingletonMonoBehaviour<BCharacterManager>
     {
 
 

@@ -12,7 +12,7 @@ using BattleScene;
 
 namespace BattleScene
 {
-    public class BBattleStage : Singleton<BBattleStage>
+    public class BBattleStage : SingletonMonoBehaviour<BBattleStage>
     {
         public TileBase prefab;
 
