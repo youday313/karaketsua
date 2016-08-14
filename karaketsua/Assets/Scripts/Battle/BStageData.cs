@@ -4,8 +4,7 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using BattleScene;
-
-
+using System.IO;
 
 namespace BattleScene
 {
@@ -13,6 +12,8 @@ namespace BattleScene
     {
         public List<PlayerCharacterData> playerCharacters;
 		public List<EnemyCharacterData> enemyCharacters;
+
+
 
         [System.Serializable]
         public class CharacterData
@@ -33,10 +34,6 @@ namespace BattleScene
         {
             public BCharacterEnemy prefab;
         }
-
-		public void AddCharacter(){
-
-		}
 
 		public void ResetEnemy(){
 			enemyCharacters = new List<EnemyCharacterData> ();

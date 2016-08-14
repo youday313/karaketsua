@@ -69,7 +69,7 @@ namespace BattleScene
         //ターゲットサークル
         private GameObject targetCircle;
 
-        public virtual void Init(IntVect2D array)
+        public virtual void Initialize(IntVect2D array)
         {
             
             positionArray.x = array.x;

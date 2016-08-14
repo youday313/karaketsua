@@ -11,6 +11,8 @@ namespace BattleScene
     [Serializable]
     public class CharacterMasterParameter
     {
+        //キャラID
+        public int id;
         //キャラ名
         public string charaName;
         //体力
@@ -52,7 +54,7 @@ namespace BattleScene
 
     }
     [System.Serializable]
-    public class SingleAttackParameter : AttackParameter
+    public class SingleAttackParameter: AttackParameter
     {
         //攻撃範囲
         public List<IntVect2D> attackRanges;
@@ -85,7 +87,7 @@ namespace BattleScene
 
 
     [System.Serializable]
-    public class AutoAttackParameter : AttackParameter
+    public class AutoAttackParameter: AttackParameter
     {
         public List<IntVect2D> attackRanges;
         public int attackDistance;
@@ -97,7 +99,7 @@ namespace BattleScene
     }
 
     [System.Serializable]
-    public class MoveAttackParameter:AttackParameter
+    public class MoveAttackParameter: AttackParameter
     {
         //移動可能距離
         public int moveRange;
@@ -106,5 +108,5 @@ namespace BattleScene
 
     public enum AttackDistance { 近, 中, 遠 }
 
-    public enum EnemyState {Wait, Active,MoveStart,Moving,Moved,AttackStart,Attacking,Attacked,End}
+    public enum EnemyState { Wait, Active, MoveStart, Moving, Moved, AttackStart, Attacking, Attacked, End }
 }

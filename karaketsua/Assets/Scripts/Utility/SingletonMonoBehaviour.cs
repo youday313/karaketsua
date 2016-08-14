@@ -62,3 +62,22 @@ public class DontDestroySingleton<T>: MonoBehaviour where T : MonoBehaviour
         }
     }
 }
+
+/// <summary>
+/// シングルトン構造
+/// </summary>
+public class SingletonBase<T> where T : new()
+{
+    private static T instance;
+    public static T Instance {
+        get {
+            if(instance == null) {
+                instance = new T();
+            }
+            return instance;
+        }
+        set {
+            instance = value;
+        }
+    }
+}

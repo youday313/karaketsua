@@ -24,10 +24,10 @@ namespace BattleScene
 
         public event Action<BCharacterEnemy> OnActiveEnemyE;
 
-        public override void Init(IntVect2D array)
+        public override void Initialize(IntVect2D array)
         {
 
-            base.Init(array);
+            base.Initialize(array);
             isEnemy = true;
 
             //回転

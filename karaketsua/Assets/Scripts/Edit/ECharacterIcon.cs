@@ -10,26 +10,25 @@ namespace EditScene
 
     public class ECharacterIcon : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
-        [System.NonSerialized]
-        public Vector3 oldPosition;
+        
+        private Vector3 oldPosition;
+        [SerializeField]
         RectTransform rectTransform;
         [System.NonSerialized]
         public IntVect2D vect2D = new IntVect2D(IntVect2D.nullNumber, IntVect2D.nullNumber);
 
-        // Use this for initialization
-        void Start()
+        /// <summary>
+        /// 初期化
+        /// </summary>
+        public void Initialize(IntVect2D initPos = null)
         {
-            vect2D = new IntVect2D(IntVect2D.nullNumber, IntVect2D.nullNumber);
-            rectTransform = GetComponent<RectTransform>();
+            if(initPos != null) {
+                vect2D = initPos;
+            }
             oldPosition = CSTransform.CopyVector3(rectTransform.position);
-
         }
 
-        // Update is called once per frame
-        void Update()
-        {
 
-        }
 
 
         public void OnBeginDrag(PointerEventData e)
