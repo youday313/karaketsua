@@ -7,7 +7,6 @@ namespace BattleScene
 
     public class BCharacterStateUI: MonoBehaviour
     {
-
         [SerializeField]
         private Image faceImage;
         //public Text name;
@@ -21,15 +20,13 @@ namespace BattleScene
         [SerializeField]
         private float displayEnableTime = 1f;
 
-        public void Init(BCharacterBase _character)
+        public void Initialize(BCharacterBase _character)
         {
             var character = _character;
-            var objectType = character.isEnemy == false ? "Player" : "Enemy";
-            transform.SetParent(GameObject.FindGameObjectWithTag("CharacterStateUIParent").transform.FindChild(objectType).transform,false);
             character.OnDeathE += Delete;
             character.OnStatusUpdateE += UpdateUI;
 
-            faceImage.sprite = Resources.Load<Sprite>("StatusUIIcon/Status" + _character.characterParameter.charaName);
+            faceImage.sprite = Resources.Load<Sprite>("StatusUIIcon/" + _character.characterParameter.charaName);
             hpbar.maxValue = _character.characterParameter.hp;
             skillBar.maxValue = _character.characterParameter.skillPoint;
             UpdateUI(character);

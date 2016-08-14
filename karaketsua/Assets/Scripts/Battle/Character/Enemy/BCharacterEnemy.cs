@@ -26,28 +26,14 @@ namespace BattleScene
 
         public override void Initialize(IntVect2D array)
         {
-
-            base.Initialize(array);
             isEnemy = true;
+            base.Initialize(array);
 
             //回転
             transform.rotation = Quaternion.Euler(0, 180, 0);
             OnActiveEnemyE += BCharacterManager.Instance.SetActiveEnemy;
         }
 
-        // Use this for initialization
-        public override void Awake()
-        {
-            base.Awake();
-        }
-
-        public override void Start()
-        {
-            base.Start();
-            //singleAttack = GetComponent<BCharacterSingleAttack>();
-            //moveAttack = GetComponent<BCharacterMoveAttack>()
-            SetWaitState();
-        }
 
         public override bool IsNowAction()
         {
@@ -87,6 +73,9 @@ namespace BattleScene
 
             SetWaitState();
         }
+
+        // 毎フレーム処理
+        // パターンで切り替え
         void Update()
         {
             switch (nowState)

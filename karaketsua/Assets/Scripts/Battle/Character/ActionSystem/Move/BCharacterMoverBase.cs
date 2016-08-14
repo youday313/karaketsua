@@ -124,7 +124,7 @@ namespace BattleScene
             UpdateInManualState();
             //UI
             UIBottomCommandParent.UICommandState = EUICommandState.Action;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
         }
 
         Hashtable GetMoveTable(Vector2 position)

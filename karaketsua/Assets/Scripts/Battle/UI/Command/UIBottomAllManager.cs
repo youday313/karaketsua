@@ -5,22 +5,21 @@ using BattleScene;
 namespace BattleScene
 {
     //UIのオンオフ
-    public class UIBottomAllParent : SingletonMonoBehaviour<UIBottomAllParent>
+    public class UIBottomAllManager: SingletonMonoBehaviour<UIBottomAllManager>
     {
 
-        GameObject commandParent;
-        public UIBottomCommandParent commandScript;
+        private GameObject commandParent;
+        [SerializeField]
+        private UIBottomCommandParent commandScript;
 
-        
-
-        // Use this for initialization
-        void Start()
+        // 初期化
+        public void initialize()
         {
             commandParent = commandScript.gameObject;
-            BCharacterBase.OnActiveStaticE+=UpdateUI;
+            BCharacterBase.OnActiveStaticE += UpdateUI;
             BCharacterBase.OnEndActiveStaticE += UpdateUI;
             Off();
-            
+
             StartWave();
         }
 

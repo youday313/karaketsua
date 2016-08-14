@@ -7,19 +7,8 @@ namespace BattleScene
 {
     public class UIBottomAttack : UIBottomBase
     {
-        Button button;
-        //public UIBottomCommandParent commandParent;
-        // Use this for initialization
-        void Awake()
-        {
-            button = GetComponent<Button>();
-            
-
-        }
-        void Start()
-        {
-            
-        }
+        [SerializeField]
+        private Button button;
 
         public override void UpdateUI()
         {
@@ -35,7 +24,7 @@ namespace BattleScene
         {
             //BCharacterManager.Instance.ActiveCharacter.SelectDisable();
             UIBottomCommandParent.UICommandState = EUICommandState.Waza;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
             var chara = BCharacterManager.Instance.ActivePlayer;
             if (chara == null) return;
             chara.SelectAttack();

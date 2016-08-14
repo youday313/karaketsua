@@ -11,7 +11,7 @@ namespace BattleScene
 
             //BCharacterManager.Instance.ActiveCharacter.SelectDisable();
             UIBottomCommandParent.UICommandState = EUICommandState.Action;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
             var chara = BCharacterManager.Instance.ActivePlayer;
             if (chara == null) return;
             chara.BackToActionSelect();

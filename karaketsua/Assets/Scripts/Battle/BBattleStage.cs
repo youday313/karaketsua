@@ -12,24 +12,22 @@ using BattleScene;
 
 namespace BattleScene
 {
-    public class BBattleStage : SingletonMonoBehaviour<BBattleStage>
+    public class BBattleStage: SingletonMonoBehaviour<BBattleStage>
     {
-        public TileBase prefab;
 
         public static readonly int stageSizeX = 2;
         public static readonly int stageSizeY = 3;
 
-        List<TileBase> tileBases = new List<TileBase>();
+        [SerializeField]
+        private TileBase prefab;
+
+        private List<TileBase> tileBases = new List<TileBase>();
         // Use this for initialization
         void Start()
         {
-            // 配置元のオブジェクト指定 
-            var stageObject = GameObject.FindWithTag("Stage");
             // タイル配置
-            for (int i = -stageSizeX; i <= stageSizeX; i++)
-            {
-                for (int j = -stageSizeY; j <= stageSizeY; j++)
-                {
+            for(int i = -stageSizeX; i <= stageSizeX; i++) {
+                for(int j = -stageSizeY; j <= stageSizeY; j++) {
 
                     Vector3 tile_pos = new Vector3(
                         0 + prefab.transform.localScale.x * i,
@@ -38,15 +36,14 @@ namespace BattleScene
 
                       );
 
-                    if (prefab != null)
-                    {
+                    if(prefab != null) {
                         // プレハブの複製 
                         var tile = Instantiate(prefab, tile_pos, Quaternion.identity) as TileBase;
                         tile.Init(new IntVect2D(i, j));
 
-                        // 生成元の下に複製したプレハブをくっつける 
-                        tile.transform.parent = stageObject.transform;
-
+                        // 生成元の下に複製したプレハブをくっつける
+                        tile.transform.SetParent(transform);
+                        tile.gameObject.SetActive(true);
                         //リストに格納
                         tileBases.Add(tile);
                     }
@@ -54,7 +51,7 @@ namespace BattleScene
             }
             SetEvent();
         }
-        void SetEvent()
+        private void SetEvent()
         {
             BCharacterBase.OnActiveStaticE += OnActiveCharacter;
         }
@@ -72,11 +69,11 @@ namespace BattleScene
         }
 
         //攻撃選択
-		public void OnSlectWaza(BCharacterBase chara,SingleAttackParameter selectWaza)
+        public void OnSlectWaza(BCharacterBase chara, SingleAttackParameter selectWaza)
         {
             ResetAllTileColor();
             //攻撃範囲取得
-            foreach(var range in selectWaza.attackRanges){
+            foreach(var range in selectWaza.attackRanges) {
                 var pos = IntVect2D.Clone(chara.positionArray);
                 pos = IntVect2D.Add(pos, range);
                 ChangeColor(pos, TileState.Attack);
@@ -94,8 +91,8 @@ namespace BattleScene
         {
             ChangeColor(targetPosition, TileState.Default);
         }
-        
-        
+
+
 
 
         //ゲット関連
@@ -111,16 +108,14 @@ namespace BattleScene
             Ray ray;  // 光線クラス
 
             // スクリーン座標に対してマウスの位置の光線を取得
-			var camera=FindObjectOfType<Camera>();
+            var camera = FindObjectOfType<Camera>();
             //var camera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             ray = camera.ScreenPointToRay(touchPosition);
             // マウスの光線の先にオブジェクトが存在していたら hit に入る
             //Tileのlayer番号は8
             var layerMask = 1 << 8;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-            {
-                if (hit.collider.tag == "Tile")
-                {
+            if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask)) {
+                if(hit.collider.tag == "Tile") {
                     // 当たったオブジェクトのTileBaseクラスを取得
                     return hit.collider.GetComponent<TileBase>();
                 }
@@ -132,14 +127,14 @@ namespace BattleScene
         public IntVect2D GetTilePosition(IntVect2D position)
         {
             var tile = GetTile(position);
-            if (tile == null) return null;
+            if(tile == null) return null;
             return GetTile(position).positionArray;
         }
         //引数はスクリーン座標
         public IntVect2D GetTilePositionFromScreenPosition(Vector2 touchPosition)
         {
             var tile = GetTileFromScreenPostion(touchPosition);
-            if (tile == null) return null;
+            if(tile == null) return null;
             return tile.positionArray;
         }
 
@@ -167,17 +162,16 @@ namespace BattleScene
         //色変更
         public void ResetAllTileColor()
         {
-            foreach (var tile in tileBases)
-            {
+            foreach(var tile in tileBases) {
                 tile.ChangeColor(TileState.Default);
             }
         }
         public void ChangeColor(IntVect2D position, TileState state, bool reset = false)
         {
 
-            if (reset) ResetAllTileColor();
+            if(reset) ResetAllTileColor();
             var tile = GetTile(position);
-            if (tile == null)
+            if(tile == null)
                 return;
             tile.ChangeColor(state);
 
@@ -186,18 +180,16 @@ namespace BattleScene
         //上下左右のタイル色変更
         public void ChangeNeighborTilesColor(IntVect2D position, TileState toState, bool reset = false)
         {
-            if (reset) ResetAllTileColor();
-            foreach (var tile in GetVerticalHorizontalTiles(position))
-            {
+            if(reset) ResetAllTileColor();
+            foreach(var tile in GetVerticalHorizontalTiles(position)) {
                 tile.ChangeColor(toState);
             }
 
         }
         public void ChangeTilesColorFromDistance(IntVect2D position, TileState toState, float distance, bool reset = false)
         {
-            if (reset) ResetAllTileColor();
-            foreach (var tile in GetTilesFormDistance(position, distance))
-            {
+            if(reset) ResetAllTileColor();
+            foreach(var tile in GetTilesFormDistance(position, distance)) {
                 tile.ChangeColor(toState);
             }
         }

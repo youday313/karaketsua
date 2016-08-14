@@ -165,7 +165,7 @@ namespace BattleScene
 
             IsNowAction = true;
             //カメラ切り替え
-            BCameraChange.Instance.ActiveLeanMode();
+            BCameraManager.Instance.ActiveLeanMode();
             BCameraMove.Instance.MoveToTapAttack(this, attackTargetList[0].transform.position, changeTimeSingleMode);
             yield return new WaitForSeconds(changeTimeSingleMode);
 

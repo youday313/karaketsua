@@ -96,7 +96,7 @@ namespace BattleScene
             BBattleStage.Instance.ResetAllTileColor();
 
             UIBottomCommandParent.UICommandState = EUICommandState.Action;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
         }
         
     }

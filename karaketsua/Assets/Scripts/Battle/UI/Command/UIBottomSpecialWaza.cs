@@ -9,26 +9,11 @@ namespace BattleScene
 
     public class UIBottomSpecialWaza : UIBottomBase
     {
-        Button button;
-        Text wazaName;
-        public UIBottomCommandParent commandParent;
-        // Use this for initialization
+        [SerializeField]
+        private Button button;
+        [SerializeField]
+        private Text wazaName;
 
-        void Awake()
-        {
-            button = GetComponent<Button>();
-            wazaName = GetComponentInChildren<Text>();
-        }
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
 
         public override void UpdateUI()
         {
@@ -53,7 +38,7 @@ namespace BattleScene
             if (chara == null) return;
             chara.SelectMoveAttack();
             UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
         }
     }
 }

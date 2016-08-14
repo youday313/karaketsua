@@ -39,7 +39,7 @@ namespace BattleScene
             base.Enable();
             selectAttackParameter = character.characterParameter.moveAttackParameter;
             IT_Gesture.onDraggingStartE += onDraggingStart;
-            BCameraChange.Instance.ActiveUpMode();
+            BCameraManager.Instance.ActiveUpMode();
         }
         public override void Disable()
         {
@@ -171,7 +171,7 @@ namespace BattleScene
             IsDone = true;
             //攻撃時にUI非表示
             UIBottomCommandParent.UICommandState = EUICommandState.None;
-            UIBottomAllParent.Instance.Off();
+            UIBottomAllManager.Instance.Off();
 
             //Disable();
         }
@@ -252,7 +252,7 @@ namespace BattleScene
             attackTargetList = null;
 
             IsNowAction = false;
-            BCameraChange.Instance.ActiveLeanMode();
+            BCameraManager.Instance.ActiveLeanMode();
             //行動終了
             character.OnEndActive();
         }

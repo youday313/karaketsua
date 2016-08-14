@@ -27,30 +27,11 @@ namespace BattleScene
         public static event Action<BCharacterPlayer> OnActivePlayerStaticE;
 
 
-        // Use this for initialization
-        public override void Awake()
-        {
-            base.Awake();
-
-        }
-
-        public override void Start()
-        {
-            base.Start();
-
-            //singleAttack = GetComponent<BCharacterSingleAttack>();
-            //moveAttack = GetComponent<BCharacterMoveAttack>()
-
-            SetWaitState();
-
-        }
 
         public override void Initialize(IntVect2D array)
         {
-            base.Initialize(array);
             isEnemy = false;
-
-
+            base.Initialize(array);
             OnActivePlayerE += BCharacterManager.Instance.SetActivePlayer;
         }
 

@@ -7,21 +7,10 @@ namespace BattleScene
 {
     public class UIBottomDeffence : UIBottomBase
     {
-        Button button;
-        public UIBottomCommandParent commandParent;
-        // Use this for initialization
-        // Use this for initialization
-        void Awake()
-        {
-            button = GetComponent<Button>();
+        [SerializeField]
+        private Button button;
 
-
-        }
-        void Start()
-        {
-           
-        }
-
+        // UI情報更新
         public override void UpdateUI()
         {
             button.interactable = false;
@@ -36,7 +25,7 @@ namespace BattleScene
         {
             //BCharacterManager.Instance.ActiveCharacter.SelectDisable();
             UIBottomCommandParent.UICommandState = EUICommandState.ExecuteDeffence;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
             var chara = BCharacterManager.Instance.ActivePlayer;
             if (chara == null) return;
             chara.SelectDeffence();

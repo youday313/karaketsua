@@ -85,9 +85,9 @@ namespace BattleScene
 
             //UIOff
             UIBottomCommandParent.UICommandState = EUICommandState.None;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
             //カメラ移動
-            BCameraChange.Instance.ActiveLeanMode();
+            BCameraManager.Instance.ActiveLeanMode();
             BCameraMove.Instance.MoveToAutoAttack(this,attackTargetList[0].transform.position);
 
             yield return new WaitForSeconds(cameraInterval);

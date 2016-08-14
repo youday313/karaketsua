@@ -9,15 +9,8 @@ namespace BattleScene
     public class UIBottomExecuteAttack : UIBottomBase
     {
 
-        public UIBottomAllParent allParent;
-        // Use this for initialization
         [SerializeField]
         Button button;
-
-        void Awake()
-        {
-            button = GetComponent<Button>();
-        }
 
         // Update is called once per frame
         public override void UpdateUI()
@@ -34,7 +27,7 @@ namespace BattleScene
         {
 
             UIBottomCommandParent.UICommandState = EUICommandState.None;
-            UIBottomAllParent.Instance.UpdateUI();
+            UIBottomAllManager.Instance.UpdateUI();
             var chara = BCharacterManager.Instance.ActivePlayer;
             if (chara == null) return;
             chara.ExecuteAttack();

@@ -15,7 +15,7 @@ using BattleScene;
 namespace BattleScene
 {
 
-    public class BActiveTime : MonoBehaviour
+    public class BActiveTime: MonoBehaviour
     {
 
         //イベントで通知
@@ -24,47 +24,37 @@ namespace BattleScene
 
         //関連付けられたキャラ
         [System.NonSerialized]
-        public BCharacterBase character;
+        public BCharacterBase Character;
 
-        Slider slider;
         [SerializeField]
-        Image iconImage;
-        float activeSpeed;
+        private Slider slider;
+        [SerializeField]
+        private Image iconImage;
+        private float activeSpeed;
         //public float initTimeValue=20;
         //最大速度のキャラがかかる秒数
-        static float cycleSecond = 3f;
+        const float cycleSecond = 3f;
         static float minOneCycleValue;
         float nowWaitTime;
-        float NowWaitTime
-        {
+        float NowWaitTime {
             get { return nowWaitTime; }
-            set
-            {
+            set {
                 nowWaitTime = Mathf.Max(0, value);
                 slider.value = nowWaitTime;
             }
         }
 
         //動いている
-        bool isActive;
-        public bool IsActive
-        {
-            get { return isActive; }
-            set { isActive = value; }
+        public bool IsActive {
+            get; set;
         }
-
-        void Awake()
+        // 初期化
+        public void initialize(BCharacterBase chara)
         {
-            slider = GetComponent<Slider>();
-            //slider.value = initTimeValue;
-            isActive = true;
-        }
-        public void Init(BCharacterBase chara)
-        {
-            character = chara;
-            activeSpeed = character.characterParameter.activeSpeed;
-            iconImage.sprite = Resources.Load<Sprite>("ATBIcon/ATB" + character.characterParameter.charaName);
-            character.OnDeathE += Delete;
+            Character = chara;
+            activeSpeed = Character.characterParameter.activeSpeed;
+            iconImage.sprite = Resources.Load<Sprite>("ATB/" + Character.characterParameter.charaName);
+            Character.OnDeathE += Delete;
             //slider.maxValue = initTimeValue;
             //nowWaitTime = initTimeValue;
 
@@ -72,14 +62,15 @@ namespace BattleScene
 
         public void StartWave()
         {
-            isActive = true;
+            IsActive = true;
         }
 
         void Start()
         {
+            IsActive = true;
             SetActiveTimeValue();
             BSceneState.Instance.StartWave += StartWave;
-            character.OnEndActiveE += ResetValue;
+            Character.OnEndActiveE += ResetValue;
             BCharacterBase.OnEndActiveStaticE += Resume;
         }
         void SetActiveTimeValue()
@@ -95,8 +86,7 @@ namespace BattleScene
 
         void Update()
         {
-            if (isActive)
-            {
+            if(IsActive) {
                 UpdateValue();
             }
         }
@@ -104,8 +94,7 @@ namespace BattleScene
         void UpdateValue()
         {
             NowWaitTime = NowWaitTime - Time.deltaTime * CalcDecreaseSpeedFromActiveSpeed();
-            if (NowWaitTime == 0)
-            {
+            if(NowWaitTime == 0) {
                 OnActive();
             }
         }
@@ -117,11 +106,10 @@ namespace BattleScene
         //行動キャラ選択
         void OnActive()
         {
-            character.OnActive();
-            
+            Character.OnActive();
+
             //他のActiveTime停止
-            foreach (var time in GameObject.FindGameObjectsWithTag("ActiveTime").Select(x => x.GetComponent<BActiveTime>()).Where(x => x.character != this))
-            {
+            foreach(var time in GameObject.FindGameObjectsWithTag("ActiveTime").Select(x => x.GetComponent<BActiveTime>()).Where(x => x.Character != this)) {
                 time.IsActive = false;
             }
         }

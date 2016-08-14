@@ -6,32 +6,32 @@ using BattleScene;
 
 namespace BattleScene
 {
-    public class BActiveTimeCreater : SingletonMonoBehaviour<BActiveTimeCreater>
+    public class BActiveTimeCreater: SingletonMonoBehaviour<BActiveTimeCreater>
     {
+        [SerializeField]
+        private BActiveTime activeTimePrefab;
 
-        public BActiveTime activeTimePrefab;
-        public float enemyOffset;
+        [SerializeField]
+        private float enemyOffset;
 
-        public BActiveTime CreateActiveTime()
+        // アクティブタイムの生成
+        public BActiveTime Initialize(BCharacterBase character)
         {
             var newActiveTime = Instantiate(activeTimePrefab) as BActiveTime;
-            //newActiveTime.Init(chara);
-            //waitTimes.Add(wTime);
-            //位置補正
-//			if (newActiveTime.character.isEnemy == true)
-//            {
-//                SetEnemyPosition(newActiveTime);
-//            }
             newActiveTime.transform.SetParent(transform, false);
-
-
+            newActiveTime.gameObject.SetActive(true);
+            newActiveTime.initialize(character);
+            if(character.isEnemy) {
+                setEnemyPosition(newActiveTime);
+            }
             return newActiveTime;
         }
-        public void SetEnemyPosition(BActiveTime aTime)
+
+        private void setEnemyPosition(BActiveTime aTime)
         {
             var rectTransform = aTime.GetComponent<RectTransform>();
 
-			rectTransform.anchoredPosition3D = new Vector3(rectTransform.anchoredPosition3D.x, rectTransform.anchoredPosition3D.y - enemyOffset, rectTransform.anchoredPosition3D.z);
+            rectTransform.anchoredPosition3D = new Vector3(rectTransform.anchoredPosition3D.x, rectTransform.anchoredPosition3D.y - enemyOffset, rectTransform.anchoredPosition3D.z);
 
         }
     }

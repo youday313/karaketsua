@@ -9,7 +9,7 @@ using BattleScene;
 namespace BattleScene
 {
     public enum CameraMode { FromBack = 0, FromFront, Up }
-    public class BCameraChange : SingletonMonoBehaviour<BCameraChange>
+    public class BCameraManager : SingletonMonoBehaviour<BCameraManager>
     {
 
 		[SerializeField] 
@@ -17,24 +17,24 @@ namespace BattleScene
         [SerializeField]
 		private GameObject upCameraObject;
         private BCameraMove leanCamera;
-        //現在のモード
-        public CameraMode nowCameraMode;
-        // Use this for initialization
-        void Start()
-        {
+        // 現在のモード
+        private CameraMode nowCameraMode;
 
+        // 初期化
+        public void Initialize()
+        {
             leanCamera = leanCameraObject.GetComponent<BCameraMove>();
             leanCameraObject.SetActive(true);
             upCameraObject.SetActive(false);
             nowCameraMode = CameraMode.FromBack;
         }
 
-        //ボタンから変更
+        // ボタンから変更
         public void NextCameraModeFromButton()
         {
             var nextCameraMode = (CameraMode)(((int)nowCameraMode + 1) % Enum.GetNames(typeof(CameraMode)).Length);
             nowCameraMode = nextCameraMode;
-            //後ろから前
+            // 後ろから前
             if (nextCameraMode == CameraMode.FromFront || nextCameraMode == CameraMode.FromBack)
             {
                 ActiveLeanMode();
