@@ -20,7 +20,7 @@ namespace EditScene
                     if(tilePrefab != null) {
                         // プレハブの複製 
                         var tile = Instantiate(tilePrefab) as ETile;
-                        tile.Init(new IntVect2D(i, j), j > 0, this);
+                        tile.Initialize(new IntVect2D(i, j), j > 0);
 
                         // 生成元の下に複製したプレハブをくっつける
                         tile.transform.SetParent(gameObject.transform, false);

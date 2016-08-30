@@ -1,31 +1,31 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Linq;
 using UnityEngine.UI;
+using System.Linq;
+
 using BattleScene;
 
 namespace EditScene
 {
-    /// <summary>
-    /// バトル前編成画面
-    /// </summary>
+    // バトル前編成画面
     public class EditSceneManager: MonoBehaviour
     {
 
         [SerializeField]
         private ECharacterIcon characterIconNode;
+        [SerializeField]
+        private Transform iconParent;
+        [SerializeField]
+        private Button decideButton;
 
         void Start()
         {
             // キャラクターデータ読み込み
             loadPlayerCharacters();
             // エネミーデータ読み込み
-            loadEnemyCharacters();
+            //loadEnemyCharacters();
         }
 
-        /// <summary>
-        /// プレイヤーキャラ生成
-        /// </summary>
+        // プレイヤーキャラ生成
         private void loadPlayerCharacters()
         {
             // 味方取得
@@ -35,16 +35,12 @@ namespace EditScene
             // IDが存在するキャラのみ生成
             foreach(var chara in allPlayers) {
                 var icon = Instantiate(characterIconNode) as ECharacterIcon;
-                var prefabName = "Character/ATB/" + chara.charaName;
-                var image = Resources.Load<Sprite>(prefabName);
-                icon.GetComponent<Image>().sprite = image;
-                icon.Initialize(playerPositions[chara.id]);
+                icon.transform.SetParent(iconParent, worldPositionStays: false);
+                icon.Initialize(chara.charaName, playerPositions[chara.id]);
             }
         }
 
-        /// <summary>
-        /// 敵キャラ生成
-        /// </summary>
+        // 敵キャラ生成
         private void loadEnemyCharacters()
         {
             // 敵取得
@@ -55,13 +51,10 @@ namespace EditScene
             var count = 0;
             foreach(var chara in allEnemys.Where(x => selectEnemyIds.Contains(x.id))) {
                 var icon = Instantiate(characterIconNode) as ECharacterIcon;
-                var prefabName = "Character/ATB/" + chara.charaName;
-                var image = Resources.Load<Sprite>(prefabName);
-                icon.GetComponent<Image>().sprite = image;
                 // TODO:敵の出現の仕方
                 // 今は奥から左詰め
                 var position = new IntVect2D(-BBattleStage.stageSizeX + count, -BBattleStage.stageSizeY);
-                icon.Initialize(position);
+                icon.Initialize(chara.charaName, position);
                 count++;
             }
         }

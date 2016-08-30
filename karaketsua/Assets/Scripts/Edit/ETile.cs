@@ -1,49 +1,29 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 using EditScene;
 
 namespace EditScene
 {
-
-    public class ETile : MonoBehaviour
+    public class ETile: MonoBehaviour
     {
+        [SerializeField]
+        private Image tileImage;
+        [SerializeField]
+        private Sprite attackSprite;    // 赤色タイル
 
-        public IntVect2D vect;
-        public bool isAttachable = false;
-        ETileCreater tileCreater;
-        // Use this for initialization
-        void Start()
-        {
+        public IntVect2D vect { get; private set; }
+        public bool isAttachable { get; private set; }
 
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        public void Init(IntVect2D v, bool _isAttachable, ETileCreater _tileCreater)
+        // 初期化
+        public void Initialize(IntVect2D v, bool _isAttachable)
         {
             vect = v;
-            tileCreater = _tileCreater;
             isAttachable = _isAttachable;
-            if (isAttachable == true)
-            {
-                var sprite = GetComponent<Image>();
-                sprite.sprite = Resources.Load<Sprite>("EditScene/mass_attack_sprite");
+            if(!isAttachable) {
+                return;
             }
+            tileImage.sprite = attackSprite;
         }
-        //public void OnDrop(PointerEventData e){
-        //    if (isAttachable == false)
-        //        return;
-        //    ECharacterIcon.obj.position = transform.position;
-        //    tileCreater.gameObject.SetActive (false);
-
-        //}
     }
 }

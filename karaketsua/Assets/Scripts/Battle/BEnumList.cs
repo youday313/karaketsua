@@ -81,7 +81,6 @@ namespace BattleScene
     {
         public float judgeTime;
         public float startInterval;
-        public GameObject attackMakerPrefab;
     }
 
 

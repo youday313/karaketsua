@@ -12,7 +12,6 @@ public class JsonManager: SingletonBase<JsonManager>
     public void Load<T>(string fileName, Action<T> callback)
     {
         var filePath = fileName + ".json";
-
         using(var reader = new StreamReader(filePath)) {
             var txt = reader.ReadToEnd();
             var obj = JsonUtility.FromJson<T>(txt);

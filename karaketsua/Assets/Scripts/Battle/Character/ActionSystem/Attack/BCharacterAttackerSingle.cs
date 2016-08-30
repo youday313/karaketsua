@@ -12,7 +12,8 @@ namespace BattleScene
     //タップによる単体攻撃
     public class BCharacterAttackerSingle : BCharacterAttackerBase
     {
-        //public List<SingleActionParameter> singleActionParamaters = new List<SingleActionParameter>();
+        [SerializeField]
+        private GameObject attackMakerPrefab;
 
         //一度のタップのパラメータ
 
@@ -183,7 +184,7 @@ namespace BattleScene
                 //startInterval待ってからマーカー縮小
                 yield return new WaitForSeconds(action.judgeTime);
                 //マーカー表示
-                nowAttackMaker = Instantiate(action.attackMakerPrefab, popupPositionInScreen, Quaternion.identity) as GameObject;
+                nowAttackMaker = Instantiate(attackMakerPrefab, popupPositionInScreen, Quaternion.identity) as GameObject;
                 nowAttackMaker.transform.SetParent(effectCanvas);
 
 

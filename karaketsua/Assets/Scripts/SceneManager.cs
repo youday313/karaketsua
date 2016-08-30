@@ -1,17 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class SceneManager : DontDestroySingleton<SceneManager> {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+public class SceneManager : DontDestroySingleton<SceneManager> 
+{
 
     //public
     public void SetNextScene(string nextScene)
@@ -19,6 +9,4 @@ public class SceneManager : DontDestroySingleton<SceneManager> {
         //FadeManager.Instance.LoadLevel(nextScene, 0.5f);
         Application.LoadLevel(nextScene);
     }
-
-
 }

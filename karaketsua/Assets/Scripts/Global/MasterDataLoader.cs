@@ -8,16 +8,19 @@ using System.IO;
 public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
 {
 
-
     private string localFilePath;
 
+    [SerializeField]
+    public class MasterParameterList
+    {
+        public List<CharacterMasterParameter> lists;
+    }
     private List<CharacterMasterParameter> playerCharacterCache;
     private List<CharacterMasterParameter> enemyCharacterCache;
 
     void Awake()
     {
         localFilePath = Application.persistentDataPath + "/download/";
-        Directory.CreateDirectory(localFilePath);
 
 #if UNITY_IOS && !UNITY_EDITOR
         // temporaryCachePath/downloadをpersistentDataPath/に移動する(ios専用)
@@ -44,6 +47,7 @@ public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
         if(!Directory.Exists(localFilePath)) {
             return;
         }
+        Directory.CreateDirectory(localFilePath);
         CopyMasterDataFromStreamingAssets();
     }
 
@@ -64,8 +68,8 @@ public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
     {
         if(playerCharacterCache == null) {
             var filePath = localFilePath + "m_player_character";
-            JsonManager.Instance.Load<List<CharacterMasterParameter>>(filePath, obj => {
-                playerCharacterCache = obj;
+            JsonManager.Instance.Load<MasterParameterList>(filePath, obj => {
+                playerCharacterCache = obj.lists;
             });
         }
         return playerCharacterCache;
@@ -76,8 +80,11 @@ public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
     /// </summary>
     public void SavePlayerCharacter(List<CharacterMasterParameter> datas)
     {
+        Debug.Log("Save");
         var filePath = localFilePath + "m_player_character";
-        JsonManager.Instance.Save(filePath, datas);
+        var data = new MasterParameterList();
+        data.lists = datas;
+        JsonManager.Instance.Save(filePath, data);
     }
 
     /// <summary>
@@ -87,8 +94,8 @@ public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
     {
         if(enemyCharacterCache == null) {
             var filePath = localFilePath + "m_enemy_character";
-            JsonManager.Instance.Load<List<CharacterMasterParameter>>(filePath, obj => {
-                enemyCharacterCache = obj;
+            JsonManager.Instance.Load<MasterParameterList>(filePath, obj => {
+                enemyCharacterCache = obj.lists;
             });
         }
         return enemyCharacterCache;
