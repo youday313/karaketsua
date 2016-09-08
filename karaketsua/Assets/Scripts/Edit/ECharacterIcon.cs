@@ -16,6 +16,7 @@ namespace EditScene
         private Image iconImage; 
 
         private Vector3 oldPosition;
+        private ETile onTile = null;
         [System.NonSerialized]
         public IntVect2D vect2D = new IntVect2D(IntVect2D.nullNumber, IntVect2D.nullNumber);
 
@@ -50,35 +51,24 @@ namespace EditScene
         public void OnEndDrag(PointerEventData e)
         {
             //タイルの取得
-            var tile = GameObject.FindGameObjectsWithTag("Tile")
-                .Where(x => RectTransformUtility.RectangleContainsScreenPoint(x.GetComponent<RectTransform>(), e.position) == true
-                    && x.GetComponent<ETile>().isAttachable == true)
-                .Select(x => x.GetComponent<ETile>())
-                .FirstOrDefault();
+            var tile = ETileManager.Instance.GetTile(e.position);
 
             //タイル外
             if(tile == null) {
                 rectTransform.position = oldPosition;
                 return;
             }
-            //他キャラクターの取得
-            var otherTile = GameObject.FindGameObjectsWithTag("Edit/Character")
-    .Where(x => x.GetComponent<ECharacterIcon>().vect2D == tile.vect)
-    .FirstOrDefault();
-
-            //既にいる
-            if(otherTile != null) {
+            // 他キャラクターがすでにいる
+            if(tile.isOnCharacter) {
                 rectTransform.position = oldPosition;
                 return;
             }
 
-
+            // 移動
             rectTransform.position = CSTransform.CopyVector3(tile.GetComponent<RectTransform>().position);
             oldPosition = CSTransform.CopyVector3(rectTransform.position);
             vect2D = tile.vect;
-
-
-
+            onTile = tile;
         }
     }
 }

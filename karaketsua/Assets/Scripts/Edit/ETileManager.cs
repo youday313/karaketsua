@@ -1,16 +1,19 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 using EditScene;
 
 namespace EditScene
 {
 
-    public class ETileCreater: MonoBehaviour
+    public class ETileManager: SingletonMonoBehaviour<ETileManager>
     {
 
         [SerializeField]
         private ETile tilePrefab;
+
+        public List<ETile> Tiles = new List<ETile>();
 
         void Start()
         {
@@ -23,11 +26,18 @@ namespace EditScene
                         tile.Initialize(new IntVect2D(i, j), j > 0);
 
                         // 生成元の下に複製したプレハブをくっつける
-                        tile.transform.SetParent(gameObject.transform, false);
+                        tile.transform.SetParent(gameObject.transform, worldPositionStays: false);
                         tile.gameObject.SetActive(true);
+                        Tiles.Add(tile);
                     }
                 }
             }
+        }
+
+        // 指定点のタイルを取得
+        public ETile GetTile(Vector2 pos)
+        {
+            return Tiles.Where(t => t.IsContain(pos)).FirstOrDefault();
         }
     }
 }
