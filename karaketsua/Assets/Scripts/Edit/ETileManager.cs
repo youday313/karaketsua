@@ -15,9 +15,8 @@ namespace EditScene
 
         public List<ETile> Tiles = new List<ETile>();
 
-        void Start()
+        public void Initialize()
         {
-
             for(int j = -BattleScene.BBattleStage.stageSizeY; j <= BattleScene.BBattleStage.stageSizeY; j++) {
                 for(int i = -BattleScene.BBattleStage.stageSizeX; i <= BattleScene.BBattleStage.stageSizeX; i++) {
                     if(tilePrefab != null) {

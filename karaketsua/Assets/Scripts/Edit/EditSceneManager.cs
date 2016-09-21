@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections.Generic;
 
 using BattleScene;
 
@@ -15,14 +16,16 @@ namespace EditScene
         [SerializeField]
         private Transform iconParent;
         [SerializeField]
-        private Button decideButton;
+        private EBattleStartButton decideButton;
 
         void Start()
         {
+            // タイル作成
+            ETileManager.Instance.Initialize();
             // キャラクターデータ読み込み
             loadPlayerCharacters();
             // エネミーデータ読み込み
-            //loadEnemyCharacters();
+            loadEnemyCharacters();
         }
 
         // プレイヤーキャラ生成
@@ -33,11 +36,14 @@ namespace EditScene
             var selectPlayerIds = PlayerGameData.Instance.selectPlayerChatacterIds;
             var playerPositions = PlayerGameData.Instance.battlePlayerPosition;
             // IDが存在するキャラのみ生成
+            var icons = new List<ECharacterIcon>();
             foreach(var chara in allPlayers) {
                 var icon = Instantiate(characterIconNode) as ECharacterIcon;
+                icons.Add(icon);
                 icon.transform.SetParent(iconParent, worldPositionStays: false);
-                icon.Initialize(chara.charaName, playerPositions[chara.id]);
+                icon.Initialize(chara.charaName, playerPositions[chara.id], isPlayer:true);
             }
+            decideButton.
         }
 
         // 敵キャラ生成
@@ -51,10 +57,12 @@ namespace EditScene
             var count = 0;
             foreach(var chara in allEnemys.Where(x => selectEnemyIds.Contains(x.id))) {
                 var icon = Instantiate(characterIconNode) as ECharacterIcon;
+                icon.transform.SetParent(iconParent, worldPositionStays: false);
                 // TODO:敵の出現の仕方
                 // 今は奥から左詰め
                 var position = new IntVect2D(-BBattleStage.stageSizeX + count, -BBattleStage.stageSizeY);
-                icon.Initialize(chara.charaName, position);
+                icon.Initialize(chara.charaName, position, isPlayer:false);
+                icon.MoveOnTile();
                 count++;
             }
         }

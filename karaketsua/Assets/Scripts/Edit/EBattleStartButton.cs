@@ -11,18 +11,16 @@ namespace EditScene
         [SerializeField]
         private Button button;
 
-
-        void Update()
+        public void Initialize(List<ECharacterIcon> icons)
         {
-            //ボタン有効無効
-            button.interactable = characterIcons.Where(x => IntVect2D.IsNull(x.vect2D) == true).Count() == 0;
-
-        }
-
-        public void SetNextScene()
-        {
-            //BattleScene.BStageData.Instance.SetCharacterData();
-            SceneManager.Instance.SetNextScene("MainScene");
+            characterIcons.AddRange(icons);
+            icon.ChangeOnTile += () => {
+                //ボタン有効無効
+                button.interactable = characterIcons.Where(x => IntVect2D.IsNull(x.vect2D) == true).Count() == 0;
+            };
+            button.onClick.AddListener(() => {
+                SceneManager.Instance.SetNextScene("MainScene");
+            });
         }
     }
 }
