@@ -43,7 +43,7 @@ namespace EditScene
                 icon.transform.SetParent(iconParent, worldPositionStays: false);
                 icon.Initialize(chara.charaName, playerPositions[chara.id], isPlayer:true);
             }
-            decideButton.
+            decideButton.Initialize(icons);
         }
 
         // 敵キャラ生成

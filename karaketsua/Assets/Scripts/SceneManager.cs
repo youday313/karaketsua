@@ -1,12 +1,33 @@
 ﻿using UnityEngine;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
+using System;
 
 public class SceneManager : DontDestroySingleton<SceneManager> 
 {
+    private Scene currentScene = Scene.None;
 
-    //public
-    public void SetNextScene(string nextScene)
+    // 起動時現在のシーンを取得
+    public void Awake()
+    {
+        currentScene = (Scene)Enum.Parse(typeof(Scene), UnitySceneManager.GetActiveScene().name);
+    }
+
+    public void LoadNextScene(Scene nextScene)
     {
         //FadeManager.Instance.LoadLevel(nextScene, 0.5f);
-        Application.LoadLevel(nextScene);
+        UnitySceneManager.LoadScene(nextScene.ToString(), UnityEngine.SceneManagement.LoadSceneMode.Single);
+        currentScene = nextScene;
     }
 }
+
+public enum Scene
+{
+    None,
+    Title,
+    Field,
+    Edit,
+    Battle,
+    Result,
+}
+
+

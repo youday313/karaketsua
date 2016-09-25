@@ -5,8 +5,6 @@ namespace BattleScene
 {
     public class BattleSceneManager: MonoBehaviour
     {
-
-
         [SerializeField]
         private BCharacterManager characterManager;
         [SerializeField]
