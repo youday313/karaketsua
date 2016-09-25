@@ -2077,6 +2077,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: SelectEnemyCharacterIds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: SelectPlayerChatacterIds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 403174, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2108,6 +2116,18 @@ Prefab:
     - target: {fileID: 403174, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: isPositionFormEditor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: SelectEnemyCharacterIds.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: SelectPlayerChatacterIds.Array.data[0]
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
@@ -3097,7 +3117,7 @@ Transform:
   - {fileID: 973692791}
   - {fileID: 366425157}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &561786075
 GameObject:
   m_ObjectHideFlags: 0
@@ -9212,7 +9232,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 89.980194, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &1588509510
 GameObject:
   m_ObjectHideFlags: 0
@@ -10383,7 +10403,7 @@ RectTransform:
   - {fileID: 1491571816}
   - {fileID: 1249339409}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}

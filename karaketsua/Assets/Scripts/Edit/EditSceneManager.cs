@@ -10,7 +10,6 @@ namespace EditScene
     // バトル前編成画面
     public class EditSceneManager: MonoBehaviour
     {
-
         [SerializeField]
         private ECharacterIcon characterIconNode;
         [SerializeField]
@@ -33,15 +32,15 @@ namespace EditScene
         {
             // 味方取得
             var allPlayers = MasterDataLoader.Instance.LoadPlayerCharacters();
-            var selectPlayerIds = PlayerGameData.Instance.selectPlayerChatacterIds;
-            var playerPositions = PlayerGameData.Instance.battlePlayerPosition;
+            var selectPlayerIds = PlayerGameData.Instance.SelectPlayerChatacterIds;
+            var playerPositions = PlayerGameData.Instance.BattlePlayerPosition;
             // IDが存在するキャラのみ生成
             var icons = new List<ECharacterIcon>();
             foreach(var chara in allPlayers) {
                 var icon = Instantiate(characterIconNode) as ECharacterIcon;
                 icons.Add(icon);
                 icon.transform.SetParent(iconParent, worldPositionStays: false);
-                icon.Initialize(chara.charaName, playerPositions[chara.id], isPlayer:true);
+                icon.Initialize(chara, playerPositions[chara.id], isPlayer:true);
             }
             decideButton.Initialize(icons);
         }
@@ -51,8 +50,8 @@ namespace EditScene
         {
             // 敵取得
             var allEnemys = MasterDataLoader.Instance.LoadEnemyCharacters();
-            var selectEnemyIds = PlayerGameData.Instance.selectEnemyCharacterIds;
-            var enemyPositions = PlayerGameData.Instance.battleEnemyPosition;
+            var selectEnemyIds = PlayerGameData.Instance.SelectEnemyCharacterIds;
+            var enemyPositions = PlayerGameData.Instance.BattleEnemyPosition;
             // 敵生成
             var count = 0;
             foreach(var chara in allEnemys.Where(x => selectEnemyIds.Contains(x.id))) {
@@ -61,7 +60,7 @@ namespace EditScene
                 // TODO:敵の出現の仕方
                 // 今は奥から左詰め
                 var position = new IntVect2D(-BBattleStage.stageSizeX + count, -BBattleStage.stageSizeY);
-                icon.Initialize(chara.charaName, position, isPlayer:false);
+                icon.Initialize(chara, position, isPlayer:false);
                 icon.MoveOnTile();
                 count++;
             }

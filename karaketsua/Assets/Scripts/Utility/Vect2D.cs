@@ -94,6 +94,13 @@ public class IntVect2D
 //IntVect2D
 public static class IntVect2DExtend
 {
+    // デバッグ表示
+    public static void Log(this IntVect2D vect)
+    {
+        Debug.Log("x:" + vect.x);
+        Debug.Log("y:" + vect.y);
+    }
+
     //シャッフル
     public static IntVect2D[] Shuffle(this IntVect2D[] array)
     {

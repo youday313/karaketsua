@@ -293,7 +293,7 @@ GameObject:
   - 114: {fileID: 11430350}
   - 114: {fileID: 11477290}
   m_Layer: 0
-  m_Name: Kashiwagi
+  m_Name: "\u67CF\u6728"
   m_TagString: BattleCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1373,6 +1373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a1603485ffdbc48ae59ae5d0dec8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackMakerPrefab: {fileID: 0}
   changeTimeSingleMode: 1
   onTapEffect: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
   selectWazaNumber: 0
@@ -1401,14 +1402,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterParameter:
+    id: 0
     charaName: "\u67CF\u6728"
     hp: 0
     activeSpeed: 15
     power: 400
     deffence: 200
     skillPoint: 300
-    movePoint: 0
-    stateErrors: 
     singleAttackParameters:
     - wazaName: "\u5207\u308A\u3064\u3051\u308B"
       needSkillPoint: 0
@@ -1427,8 +1427,6 @@ MonoBehaviour:
       actionParameters:
       - judgeTime: 1
         startInterval: 1
-        attackMakerPrefab: {fileID: 156432, guid: 7f5e6f974ffd75b4ea111904ab70488f,
-          type: 2}
     - wazaName: "\u65AC\u6483"
       needSkillPoint: 20
       powerMagnification: 0.8
@@ -1446,12 +1444,8 @@ MonoBehaviour:
       actionParameters:
       - judgeTime: 0.48
         startInterval: 1
-        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
-          type: 2}
       - judgeTime: 0.48
         startInterval: 0
-        attackMakerPrefab: {fileID: 180222, guid: cac846d0579a58949a3aa1a73786f3be,
-          type: 2}
     moveAttackParameter:
       wazaName: "\u5C45\u5408\u5207\u308A"
       needSkillPoint: 100
@@ -1468,7 +1462,6 @@ MonoBehaviour:
   positionArray:
     x: 0
     y: 0
-  animator: {fileID: 11408522}
   mover: {fileID: 11446480}
   attacker: {fileID: 11493470}
 --- !u!114 &11446480

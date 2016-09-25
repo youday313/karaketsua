@@ -14,13 +14,17 @@ namespace EditScene
         {
             //ボタン有効無効
             foreach(var icon in icons) {
-                icon.ChangeOnTile += () => {
+                icon.OnChangeTile += () => {
                     button.interactable = icons.Where(x => IntVect2D.IsNull(x.vect2D) == true).Count() == 0;
                 };
             }
 
             // 保存
             button.onClick.AddListener(() => {
+                PlayerGameData.Instance.ResetPositionList();
+                foreach(var icon in icons) {
+                    icon.Decide();
+                }
                 SceneManager.Instance.LoadNextScene(Scene.Battle);
             });
         }

@@ -44,9 +44,10 @@ public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
     /// </summary>
     private void tryCreateMasterDataFileWhenEmpty()
     {
-        if(!Directory.Exists(localFilePath)) {
+        if(Directory.Exists(localFilePath)) {
             return;
         }
+        Debug.Log("Masterを作成します");
         Directory.CreateDirectory(localFilePath);
         CopyMasterDataFromStreamingAssets();
     }
@@ -59,6 +60,7 @@ public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
     {
         var streamingPath = Application.streamingAssetsPath;
         DirectoryProcessor.CopyAndReplace(Application.streamingAssetsPath, localFilePath);
+        Debug.Log("作成完了");
     }
 
     /// <summary>

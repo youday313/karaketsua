@@ -12,7 +12,7 @@ namespace BattleScene
         [SerializeField]
         private UIBottomAllManager uiManager;
 
-        void Awake()
+        void Start()
         {
             // キャラクター作成
             characterManager.Initialze();
@@ -20,11 +20,6 @@ namespace BattleScene
             cameraManager.Initialize();
             // UIセット
             uiManager.initialize();
-
-
-
         }
-
     }
-
 }

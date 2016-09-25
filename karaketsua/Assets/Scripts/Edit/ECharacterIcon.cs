@@ -23,11 +23,14 @@ namespace EditScene
         private bool isPlayer;
 
         // タイルに乗ったとき
-        public Action ChangeOnTile;
+        public Action OnChangeTile;
+        // 決定時
+        public Action Decide;
+
         // 初期化
-        public void Initialize(string charaName, IntVect2D initPos = null, bool isPlayer = true)
+        public void Initialize(CharacterMasterParameter chara, IntVect2D initPos = null, bool isPlayer = true)
         {
-            var prefabName = "Character/ATB/ATB" + charaName;
+            var prefabName = "Character/ATB/ATB" + chara.charaName;
             var image = Resources.Load<Sprite>(prefabName);
             iconImage.sprite = image;
             gameObject.SetActive(true);
@@ -35,6 +38,17 @@ namespace EditScene
             if(initPos != null) {
                 vect2D = initPos;
             }
+            Decide += () => {
+                if(isPlayer) {
+                    vect2D.Log();
+                    PlayerGameData.Instance.SelectPlayerChatacterIds.Add(chara.id);
+                    PlayerGameData.Instance.BattlePlayerPosition.Add(chara.id, vect2D);
+                }
+                else {
+                    PlayerGameData.Instance.SelectEnemyCharacterIds.Add(chara.id);
+                    PlayerGameData.Instance.BattleEnemyPosition.Add(chara.id, vect2D);
+                }
+            };
             oldPosition = CSTransform.CopyVector3(rectTransform.position);
         }
 
@@ -86,8 +100,8 @@ namespace EditScene
             oldPosition = CSTransform.CopyVector3(rectTransform.position);
             vect2D = t.Vect;
             tile = t;
-            if(ChangeOnTile != null) {
-                ChangeOnTile();
+            if(OnChangeTile != null) {
+                OnChangeTile();
             }
         }
 

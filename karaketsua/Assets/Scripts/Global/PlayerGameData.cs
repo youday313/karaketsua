@@ -8,19 +8,31 @@ using System.Linq;
 /// </summary>
 public class PlayerGameData : DontDestroySingleton<PlayerGameData> {
 
+    [SerializeField] private bool isPositionFormEditor;
 
-    public List<int> selectPlayerChatacterIds = new List<int>();
-    public Dictionary<int, IntVect2D> battlePlayerPosition = new Dictionary<int, IntVect2D>();
+    public List<int> SelectPlayerChatacterIds = new List<int>();
+    public Dictionary<int, IntVect2D> BattlePlayerPosition = new Dictionary<int, IntVect2D>();
 
-    public List<int> selectEnemyCharacterIds = new List<int>();
-    public Dictionary<int, IntVect2D> battleEnemyPosition = new Dictionary<int, IntVect2D>();
+    public List<int> SelectEnemyCharacterIds = new List<int>();
+    public Dictionary<int, IntVect2D> BattleEnemyPosition = new Dictionary<int, IntVect2D>();
 
     void Awake()
     {
-        battlePlayerPosition.Add(1, new IntVect2D(0,0));
+        foreach(var id in SelectPlayerChatacterIds) {
+            Debug.Log(id);
+        }
 
-        battleEnemyPosition.Add(1, new IntVect2D(0, -2));
+        if(isPositionFormEditor) {
+            Debug.Log("FormEditor");
+            BattlePlayerPosition.Add(1, new IntVect2D(0, -2));
+            BattleEnemyPosition.Add(1, new IntVect2D(0, 2));
+        }
+    }
 
+    public void ResetPositionList()
+    {
+        BattlePlayerPosition.Clear();
+        BattleEnemyPosition.Clear();
     }
 
 }
