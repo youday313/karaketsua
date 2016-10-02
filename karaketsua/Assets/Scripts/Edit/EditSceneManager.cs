@@ -41,6 +41,8 @@ namespace EditScene
                 icons.Add(icon);
                 icon.transform.SetParent(iconParent, worldPositionStays: false);
                 icon.Initialize(chara, playerPositions[chara.id], isPlayer:true);
+                playerPositions[chara.id].Log();
+                icon.MoveOnTile();
             }
             decideButton.Initialize(icons);
         }
@@ -53,16 +55,12 @@ namespace EditScene
             var selectEnemyIds = PlayerGameData.Instance.SelectEnemyCharacterIds;
             var enemyPositions = PlayerGameData.Instance.BattleEnemyPosition;
             // 敵生成
-            var count = 0;
             foreach(var chara in allEnemys.Where(x => selectEnemyIds.Contains(x.id))) {
                 var icon = Instantiate(characterIconNode) as ECharacterIcon;
                 icon.transform.SetParent(iconParent, worldPositionStays: false);
-                // TODO:敵の出現の仕方
-                // 今は奥から左詰め
-                var position = new IntVect2D(-BBattleStage.stageSizeX + count, -BBattleStage.stageSizeY);
-                icon.Initialize(chara, position, isPlayer:false);
+                icon.Initialize(chara, enemyPositions[chara.id], isPlayer:false);
+                enemyPositions[chara.id].Log();
                 icon.MoveOnTile();
-                count++;
             }
         }
     }

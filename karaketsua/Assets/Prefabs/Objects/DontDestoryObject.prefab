@@ -10,10 +10,46 @@ GameObject:
   - 4: {fileID: 403174}
   - 114: {fileID: 11450302}
   - 114: {fileID: 11493884}
-  - 114: {fileID: 11458130}
   - 114: {fileID: 11417856}
   m_Layer: 0
   m_Name: DontDestoryObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &137356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 465700}
+  - 114: {fileID: 11462288}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &158786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408084}
+  - 114: {fileID: 11413140}
+  - 114: {fileID: 11476318}
+  - 114: {fileID: 11457608}
+  - 114: {fileID: 11495146}
+  - 114: {fileID: 11420248}
+  - 114: {fileID: 11493452}
+  m_Layer: 0
+  m_Name: InputTouches
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,8 +85,36 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 470466}
+  - {fileID: 408084}
+  - {fileID: 465700}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &408084
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 403174}
+  m_RootOrder: 1
+--- !u!4 &465700
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137356}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 403174}
+  m_RootOrder: 2
 --- !u!4 &470466
 Transform:
   m_ObjectHideFlags: 1
@@ -64,6 +128,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 403174}
   m_RootOrder: 0
+--- !u!114 &11413140
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4644228101ae7244b98ea543054eb3e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useDPIScaling: 1
+  defaultDPI: 441
 --- !u!114 &11417856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -75,6 +152,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3013f2f7854e7b545b8197c1a568d52a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11420248
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8281800407ed5d1408686832a1da2974, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSmoothFrameCount: 5
+  rotationSmoothing: 0
 --- !u!114 &11450302
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,12 +202,26 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
---- !u!114 &11458130
+--- !u!114 &11457608
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106596}
+  m_GameObject: {fileID: 158786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cf2a06dda4e473448c1440db3cdf92d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDragDistance: 15
+  enableMultiDrag: 0
+  fireOnDraggingWhenNotMoving: 0
+--- !u!114 &11462288
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137356}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: baee123fbfd180f49813f94c7988e184, type: 3}
@@ -150,6 +254,39 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+--- !u!114 &11476318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83e308dccfc7b864bb588b7090a90358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableMultiTapFilter: 0
+  maxTapDisplacementAllowance: 5
+  shortTapTime: 0.2
+  longTapTime: 0.8
+  multiTapInterval: 0.35
+  multiTapPosSpacing: 20
+  maxMultiTapCount: 2
+  chargeMode: 0
+  minChargeTime: 1
+  maxChargeTime: 10
+  maxFingerGroupDist: 200
+--- !u!114 &11493452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00a390417897c340bbf8fd339cfe346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11493884
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,8 +298,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e882607f89f604edabbed0a32cc79e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectPlayerChatacterIds: 
-  selectEnemyCharacterIds: 01000000
+  isPositionFormEditor: 1
+  SelectPlayerChatacterIds: 01000000
+  SelectEnemyCharacterIds: 01000000
+--- !u!114 &11495146
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e82b68544a0114a898971502a5d596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSwipeDuration: 0.25
+  minSpeed: 1000
+  minDistance: 5
+  maxDirectionChange: 35
+  onlyFireWhenLiftCursor: 0
+  enableMultiSwipe: 0
+  minDurationBetweenSwipe: 0.5
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

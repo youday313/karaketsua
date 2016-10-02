@@ -14,10 +14,12 @@ namespace EditScene
         [SerializeField]
         private RectTransform rectTransform;
         [SerializeField]
+        private Transform moveTemp;
+        [SerializeField]
         private Image iconImage;
 
         private Vector3 oldPosition;
-        private ETile tile = null;
+        private ETile nowTile = null;
         [System.NonSerialized]
         public IntVect2D vect2D = new IntVect2D(IntVect2D.nullNumber, IntVect2D.nullNumber);
         private bool isPlayer;
@@ -59,7 +61,7 @@ namespace EditScene
                 return;
             }
             rectTransform.position = CSTransform.CopyVector3(e.position);
-            //obj.SetAsFirstSibling();
+            transform.SetParent(moveTemp);
         }
 
         // ドラッグ中
@@ -79,38 +81,34 @@ namespace EditScene
             }
             //タイルの取得
             var t = ETileManager.Instance.GetTile(e.position);
-            moveOnTile(t);
-        }
-
-        // タイルの上に移動
-        private void moveOnTile(ETile t)
-        {
-            //タイル外
-            if(t == null) {
-                rectTransform.position = oldPosition;
-                return;
-            }
-            // 他キャラクターがすでにいる
-            if(t.IsOnCharacter) {
-                rectTransform.position = oldPosition;
-                return;
-            }
-            // 移動
-            rectTransform.position = CSTransform.CopyVector3(t.GetComponent<RectTransform>().position);
-            oldPosition = CSTransform.CopyVector3(rectTransform.position);
-            vect2D = t.Vect;
-            tile = t;
-            if(OnChangeTile != null) {
-                OnChangeTile();
-            }
+            tryMove(t);
         }
 
         public void MoveOnTile()
         {
             var t = ETileManager.Instance.Tiles.Where(v => v.Vect.IsEqual(vect2D)).FirstOrDefault();
-            moveOnTile(t);
-            transform.SetParent(t.transform);
-            transform.localPosition = Vector2.zero;
+            tryMove(t);
+        }
+        // タイルの上に移動
+        private void tryMove(ETile newTile)
+        {
+            //タイル外か他にいる
+            var canMove = newTile != null && !newTile.IsOnCharacter;
+            var toTile = canMove ? newTile : nowTile;
+            // 移動
+            move(toTile);
+            if(OnChangeTile != null) {
+                OnChangeTile();
+            }
+        }
+
+        private void move(ETile t)
+        {
+            transform.SetParent(t.transform, worldPositionStays: false);
+            rectTransform.localPosition = Vector2.zero;
+            oldPosition = CSTransform.CopyVector3(rectTransform.position);
+            vect2D = t.Vect;
+            nowTile = t;
         }
     }
 }

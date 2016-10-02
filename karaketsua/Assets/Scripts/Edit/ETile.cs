@@ -12,7 +12,7 @@ namespace EditScene
         [SerializeField]
         private Image tileImage;
         [SerializeField]
-        private Sprite attackSprite;    // 赤色タイル
+        private Sprite enemySprite;    // 赤色タイル
 
 
         public IntVect2D Vect { get; private set; }
@@ -20,14 +20,13 @@ namespace EditScene
         public bool IsOnCharacter { get; set; }
 
         // 初期化
-        public void Initialize(IntVect2D v, bool _isAttachable)
+        public void Initialize(IntVect2D v, bool isAttachable)
         {
             Vect = v;
-            IsAttachable = _isAttachable;
-            if(!IsAttachable) {
-                return;
+            IsAttachable = isAttachable;
+            if(!isAttachable) {
+                tileImage.sprite = enemySprite;
             }
-            tileImage.sprite = attackSprite;
         }
 
         // 指定点を含むか
