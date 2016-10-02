@@ -6,11 +6,6 @@ public class SceneManager : DontDestroySingleton<SceneManager>
 {
     private Scene currentScene = Scene.None;
 
-    void Awake()
-    {
-        var sound = SoundManager.Instance;
-    }
-
     // 起動時現在のシーンを取得
     protected override void create()
     {

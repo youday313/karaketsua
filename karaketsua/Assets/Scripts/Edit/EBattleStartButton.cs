@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,7 +11,12 @@ namespace EditScene
         [SerializeField]
         private Button button;
 
-        public void Initialize(List<ECharacterIcon> icons)
+        /// <summary>
+        /// 初期化
+        /// </summary>
+        /// <param name="icons">プレイヤーのアイコン</param>
+        /// <param name="callback">ボタンタップ時コールバック</param>
+        public void Initialize(List<ECharacterIcon> icons, Action callback)
         {
             //ボタン有効無効
             foreach(var icon in icons) {
@@ -20,13 +26,7 @@ namespace EditScene
             }
 
             // 保存
-            button.onClick.AddListener(() => {
-                PlayerGameData.Instance.ResetPositionList();
-                foreach(var icon in icons) {
-                    icon.Decide();
-                }
-                SceneManager.Instance.LoadNextScene(Scene.Battle);
-            });
+            button.onClick.AddListener(() => callback());
         }
     }
 }

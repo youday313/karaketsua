@@ -22,13 +22,24 @@ namespace EditScene
             // タイル作成
             ETileManager.Instance.Initialize();
             // キャラクターデータ読み込み
-            loadPlayerCharacters();
+            var icons = new List<ECharacterIcon>();
+            var players = loadPlayerCharacters();
+                icons.AddRange(players);
             // エネミーデータ読み込み
-            loadEnemyCharacters();
+            var enemys = loadEnemyCharacters();
+            icons.AddRange(enemys);
+
+            decideButton.Initialize(players, () => {
+                PlayerGameData.Instance.ResetPositionList();
+                foreach(var icon in icons) {
+                    icon.Decide();
+                }
+                SceneManager.Instance.LoadNextScene(Scene.Battle);
+            });
         }
 
         // プレイヤーキャラ生成
-        private void loadPlayerCharacters()
+        private List<ECharacterIcon> loadPlayerCharacters()
         {
             // 味方取得
             var allPlayers = MasterDataLoader.Instance.LoadPlayerCharacters();
@@ -41,27 +52,28 @@ namespace EditScene
                 icons.Add(icon);
                 icon.transform.SetParent(iconParent, worldPositionStays: false);
                 icon.Initialize(chara, playerPositions[chara.id], isPlayer:true);
-                playerPositions[chara.id].Log();
                 icon.MoveOnTile();
             }
-            decideButton.Initialize(icons);
+            return icons;
         }
 
         // 敵キャラ生成
-        private void loadEnemyCharacters()
+        private List<ECharacterIcon> loadEnemyCharacters()
         {
             // 敵取得
             var allEnemys = MasterDataLoader.Instance.LoadEnemyCharacters();
             var selectEnemyIds = PlayerGameData.Instance.SelectEnemyCharacterIds;
             var enemyPositions = PlayerGameData.Instance.BattleEnemyPosition;
             // 敵生成
+            var icons = new List<ECharacterIcon>();
             foreach(var chara in allEnemys.Where(x => selectEnemyIds.Contains(x.id))) {
                 var icon = Instantiate(characterIconNode) as ECharacterIcon;
+                icons.Add(icon);
                 icon.transform.SetParent(iconParent, worldPositionStays: false);
                 icon.Initialize(chara, enemyPositions[chara.id], isPlayer:false);
-                enemyPositions[chara.id].Log();
                 icon.MoveOnTile();
             }
+            return icons;
         }
     }
 }
