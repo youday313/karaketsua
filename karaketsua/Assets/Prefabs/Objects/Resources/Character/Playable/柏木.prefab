@@ -1462,6 +1462,8 @@ MonoBehaviour:
   positionArray:
     x: 0
     y: 0
+  animator: {fileID: 11408522}
+  life: {fileID: 11404970}
   mover: {fileID: 11446480}
   attacker: {fileID: 11493470}
 --- !u!114 &11446480

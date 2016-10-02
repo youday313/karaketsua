@@ -21,7 +21,7 @@ namespace BattleScene
                 var prefabName = "Character/Playable/" + chara.charaName;
                 var resources = Resources.Load<BCharacterPlayer>(prefabName);
                 var cha = Instantiate(resources) as BCharacterPlayer;
-                cha.Initialize(playerPositions[chara.id]);
+                cha.Initialize(chara, playerPositions[chara.id]);
                 cha.transform.SetParent(transform);
                 characters.Add(cha);
             }
@@ -35,7 +35,7 @@ namespace BattleScene
                 var prefabName = "Character/Enemy/" + chara.charaName;
                 var resources = Resources.Load<BCharacterEnemy>(prefabName);
                 var cha = Instantiate(resources) as BCharacterEnemy;
-                cha.Initialize(enemyPositions[chara.id]);
+                cha.Initialize(chara, enemyPositions[chara.id]);
                 cha.transform.SetParent(transform);
                 characters.Add(cha);
             }

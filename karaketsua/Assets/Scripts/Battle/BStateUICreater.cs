@@ -3,14 +3,10 @@ using System.Collections;
 
 namespace BattleScene
 {
-
     public class BStateUICreater: SingletonMonoBehaviour<BStateUICreater>
     {
-
-
         [SerializeField]
         private BCharacterStateUI stateUiPrefab;
-
         [SerializeField]
         private Transform playerParent;
         [SerializeField]
@@ -18,19 +14,18 @@ namespace BattleScene
 
 
         // アクティブタイムの生成
-        public  BCharacterStateUI Initialize(BCharacterBase character)
+        public BCharacterStateUI Create(BCharacterBase character)
         {
             var stateUi = Instantiate(stateUiPrefab) as BCharacterStateUI;
             if(character.isEnemy) {
-                stateUi.transform.SetParent(enemyParent);
+                stateUi.transform.SetParent(enemyParent, worldPositionStays: false);
             }
             else {
-                stateUi.transform.SetParent(playerParent);
+                stateUi.transform.SetParent(playerParent, worldPositionStays: false);
             }
             stateUi.gameObject.SetActive(true);
             stateUi.Initialize(character);
             return stateUi;
         }
-
     }
 }

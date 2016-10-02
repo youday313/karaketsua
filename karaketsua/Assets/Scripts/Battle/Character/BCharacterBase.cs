@@ -45,12 +45,13 @@ namespace BattleScene
         { return false; }
 
         //アニメーター
+        [SerializeField]
         protected BCharacterAnimator animator;
 
         //ライフ
-        public BCharacterLife Life {
-            get; private set;
-        }
+        [SerializeField]
+        private BCharacterLife life;
+        public BCharacterLife Life { get { return life; } }
 
         //画面UIへの参照
         public BCharacterStateUI StateUI {
@@ -67,16 +68,14 @@ namespace BattleScene
         private GameObject targetCircle;
 
         // 共通初期化
-        public virtual void Initialize(IntVect2D array)
+        public virtual void Initialize(CharacterMasterParameter param, IntVect2D array)
         {
-            Life = GetComponent<BCharacterLife>();
-            animator = GetComponent<BCharacterAnimator>();
+            characterParameter = param;
             //選択マーカー作成
             activeCircle = createCircle("ActiveCircle");
             targetCircle = createCircle("TargetCircle");
 
-            positionArray.x = array.x;
-            positionArray.y = array.y;
+            positionArray = IntVect2D.Clone(array);
             //ライフ設定
             Life.Init(characterParameter);
             OnEndActiveStaticE += BCharacterManager.Instance.ResetActiveCharacter;
@@ -88,7 +87,7 @@ namespace BattleScene
             setPositionOnTile();
 
             //UI作成
-            StateUI = BStateUICreater.Instance.Initialize(this);
+            StateUI = BStateUICreater.Instance.Create(this);
         }
 
 

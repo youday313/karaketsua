@@ -1033,8 +1033,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6931647c0ed2d41409c8d1ce66681f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  character: {fileID: 0}
+  animator: {fileID: 11499866}
+  character: {fileID: 11498958}
 --- !u!114 &11482094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1101,6 +1101,8 @@ MonoBehaviour:
   positionArray:
     x: 0
     y: 0
+  animator: {fileID: 11499866}
+  life: {fileID: 11475564}
   nowState: 0
   mover: {fileID: 11414878}
   attacker: {fileID: 11482094}

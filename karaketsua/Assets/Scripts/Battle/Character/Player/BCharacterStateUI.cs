@@ -20,18 +20,18 @@ namespace BattleScene
         [SerializeField]
         private float displayEnableTime = 1f;
 
-        public void Initialize(BCharacterBase _character)
+        public void Initialize(BCharacterBase character)
         {
-            var character = _character;
+            // イベント登録
             character.OnDeathE += Delete;
             character.OnStatusUpdateE += UpdateUI;
 
-            faceImage.sprite = Resources.Load<Sprite>("StatusUIIcon/" + _character.characterParameter.charaName);
-            hpbar.maxValue = _character.characterParameter.hp;
-            skillBar.maxValue = _character.characterParameter.skillPoint;
+            faceImage.sprite = Resources.Load<Sprite>("Character/StatusUIIcon/Status" + character.characterParameter.charaName);
+            hpbar.maxValue = character.characterParameter.hp;
+            skillBar.maxValue = character.characterParameter.skillPoint;
             UpdateUI(character);
-
         }
+
         public void Delete(BCharacterBase chara)
         {
             Destroy(this.gameObject);
@@ -43,6 +43,7 @@ namespace BattleScene
             hpbar.value = character.characterParameter.hp;
             skillBar.value = character.characterParameter.skillPoint;
         }
+
         public void Update()
         {
             if(holdTime != 0) {
@@ -70,7 +71,5 @@ namespace BattleScene
         {
             holdTime = 0;
         }
-
-
     }
 }

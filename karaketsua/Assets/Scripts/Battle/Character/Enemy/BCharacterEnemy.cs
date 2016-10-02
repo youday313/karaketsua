@@ -24,10 +24,10 @@ namespace BattleScene
 
         public event Action<BCharacterEnemy> OnActiveEnemyE;
 
-        public override void Initialize(IntVect2D array)
+        public override void Initialize(CharacterMasterParameter param, IntVect2D array)
         {
             isEnemy = true;
-            base.Initialize(array);
+            base.Initialize(param, array);
 
             //回転
             transform.rotation = Quaternion.Euler(0, 180, 0);

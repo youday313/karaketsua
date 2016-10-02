@@ -8,14 +8,10 @@ using System;
 
 namespace BattleScene
 {
-
-
     [RequireComponent(typeof(BCharacterMoverManagerPlayer))]
     [RequireComponent(typeof(BCharacterAttackerManagerPlayer))]
-
     public class BCharacterPlayer : BCharacterBase
     {
-
         //移動
         [SerializeField]
         private BCharacterMoverManagerPlayer mover;
@@ -27,11 +23,10 @@ namespace BattleScene
         public static event Action<BCharacterPlayer> OnActivePlayerStaticE;
 
 
-
-        public override void Initialize(IntVect2D array)
+        public override void Initialize(CharacterMasterParameter param, IntVect2D array)
         {
             isEnemy = false;
-            base.Initialize(array);
+            base.Initialize(param , array);
             OnActivePlayerE += BCharacterManager.Instance.SetActivePlayer;
         }
 
