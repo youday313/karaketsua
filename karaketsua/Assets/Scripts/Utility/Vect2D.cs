@@ -87,8 +87,6 @@ public class IntVect2D
     {
         return Vector2.Distance(new Vector2(v1.x, v1.y), new Vector2(v2.x, v2.y));
     }
-
-
 }
 
 //IntVect2D
@@ -97,8 +95,8 @@ public static class IntVect2DExtend
     // デバッグ表示
     public static void Log(this IntVect2D vect)
     {
-        Debug.Log("x:" + vect.x);
-        Debug.Log("y:" + vect.y);
+        var text = "x:" + vect.x + "  " + "y:" + vect.y; 
+        Debug.Log(text);
     }
 
     //シャッフル
