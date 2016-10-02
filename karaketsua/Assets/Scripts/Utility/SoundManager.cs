@@ -58,9 +58,8 @@ public class SoundManager : DontDestroySingleton<SoundManager>
     public bool is2DSound = false;
 
 
-    void Awake()
+    protected override void create()
     {
-
         // 全てのAudioSourceコンポーネントを追加する
 
         // BGM AudioSource

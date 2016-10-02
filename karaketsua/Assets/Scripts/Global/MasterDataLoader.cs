@@ -18,7 +18,7 @@ public class MasterDataLoader: DontDestroySingleton<MasterDataLoader>
     private List<CharacterMasterParameter> playerCharacterCache;
     private List<CharacterMasterParameter> enemyCharacterCache;
 
-    void Awake()
+    protected override void create()
     {
         localFilePath = Application.persistentDataPath + "/download/";
 

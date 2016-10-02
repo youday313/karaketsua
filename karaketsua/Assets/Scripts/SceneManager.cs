@@ -6,8 +6,13 @@ public class SceneManager : DontDestroySingleton<SceneManager>
 {
     private Scene currentScene = Scene.None;
 
+    void Awake()
+    {
+        var sound = SoundManager.Instance;
+    }
+
     // 起動時現在のシーンを取得
-    public void Awake()
+    protected override void create()
     {
         currentScene = (Scene)Enum.Parse(typeof(Scene), UnitySceneManager.GetActiveScene().name);
     }

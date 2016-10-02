@@ -47,18 +47,22 @@ public class DontDestroySingleton<T>: MonoBehaviour where T : MonoBehaviour
         get {
             if(instance == null) {
                 instance = (T)FindObjectOfType(typeof(T));
-
                 if(instance == null) {
                     //Debug.LogError( "Instance [ " + typeof(T) + " ] is none " );
                     //GameObject go = new GameObject(typeof(T).Name);
                     GameObject go = new GameObject();
                     instance = go.AddComponent<T>();
                     go.name = instance.GetType().ToString();
-                    DontDestroyOnLoad(go);
                 }
+                instance.GetComponent<DontDestroySingleton<T>>().create();
+                DontDestroyOnLoad(instance.gameObject);
             }
             return instance;
         }
+    }
+    // 継承先でのコンストラクタ
+    protected virtual void create()
+    {
     }
 }
 
