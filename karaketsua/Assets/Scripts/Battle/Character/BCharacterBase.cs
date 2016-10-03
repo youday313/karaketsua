@@ -8,8 +8,6 @@ using BattleScene;
 
 namespace BattleScene
 {
-
-
     //敵、味方キャラクターの基本クラス
     [RequireComponent(typeof(BCharacterAnimator))]
     [RequireComponent(typeof(BCharacterLife))]
@@ -53,11 +51,6 @@ namespace BattleScene
         private BCharacterLife life;
         public BCharacterLife Life { get { return life; } }
 
-        //画面UIへの参照
-        public BCharacterStateUI StateUI {
-            get; private set;
-        }
-
         //詳細UIへの参照
         private CharacterDetailStateUI detailUI = null;
 
@@ -77,7 +70,7 @@ namespace BattleScene
 
             positionArray = IntVect2D.Clone(array);
             //ライフ設定
-            Life.Init(characterParameter);
+            Life.Initialize(characterParameter);
             OnEndActiveStaticE += BCharacterManager.Instance.ResetActiveCharacter;
 
             //アクティブタイム作成
@@ -87,7 +80,7 @@ namespace BattleScene
             setPositionOnTile();
 
             //UI作成
-            StateUI = BStateUICreater.Instance.Create(this);
+            BStateUICreater.Instance.Create(this);
         }
 
 

@@ -37,9 +37,8 @@ namespace BattleScene
             Destroy(this.gameObject);
         }
 
-        public void UpdateUI(BCharacterBase chara)
+        public void UpdateUI(BCharacterBase character)
         {
-            var character = chara;
             hpbar.value = character.characterParameter.hp;
             skillBar.value = character.characterParameter.skillPoint;
         }

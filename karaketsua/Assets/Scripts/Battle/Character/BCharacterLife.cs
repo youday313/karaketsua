@@ -14,7 +14,7 @@ namespace BattleScene
         [SerializeField]
         private BCharacterBase character;
 
-        public void Init(CharacterMasterParameter param)
+        public void Initialize(CharacterMasterParameter param)
         {
             characterParameter = param;
         }
@@ -22,7 +22,6 @@ namespace BattleScene
         //攻撃力と他のステータスを受け取り、防御力を適用しダメージ算出
         public void Damage(int attackPower, float magnification)
         {
-
             var damage = calcDamage(attackPower, magnification);
             characterParameter.hp -= damage;
             createDamageText(damage);
@@ -43,6 +42,7 @@ namespace BattleScene
         {
             //ダメージ表示
             var popupPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
+
             var damageText = Instantiate(Resources.Load<Text>("DamageText"), Camera.main.WorldToScreenPoint(popupPosition), Quaternion.identity) as Text;
             damageText.text = damage.ToString();
             damageText.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
