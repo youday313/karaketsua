@@ -43,9 +43,20 @@ namespace BattleScene
         {
             ActiveCharacter = null;
             ActivePlayer = null;
+            // 全員表示
+            foreach(var chara in characters) {
+                chara.SetActive(true);
+            }
         }
 
-
+        // バトルに関係するキャラクター以外をOff
+        public void HideCharacter(List<BCharacterBase> shows)
+        {
+            var hideCharacters = characters.Except(shows);
+            foreach(var chara in hideCharacters) {
+                chara.SetActive(false);
+            }
+        }
 
 
         #region::Utility
@@ -66,7 +77,7 @@ namespace BattleScene
         public BCharacterBase GetCharacterFromVect2D(IntVect2D toPos)
         {
             return characters.
-            Where(t => IntVect2D.IsEqual(toPos, t.positionArray)).
+            Where(t => IntVect2D.IsEqual(toPos, t.PositionArray)).
             FirstOrDefault();
         }
 
@@ -107,19 +118,19 @@ namespace BattleScene
         {
             var chara = GetCharacterOnTile(toPos);
             if(chara == null) return null;
-            if(chara.isEnemy != isEnemy) return chara;
+            if(chara.IsEnemy != isEnemy) return chara;
             return null;
         }
         public BCharacterBase GetOpponentCharacterOnTileFromTouch(Vector2 touchPosition, bool isEnemy)
         {
             var chara = GetCharacterOnTile(touchPosition);
             if(chara == null) return null;
-            if(chara.isEnemy != isEnemy) return chara;
+            if(chara.IsEnemy != isEnemy) return chara;
             return null;
         }
         public List<BCharacterBase> GetOpponentCharacters(bool isEnemy)
         {
-            return characters.Where(x => x.isEnemy != isEnemy).ToList();
+            return characters.Where(x => x.IsEnemy != isEnemy).ToList();
         }
 
         #endregion::Utillity

@@ -60,13 +60,13 @@ namespace BattleScene
         private bool setTarget()
         {
             //攻撃可能位置の設定
-            var attackablePosition = selectAttackParameter.attackRanges.Select(x => IntVect2D.Add(x,character.positionArray)).ToList();
+            var attackablePosition = selectAttackParameter.attackRanges.Select(x => IntVect2D.Add(x,character.PositionArray)).ToList();
             if(attackablePosition == null) return false;
             //デバッグ出力
             //攻撃可能位置にいるキャラクター
             var opponentCharacters = new List<BCharacterBase>();
             foreach(var pos in attackablePosition) {
-                var chara = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(pos,character.isEnemy);
+                var chara = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(pos,character.IsEnemy);
                 if(chara != null) {
                     opponentCharacters.Add(chara);
                 }
@@ -74,7 +74,7 @@ namespace BattleScene
             if(opponentCharacters.Count == 0) return false;
 
             //一番近い位置がターゲット
-            attackTargetList.Add(opponentCharacters.OrderBy(c => IntVect2D.Distance(c.positionArray,character.positionArray)).First());
+            TargetList.Add(opponentCharacters.OrderBy(c => IntVect2D.Distance(c.PositionArray,character.PositionArray)).First());
             return true;
 
         }
@@ -88,7 +88,8 @@ namespace BattleScene
             UIBottomAllManager.Instance.UpdateUI();
             //カメラ移動
             BCameraManager.Instance.ActiveLeanMode();
-            BCameraMove.Instance.MoveToAutoAttack(this,attackTargetList[0].transform.position);
+            BCameraMove.Instance.MoveToAutoAttack(this,TargetList[0].transform.position);
+            HideOtherCharacters();
 
             yield return new WaitForSeconds(cameraInterval);
 
@@ -99,13 +100,13 @@ namespace BattleScene
             IsNowAction = true;
 
             //ダメージ
-            foreach(var target in attackTargetList) {
+            foreach(var target in TargetList) {
                 var damageMagnification = calcDamageMagnification();
                 var characterPower = character.characterParameter.power;
                 target.Life.Damage(characterPower,damageMagnification);
             }
             //死亡
-            foreach(var target in attackTargetList) {
+            foreach(var target in TargetList) {
                 target.Life.CheckDestroy();
             }
 
