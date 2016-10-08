@@ -174,14 +174,18 @@ namespace BattleScene
             HideOtherCharacters();
 
             // 向く方向を変える
-            // プレイヤー側
+            // 攻撃側
             if(TargetList.Count == 1) {
                 var targetPos = TargetList[0].transform.position;
                 targetPos.y = transform.position.y;
                 transform.LookAt(targetPos);
             }
-
-
+            // ターゲット側
+            foreach(var target in TargetList) {
+                var attackerPos = transform.position;
+                attackerPos.y = target.transform.position.y;
+                target.transform.LookAt(attackerPos);
+            }
 
             yield return new WaitForSeconds(changeTimeSingleMode);
 
