@@ -12,7 +12,6 @@ namespace BattleScene
     //タップによる単体攻撃
     public class BCharacterAttackerSingle : BCharacterAttackerBase
     {
-        [SerializeField]
         private GameObject attackMakerPrefab;
 
         //一度のタップのパラメータ
@@ -53,6 +52,8 @@ namespace BattleScene
         {
             base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
+            // NOTE:キャラごとに変えるならキャラマスタからプレハブ名を指定させる
+            attackMakerPrefab = Resources.Load("AttackMaker") as GameObject;
         }
         public override void Enable()
         {

@@ -12,9 +12,13 @@ public class PlayerGameData : DontDestroySingleton<PlayerGameData> {
 
     public List<int> SelectPlayerChatacterIds = new List<int>();
     public Dictionary<int, IntVect2D> BattlePlayerPosition;
+    [SerializeField]
+    private List<IntVect2D> editorPlayerPositions = new List<IntVect2D>();
 
     public List<int> SelectEnemyCharacterIds = new List<int>();
     public Dictionary<int, IntVect2D> BattleEnemyPosition;
+    [SerializeField]
+    private List<IntVect2D> editorEnemyPositions = new List<IntVect2D>();
 
     protected override void create()
     {
@@ -22,8 +26,12 @@ public class PlayerGameData : DontDestroySingleton<PlayerGameData> {
             Debug.Log("FormEditor");
             BattlePlayerPosition = new Dictionary<int, IntVect2D>();
             BattleEnemyPosition = new Dictionary<int, IntVect2D>();
-            BattlePlayerPosition.Add(1, new IntVect2D(0, -2));
-            BattleEnemyPosition.Add(1, new IntVect2D(0, 2));
+            for(var i = 0; i < SelectPlayerChatacterIds.Count; i++) {
+                BattlePlayerPosition.Add(SelectPlayerChatacterIds[i], editorPlayerPositions[i]);
+            }
+            for(var i = 0; i < SelectEnemyCharacterIds.Count; i++) {
+                BattleEnemyPosition.Add(SelectEnemyCharacterIds[i], editorEnemyPositions[i]);
+            }
         }
     }
 
