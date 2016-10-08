@@ -12,7 +12,7 @@ public class SceneManager : DontDestroySingleton<SceneManager>
         currentScene = (Scene)Enum.Parse(typeof(Scene), UnitySceneManager.GetActiveScene().name);
     }
 
-    public void LoadNextScene(Scene nextScene)
+    public void LoadScene(Scene nextScene)
     {
         //FadeManager.Instance.LoadLevel(nextScene, 0.5f);
         UnitySceneManager.LoadScene(nextScene.ToString(), UnityEngine.SceneManagement.LoadSceneMode.Single);
