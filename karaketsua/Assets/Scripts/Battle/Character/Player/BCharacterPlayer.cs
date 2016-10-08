@@ -112,6 +112,7 @@ namespace BattleScene
             attacker.IsEnable = true;
             attacker.SelectMoveAttack();
         }
+
         public void ExecuteAttack()
         {
             attacker.ExecuteAttack();

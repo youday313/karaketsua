@@ -173,6 +173,16 @@ namespace BattleScene
             BCameraMove.Instance.MoveToTapAttack(this, TargetList[0].transform.position, changeTimeSingleMode);
             HideOtherCharacters();
 
+            // 向く方向を変える
+            // プレイヤー側
+            if(TargetList.Count == 1) {
+                var targetPos = TargetList[0].transform.position;
+                targetPos.y = transform.position.y;
+                transform.LookAt(targetPos);
+            }
+
+
+
             yield return new WaitForSeconds(changeTimeSingleMode);
 
             //攻撃アニメーション
