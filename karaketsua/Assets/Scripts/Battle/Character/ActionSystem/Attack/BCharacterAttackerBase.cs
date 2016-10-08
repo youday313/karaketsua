@@ -93,6 +93,24 @@ namespace BattleScene
             // showCharacters以外は非表示
             BCharacterManager.Instance.HideCharacter(showCharacters);
         }
+
+        // キャラ同士を向かい合わせる
+        protected void FaceCharacter()
+        {
+            // 向く方向を変える
+            // 攻撃側
+            if(TargetList.Count == 1) {
+                var targetPos = TargetList[0].transform.position;
+                targetPos.y = transform.position.y;
+                transform.LookAt(targetPos);
+            }
+            // ターゲット側
+            foreach(var target in TargetList) {
+                var attackerPos = transform.position;
+                attackerPos.y = target.transform.position.y;
+                target.transform.LookAt(attackerPos);
+            }
+        }
         
 
 
