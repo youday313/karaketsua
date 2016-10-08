@@ -90,7 +90,7 @@ namespace BattleScene
             BCameraManager.Instance.ActiveLeanMode();
             BCameraMove.Instance.MoveToAutoAttack(this,TargetList[0].transform.position);
             HideOtherCharacters();
-
+            FaceCharacter();
             yield return new WaitForSeconds(cameraInterval);
 
             //攻撃アニメーション
