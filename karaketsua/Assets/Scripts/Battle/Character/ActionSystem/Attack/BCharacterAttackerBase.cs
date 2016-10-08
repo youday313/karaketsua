@@ -14,9 +14,10 @@ namespace BattleScene
         protected BCharacterAnimator animator;
 
         public event Action OnComplete;
+
         //ターゲット
         [System.NonSerialized]
-        public List<BCharacterBase> attackTargetList = new List<BCharacterBase>();
+        public List<BCharacterBase> TargetList = new List<BCharacterBase>();
 
         public bool IsNowAction { get; set;}
 
@@ -25,7 +26,7 @@ namespace BattleScene
         //protected bool isSetTarget = false;
         public bool IsSetTarget
         {
-            get { return attackTargetList.Count() != 0; }
+            get { return TargetList.Count() != 0; }
         }
 
         public bool IsDone { get; set;}
@@ -66,7 +67,7 @@ namespace BattleScene
         }
         public virtual void Disable()
         {
-            attackTargetList = new List<BCharacterBase>();
+            TargetList = new List<BCharacterBase>();
         }
 
 
@@ -78,7 +79,19 @@ namespace BattleScene
         }
         public virtual void OnCompleteAction()
         {
-            if (OnComplete != null) OnComplete();
+            if(OnComplete != null) {
+                OnComplete();
+            }
+        }
+
+        protected void HideOtherCharacters()
+        {
+            // 関係のないキャラクター非表示
+            var showCharacters = new List<BCharacterBase>();
+            showCharacters.Add(character);
+            showCharacters.AddRange(TargetList);
+            // showCharacters以外は非表示
+            BCharacterManager.Instance.HideCharacter(showCharacters);
         }
         
 

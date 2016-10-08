@@ -21,7 +21,7 @@ namespace BattleScene
             newActiveTime.transform.SetParent(transform, false);
             newActiveTime.gameObject.SetActive(true);
             newActiveTime.initialize(character);
-            if(character.isEnemy) {
+            if(character.IsEnemy) {
                 setEnemyPosition(newActiveTime);
             }
             return newActiveTime;

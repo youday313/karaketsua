@@ -83,8 +83,8 @@ namespace BattleScene
 
             //新しいタイルポジション
             var newPosition = new IntVect2D(
-                Mathf.Clamp(character.positionArray.x + toVect2D.x, -BBattleStage.stageSizeX, BBattleStage.stageSizeX),
-                Mathf.Clamp(character.positionArray.y + toVect2D.y, -BBattleStage.stageSizeY, BBattleStage.stageSizeY));
+                Mathf.Clamp(character.PositionArray.x + toVect2D.x, -BBattleStage.stageSizeX, BBattleStage.stageSizeX),
+                Mathf.Clamp(character.PositionArray.y + toVect2D.y, -BBattleStage.stageSizeY, BBattleStage.stageSizeY));
 
             //移動先が空いている
             if (BCharacterManager.Instance.IsExistCharacterOnTile(newPosition) == true) return;
@@ -98,13 +98,13 @@ namespace BattleScene
         protected void UpdatePosition(IntVect2D newPosition)
         {
             //移動方向
-            var direction = IntVect2D.GetDirection(character.positionArray, newPosition);
+            var direction = IntVect2D.GetDirection(character.PositionArray, newPosition);
             //移動先のタイル位置
             var toTilePostion = BBattleStage.Instance.GetTileXAndZPosition(newPosition);
             var table = GetMoveTable(toTilePostion);
 
             //現在のタイルの実座標
-            var oldTilePosition = BBattleStage.Instance.GetTileXAndZPosition(character.positionArray);
+            var oldTilePosition = BBattleStage.Instance.GetTileXAndZPosition(character.PositionArray);
             //カメラをアップデート
             BCameraMove.Instance.FollowCharacter(toTilePostion - oldTilePosition, animator.moveTime);
 
@@ -115,7 +115,7 @@ namespace BattleScene
             isNowAction = true;
 
             //配列値変更
-            character.positionArray = newPosition;
+            character.PositionArray = newPosition;
 
             StartRotateAnimation(direction);
             StartAnimation();
@@ -142,7 +142,7 @@ namespace BattleScene
         {
             float angleX = vect.x * 90;
             float angleY = Mathf.Sign(vect.y) > 0 ? 0 : 180;
-            float isEnemyAngle = character.isEnemy == false ? 1 : -1;
+            float isEnemyAngle = character.IsEnemy == false ? 1 : -1;
             transform.eulerAngles = new Vector3(0, angleX + isEnemyAngle * angleY, 0);
         }
 
@@ -168,7 +168,7 @@ namespace BattleScene
         }
         void ResetRoatateAnimation()
         {
-            var isEnemyAngle = character.isEnemy == true ? 180 : 0;
+            var isEnemyAngle = character.IsEnemy == true ? 180 : 0;
             transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
         }
 

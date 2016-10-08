@@ -17,7 +17,7 @@ namespace BattleScene
         public BCharacterStateUI Create(BCharacterBase character)
         {
             var stateUi = Instantiate(stateUiPrefab) as BCharacterStateUI;
-            if(character.isEnemy) {
+            if(character.IsEnemy) {
                 stateUi.transform.SetParent(enemyParent, worldPositionStays: false);
             }
             else {

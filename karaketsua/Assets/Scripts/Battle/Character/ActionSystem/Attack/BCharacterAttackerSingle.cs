@@ -32,7 +32,7 @@ namespace BattleScene
 
         public bool IsAttackable
         {
-            get { return attackTargetList.Count != 0; }
+            get { return TargetList.Count != 0; }
         }
 
 
@@ -73,7 +73,7 @@ namespace BattleScene
             isTapDetect = false;
             selectWazaNumber = 0;
             //タイル変更
-            foreach (var tar in attackTargetList) tar.SetTargeted(false);
+            foreach (var tar in TargetList) tar.SetTargeted(false);
             base.Disable();
         }
 
@@ -92,21 +92,21 @@ namespace BattleScene
         public void SetTarget(Vector2 touchPosition)
         {
             //ターゲットの検索
-            var target = BCharacterManager.Instance.GetOpponentCharacterOnTileFromTouch(touchPosition, character.isEnemy);
+            var target = BCharacterManager.Instance.GetOpponentCharacterOnTileFromTouch(touchPosition, character.IsEnemy);
             //ターゲットが存在しないマスをタップ
             if (target == null) return;
             //攻撃範囲内
             //if (Mathf.Abs(target.positionArray.x - character.positionArray.x) + Mathf.Abs(target.positionArray.y - character.positionArray.y) > character.characterParameter.attackRange) return;
-            if (IsInAttackRange(target.positionArray) == false) return;
+            if (IsInAttackRange(target.PositionArray) == false) return;
             //複数攻撃
             if (selectAttackParameter.isMultiAttack == true)
             {
                 //未選択からの選択
-                if (attackTargetList.Contains(target) == false)
+                if (TargetList.Contains(target) == false)
                 {
                     //タイル変更
                     target.SetTargeted(true);
-                    attackTargetList.Add(target);
+                    TargetList.Add(target);
 
                 }
                 //選択からの解除
@@ -114,7 +114,7 @@ namespace BattleScene
                 {
                     //タイル変更
                     target.SetTargeted(false);
-                    attackTargetList.Remove(target);
+                    TargetList.Remove(target);
 
                     return;
                 }
@@ -123,17 +123,17 @@ namespace BattleScene
             else
             {
                 //他のキャラが既に選択されていた場合は除く
-                if (attackTargetList.Count != 0)
+                if (TargetList.Count != 0)
                 {
                     //タイル変更
-                    foreach (var tar in attackTargetList) tar.SetTargeted(false);
+                    foreach (var tar in TargetList) tar.SetTargeted(false);
                     //除く
-                    attackTargetList = new List<BCharacterBase>();
+                    TargetList = new List<BCharacterBase>();
                 }
                 else
                 {
                     //再設定
-                    attackTargetList.Add(target);
+                    TargetList.Add(target);
                     target.SetTargeted(true);
                 }
             }
@@ -146,7 +146,7 @@ namespace BattleScene
 
         bool IsInAttackRange(IntVect2D targetPositionArray)
         {
-            return selectAttackParameter.attackRanges.Any(x => x.IsEqual(IntVect2D.Sub(targetPositionArray, character.positionArray)));
+            return selectAttackParameter.attackRanges.Any(x => x.IsEqual(IntVect2D.Sub(targetPositionArray, character.PositionArray)));
         }
 
         #endregion::ターゲット選択
@@ -157,24 +157,28 @@ namespace BattleScene
         //UIボタンから押す
         public void ExecuteAttack()
         {
-            StartCoroutine("AttackWithTap");
+            StartCoroutine(AttackWithTap());
             IT_Gesture.onShortTapE -= OnShortTap;
         }
 
         IEnumerator AttackWithTap()
         {
-            if (attackTargetList.Count == 0) yield return null;
+            if(TargetList.Count == 0) {
+                yield return null;
+            }
 
             IsNowAction = true;
             //カメラ切り替え
             BCameraManager.Instance.ActiveLeanMode();
-            BCameraMove.Instance.MoveToTapAttack(this, attackTargetList[0].transform.position, changeTimeSingleMode);
+            BCameraMove.Instance.MoveToTapAttack(this, TargetList[0].transform.position, changeTimeSingleMode);
+            HideOtherCharacters();
+
             yield return new WaitForSeconds(changeTimeSingleMode);
 
             //攻撃アニメーション
             animator.SetSingleAttack(selectWazaNumber);
 
-            popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(attackTargetList[0].transform.position.x, attackTargetList[0].transform.position.y + 1f, attackTargetList[0].transform.position.z));
+            popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(TargetList[0].transform.position.x, TargetList[0].transform.position.y + 1f, TargetList[0].transform.position.z));
 
             var attackList = selectAttackParameter.actionParameters;
             List<float> totalTapRatios = new List<float>();
@@ -211,24 +215,24 @@ namespace BattleScene
             }
 
             //攻撃
-            foreach (var target in attackTargetList)
+            foreach (var target in TargetList)
             {
                 var damageMagnification = CalcDamageMagnification(CalcDamageFromTapMagnificationRation(totalTapRatios));
                 var characterPower = character.characterParameter.power;
                 target.Life.Damage(characterPower, damageMagnification);
             }
 
-            foreach (var target in attackTargetList)
+            foreach (var target in TargetList)
             {
                 target.Life.CheckDestroy();
             }
 
-            foreach (var tar in attackTargetList.Where(x => x != null))
+            foreach (var tar in TargetList.Where(x => x != null))
             {
                 tar.SetTargeted(false);
             }
 
-            attackTargetList = new List<BCharacterBase>();
+            TargetList = new List<BCharacterBase>();
 
             IsDone = true;
             Invoke("OnCompleteAnimation", resetInterval);

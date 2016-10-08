@@ -32,11 +32,11 @@ namespace BattleScene
         // ステータス変更
         public event Action<BCharacterBase> OnStatusUpdateE;
 
-        public bool isEnemy = false;
+        public bool IsEnemy = false;
 
         // 座標
         // 現在のキャラクター位置配列
-        public IntVect2D positionArray = new IntVect2D(0, 0);
+        public IntVect2D PositionArray = new IntVect2D(0, 0);
 
         //行動中
         public virtual bool IsNowAction()
@@ -56,7 +56,6 @@ namespace BattleScene
 
         //アクティブサークル
         private GameObject activeCircle;
-
         //ターゲットサークル
         private GameObject targetCircle;
 
@@ -68,7 +67,7 @@ namespace BattleScene
             activeCircle = createCircle("ActiveCircle");
             targetCircle = createCircle("TargetCircle");
 
-            positionArray = IntVect2D.Clone(array);
+            PositionArray = IntVect2D.Clone(array);
             //ライフ設定
             Life.Initialize(characterParameter);
             OnEndActiveStaticE += BCharacterManager.Instance.ResetActiveCharacter;
@@ -111,7 +110,7 @@ namespace BattleScene
         //タイルの上に移動
         private void setPositionOnTile()
         {
-            var tilePosition = BBattleStage.Instance.GetTileXAndZPosition(positionArray);
+            var tilePosition = BBattleStage.Instance.GetTileXAndZPosition(PositionArray);
             CSTransform.SetX(transform, tilePosition.x);
             CSTransform.SetZ(transform, tilePosition.y);
         }
@@ -120,8 +119,9 @@ namespace BattleScene
         //キャラクターを行動選択状態にする
         public virtual void OnActive()
         {
-
-            if(OnActiveE != null) OnActiveE(this);
+            if(OnActiveE != null) {
+                OnActiveE(this);
+            }
             if(OnActiveStaticE != null) {
                 UIBottomCommandParent.UICommandState = EUICommandState.Action;
                 OnActiveStaticE(this);
@@ -132,7 +132,9 @@ namespace BattleScene
 
         public virtual void OnEndActive()
         {
-            if(OnEndActiveE != null) OnEndActiveE(this);
+            if(OnEndActiveE != null) {
+                OnEndActiveE(this);
+            }
             if(OnEndActiveStaticE != null) {
                 UIBottomCommandParent.UICommandState = EUICommandState.Action;
                 OnEndActiveStaticE();
@@ -167,6 +169,11 @@ namespace BattleScene
         public void SetTargeted(bool isTarget)
         {
             targetCircle.SetActive(isTarget);
+        }
+
+        public void SetActive(bool active)
+        {
+            gameObject.SetActive(active);
         }
 
     }

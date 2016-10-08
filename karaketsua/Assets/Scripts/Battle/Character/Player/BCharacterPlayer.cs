@@ -25,7 +25,7 @@ namespace BattleScene
 
         public override void Initialize(CharacterMasterParameter param, IntVect2D array)
         {
-            isEnemy = false;
+            IsEnemy = false;
             base.Initialize(param , array);
             OnActivePlayerE += BCharacterManager.Instance.SetActivePlayer;
         }

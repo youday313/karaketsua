@@ -26,7 +26,7 @@ namespace BattleScene
 
         public override void Initialize(CharacterMasterParameter param, IntVect2D array)
         {
-            isEnemy = true;
+            IsEnemy = true;
             base.Initialize(param, array);
 
             //回転

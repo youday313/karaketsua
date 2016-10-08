@@ -49,9 +49,9 @@ namespace BattleScene
                     }
                 }
             }
-            SetEvent();
+            setEvent();
         }
-        private void SetEvent()
+        private void setEvent()
         {
             BCharacterBase.OnActiveStaticE += OnActiveCharacter;
         }
@@ -74,7 +74,7 @@ namespace BattleScene
             ResetAllTileColor();
             //攻撃範囲取得
             foreach(var range in selectWaza.attackRanges) {
-                var pos = IntVect2D.Clone(chara.positionArray);
+                var pos = IntVect2D.Clone(chara.PositionArray);
                 pos = IntVect2D.Add(pos, range);
                 ChangeColor(pos, TileState.Attack);
             }

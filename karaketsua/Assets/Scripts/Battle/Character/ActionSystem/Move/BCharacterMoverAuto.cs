@@ -43,7 +43,7 @@ namespace BattleScene
             //２秒待つ
             yield return new WaitForSeconds(2f);
             //攻撃範囲に既にターゲット候補がいる
-            if (CheckExistInAttackRange(character.positionArray))
+            if (CheckExistInAttackRange(character.PositionArray))
             {
                 //移動しない
             }
@@ -112,8 +112,8 @@ namespace BattleScene
             {
                 //攻撃位置と敵キャラとの距離比較
                 //最小を設定
-                var dis=BCharacterManager.Instance.GetOpponentCharacters(character.isEnemy)
-                    .Min(x => IntVect2D.Distance(x.positionArray, pos));
+                var dis=BCharacterManager.Instance.GetOpponentCharacters(character.IsEnemy)
+                    .Min(x => IntVect2D.Distance(x.PositionArray, pos));
                 distance = Mathf.Min(distance, dis);
             }
             //一番近い位置がターゲット
@@ -133,7 +133,7 @@ namespace BattleScene
             toVect2D = toVect2D.Shuffle();
             foreach (var toV in toVect2D)
             {
-                if (CheckExistInAttackRange(IntVect2D.Add(character.positionArray,toV)))
+                if (CheckExistInAttackRange(IntVect2D.Add(character.PositionArray,toV)))
                 {
                     RequestMoveFromVect2D(toV);
                 }
@@ -158,7 +158,7 @@ namespace BattleScene
             //各移動後における攻撃範囲と敵キャラとの最小距離取得
             foreach (var toV in toVect2D)
             {
-                vectAndDistance.Add(new VectAndDistance(GetDistanceInAttackRange(IntVect2D.Add(character.positionArray, toV)), toV));
+                vectAndDistance.Add(new VectAndDistance(GetDistanceInAttackRange(IntVect2D.Add(character.PositionArray, toV)), toV));
             }
 
             //距離が小さい順に移動試行

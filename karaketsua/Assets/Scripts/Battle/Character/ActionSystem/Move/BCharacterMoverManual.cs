@@ -31,7 +31,7 @@ namespace BattleScene
             //キャラクター移動選択
             IT_Gesture.onDraggingStartE += OnChargeForMove;
             directionIcon.SetActive(true);
-            BBattleStage.Instance.OnMoverable(this.character.positionArray);
+            BBattleStage.Instance.OnMoverable(this.character.PositionArray);
         }
         
 

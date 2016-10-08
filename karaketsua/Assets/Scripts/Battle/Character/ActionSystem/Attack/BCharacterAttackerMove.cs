@@ -59,15 +59,15 @@ namespace BattleScene
             if(tilePosition == null) return;
 
             //キャラクターの上
-            if(IntVect2D.IsEqual(tilePosition,character.positionArray) == false) return;
+            if(IntVect2D.IsEqual(tilePosition,character.PositionArray) == false) return;
             BBattleStage.Instance.ResetAllTileColor();
 
             nowTraceTiles = new List<IntVect2D>();
             nowTraceTiles.Add(tilePosition);
-            foreach(var target in attackTargetList) {
+            foreach(var target in TargetList) {
                 target.SetTargeted(false);
             }
-            attackTargetList = new List<BCharacterBase>();
+            TargetList = new List<BCharacterBase>();
 
             UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
             UIBottomCommandParent.Instance.UpdateUI();
@@ -130,7 +130,7 @@ namespace BattleScene
 
             setTarget();
             //攻撃範囲に敵がいない
-            if(attackTargetList.Count == 0) {
+            if(TargetList.Count == 0) {
                 return;
             }
 
@@ -143,10 +143,10 @@ namespace BattleScene
         private void setTarget()
         {
             foreach(var traceTile in nowTraceTiles) {
-                var target = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(traceTile,character.isEnemy);
+                var target = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(traceTile,character.IsEnemy);
                 if(target == null) continue;
 
-                attackTargetList.Add(target);
+                TargetList.Add(target);
                 target.SetTargeted(true);
             }
         }
@@ -155,7 +155,7 @@ namespace BattleScene
         public void ExecuteAttack()
         {
 
-            if(attackTargetList.Count == 0) return;
+            if(TargetList.Count == 0) return;
 
             ////攻撃
             //foreach (var target in attackTarget)
@@ -180,6 +180,7 @@ namespace BattleScene
             animator.SetMoveAttack();
             IsNowAction = true;
 
+            HideOtherCharacters();
             //コルーチンで移動
             StartCoroutine(move());
             attackMotionTime = 7f;
@@ -211,7 +212,7 @@ namespace BattleScene
 
 
             //配列値変更
-            character.positionArray = newPosition;
+            character.PositionArray = newPosition;
         }
         //ダメージを与える
         void DamageInMoving()
@@ -219,7 +220,7 @@ namespace BattleScene
 
             //この関数内では攻撃後でもターゲットからはずさない、死のチェックは移動攻撃が終わった後
 
-            var target = attackTargetList.Where(x => x.positionArray.IsEqual(character.positionArray)).FirstOrDefault();
+            var target = TargetList.Where(x => x.PositionArray.IsEqual(character.PositionArray)).FirstOrDefault();
 
 
             if(target != null) {
@@ -246,10 +247,10 @@ namespace BattleScene
         void OnCompleteAnimation()
         {
             //死のチェック
-            foreach(var target in attackTargetList) {
+            foreach(var target in TargetList) {
                 target.Life.CheckDestroy();
             }
-            attackTargetList = null;
+            TargetList = null;
 
             IsNowAction = false;
             BCameraManager.Instance.ActiveLeanMode();

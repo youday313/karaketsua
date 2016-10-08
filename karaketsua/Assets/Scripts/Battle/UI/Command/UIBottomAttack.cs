@@ -15,7 +15,7 @@ namespace BattleScene
             button.interactable = false;
             var chara = BCharacterManager.Instance.ActiveCharacter;
             if (chara == null) return;
-            if (chara.IsAttacked()==true || chara.isEnemy==true||chara.IsNowAction()==true) return;
+            if (chara.IsAttacked()==true || chara.IsEnemy==true||chara.IsNowAction()==true) return;
             button.interactable = true;
         }
 
