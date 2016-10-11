@@ -111,8 +111,5 @@ namespace BattleScene
                 target.transform.LookAt(attackerPos);
             }
         }
-        
-
-
     }
 }

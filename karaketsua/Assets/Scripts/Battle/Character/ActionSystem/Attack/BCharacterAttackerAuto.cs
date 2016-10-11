@@ -15,6 +15,8 @@ namespace BattleScene
         private float cameraInterval = 1f;
         [SerializeField]
         private float attackTime = 2f;
+        [SerializeField]
+        private GameObject attackEffect;
 
 
         private Transform effectCanvas;
@@ -95,7 +97,8 @@ namespace BattleScene
 
             //攻撃アニメーション
             animator.SetAutoAttack();
-
+            // 攻撃エフェクト
+            StartAttackEffect(selectAttackParameter.isForceFace);
 
             IsNowAction = true;
 
@@ -129,6 +132,26 @@ namespace BattleScene
         {
             //会心＊振れ幅＊技倍率＊タップ倍率
             return 1 * 1 * selectAttackParameter.powerMagnification * 1;
+        }
+
+        // 攻撃エフェクト
+        // エフェクトは再生終了後自動で削除される
+        private void StartAttackEffect(bool isForceFace)
+        {
+            // 向き合う攻撃ならプレイヤー中心
+            if(isForceFace) {
+                var effect = Instantiate(attackEffect);
+                effect.transform.SetParent(transform);
+                effect.transform.localPosition = Vector3.zero;
+            }
+            // 複数攻撃ならターゲット中心
+            else {
+                foreach(var target in TargetList) {
+                    var effect = Instantiate(attackEffect);
+                    effect.transform.SetParent(target.transform);
+                    effect.transform.localPosition = Vector3.zero;
+                }
+            }
         }
 
 
