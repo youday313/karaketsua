@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 
 //set_positionの拡張版
-public static class CSTransform {
+public static class CSTransform
+{
     //一つのVectorの値を変更
     public static void SetX(this Transform transform, float x)
     {
@@ -26,7 +27,7 @@ public static class CSTransform {
     }
 
     //x,yのみ変更しzは変えない
-    public static void Set2DVector(this Transform transform,Vector2 v)
+    public static void Set2DVector(this Transform transform, Vector2 v)
     {
         Vector3 newPosition =
             new Vector3(v.x, v.y, transform.position.z);

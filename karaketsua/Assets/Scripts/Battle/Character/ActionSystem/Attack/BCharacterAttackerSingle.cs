@@ -13,6 +13,8 @@ namespace BattleScene
     public class BCharacterAttackerSingle : BCharacterAttackerBase
     {
         private GameObject attackMakerPrefab;
+        [SerializeField]
+        private GameObject[] attackEffects;
 
         //一度のタップのパラメータ
 
@@ -35,14 +37,8 @@ namespace BattleScene
             get { return TargetList.Count != 0; }
         }
 
-
         //選択した技番号
-        public int selectWazaNumber = 0;
-        public int SelectWazaNumber
-        {
-            get { return selectWazaNumber; }
-            set { selectWazaNumber=value; }
-        }
+        public int SelectWazaNumber;
 
         Transform effectCanvas;
 
@@ -62,7 +58,7 @@ namespace BattleScene
             isTapDetect = false;
 
             //技のセット
-            selectAttackParameter = character.characterParameter.singleAttackParameters[selectWazaNumber];
+            selectAttackParameter = character.characterParameter.singleAttackParameters[SelectWazaNumber];
 
 			//攻撃範囲の表示
 			BBattleStage.Instance.OnSlectWaza(character,selectAttackParameter);
@@ -71,7 +67,7 @@ namespace BattleScene
         {
             IT_Gesture.onShortTapE -= OnShortTap;
             isTapDetect = false;
-            selectWazaNumber = 0;
+            SelectWazaNumber = 0;
             //タイル変更
             foreach (var tar in TargetList) tar.SetTargeted(false);
             base.Disable();
@@ -180,7 +176,10 @@ namespace BattleScene
             yield return new WaitForSeconds(changeTimeSingleMode);
 
             //攻撃アニメーション
-            animator.SetSingleAttack(selectWazaNumber);
+            animator.SetSingleAttack(SelectWazaNumber);
+
+            // 攻撃エフェクト
+            StartAttackEffect(selectAttackParameter.isForceFace);
 
             popupPositionInScreen = Camera.main.WorldToScreenPoint(new Vector3(TargetList[0].transform.position.x, TargetList[0].transform.position.y + 1f, TargetList[0].transform.position.z));
 
@@ -306,5 +305,25 @@ namespace BattleScene
             return judgeAmplitude.Last();
         }
 
+
+        // 攻撃エフェクト
+        // エフェクトは再生終了後自動で削除される
+        private void StartAttackEffect(bool isForceFace)
+        {
+            // 向き合う攻撃ならプレイヤー中心
+            if(isForceFace) {
+                var effect = Instantiate(attackEffects[SelectWazaNumber]);
+                effect.transform.SetParent(transform);
+                effect.transform.localPosition = Vector3.zero;
+            }
+            // 複数攻撃ならターゲット中心
+            else {
+                foreach(var target in TargetList) {
+                    var effect = Instantiate(attackEffects[SelectWazaNumber]);
+                    effect.transform.SetParent(target.transform);
+                    effect.transform.localPosition = Vector3.zero;
+                }
+            }
+        }
     }
 }

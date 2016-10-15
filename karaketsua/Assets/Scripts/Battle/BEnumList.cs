@@ -42,14 +42,14 @@ public class AttackParameter
 {
     //技名
     public string wazaName;
+    // 技オブジェクト名
+    public string prefabName;
 
     //使用MP
     public int needSkillPoint;
 
     //攻撃倍率
     public float powerMagnification;
-
-
 }
 [System.Serializable]
 public class SingleAttackParameter: AttackParameter
@@ -59,6 +59,9 @@ public class SingleAttackParameter: AttackParameter
 
     //攻撃種類
     public int attackDistance;
+
+    // 攻撃時向き合うか
+    public bool isForceFace;
 
     //範囲内の全ての敵にダメージ
     public bool isMultiAttack;
@@ -71,7 +74,6 @@ public class SingleAttackParameter: AttackParameter
     {
         return (AttackDistance)attackDistance;
     }
-
 }
 
 [System.Serializable]
@@ -88,6 +90,8 @@ public class AutoAttackParameter: AttackParameter
 {
     public List<IntVect2D> attackRanges;
     public int attackDistance;
+    // 攻撃時向き合うか
+    public bool isForceFace;
 
     public AttackDistance GetAttackDistance()
     {

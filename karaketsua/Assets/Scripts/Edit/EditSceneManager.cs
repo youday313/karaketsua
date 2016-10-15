@@ -34,7 +34,7 @@ namespace EditScene
                 foreach(var icon in icons) {
                     icon.Decide();
                 }
-                SceneManager.Instance.LoadNextScene(Scene.Battle);
+                SceneManager.Instance.LoadScene(Scene.Battle);
             });
         }
 
