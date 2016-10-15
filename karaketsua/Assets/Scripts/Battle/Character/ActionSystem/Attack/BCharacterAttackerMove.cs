@@ -21,12 +21,15 @@ namespace BattleScene
         [SerializeField]
         private float attackMotionTime = 3f;
         [SerializeField]
-        private float tileMoveTime = 0.1f;
+        private float tileMoveTime = 1f;
+        [SerializeField]
+        private GameObject backCamera;
 
         //攻撃可能
         public bool IsAttackable {
             get {
-                if(selectAttackParameter == null || IsSetTarget == false) return false;
+                if(selectAttackParameter == null || IsSetTarget == false)
+                    return false;
                 else {
                     return nowTraceTiles.Count == selectAttackParameter.moveRange;
                 }
@@ -41,6 +44,7 @@ namespace BattleScene
             IT_Gesture.onDraggingStartE += onDraggingStart;
             BCameraManager.Instance.ActiveUpMode();
         }
+
         public override void Disable()
         {
             IT_Gesture.onDraggingStartE -= onDraggingStart;
@@ -53,13 +57,16 @@ namespace BattleScene
         //なぞり開始
         private void onDraggingStart(DragInfo dragInfo)
         {
-            if(IsDone == true) return;
+            if(IsDone == true)
+                return;
             //タイル上
             var tilePosition = BBattleStage.Instance.GetTilePositionFromScreenPosition(dragInfo.pos);
-            if(tilePosition == null) return;
+            if(tilePosition == null)
+                return;
 
             //キャラクターの上
-            if(IntVect2D.IsEqual(tilePosition,character.PositionArray) == false) return;
+            if(IntVect2D.IsEqual(tilePosition, character.PositionArray) == false)
+                return;
             BBattleStage.Instance.ResetAllTileColor();
 
             nowTraceTiles = new List<IntVect2D>();
@@ -78,26 +85,33 @@ namespace BattleScene
             IT_Gesture.onDraggingEndE += onDraggingEnd;
             //ActionSelect.Instance.DisableMoveAttackButton();
         }
+
         private void onDragging(DragInfo dragInfo)
         {
             //もうなぞれない
-            if(nowTraceTiles.Count == selectAttackParameter.moveRange) return;
+            if(nowTraceTiles.Count == selectAttackParameter.moveRange)
+                return;
 
             //タイル上
             var tilePosition = BBattleStage.Instance.GetTilePositionFromScreenPosition(dragInfo.pos);
-            if(tilePosition == null) return;
+            if(tilePosition == null)
+                return;
             //まだ未通過
-            if(IntVect2D.IsEqual(tilePosition,nowTraceTiles.LastOrDefault())) return;
+            if(IntVect2D.IsEqual(tilePosition, nowTraceTiles.LastOrDefault()))
+                return;
             //まだ未完成
-            if(selectAttackParameter.moveRange == nowTraceTiles.Count) return;
+            if(selectAttackParameter.moveRange == nowTraceTiles.Count)
+                return;
 
             //次のタイル
-            if(IntVect2D.IsNeighbor(tilePosition,nowTraceTiles.LastOrDefault()) == false) return;
+            if(IntVect2D.IsNeighbor(tilePosition, nowTraceTiles.LastOrDefault()) == false)
+                return;
 
             nowTraceTiles.Add(tilePosition);
-            BBattleStage.Instance.ChangeColor(tilePosition,TileState.Skill);
+            BBattleStage.Instance.ChangeColor(tilePosition, TileState.Skill);
 
         }
+
         private void onDraggingEnd(DragInfo dragInfo)
         {
 
@@ -124,13 +138,18 @@ namespace BattleScene
             }
             //最後のタイルにキャラがいない
             //キャラクターが既にいない
-            if(BCharacterManager.Instance.IsExistCharacterOnTile(nowTraceTiles.Last()) == true) return;
+            if(BCharacterManager.Instance.IsExistCharacterOnTile(nowTraceTiles.Last()) == true)
+                return;
 
             //成功
 
             setTarget();
             //攻撃範囲に敵がいない
             if(TargetList.Count == 0) {
+                return;
+            }
+            // 攻撃範囲に味方がいない
+            if(TargetList.Any(x => !x.IsEnemy)) {
                 return;
             }
 
@@ -140,11 +159,13 @@ namespace BattleScene
             //Attack();
             //Disable();
         }
+
         private void setTarget()
         {
             foreach(var traceTile in nowTraceTiles) {
-                var target = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(traceTile,character.IsEnemy);
-                if(target == null) continue;
+                var target = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(traceTile, character.IsEnemy);
+                if(target == null)
+                    continue;
 
                 TargetList.Add(target);
                 target.SetTargeted(true);
@@ -155,7 +176,8 @@ namespace BattleScene
         public void ExecuteAttack()
         {
 
-            if(TargetList.Count == 0) return;
+            if(TargetList.Count == 0)
+                return;
 
             ////攻撃
             //foreach (var target in attackTarget)
@@ -175,74 +197,75 @@ namespace BattleScene
 
             //Disable();
         }
+
         private void startMoveForAttack()
         {
+            // 後ろから映す
+            BCameraManager.Instance.gameObject.SetActive(false);
+            backCamera.SetActive(true);
+
+            // キャラクターアニメーションスタート
             animator.SetMoveAttack();
             IsNowAction = true;
-
             HideOtherCharacters();
-            //コルーチンで移動
+
+            //　コルーチンで移動開始
             StartCoroutine(move());
             attackMotionTime = 7f;
-            Invoke("onCompleteAnimation",attackMotionTime);
+            Invoke("onCompleteAnimation", attackMotionTime);
         }
 
         //移動コルーチン
         private IEnumerator move()
         {
-
             foreach(var trace in nowTraceTiles) {
-
-                UpdatePosition(trace);
-                DamageInMoving();
+                updatePosition(trace);
+                damageInMoving();
                 yield return new WaitForSeconds(tileMoveTime);
             }
-
         }
-        //実際に移動
-        void UpdatePosition(IntVect2D newPosition)
+
+        // 移動処理
+        private void updatePosition(IntVect2D newPosition)
         {
-
-            //移動先のタイル位置
+            // 移動先のタイル位置
             var toTilePostion = BBattleStage.Instance.GetTileXAndZPosition(newPosition);
-            var table = GetMoveTable(toTilePostion);
+            // 向きの変更
+            Vector2 targetPos = toTilePostion;
+            targetPos.y = transform.position.y;
+            transform.LookAt(targetPos);
 
-            //座標変更
-            iTween.MoveTo(gameObject,table);
+            // 座標変更
+            var table = getMoveTable(toTilePostion);
+            iTween.MoveTo(gameObject, table);
 
-
-            //配列値変更
+            // 配列値変更
             character.PositionArray = newPosition;
         }
-        //ダメージを与える
-        void DamageInMoving()
+
+        // ダメージを与える
+        private void damageInMoving()
         {
-
             //この関数内では攻撃後でもターゲットからはずさない、死のチェックは移動攻撃が終わった後
-
             var target = TargetList.Where(x => x.PositionArray.IsEqual(character.PositionArray)).FirstOrDefault();
-
-
             if(target != null) {
 
                 var damageMagnification = CalcDamageMagnification();
                 var characterPower = character.characterParameter.power;
-                target.Life.Damage(characterPower,damageMagnification);
+                target.Life.Damage(characterPower, damageMagnification);
             }
-
         }
 
-        Hashtable GetMoveTable(Vector2 position)
+        // 移動テーブル作成
+        private Hashtable getMoveTable(Vector2 position)
         {
             Hashtable table = new Hashtable();
-            table.Add("x",position.x);
-            table.Add("z",position.y);
-            //table.Add("time", 1.0f);
-            table.Add("time",tileMoveTime);
-            table.Add("easetype",iTween.EaseType.linear);
+            table.Add("x", position.x);
+            table.Add("z", position.y);
+            table.Add("time", tileMoveTime);
+            table.Add("easetype", iTween.EaseType.linear);
             return table;
         }
-
 
         private void onCompleteAnimation()
         {
@@ -254,7 +277,11 @@ namespace BattleScene
             onCompleteAction();
 
             IsNowAction = false;
+            // カメラをリセットする
+            backCamera.SetActive(false);
+            BCameraManager.Instance.gameObject.SetActive(true);
             BCameraManager.Instance.ActiveLeanMode();
+            BCameraMove.Instance.MoveToBackForActive();
             //行動終了
             character.OnEndActive();
         }
