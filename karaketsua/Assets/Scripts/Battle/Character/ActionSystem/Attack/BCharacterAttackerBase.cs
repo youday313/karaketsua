@@ -77,8 +77,14 @@ namespace BattleScene
             IsDone = false;
 
         }
-        public virtual void OnCompleteAction()
+
+        protected void onCompleteAction()
         {
+            character.ResetRotate();
+            foreach(var tar in TargetList.Where(x => x != null)) {
+                tar.ResetRotate();
+            }
+            TargetList = new List<BCharacterBase>();
             if(OnComplete != null) {
                 OnComplete();
             }

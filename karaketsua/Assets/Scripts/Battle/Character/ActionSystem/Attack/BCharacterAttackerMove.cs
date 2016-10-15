@@ -184,7 +184,7 @@ namespace BattleScene
             //コルーチンで移動
             StartCoroutine(move());
             attackMotionTime = 7f;
-            Invoke("OnCompleteAnimation",attackMotionTime);
+            Invoke("onCompleteAnimation",attackMotionTime);
         }
 
         //移動コルーチン
@@ -244,13 +244,14 @@ namespace BattleScene
         }
 
 
-        void OnCompleteAnimation()
+        private void onCompleteAnimation()
         {
             //死のチェック
             foreach(var target in TargetList) {
                 target.Life.CheckDestroy();
             }
-            TargetList = null;
+
+            onCompleteAction();
 
             IsNowAction = false;
             BCameraManager.Instance.ActiveLeanMode();

@@ -77,7 +77,8 @@ namespace BattleScene
 
             //位置変更
             setPositionOnTile();
-
+            //回転
+            ResetRotate();
             //UI作成
             BStateUICreater.Instance.Create(this);
         }
@@ -130,6 +131,7 @@ namespace BattleScene
             activeCircle.SetActive(true);
         }
 
+        // 行動終了の共通処理
         public virtual void OnEndActive()
         {
             if(OnEndActiveE != null) {
@@ -182,6 +184,13 @@ namespace BattleScene
             if(OnStatusUpdateE != null) {
                 OnStatusUpdateE();
             }
+        }
+
+        // 向きをデフォルトに戻す
+        public void ResetRotate()
+        {
+            var isEnemyAngle = IsEnemy == true ? 180 : 0;
+            transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
         }
     }
 

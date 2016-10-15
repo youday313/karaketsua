@@ -52,7 +52,7 @@ namespace BattleScene
             //ターゲットの検索と設定
             var target = setTarget();
             if(target == false) {
-                OnCompleteAction();
+                onCompleteAction();
                 return;
             }
             //攻撃の実行
@@ -123,7 +123,7 @@ namespace BattleScene
         {
             IsNowAction = false;
             //行動終了
-            OnCompleteAction();
+            onCompleteAction();
             //character.OnEndActive();
 
         }

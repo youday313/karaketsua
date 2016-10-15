@@ -164,13 +164,7 @@ namespace BattleScene
         public void StopAnimation()
         {
             animator.SetMove(false);
-            ResetRoatateAnimation();
+            character.ResetRotate();
         }
-        void ResetRoatateAnimation()
-        {
-            var isEnemyAngle = character.IsEnemy == true ? 180 : 0;
-            transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
-        }
-
     }
 }
