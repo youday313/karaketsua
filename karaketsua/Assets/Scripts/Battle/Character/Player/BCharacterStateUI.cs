@@ -32,7 +32,9 @@ namespace BattleScene
         {
             // イベント登録
             character.OnDeathE += delete;
-            character.OnStatusUpdateE += updateUi;
+            character.OnStatusUpdateE += () => {
+                updateUi(character);
+            };
 
             onHold.AddListener(() => {
                 detailState.Show(character.characterParameter);

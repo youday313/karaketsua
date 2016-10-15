@@ -30,7 +30,7 @@ namespace BattleScene
         public event Action<BCharacterBase> OnDeathE;
 
         // ステータス変更
-        public event Action<BCharacterBase> OnStatusUpdateE;
+        public event Action OnStatusUpdateE;
 
         public bool IsEnemy = false;
 
@@ -176,6 +176,13 @@ namespace BattleScene
             gameObject.SetActive(active);
         }
 
+        // イベント発火用
+        public void StatusUpdate()
+        {
+            if(OnStatusUpdateE != null) {
+                OnStatusUpdateE();
+            }
+        }
     }
 
 }

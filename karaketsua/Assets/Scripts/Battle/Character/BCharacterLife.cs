@@ -26,9 +26,8 @@ namespace BattleScene
             characterParameter.hp -= damage;
             createDamageText(damage);
 
+            character.StatusUpdate();
             animator.SetDamage();
-            //character.StateUI.UpdateUI();
-
         }
         public void CheckDestroy()
         {
