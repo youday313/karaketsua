@@ -42,12 +42,8 @@ public class AttackParameter
 {
     //技名
     public string wazaName;
-    // 技オブジェクト名
-    public string prefabName;
-
     //使用MP
     public int needSkillPoint;
-
     //攻撃倍率
     public float powerMagnification;
 }
@@ -102,9 +98,8 @@ public class AutoAttackParameter: AttackParameter
 [System.Serializable]
 public class MoveAttackParameter: AttackParameter
 {
-    //移動可能距離
+    // 移動可能距離
     public int moveRange;
-    public int needMovePoint;
 }
 
 public enum AttackDistance { 近, 中, 遠 }
