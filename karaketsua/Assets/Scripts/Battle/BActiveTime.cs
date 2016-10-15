@@ -53,7 +53,7 @@ namespace BattleScene
         {
             Character = chara;
             activeSpeed = Character.characterParameter.activeSpeed;
-            iconImage.sprite = Resources.Load<Sprite>("Character/ATB/ATB" + Character.characterParameter.charaName);
+            iconImage.sprite = Resources.Load<Sprite>(ResourcesPath.ATBIcon + Character.characterParameter.charaName);
             Character.OnDeathE += Delete;
             //slider.maxValue = initTimeValue;
             //nowWaitTime = initTimeValue;
