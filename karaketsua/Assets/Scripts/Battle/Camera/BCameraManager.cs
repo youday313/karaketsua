@@ -51,6 +51,7 @@ namespace BattleScene
 
         public void ActiveUpMode()
         {
+            tryResetMoveCamera();
             leanCameraObject.SetActive(false);
             upCameraObject.SetActive(true);
             nowCameraMode = CameraMode.Up;
@@ -58,11 +59,7 @@ namespace BattleScene
 
         public void ActiveLeanMode()
         {
-            gameObject.SetActive(true);
-            if(moveCameraInstance != null) {
-                Destroy(moveCameraInstance);
-                moveCameraInstance = null;
-            }
+            tryResetMoveCamera();
             leanCameraObject.SetActive(true);
             upCameraObject.SetActive(false);
         }
@@ -74,6 +71,15 @@ namespace BattleScene
             moveCameraInstance.transform.SetParent(chara, worldPositionStays:false);
             moveCameraInstance.SetActive(true);
             gameObject.SetActive(false);
+        }
+
+        private void tryResetMoveCamera()
+        {
+            if(moveCameraInstance != null) {
+                Destroy(moveCameraInstance);
+                moveCameraInstance = null;
+            }
+            gameObject.SetActive(true);
         }
     }
 }

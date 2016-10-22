@@ -216,11 +216,10 @@ namespace BattleScene
         {
             foreach(var trace in nowTraceTiles) {
                 updatePosition(trace);
-                damageInMoving();
                 yield return new WaitForSeconds(tileMoveTime);
             }
             yield return new WaitForSeconds(attackMotionTime);
-            onCompleteAnimation();
+            onCompleteMove();
         }
 
         // 移動処理
@@ -242,11 +241,9 @@ namespace BattleScene
         }
 
         // ダメージを与える
-        private void damageInMoving()
+        private void damageEndMove()
         {
-            //この関数内では攻撃後でもターゲットからはずさない、死のチェックは移動攻撃が終わった後
-            var target = TargetList.Where(x => x.PositionArray.IsEqual(character.PositionArray)).FirstOrDefault();
-            if(target != null) {
+            foreach(var target in TargetList) {
                 var damageRate = calcMoveDamageRate();
                 var characterPower = character.characterParameter.power;
                 target.Life.Damage(characterPower, damageRate);
@@ -264,21 +261,27 @@ namespace BattleScene
             return table;
         }
 
-        private void onCompleteAnimation()
+        private void onCompleteMove()
         {
+            // カメラが上からみる→ダメージ演出→アクティブオン
+            BCameraManager.Instance.ActiveUpMode();
+
+            // ダメージ演出
+            damageEndMove();
             //死のチェック
             foreach(var target in TargetList) {
                 target.Life.CheckDestroy();
             }
 
-            onCompleteAction();
-
-            IsNowAction = false;
-            // カメラをリセットする
-            BCameraManager.Instance.ActiveLeanMode();
-            BCameraMove.Instance.MoveToBackForActive();
-            //行動終了
-            character.OnEndActive();
+            StartCoroutine(WaitTimer.WaitSecond(() => {
+                onCompleteAction();
+                IsNowAction = false;
+                // カメラをリセットする
+                BCameraManager.Instance.ActiveLeanMode();
+                BCameraMove.Instance.MoveToBackForActive();
+                //行動終了
+                character.OnEndActive();
+            }, 3f));
         }
 
         //倍率の算出
