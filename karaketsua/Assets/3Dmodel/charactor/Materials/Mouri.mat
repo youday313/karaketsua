@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Mouri
-  m_Shader: {fileID: 4800000, guid: 6f9ffad6831792441b7a74d709839b77, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9ce107479d11178d11005b9844295342, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: 2000
@@ -82,7 +82,7 @@ Material:
         first:
           name: _ToonShade
         second:
-          m_Texture: {fileID: 0}
+          m_Texture: {fileID: 8900000, guid: 3dcb910c10050fa418618334afb4b1da, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -150,4 +150,4 @@ Material:
       data:
         first:
           name: _OutlineColor
-        second: {r: 0, g: 0, b: 0, a: 1}
+        second: {r: 0.3602941, g: 0.353936, b: 0.34439877, a: 1}
