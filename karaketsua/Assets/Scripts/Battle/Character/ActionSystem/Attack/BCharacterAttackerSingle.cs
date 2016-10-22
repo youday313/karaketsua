@@ -217,9 +217,9 @@ namespace BattleScene
 
             //攻撃
             foreach(var target in TargetList) {
-                var damageMagnification = CalcDamageMagnification(CalcDamageFromTapMagnificationRation(totalTapRatios));
+                var damageRate = calcTapDamageRate(totalTapRatios.ToArray());
                 var characterPower = character.characterParameter.power;
-                target.Life.Damage(characterPower, damageMagnification);
+                target.Life.Damage(characterPower, damageRate);
             }
 
             foreach(var target in TargetList) {
@@ -251,13 +251,9 @@ namespace BattleScene
             var attackEffect = Instantiate(onTapEffect, popupPositionInScreen, Quaternion.identity) as GameObject;
             attackEffect.transform.SetParent(effectCanvas);
         }
-        //ダメージ量計算
-        int CalcDamageFromLeftTime(float _leftTime)
-        {
-            return (int)(_leftTime * 1000);
-        }
         //モーション時間＋猶予時間の案もありか
-        public float resetInterval = 3f;
+        [SerializeField]
+        private float resetInterval = 3f;
 
         // アニメーションを終了し行動を終了する
         private void onCompleteAnimation()
@@ -267,41 +263,21 @@ namespace BattleScene
             onCompleteAction();
             character.OnEndActive();
         }
-
-        //会心（5%）
-        public static float criticalMagnification = 1.5f;
-        public static float criticalProbability = 5f;
-
-        float CalcCriticalDamage()
+            
+        // 倍率の算出
+        private readonly float[] TapRateRanges = { 0.9f, 0.51f };
+        private readonly float[] TapRateValues = { 1.3f, 1.1f, 1 };
+        private float calcTapDamageRate(float[] timeRatios)
         {
-            return UnityEngine.Random.Range(0, 100) < criticalProbability ? criticalMagnification : 1.0f;
-        }
-        //ダメージ振れ幅
-        public static float minRandamAmplitude = 0.9f;
-        public static float maxRandamAmplitude = 0.9f;
-
-        float CalcRandamAmplitudeDamage()
-        {
-            return UnityEngine.Random.Range(minRandamAmplitude, maxRandamAmplitude);
-        }
-        //倍率の算出
-        float CalcDamageMagnification(float tapMagnification)
-        {
-            //会心＊振れ幅＊技倍率＊タップ倍率
-            return CalcCriticalDamage() * CalcRandamAmplitudeDamage() * selectAttackParameter.powerMagnification * tapMagnification;
-        }
-        //タップ倍率の算出
-        public static List<float> judgeRange = new List<float>(){ 0.9f, 0.51f };
-        public static List<float> judgeAmplitude = new List<float>() { 1.3f, 1.1f, 1 };
-
-        float CalcDamageFromTapMagnificationRation(List<float> timeRatios)
-        {
+            //タップ倍率の算出
+            float tapRate = TapRateValues.Last();
             var ave = timeRatios.Average();
-            for(var i = 0; i < judgeRange.Count; i++) {
-                if(ave >= judgeRange[i])
-                    return judgeAmplitude[i];
+            for(var i = 0; i < TapRateRanges.Length; i++) {
+                if(ave >= TapRateRanges[i])
+                    tapRate = TapRateValues[i];
             }
-            return judgeAmplitude.Last();
+            // ベース値*技倍率*タップ倍率
+            return  calcBaseDamageRate() * selectAttackParameter.powerRate * tapRate;
         }
             
         // 攻撃エフェクト

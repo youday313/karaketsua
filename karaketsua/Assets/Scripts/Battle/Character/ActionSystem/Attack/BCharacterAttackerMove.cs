@@ -249,10 +249,9 @@ namespace BattleScene
             //この関数内では攻撃後でもターゲットからはずさない、死のチェックは移動攻撃が終わった後
             var target = TargetList.Where(x => x.PositionArray.IsEqual(character.PositionArray)).FirstOrDefault();
             if(target != null) {
-
-                var damageMagnification = CalcDamageMagnification();
+                var damageRate = calcMoveDamageRate();
                 var characterPower = character.characterParameter.power;
-                target.Life.Damage(characterPower, damageMagnification);
+                target.Life.Damage(characterPower, damageRate);
             }
         }
 
@@ -285,14 +284,12 @@ namespace BattleScene
             //行動終了
             character.OnEndActive();
         }
+
         //倍率の算出
-        float CalcDamageMagnification()
+        private float calcMoveDamageRate()
         {
-            //会心＊振れ幅＊技倍率＊タップ倍率
-            return 1 * 1 * selectAttackParameter.powerMagnification * 1;
+            //ベース＊技倍率
+            return calcBaseDamageRate() * selectAttackParameter.powerRate;
         }
-
-
-
     }
 }

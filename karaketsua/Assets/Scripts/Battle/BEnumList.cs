@@ -23,6 +23,8 @@ public class CharacterMasterParameter
     public int deffence;
     //精神力,MP
     public int skillPoint;
+    // 知力
+    public int intellisense;
 
     //攻撃技関連
     public List<SingleAttackParameter> singleAttackParameters = new List<SingleAttackParameter>();
@@ -45,7 +47,7 @@ public class AttackParameter
     //使用MP
     public int needSkillPoint;
     //攻撃倍率
-    public float powerMagnification;
+    public float powerRate;
 }
 [System.Serializable]
 public class SingleAttackParameter: AttackParameter

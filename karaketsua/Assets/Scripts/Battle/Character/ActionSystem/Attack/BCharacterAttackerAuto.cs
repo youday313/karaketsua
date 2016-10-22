@@ -104,9 +104,9 @@ namespace BattleScene
 
             //ダメージ
             foreach(var target in TargetList) {
-                var damageMagnification = calcDamageMagnification();
+                var damageRate = calcAutoDamageRate();
                 var characterPower = character.characterParameter.power;
-                target.Life.Damage(characterPower,damageMagnification);
+                target.Life.Damage(characterPower,damageRate);
             }
             //死亡
             foreach(var target in TargetList) {
@@ -125,13 +125,11 @@ namespace BattleScene
             //行動終了
             onCompleteAction();
             //character.OnEndActive();
-
         }
-        //倍率の算出
-        private float calcDamageMagnification()
+
+        private float calcAutoDamageRate()
         {
-            //会心＊振れ幅＊技倍率＊タップ倍率
-            return 1 * 1 * selectAttackParameter.powerMagnification * 1;
+            return calcBaseDamageRate() * selectAttackParameter.powerRate;
         }
 
         // 攻撃エフェクト

@@ -20,9 +20,12 @@ namespace BattleScene
         }
 
         //攻撃力と他のステータスを受け取り、防御力を適用しダメージ算出
-        public void Damage(int attackPower, float magnification)
+        public void Damage(int attackPower, float rate)
         {
-            var damage = calcDamage(attackPower, magnification);
+            //ここを変えるとダメージが変わる
+            //計算式(ATK-1/2DEF)*rate
+            var deffence = character.characterParameter.deffence;
+            var damage = Mathf.Max(0, (int)((attackPower - (1 / 2 * deffence)) * rate));
             characterParameter.hp -= damage;
             createDamageText(damage);
 
@@ -41,18 +44,9 @@ namespace BattleScene
         {
             //ダメージ表示
             var popupPosition = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z);
-
             var damageText = Instantiate(Resources.Load<Text>("DamageText"), Camera.main.WorldToScreenPoint(popupPosition), Quaternion.identity) as Text;
             damageText.text = damage.ToString();
             damageText.transform.SetParent(GameObject.FindGameObjectWithTag("EffectCanvas").transform);
-
-        }
-        //ここを変えるとダメージが変わる
-        //計算式(ATK-1/2DEF)*magnification
-        private int calcDamage(int power, float magnification)
-        {
-            var deffence = character.characterParameter.deffence;
-            return Mathf.Max(0, (int)((power - (1 / 2 * deffence)) * magnification));
         }
     }
 }
