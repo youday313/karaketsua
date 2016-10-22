@@ -231,7 +231,7 @@ namespace BattleScene
             }
 
             IsDone = true;
-            Invoke("onCompleteAnimation", resetInterval);
+            StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAnimation(), resetInterval));
             //攻撃時にUI非表示
             //ActionSelect.Instance.EndActiveAction();
             yield return null;

@@ -114,7 +114,7 @@ namespace BattleScene
             }
 
             //攻撃終了
-            Invoke("onCompleteAnimation",attackTime);
+            StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAnimation(), attackTime));
             IsDone = true;
             yield return null;
         }

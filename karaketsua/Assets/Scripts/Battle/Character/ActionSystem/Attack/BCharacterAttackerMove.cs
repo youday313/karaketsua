@@ -212,7 +212,7 @@ namespace BattleScene
             //　コルーチンで移動開始
             StartCoroutine(move());
             attackMotionTime = 7f;
-            Invoke("onCompleteAnimation", attackMotionTime);
+            StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAction(), attackMotionTime));
         }
 
         //移動コルーチン
