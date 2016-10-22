@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,6 @@ namespace BattleScene
         private float attackMotionTime = 3f;
         [SerializeField]
         private float tileMoveTime = 1f;
-        [SerializeField]
-        private GameObject backCamera;
 
         //攻撃可能
         public bool IsAttackable {
@@ -201,8 +200,7 @@ namespace BattleScene
         private void startMoveForAttack()
         {
             // 後ろから映す
-            BCameraManager.Instance.gameObject.SetActive(false);
-            backCamera.SetActive(true);
+            BCameraManager.Instance.StartMoveAttack(transform);
 
             // キャラクターアニメーションスタート
             animator.SetMoveAttack();
@@ -211,8 +209,6 @@ namespace BattleScene
 
             //　コルーチンで移動開始
             StartCoroutine(move());
-            attackMotionTime = 7f;
-            StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAction(), attackMotionTime));
         }
 
         //移動コルーチン
@@ -223,6 +219,8 @@ namespace BattleScene
                 damageInMoving();
                 yield return new WaitForSeconds(tileMoveTime);
             }
+            yield return new WaitForSeconds(attackMotionTime);
+            onCompleteAnimation();
         }
 
         // 移動処理
@@ -277,8 +275,6 @@ namespace BattleScene
 
             IsNowAction = false;
             // カメラをリセットする
-            backCamera.SetActive(false);
-            BCameraManager.Instance.gameObject.SetActive(true);
             BCameraManager.Instance.ActiveLeanMode();
             BCameraMove.Instance.MoveToBackForActive();
             //行動終了
