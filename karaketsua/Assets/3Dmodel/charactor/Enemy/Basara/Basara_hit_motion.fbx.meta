@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: 3062d7e4b3a7f1e47bc8dc1eb3b42afc
+timeCreated: 1455942362
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Basara_Base
+    100002: //RootNode
+    100004: Basara_mesh
+    100006: Head
+    100008: Hip
+    100010: joint1
+    100012: L_B_Foot
+    100014: L_B_Knee
+    100016: L_B_leg
+    100018: L_B_Toe
+    100020: L_F_Foot
+    100022: L_F_Knee
+    100024: L_F_leg
+    100026: L_F_Toe
+    100028: Left_ForeArm
+    100030: Left_Hand
+    100032: Left_Shoulder
+    100034: Neck
+    100036: R_B_Foot
+    100038: R_B_Knee
+    100040: R_B_leg
+    100042: R_B_Toe
+    100044: R_F_Foot
+    100046: R_F_Knee
+    100048: R_F_leg1
+    100050: R_F_Toe
+    100052: Right_ForeArm
+    100054: Right_Shoulder
+    100056: Spine
+    100058: Spine1
+    400000: Basara_Base
+    400002: //RootNode
+    400004: Basara_mesh
+    400006: Head
+    400008: Hip
+    400010: joint1
+    400012: L_B_Foot
+    400014: L_B_Knee
+    400016: L_B_leg
+    400018: L_B_Toe
+    400020: L_F_Foot
+    400022: L_F_Knee
+    400024: L_F_leg
+    400026: L_F_Toe
+    400028: Left_ForeArm
+    400030: Left_Hand
+    400032: Left_Shoulder
+    400034: Neck
+    400036: R_B_Foot
+    400038: R_B_Knee
+    400040: R_B_leg
+    400042: R_B_Toe
+    400044: R_F_Foot
+    400046: R_F_Knee
+    400048: R_F_leg1
+    400050: R_F_Toe
+    400052: Right_ForeArm
+    400054: Right_Shoulder
+    400056: Spine
+    400058: Spine1
+    4300000: Basara_mesh
+    7400000: Basara_Damege
+    9500000: //RootNode
+    13700000: Basara_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Basara_Damege
+      takeName: Take 001
+      firstFrame: 150
+      lastFrame: 240
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Basara_Base
+        weight: 1
+      - path: Basara_Base/Hip
+        weight: 1
+      - path: Basara_Base/Hip/Spine
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1/Left_Shoulder
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1/Left_Shoulder/Left_ForeArm
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1/Left_Shoulder/Left_ForeArm/Left_Hand
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1/Neck
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1/Neck/Head
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1/Right_Shoulder
+        weight: 1
+      - path: Basara_Base/Hip/Spine/Spine1/joint1/Right_Shoulder/Right_ForeArm
+        weight: 1
+      - path: Basara_Base/L_B_leg
+        weight: 1
+      - path: Basara_Base/L_B_leg/L_B_Knee
+        weight: 1
+      - path: Basara_Base/L_B_leg/L_B_Knee/L_B_Foot
+        weight: 1
+      - path: Basara_Base/L_B_leg/L_B_Knee/L_B_Foot/L_B_Toe
+        weight: 1
+      - path: Basara_Base/L_F_leg
+        weight: 1
+      - path: Basara_Base/L_F_leg/L_F_Knee
+        weight: 1
+      - path: Basara_Base/L_F_leg/L_F_Knee/L_F_Foot
+        weight: 1
+      - path: Basara_Base/L_F_leg/L_F_Knee/L_F_Foot/L_F_Toe
+        weight: 1
+      - path: Basara_Base/R_B_leg
+        weight: 1
+      - path: Basara_Base/R_B_leg/R_B_Knee
+        weight: 1
+      - path: Basara_Base/R_B_leg/R_B_Knee/R_B_Foot
+        weight: 1
+      - path: Basara_Base/R_B_leg/R_B_Knee/R_B_Foot/R_B_Toe
+        weight: 1
+      - path: Basara_Base/R_F_leg1
+        weight: 1
+      - path: Basara_Base/R_F_leg1/R_F_Knee
+        weight: 1
+      - path: Basara_Base/R_F_leg1/R_F_Knee/R_F_Foot
+        weight: 1
+      - path: Basara_Base/R_F_leg1/R_F_Knee/R_F_Foot/R_F_Toe
+        weight: 1
+      - path: Basara_mesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
