@@ -1,0 +1,236 @@
+fileFormatVersion: 2
+guid: 56dc993f00220ed49a383ed775b812d6
+timeCreated: 1455945639
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Arrow
+    100002: Arrow_poly
+    100004: Head
+    100006: Hip
+    100008: Left_Foot
+    100010: Left_Fore_Arm
+    100012: Left_Hand
+    100014: Left_Knee
+    100016: Left_Leg_Midle
+    100018: Left_Leg_Root
+    100020: Left_Midle_Arm
+    100022: Left_Midle_Knee
+    100024: Left_Nail
+    100026: Left_Shoullder
+    100028: Left_Toe
+    100030: Neck
+    100032: Right_Foot
+    100034: Right_Fore_Arm
+    100036: Right_Hand
+    100038: Right_Knee
+    100040: Right_Leg_Midle
+    100042: Right_Leg_Root
+    100044: Right_Midle_Arm
+    100046: Right_Midle_Knee
+    100048: Right_Nail
+    100050: Right_Shoullder
+    100052: Right_Toe
+    100054: Spine
+    100056: Tsuru
+    100058: Ya_poly
+    100060: //RootNode
+    100062: Yumigumo_poly
+    400000: Arrow
+    400002: Arrow_poly
+    400004: Head
+    400006: Hip
+    400008: Left_Foot
+    400010: Left_Fore_Arm
+    400012: Left_Hand
+    400014: Left_Knee
+    400016: Left_Leg_Midle
+    400018: Left_Leg_Root
+    400020: Left_Midle_Arm
+    400022: Left_Midle_Knee
+    400024: Left_Nail
+    400026: Left_Shoullder
+    400028: Left_Toe
+    400030: Neck
+    400032: Right_Foot
+    400034: Right_Fore_Arm
+    400036: Right_Hand
+    400038: Right_Knee
+    400040: Right_Leg_Midle
+    400042: Right_Leg_Root
+    400044: Right_Midle_Arm
+    400046: Right_Midle_Knee
+    400048: Right_Nail
+    400050: Right_Shoullder
+    400052: Right_Toe
+    400054: Spine
+    400056: Tsuru
+    400058: Ya_poly
+    400060: //RootNode
+    400062: Yumigumo_poly
+    2300000: Ya_poly
+    3300000: Ya_poly
+    4300000: Ya_poly
+    4300002: Arrow_poly
+    4300004: Yumigumo_poly
+    7400000: Yumigumo_Death
+    9500000: //RootNode
+    13700000: Arrow_poly
+    13700002: Yumigumo_poly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Yumigumo_Death
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 280
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Arrow
+        weight: 1
+      - path: Arrow/Tsuru
+        weight: 1
+      - path: Arrow_poly
+        weight: 1
+      - path: Hip
+        weight: 1
+      - path: Hip/Left_Leg_Root
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee/Left_Midle_Knee
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee/Left_Midle_Knee/Left_Foot
+        weight: 1
+      - path: Hip/Left_Leg_Root/Left_Leg_Midle/Left_Knee/Left_Midle_Knee/Left_Foot/Left_Toe
+        weight: 1
+      - path: Hip/Right_Leg_Root
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee/Right_Midle_Knee
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee/Right_Midle_Knee/Right_Foot
+        weight: 1
+      - path: Hip/Right_Leg_Root/Right_Leg_Midle/Right_Knee/Right_Midle_Knee/Right_Foot/Right_Toe
+        weight: 1
+      - path: Hip/Spine
+        weight: 1
+      - path: Hip/Spine/Neck
+        weight: 1
+      - path: Hip/Spine/Neck/Head
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm/Left_Midle_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm/Left_Midle_Arm/Left_Hand
+        weight: 1
+      - path: Hip/Spine/Neck/Left_Shoullder/Left_Fore_Arm/Left_Midle_Arm/Left_Hand/Left_Nail
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm/Right_Midle_Arm
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm/Right_Midle_Arm/Right_Hand
+        weight: 1
+      - path: Hip/Spine/Neck/Right_Shoullder/Right_Fore_Arm/Right_Midle_Arm/Right_Hand/Right_Nail
+        weight: 1
+      - path: Ya_poly
+        weight: 1
+      - path: Yumigumo_poly
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
