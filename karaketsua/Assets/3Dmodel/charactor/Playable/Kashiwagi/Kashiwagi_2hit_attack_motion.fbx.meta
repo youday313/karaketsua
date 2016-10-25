@@ -1,0 +1,292 @@
+fileFormatVersion: 2
+guid: d6efde3d4913ca24c939b12b8c1b2ef1
+timeCreated: 1458453539
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: back_kimono
+    100002: back_kimono_tip
+    100004: front_kimono
+    100006: front_kimono_tip
+    100008: ikHandle1
+    100010: ikHandle2
+    100012: ikHandle3
+    100014: Kashi_left_sword
+    100016: Kashi_right_sword
+    100018: Kashi_saya_poly
+    100020: //RootNode
+    100022: Kashiwagi_Head
+    100024: Kashiwagi_Hips
+    100026: Kashiwagi_LeftArm
+    100028: Kashiwagi_LeftFoot
+    100030: Kashiwagi_LeftForeArm
+    100032: Kashiwagi_LeftHand
+    100034: Kashiwagi_LeftHandMiddle1
+    100036: Kashiwagi_LeftHandMiddle2
+    100038: Kashiwagi_LeftHandThumb1
+    100040: Kashiwagi_LeftHandThumb2
+    100042: Kashiwagi_LeftLeg
+    100044: Kashiwagi_LeftToeBase
+    100046: Kashiwagi_LeftUpLeg
+    100048: Kashiwagi_Neck
+    100050: Kashiwagi_poly
+    100052: Kashiwagi_Reference
+    100054: Kashiwagi_RightArm
+    100056: Kashiwagi_RightFoot
+    100058: Kashiwagi_RightForeArm
+    100060: Kashiwagi_RightHand
+    100062: Kashiwagi_RightHandMiddle1
+    100064: Kashiwagi_RightHandMiddle2
+    100066: Kashiwagi_RightHandThumb1
+    100068: Kashiwagi_RightHandThumb2
+    100070: Kashiwagi_RightLeg
+    100072: Kashiwagi_RightToeBase
+    100074: Kashiwagi_RightUpLeg
+    100076: Kashiwagi_Spine
+    100078: Kashiwagi_Spine1
+    100080: Kashiwagi_Spine2
+    100082: ponite
+    100084: ponite_midle
+    100086: ponite_tip
+    100088: skinWrangler_jointBboxLocator
+    400000: back_kimono
+    400002: back_kimono_tip
+    400004: front_kimono
+    400006: front_kimono_tip
+    400008: ikHandle1
+    400010: ikHandle2
+    400012: ikHandle3
+    400014: Kashi_left_sword
+    400016: Kashi_right_sword
+    400018: Kashi_saya_poly
+    400020: //RootNode
+    400022: Kashiwagi_Head
+    400024: Kashiwagi_Hips
+    400026: Kashiwagi_LeftArm
+    400028: Kashiwagi_LeftFoot
+    400030: Kashiwagi_LeftForeArm
+    400032: Kashiwagi_LeftHand
+    400034: Kashiwagi_LeftHandMiddle1
+    400036: Kashiwagi_LeftHandMiddle2
+    400038: Kashiwagi_LeftHandThumb1
+    400040: Kashiwagi_LeftHandThumb2
+    400042: Kashiwagi_LeftLeg
+    400044: Kashiwagi_LeftToeBase
+    400046: Kashiwagi_LeftUpLeg
+    400048: Kashiwagi_Neck
+    400050: Kashiwagi_poly
+    400052: Kashiwagi_Reference
+    400054: Kashiwagi_RightArm
+    400056: Kashiwagi_RightFoot
+    400058: Kashiwagi_RightForeArm
+    400060: Kashiwagi_RightHand
+    400062: Kashiwagi_RightHandMiddle1
+    400064: Kashiwagi_RightHandMiddle2
+    400066: Kashiwagi_RightHandThumb1
+    400068: Kashiwagi_RightHandThumb2
+    400070: Kashiwagi_RightLeg
+    400072: Kashiwagi_RightToeBase
+    400074: Kashiwagi_RightUpLeg
+    400076: Kashiwagi_Spine
+    400078: Kashiwagi_Spine1
+    400080: Kashiwagi_Spine2
+    400082: ponite
+    400084: ponite_midle
+    400086: ponite_tip
+    400088: skinWrangler_jointBboxLocator
+    2300000: Kashi_left_sword
+    2300002: Kashi_right_sword
+    2300004: Kashi_saya_poly
+    3300000: Kashi_left_sword
+    3300002: Kashi_right_sword
+    3300004: Kashi_saya_poly
+    4300000: Kashi_saya_poly
+    4300002: Kashi_left_sword
+    4300004: Kashi_right_sword
+    4300006: Kashiwagi_poly
+    7400000: Kashiwagi_tap_2_attack
+    9500000: //RootNode
+    13700000: Kashiwagi_poly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Kashiwagi_tap_2_attack
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 320
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Kashiwagi_poly
+        weight: 1
+      - path: Kashiwagi_Reference
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/back_kimono
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/back_kimono/back_kimono_tip
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/front_kimono
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/front_kimono/front_kimono_tip
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/ikHandle1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/ikHandle2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/ikHandle3
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashi_saya_poly
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashi_saya_poly/Kashi_left_sword
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashi_saya_poly/Kashi_left_sword/Kashi_right_sword
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg/Kashiwagi_LeftLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg/Kashiwagi_LeftLeg/Kashiwagi_LeftFoot
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_LeftUpLeg/Kashiwagi_LeftLeg/Kashiwagi_LeftFoot/Kashiwagi_LeftToeBase
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg/Kashiwagi_RightLeg
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg/Kashiwagi_RightLeg/Kashiwagi_RightFoot
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_RightUpLeg/Kashiwagi_RightLeg/Kashiwagi_RightFoot/Kashiwagi_RightToeBase
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandMiddle1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandMiddle1/Kashiwagi_LeftHandMiddle2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandThumb1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_LeftArm/Kashiwagi_LeftForeArm/Kashiwagi_LeftHand/Kashiwagi_LeftHandThumb1/Kashiwagi_LeftHandThumb2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head/ponite
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head/ponite/ponite_midle
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_Neck/Kashiwagi_Head/ponite/ponite_midle/ponite_tip
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandMiddle1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandMiddle1/Kashiwagi_RightHandMiddle2
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandThumb1
+        weight: 1
+      - path: Kashiwagi_Reference/Kashiwagi_Hips/Kashiwagi_Spine/Kashiwagi_Spine1/Kashiwagi_Spine2/Kashiwagi_RightArm/Kashiwagi_RightForeArm/Kashiwagi_RightHand/Kashiwagi_RightHandThumb1/Kashiwagi_RightHandThumb2
+        weight: 1
+      - path: skinWrangler_jointBboxLocator
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

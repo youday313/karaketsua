@@ -1,0 +1,265 @@
+fileFormatVersion: 2
+guid: dfe203f8d87b8f64f8c6cfcb80a757ef
+timeCreated: 1456243274
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Left_sleeve_half
+    100002: Left_sleeve_tip
+    100004: Left_tail_haif
+    100006: Left_tail_root
+    100008: Omari_Head
+    100010: Omari_Hips
+    100012: Omari_LeftArm
+    100014: Omari_LeftFoot
+    100016: Omari_LeftForeArm
+    100018: Omari_LeftHand
+    100020: Omari_LeftHandMiddle1
+    100022: Omari_LeftHandThumb1
+    100024: Omari_LeftLeg
+    100026: Omari_LeftUpLeg
+    100028: Omari_Neck
+    100030: Omari_poly
+    100032: Omari_RightArm
+    100034: Omari_RightFoot
+    100036: Omari_RightForeArm
+    100038: Omari_RightHand
+    100040: Omari_RightHandMiddle1
+    100042: Omari_RightHandThumb1
+    100044: Omari_RightLeg
+    100046: Omari_RightUpLeg
+    100048: Omari_setup_Omari_Reference1
+    100050: Omari_Spine
+    100052: Omari_Spine1
+    100054: Omari_Spine2
+    100056: //RootNode
+    100058: Right_sleeve_half
+    100060: Right_sleeve_tip
+    100062: Right_tail_haif
+    100064: Right_tail_root
+    100066: stoon
+    100068: stoon1
+    100070: stoon2
+    100072: stoon3
+    400000: Left_sleeve_half
+    400002: Left_sleeve_tip
+    400004: Left_tail_haif
+    400006: Left_tail_root
+    400008: Omari_Head
+    400010: Omari_Hips
+    400012: Omari_LeftArm
+    400014: Omari_LeftFoot
+    400016: Omari_LeftForeArm
+    400018: Omari_LeftHand
+    400020: Omari_LeftHandMiddle1
+    400022: Omari_LeftHandThumb1
+    400024: Omari_LeftLeg
+    400026: Omari_LeftUpLeg
+    400028: Omari_Neck
+    400030: Omari_poly
+    400032: Omari_RightArm
+    400034: Omari_RightFoot
+    400036: Omari_RightForeArm
+    400038: Omari_RightHand
+    400040: Omari_RightHandMiddle1
+    400042: Omari_RightHandThumb1
+    400044: Omari_RightLeg
+    400046: Omari_RightUpLeg
+    400048: Omari_setup_Omari_Reference1
+    400050: Omari_Spine
+    400052: Omari_Spine1
+    400054: Omari_Spine2
+    400056: //RootNode
+    400058: Right_sleeve_half
+    400060: Right_sleeve_tip
+    400062: Right_tail_haif
+    400064: Right_tail_root
+    400066: stoon
+    400068: stoon1
+    400070: stoon2
+    400072: stoon3
+    2300000: stoon
+    2300002: stoon1
+    2300004: stoon2
+    2300006: stoon3
+    2300008: Omari_poly
+    3300000: stoon
+    3300002: stoon1
+    3300004: stoon2
+    3300006: stoon3
+    3300008: Omari_poly
+    4300000: Omari_poly
+    4300002: stoon
+    4300004: stoon1
+    4300006: stoon2
+    4300008: stoon3
+    7400000: Omari_Tap_3_Attack
+    9500000: //RootNode
+    13700000: Omari_poly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Omari_Tap_3_Attack
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 550
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Omari_poly
+        weight: 1
+      - path: Omari_setup_Omari_Reference1
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_LeftUpLeg
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_LeftUpLeg/Omari_LeftLeg
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_LeftUpLeg/Omari_LeftLeg/Omari_LeftFoot
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_RightUpLeg
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_RightUpLeg/Omari_RightLeg
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_RightUpLeg/Omari_RightLeg/Omari_RightFoot
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_LeftArm
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_LeftArm/Omari_LeftForeArm
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_LeftArm/Omari_LeftForeArm/Left_sleeve_half
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_LeftArm/Omari_LeftForeArm/Left_sleeve_half/Left_sleeve_tip
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_LeftArm/Omari_LeftForeArm/Omari_LeftHand
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_LeftArm/Omari_LeftForeArm/Omari_LeftHand/Omari_LeftHandMiddle1
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_LeftArm/Omari_LeftForeArm/Omari_LeftHand/Omari_LeftHandThumb1
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_Neck
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_Neck/Omari_Head
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_Neck/Omari_Head/Left_tail_root
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_Neck/Omari_Head/Left_tail_root/Left_tail_haif
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_Neck/Omari_Head/Right_tail_root
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_Neck/Omari_Head/Right_tail_root/Right_tail_haif
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_RightArm
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_RightArm/Omari_RightForeArm
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_RightArm/Omari_RightForeArm/Omari_RightHand
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_RightArm/Omari_RightForeArm/Omari_RightHand/Omari_RightHandMiddle1
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_RightArm/Omari_RightForeArm/Omari_RightHand/Omari_RightHandThumb1
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_RightArm/Omari_RightForeArm/Right_sleeve_half
+        weight: 1
+      - path: Omari_setup_Omari_Reference1/Omari_Hips/Omari_Spine/Omari_Spine1/Omari_Spine2/Omari_RightArm/Omari_RightForeArm/Right_sleeve_half/Right_sleeve_tip
+        weight: 1
+      - path: stoon
+        weight: 1
+      - path: stoon1
+        weight: 1
+      - path: stoon2
+        weight: 1
+      - path: stoon3
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
