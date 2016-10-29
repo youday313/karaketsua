@@ -2,7 +2,7 @@
 using System.Collections;
 
 // アスペクト比を固定
-public class CameraUtility : MonoBehaviour
+public class CameraAspectUtility : MonoBehaviour
 {
 
     #region(inspector settings)
