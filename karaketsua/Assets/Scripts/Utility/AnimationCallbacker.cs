@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(Animation))]
 public class AnimationCallbacker : MonoBehaviour {
@@ -8,6 +10,9 @@ public class AnimationCallbacker : MonoBehaviour {
     public Action OnPlay;
     public Action Onfinish;
     public Action[] OnTrigger;
+
+    [SerializeField] private List<GameObject> disableObjects;
+
     private int triggerCount;
 
     public void Play()
@@ -29,5 +34,10 @@ public class AnimationCallbacker : MonoBehaviour {
     public void ResetTrigger()
     {
         triggerCount = 0;
+    }
+
+    public void DisableObjects()
+    {
+        disableObjects.ForEach(o => o.gameObject.SetActive(false));
     }
 }
