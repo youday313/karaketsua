@@ -4,17 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ActiveTime
-  - Tile
-  - BattleCharacter
-  - PlayerCharacter
-  - ActionSelect
-  - CharacterStateUIParent
-  - EffectCanvas
-  - SceneState
-  - Field/Wall
-  - Debug/Text
-  - Edit/Character
+  - ui
   layers:
   - Default
   - TransparentFX
@@ -24,13 +14,13 @@ TagManager:
   - UI
   - 
   - 
-  - Tile
-  - Eeath
-  - TreeObject
-  - MainObject
-  - PlayerIcon
-  - Field/Stage
-  - Field/Village
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -49,6 +39,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 130177381
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: character
+    uniqueID: 3267006515
+    locked: 0
+  - name: message
+    uniqueID: 1909958513
+    locked: 0
+  - name: front
+    uniqueID: 501943823
+    locked: 0
+  - name: ui
+    uniqueID: 3329893949
     locked: 0
