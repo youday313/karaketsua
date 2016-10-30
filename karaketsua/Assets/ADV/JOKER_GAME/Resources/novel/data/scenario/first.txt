@@ -7,10 +7,10 @@
 ;@call file=libs/utils
 
 ;横バージョン読み込み
-@jump file=wide/title
+;@jump file=wide/title
 
 ;縦バージョン読み込み
-;@jump file=tall/title
+@jump file=tall/scene1
 
 [s]
 
