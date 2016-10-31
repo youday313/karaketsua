@@ -4,10 +4,10 @@
 
 ;メッセージ表示
 [showmessage]
-[call file=tall/system target="*system_setting_buttons"]
-[text_new name=_sp_chara_name layer=ui x="-186" y=-250 val="" color="DDFF00" fontsize=30 anchor="MiddleLeft"]
+;[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-187" y=-257 val="" color="DDFF00" fontsize=25 anchor="MiddleLeft"]
 [text_show name="_sp_chara_name"] 
-
+[font color="000000"]
 
 ;---------------キャラ定義
 
@@ -18,8 +18,6 @@
 
 @chara_pos name="kashiwagi" x=-1
 @chara_pos name="mouri" x=1
-
-;@show name=yuko
 
 [playbgm wait=false time=1 storage="music"]
 

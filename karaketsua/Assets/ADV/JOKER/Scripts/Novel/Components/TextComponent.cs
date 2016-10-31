@@ -92,7 +92,7 @@ cut=数値を指定します。指定した文字数でカットします。
 				{ "scale","1" },
 				{ "anchor","MiddleCenter" },
 				{ "color","FFFFFF" },
-				{ "fontsize","14" },
+				{ "fontsize","25" },
 				{ "cut","" },
 
 
