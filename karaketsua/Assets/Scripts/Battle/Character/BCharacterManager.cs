@@ -25,10 +25,8 @@ namespace BattleScene
         {
             // バトルキャラクター作成
             characters = characterCreater.CreateBattleCharacters();
-
             ActiveCharacter = null;
         }
-
 
         public void SetActivePlayer(BCharacterPlayer chara)
         {

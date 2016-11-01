@@ -6356,6 +6356,8 @@ GameObject:
   - 224: {fileID: 549512854}
   - 222: {fileID: 549512856}
   - 114: {fileID: 549512855}
+  - 111: {fileID: 549512858}
+  - 114: {fileID: 549512857}
   m_Layer: 5
   m_Name: BattleEnd
   m_TagString: Untagged
@@ -6414,6 +6416,33 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 549512853}
+--- !u!114 &549512857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 549512853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 551868f47f1f84fc9b20807d6096ca49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableObjects: []
+--- !u!111 &549512858
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 549512853}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 00bee7146ee77458bb87343dae6ca036, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 00bee7146ee77458bb87343dae6ca036, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &555650941
 GameObject:
   m_ObjectHideFlags: 0
@@ -26348,6 +26377,8 @@ MonoBehaviour:
   characterManager: {fileID: 221889618}
   cameraManager: {fileID: 1860974126}
   uiManager: {fileID: 2136786057}
+  battleStartAnimation: {fileID: 606276142}
+  battleEndAnimation: {fileID: 0}
 --- !u!4 &2062143107
 Transform:
   m_ObjectHideFlags: 0

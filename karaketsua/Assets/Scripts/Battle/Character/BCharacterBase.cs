@@ -28,6 +28,7 @@ namespace BattleScene
 
         // キャラクター死亡時
         public event Action<BCharacterBase> OnDeathE;
+        public static event Action OnDeathStaticE;
 
         // ステータス変更
         public event Action OnStatusUpdateE;

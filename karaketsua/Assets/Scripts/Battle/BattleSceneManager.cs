@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace BattleScene
 {
@@ -11,6 +12,10 @@ namespace BattleScene
         private BCameraManager cameraManager;
         [SerializeField]
         private UIBottomAllManager uiManager;
+        [SerializeField]
+        private GameObject battleStartAnimation;
+        [SerializeField]
+        private AnimationCallbacker battleEndAnimation;
 
         void Start()
         {
@@ -20,6 +25,11 @@ namespace BattleScene
             cameraManager.Initialize();
             // UIセット
             uiManager.initialize();
+            battleStartAnimation.SetActive(true);
+            BCharacterBase.OnDeathStaticE += () => {
+                battleEndAnimation.Onfinish += () => SceneManager.Instance.LoadScene(Scene.Result);
+                battleEndAnimation.gameObject.SetActive(true);
+            };
         }
     }
 }
