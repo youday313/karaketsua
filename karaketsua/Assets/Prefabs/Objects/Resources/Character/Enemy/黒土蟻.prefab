@@ -1076,17 +1076,17 @@ MonoBehaviour:
     power: 120
     deffence: 150
     skillPoint: 150
+    intellisense: 0
     singleAttackParameters: []
     moveAttackParameter:
       wazaName: 
       needSkillPoint: 0
-      powerMagnification: 0
+      powerRate: 0
       moveRange: 0
-      needMovePoint: 0
     autoAttackParameter:
       wazaName: "\u565B\u307F\u3064\u304F"
       needSkillPoint: 0
-      powerMagnification: 1
+      powerRate: 0
       attackRanges:
       - x: -1
         y: 0
@@ -1097,8 +1097,9 @@ MonoBehaviour:
       - x: 0
         y: -1
       attackDistance: 0
-  isEnemy: 1
-  positionArray:
+      isForceFace: 0
+  IsEnemy: 0
+  PositionArray:
     x: 0
     y: 0
   animator: {fileID: 11499866}
@@ -1119,6 +1120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraInterval: 1
   attackTime: 2
+  attackEffect: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
 --- !u!114 &11499866
 MonoBehaviour:
   m_ObjectHideFlags: 1

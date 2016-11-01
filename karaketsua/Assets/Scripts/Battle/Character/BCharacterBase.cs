@@ -150,14 +150,11 @@ namespace BattleScene
         {
             //爆発エフェクト
             //Instantiate(Resources.Load<GameObject>("DeathEffect"), transform.position, Quaternion.identity);
-            //リストから除く
-            //WaitTimeManager.Instance.DestroyWaitTime(this.activeTime);
-            //RemoveActiveTimeEventHandler();
 
-
-            //activeTime.DeathCharacter();
-            //CharacterManager.Instance.DestroyCharacter(this);
-            if(OnDeathE != null) OnDeathE(this);
+            if(OnDeathE != null) {
+                OnDeathE(this);
+                BCharacterManager.Instance.Remove(this);
+            }
             Destroy(gameObject);
         }
 
@@ -193,5 +190,4 @@ namespace BattleScene
             transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
         }
     }
-
 }
