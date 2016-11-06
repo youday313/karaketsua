@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 // 画面入力を停止する
-public class InputBlocker : DontDestroySingleton<InputBlocker> {
+public class InputBlocker : SingletonMonoBehaviour<InputBlocker> {
 
-    [SerializeField] private Button block;
     // EventSystemやInputTouches
-    [SerializeField] List<GameObject> stopObjects;
+    [SerializeField] List<GameObject> stopObjects = new List<GameObject>();
+
+    void Start()
+    {
+        Instance.Release();
+    }
 
     public void Block()
     {
-        block.interactable = true;
+        gameObject.SetActive(true);
         stopObjects.ForEach(o => o.SetActive(false));
     }
 
     public void Release()
     {
-        block.interactable = false;
         stopObjects.ForEach(o => o.SetActive(true));
+        gameObject.SetActive(false);
     }
 }

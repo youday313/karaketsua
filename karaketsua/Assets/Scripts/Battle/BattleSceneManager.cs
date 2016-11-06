@@ -26,9 +26,13 @@ namespace BattleScene
             // UIセット
             uiManager.initialize();
             battleStartAnimation.SetActive(true);
-            BCharacterBase.OnDeathStaticE += () => {
+            BCharacterBase.OnEndActiveStaticE += () => {
+                if(characterManager.IsExitEnemy) {
+                    return;
+                }
                 battleEndAnimation.Onfinish += () => SceneManager.Instance.LoadScene(Scene.Result);
                 battleEndAnimation.gameObject.SetActive(true);
+                InputBlocker.Instance.Block();
             };
         }
     }
