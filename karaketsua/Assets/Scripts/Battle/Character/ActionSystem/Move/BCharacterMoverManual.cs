@@ -99,7 +99,7 @@ namespace BattleScene
             UIBottomAllManager.Instance.UpdateUI();
         }
 
-        void OnDestory()
+        void OnDestroy()
         {
             IT_Gesture.onDraggingStartE -= OnChargeForMove;
         }
