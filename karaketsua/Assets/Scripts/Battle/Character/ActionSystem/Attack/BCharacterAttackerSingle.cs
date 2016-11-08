@@ -71,8 +71,9 @@ namespace BattleScene
             isTapDetect = false;
             SelectWazaNumber = 0;
             //タイル変更
-            foreach(var tar in TargetList)
+            foreach(var tar in TargetList) {
                 tar.SetTargeted(false);
+            }
             base.Disable();
         }
 
@@ -84,8 +85,6 @@ namespace BattleScene
                 return;
             SetTarget(pos);
         }
-
-
 
         #region::ターゲット選択
 
@@ -298,6 +297,11 @@ namespace BattleScene
                     effect.transform.localPosition = Vector3.zero;
                 }
             }
+        }
+
+        void OnDestroy()
+        {
+            IT_Gesture.onShortTapE -= OnShortTap;
         }
     }
 }

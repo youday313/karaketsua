@@ -38,14 +38,12 @@ namespace BattleScene
 
             //BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange, this.character);
         }
+
         public override void Disable()
         {
-
-
             //CameraChange.Instance.
             base.Disable();
         }
-
 
         public void StartAutoAttack()
         {
@@ -151,10 +149,5 @@ namespace BattleScene
                 }
             }
         }
-
-
-
-
-
     }
 }

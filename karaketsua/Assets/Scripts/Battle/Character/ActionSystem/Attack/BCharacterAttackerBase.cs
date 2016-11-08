@@ -69,13 +69,11 @@ namespace BattleScene
         {
             TargetList = new List<BCharacterBase>();
         }
-
-
+            
         public virtual void Reset()
         {
             Disable();
             IsDone = false;
-
         }
 
         protected void onCompleteAction()

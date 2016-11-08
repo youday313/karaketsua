@@ -126,14 +126,9 @@ namespace BattleScene
         }
         private void delete(BCharacterBase chara)
         {
-            // いらない？
             chara.OnEndActiveE -= ResetValue;
-
             BCharacterBase.OnEndActiveStaticE -= Resume;
-
             Destroy(this.gameObject);
         }
-
-
     }
 }

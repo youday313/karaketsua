@@ -34,8 +34,7 @@ namespace BattleScene
                 }
             }
         }
-
-
+            
         public override void Enable()
         {
             base.Enable();
@@ -48,9 +47,6 @@ namespace BattleScene
         {
             IT_Gesture.onDraggingStartE -= onDraggingStart;
             nowTraceTiles = new List<IntVect2D>();
-
-
-            //ActionSelect.Instance.DisableMoveAttackButton();
             base.Disable();
         }
         //なぞり開始
@@ -115,9 +111,7 @@ namespace BattleScene
         {
 
             checkTraceComplete();
-            //nowTraceTiles = new List<IntVect2D>();
             IT_Gesture.onDraggingE -= onDragging;
-
             IT_Gesture.onDraggingEndE -= onDraggingEnd;
         }
 
@@ -155,8 +149,6 @@ namespace BattleScene
             //攻撃
             UIBottomCommandParent.UICommandState = EUICommandState.ExecuteAttack;
             UIBottomCommandParent.Instance.UpdateUI();
-            //Attack();
-            //Disable();
         }
 
         private void setTarget()
@@ -174,27 +166,14 @@ namespace BattleScene
         //攻撃実行
         public void ExecuteAttack()
         {
-
-            if(TargetList.Count == 0)
+            if(TargetList.Count == 0) {
                 return;
-
-            ////攻撃
-            //foreach (var target in attackTarget)
-            //{
-            //    target.Life.Damage(character.characterParameter.power);
-            //    target.Life.CheckDestroy();
-            //}
-
-            //attackTarget = null;
-
-
+            }
             startMoveForAttack();
             IsDone = true;
             //攻撃時にUI非表示
             UIBottomCommandParent.UICommandState = EUICommandState.None;
             UIBottomAllManager.Instance.Off();
-
-            //Disable();
         }
 
         private void startMoveForAttack()
@@ -289,6 +268,11 @@ namespace BattleScene
         {
             //ベース＊技倍率
             return calcBaseDamageRate() * selectAttackParameter.powerRate;
+        }
+
+        void OnDestroy()
+        {
+            IT_Gesture.onDraggingStartE -= onDraggingStart;
         }
     }
 }
