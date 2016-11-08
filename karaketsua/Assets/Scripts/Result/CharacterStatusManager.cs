@@ -11,8 +11,6 @@ namespace ResultScene
         private Text exp;
         [SerializeField]
         private CharacterStatusPanel status;
-        [SerializeField]
-        private Button next;
 
         public void Initialize(int exp)
         {
@@ -24,10 +22,6 @@ namespace ResultScene
                 obj.transform.SetParent(transform);
                 obj.Initialize(null, "", "", 0);
             }
-
-            next.onClick.AddListener(() => {
-                SceneManager.Instance.LoadScene(Scene.Field);
-            });
         }
     }
 }
