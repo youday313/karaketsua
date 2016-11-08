@@ -49,8 +49,8 @@ namespace BattleScene
         {
             base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
-            attackMaker = Resources.Load<GameObject>("AttackMaker");
-            onTapEffect = Resources.Load<GameObject>("TapEffect");
+            attackMaker = Resources.Load<GameObject>(ResourcesPath.AttackMaker);
+            onTapEffect = Resources.Load<GameObject>(ResourcesPath.TapEffect);
         }
 
         public override void Enable()
