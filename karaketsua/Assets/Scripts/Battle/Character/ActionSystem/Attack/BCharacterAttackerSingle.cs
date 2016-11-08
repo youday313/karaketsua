@@ -12,20 +12,21 @@ namespace BattleScene
     //タップによる単体攻撃
     public class BCharacterAttackerSingle : BCharacterAttackerBase
     {
-        private GameObject attackMakerPrefab;
+        private GameObject attackMaker;   // タイミング判定表示マーカー
+        private GameObject onTapEffect;         // タップ判定マーカー
         [SerializeField]
-        private GameObject[] attackEffects;
+        private GameObject[] attackEffects;     // 攻撃演出
 
         //一度のタップのパラメータ
 
         //タップで攻撃
         public float changeTimeSingleMode = 1f;
-        bool isTapDetect = false;
-        float startTime, leftTime;
+        private bool isTapDetect = false;
+        private float startTime;
+        private float judgeRate;  //justRateは大きい程Just。MAX:1、Min:0
 
-        GameObject nowAttackMaker;
+        private GameObject nowAttackMakerParent;
         SingleActionParameter nowSingleAction;
-        public GameObject onTapEffect;
         Vector3 popupPositionInScreen;
 
         //選択した攻撃方法
@@ -48,8 +49,8 @@ namespace BattleScene
         {
             base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
-            // NOTE:キャラごとに変えるならキャラマスタからプレハブ名を指定させる
-            attackMakerPrefab = Resources.Load("AttackMaker") as GameObject;
+            attackMaker = Resources.Load<GameObject>("AttackMaker");
+            onTapEffect = Resources.Load<GameObject>("TapEffect");
         }
 
         public override void Enable()
@@ -190,28 +191,26 @@ namespace BattleScene
                 //startInterval待ってからマーカー縮小
                 yield return new WaitForSeconds(action.judgeTime);
                 //マーカー表示
-                nowAttackMaker = Instantiate(attackMakerPrefab, popupPositionInScreen, Quaternion.identity) as GameObject;
-                nowAttackMaker.transform.SetParent(effectCanvas);
-
+                nowAttackMakerParent = Instantiate(attackMaker, popupPositionInScreen, Quaternion.identity) as GameObject;
+                nowAttackMakerParent.transform.SetParent(effectCanvas);
+                var maker = nowAttackMakerParent.transform.FindChild("Expand").gameObject;
 
                 //マーカー縮小始まり
-                iTween.ScaleTo(nowAttackMaker, iTween.Hash("scale", new Vector3(0.1f, 0.1f, 1.0f), "time", action.judgeTime));
-
+                iTween.ScaleTo(maker, iTween.Hash("scale", Vector3.one, "time", action.judgeTime));
 
                 //タップ判定
                 startTime = Time.time;
-                //タップできなかったら最大時間
-                //leftTimheは大きい程よい。leftTime=judgeTimeがパーフェクト
-                leftTime = 0;
-                IT_Gesture.onShortTapE += OnTapForAttack;
+                //タップできなかったら最小倍率
+                judgeRate = 0;
+                IT_Gesture.onShortTapE += onTapForAttack;
                 yield return new WaitForSeconds(action.judgeTime);
-                IT_Gesture.onShortTapE -= OnTapForAttack;
+                IT_Gesture.onShortTapE -= onTapForAttack;
                 isTapDetect = false;
-                if(nowAttackMaker != null) {
-                    Destroy(nowAttackMaker);
-
+                if(nowAttackMakerParent != null) {
+                    // 親を削除
+                    Destroy(nowAttackMakerParent);
                 }
-                totalTapRatios.Add(leftTime / action.judgeTime);
+                totalTapRatios.Add(judgeRate);
             }
 
             //攻撃
@@ -236,20 +235,24 @@ namespace BattleScene
             yield return null;
 
         }
-        //タイミングを合わせたタップ
-        void OnTapForAttack(Vector2 pos)
+
+        // タイミングを合わせたタップ
+        // タップ入力から呼ばれる
+        private void onTapForAttack(Vector2 pos)
         {
-            if(isTapDetect == true)
+            if(isTapDetect) {
                 return;
+            }
             isTapDetect = true;
-            //残り時間
-            var nowTime = Time.time - startTime;
-            leftTime = Mathf.Clamp(nowTime, 0, nowSingleAction.judgeTime);
-            Destroy(nowAttackMaker);
-            nowAttackMaker = null;
+            // オーバーしていたら0、それ以外なら残り時間割合
+            judgeRate = Time.time - startTime > nowSingleAction.judgeTime ? 0 : (Time.time - startTime) / nowSingleAction.judgeTime;
+            Destroy(nowAttackMakerParent);
+            nowAttackMakerParent = null;
+            // 攻撃エフェクト　自動で削除
             var attackEffect = Instantiate(onTapEffect, popupPositionInScreen, Quaternion.identity) as GameObject;
             attackEffect.transform.SetParent(effectCanvas);
         }
+
         //モーション時間＋猶予時間の案もありか
         [SerializeField]
         private float resetInterval = 3f;
@@ -264,16 +267,19 @@ namespace BattleScene
         }
             
         // 倍率の算出
-        private readonly float[] TapRateRanges = { 0.9f, 0.51f };
-        private readonly float[] TapRateValues = { 1.3f, 1.1f, 1 };
+        private readonly float[] TapRateRanges = { 0.9f, 0.51f };   // Just、Greatの判定割合
+        private readonly float[] TapRateValues = { 1.3f, 1.1f, 1 }; // 攻撃倍率
         private float calcTapDamageRate(float[] timeRatios)
         {
             //タップ倍率の算出
             float tapRate = TapRateValues.Last();
             var ave = timeRatios.Average();
             for(var i = 0; i < TapRateRanges.Length; i++) {
-                if(ave >= TapRateRanges[i])
+                // 平均が高い→倍率も高い
+                if(ave >= TapRateRanges[i]) {
                     tapRate = TapRateValues[i];
+                    break;
+                }
             }
             // ベース値*技倍率*タップ倍率
             return  calcBaseDamageRate() * selectAttackParameter.powerRate * tapRate;

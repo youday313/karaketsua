@@ -38,7 +38,6 @@ namespace BattleScene
         public override void Disable()
         {
             //キャラクター移動選択
-            Debug.Log("OnC");
             IT_Gesture.onDraggingStartE -= OnChargeForMove;
             IT_Gesture.onDraggingEndE -= OnDragMove;
             directionIcon.SetActive(false);
