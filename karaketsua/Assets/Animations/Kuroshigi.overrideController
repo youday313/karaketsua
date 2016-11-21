@@ -7,4 +7,14 @@ AnimatorOverrideController:
   m_PrefabInternal: {fileID: 0}
   m_Name: Kuroshigi
   m_Controller: {fileID: 9100000, guid: 4cf25c230956ad84488f683d9b430152, type: 2}
-  m_Clips: []
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 225b32fe8b6312342aa424188f113d71, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: c58f9eae819ee0a4392363baf1520aa3, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 57b68e3fc4a359c4989c08fafa5eb1b4, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 5d9e3861f082a074cb36b737fefc03a0, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 91eb521707502dc4dabd9331faa3ba68, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 43f46a4fbe59ee5428db694283cf52a9, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 3062d7e4b3a7f1e47bc8dc1eb3b42afc, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: d345bf05f5deede44a3eaaabc0ec77ec, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 866a38685025f464d843150b61e30888, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: fbfe93323d03ca549b608df4dd83356d, type: 3}
