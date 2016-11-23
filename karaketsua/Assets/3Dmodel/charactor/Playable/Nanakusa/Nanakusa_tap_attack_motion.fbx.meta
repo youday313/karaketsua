@@ -1,0 +1,287 @@
+fileFormatVersion: 2
+guid: bf741c616d8256f4b9250019c6542d74
+timeCreated: 1456242150
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: back_kimono
+    100002: back_kimono_midle
+    100004: back_kimono_tip
+    100006: front_kimono
+    100008: front_kimono_midle
+    100010: front_kimono_tip
+    100012: holder_poly
+    100014: holder_poly1
+    100016: katanugi
+    100018: katanugi_tip
+    100020: Nana_gun_poly1
+    100022: Nana_gun_poly2
+    100024: Nanakusa_Head
+    100026: Nanakusa_Hips
+    100028: Nanakusa_LeftArm
+    100030: Nanakusa_LeftFoot
+    100032: Nanakusa_LeftForeArm
+    100034: Nanakusa_LeftHand
+    100036: Nanakusa_LeftHandMiddle1
+    100038: Nanakusa_LeftHandMiddle2
+    100040: Nanakusa_LeftHandThumb1
+    100042: Nanakusa_LeftHandThumb2
+    100044: Nanakusa_LeftLeg
+    100046: Nanakusa_LeftToeBase
+    100048: Nanakusa_LeftUpLeg
+    100050: Nanakusa_Neck
+    100052: Nanakusa_RightArm
+    100054: Nanakusa_RightFoot
+    100056: Nanakusa_RightForeArm
+    100058: Nanakusa_RightHand
+    100060: Nanakusa_RightHandMiddle1
+    100062: Nanakusa_RightHandMiddle2
+    100064: Nanakusa_RightHandThumb1
+    100066: Nanakusa_RightHandThumb2
+    100068: Nanakusa_RightLeg
+    100070: Nanakusa_RightToeBase
+    100072: Nanakusa_RightUpLeg
+    100074: Nanakusa_setup_Nanakusa_poly
+    100076: Nanakusa_setup_Nanakusa_Reference
+    100078: Nanakusa_Spine
+    100080: Nanakusa_Spine1
+    100082: Nanakusa_Spine2
+    100084: //RootNode
+    400000: back_kimono
+    400002: back_kimono_midle
+    400004: back_kimono_tip
+    400006: front_kimono
+    400008: front_kimono_midle
+    400010: front_kimono_tip
+    400012: holder_poly
+    400014: holder_poly1
+    400016: katanugi
+    400018: katanugi_tip
+    400020: Nana_gun_poly1
+    400022: Nana_gun_poly2
+    400024: Nanakusa_Head
+    400026: Nanakusa_Hips
+    400028: Nanakusa_LeftArm
+    400030: Nanakusa_LeftFoot
+    400032: Nanakusa_LeftForeArm
+    400034: Nanakusa_LeftHand
+    400036: Nanakusa_LeftHandMiddle1
+    400038: Nanakusa_LeftHandMiddle2
+    400040: Nanakusa_LeftHandThumb1
+    400042: Nanakusa_LeftHandThumb2
+    400044: Nanakusa_LeftLeg
+    400046: Nanakusa_LeftToeBase
+    400048: Nanakusa_LeftUpLeg
+    400050: Nanakusa_Neck
+    400052: Nanakusa_RightArm
+    400054: Nanakusa_RightFoot
+    400056: Nanakusa_RightForeArm
+    400058: Nanakusa_RightHand
+    400060: Nanakusa_RightHandMiddle1
+    400062: Nanakusa_RightHandMiddle2
+    400064: Nanakusa_RightHandThumb1
+    400066: Nanakusa_RightHandThumb2
+    400068: Nanakusa_RightLeg
+    400070: Nanakusa_RightToeBase
+    400072: Nanakusa_RightUpLeg
+    400074: Nanakusa_setup_Nanakusa_poly
+    400076: Nanakusa_setup_Nanakusa_Reference
+    400078: Nanakusa_Spine
+    400080: Nanakusa_Spine1
+    400082: Nanakusa_Spine2
+    400084: //RootNode
+    2300000: holder_poly
+    2300002: holder_poly1
+    2300004: Nana_gun_poly1
+    2300006: Nana_gun_poly2
+    3300000: holder_poly
+    3300002: holder_poly1
+    3300004: Nana_gun_poly1
+    3300006: Nana_gun_poly2
+    4300000: holder_poly
+    4300002: holder_poly1
+    4300004: Nanakusa_setup_Nanakusa_poly
+    4300006: Nana_gun_poly1
+    4300008: Nana_gun_poly2
+    7400000: Nanakusa_tap_4_attack
+    9500000: //RootNode
+    13700000: Nanakusa_setup_Nanakusa_poly
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Nanakusa_tap_4_attack
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 580
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Nana_gun_poly1
+        weight: 1
+      - path: Nana_gun_poly2
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_poly
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/back_kimono
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/back_kimono/back_kimono_midle
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/back_kimono/back_kimono_midle/back_kimono_tip
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/front_kimono
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/front_kimono/front_kimono_midle
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/front_kimono/front_kimono_midle/front_kimono_tip
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/holder_poly
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/holder_poly1
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/katanugi
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/katanugi/katanugi_tip
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_LeftUpLeg
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_LeftUpLeg/Nanakusa_LeftLeg
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_LeftUpLeg/Nanakusa_LeftLeg/Nanakusa_LeftFoot
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_LeftUpLeg/Nanakusa_LeftLeg/Nanakusa_LeftFoot/Nanakusa_LeftToeBase
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_RightUpLeg
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_RightUpLeg/Nanakusa_RightLeg
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_RightUpLeg/Nanakusa_RightLeg/Nanakusa_RightFoot
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_RightUpLeg/Nanakusa_RightLeg/Nanakusa_RightFoot/Nanakusa_RightToeBase
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_LeftArm
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_LeftArm/Nanakusa_LeftForeArm
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_LeftArm/Nanakusa_LeftForeArm/Nanakusa_LeftHand
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_LeftArm/Nanakusa_LeftForeArm/Nanakusa_LeftHand/Nanakusa_LeftHandMiddle1
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_LeftArm/Nanakusa_LeftForeArm/Nanakusa_LeftHand/Nanakusa_LeftHandMiddle1/Nanakusa_LeftHandMiddle2
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_LeftArm/Nanakusa_LeftForeArm/Nanakusa_LeftHand/Nanakusa_LeftHandThumb1
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_LeftArm/Nanakusa_LeftForeArm/Nanakusa_LeftHand/Nanakusa_LeftHandThumb1/Nanakusa_LeftHandThumb2
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_Neck
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_Neck/Nanakusa_Head
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_RightArm
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_RightArm/Nanakusa_RightForeArm
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_RightArm/Nanakusa_RightForeArm/Nanakusa_RightHand
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_RightArm/Nanakusa_RightForeArm/Nanakusa_RightHand/Nanakusa_RightHandMiddle1
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_RightArm/Nanakusa_RightForeArm/Nanakusa_RightHand/Nanakusa_RightHandMiddle1/Nanakusa_RightHandMiddle2
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_RightArm/Nanakusa_RightForeArm/Nanakusa_RightHand/Nanakusa_RightHandThumb1
+        weight: 1
+      - path: Nanakusa_setup_Nanakusa_Reference/Nanakusa_Hips/Nanakusa_Spine/Nanakusa_Spine1/Nanakusa_Spine2/Nanakusa_RightArm/Nanakusa_RightForeArm/Nanakusa_RightHand/Nanakusa_RightHandThumb1/Nanakusa_RightHandThumb2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
