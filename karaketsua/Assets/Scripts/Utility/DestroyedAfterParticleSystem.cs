@@ -9,8 +9,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 [RequireComponent(typeof(ParticleSystem))]
-
-
 public class DestroyedAfterParticleSystem : MonoBehaviour
 {
     void Awake()

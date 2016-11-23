@@ -249,8 +249,8 @@ namespace BattleScene
             Destroy(nowAttackMakerParent);
             nowAttackMakerParent = null;
             // 攻撃エフェクト　自動で削除
-            var attackEffect = Instantiate(onTapEffect, popupPositionInScreen, Quaternion.identity) as GameObject;
-            attackEffect.transform.SetParent(effectCanvas);
+            var attackEffect = Instantiate(onTapEffect, new Vector3(TargetList[0].transform.position.x, TargetList[0].transform.position.y + 1f, TargetList[0].transform.position.z), Quaternion.identity) as GameObject;
+            //attackEffect.transform.SetParent(effectCanvas);
         }
 
         //モーション時間＋猶予時間の案もありか
