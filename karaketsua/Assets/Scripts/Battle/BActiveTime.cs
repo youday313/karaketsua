@@ -53,8 +53,8 @@ namespace BattleScene
         {
             Character = chara;
             activeSpeed = Character.characterParameter.activeSpeed;
-            iconImage.sprite = Resources.Load<Sprite>("Character/ATB/ATB" + Character.characterParameter.charaName);
-            Character.OnDeathE += Delete;
+            iconImage.sprite = Resources.Load<Sprite>(ResourcesPath.ATBIcon + Character.characterParameter.charaName);
+            Character.OnDeathE += delete;
             //slider.maxValue = initTimeValue;
             //nowWaitTime = initTimeValue;
 
@@ -124,14 +124,11 @@ namespace BattleScene
         {
             IsActive = true;
         }
-        public void Delete(BCharacterBase chara)
+        private void delete(BCharacterBase chara)
         {
             chara.OnEndActiveE -= ResetValue;
             BCharacterBase.OnEndActiveStaticE -= Resume;
-
             Destroy(this.gameObject);
         }
-
-
     }
 }

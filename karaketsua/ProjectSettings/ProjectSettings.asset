@@ -5,12 +5,12 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
   AndroidProfiler: 0
-  defaultScreenOrientation: 0
+  defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Karakestua
-  productName: Gensou
+  companyName: DefaultCompany
+  productName: Joker
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_ShowUnitySplashScreen: 1
@@ -39,7 +39,7 @@ PlayerSettings:
   disableDepthAndStencilBuffers: 0
   defaultIsFullScreen: 1
   defaultIsNativeResolution: 1
-  runInBackground: 1
+  runInBackground: 0
   captureSingleScreen: 0
   Override IPod Music: 0
   Prepare IOS For Recording: 0
@@ -89,16 +89,16 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleIdentifier: com.Karaketsua.Gensou
+  bundleIdentifier: com.Company.ProductName
   bundleVersion: 1.0
   preloadedAssets: []
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
   xboxOneDisableKinectGpuReservation: 0
   virtualRealitySupported: 0
-  productGUID: 3e9f4cdf806554ce8a0f328fc98828a1
+  productGUID: 54c01527483104ad48cc59b74da2e727
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 17
+  AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2
@@ -268,7 +268,7 @@ PlayerSettings:
   ps4ApplicationParam4: 0
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
-  ps4Passcode: FNoiMkSRrUVQs9zeQDl9w1fRAVAZhQlY
+  ps4Passcode: S1L0W6RoYxU4NHGhKul45U4DgvQAa3fa
   ps4UseDebugIl2cppLibs: 0
   ps4pnSessions: 1
   ps4pnPresence: 1
@@ -306,7 +306,7 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
-  psp2PackagePassword: PxOWJLmGhUbwSuxh2el3MU9mBKVxa77J
+  psp2PackagePassword: frAQBc8Wsa1xVPfvJcrgRYwTiizs2trQ
   psp2KeystoneFile: 
   psp2MemoryExpansionMode: 0
   psp2DRMType: 0
@@ -338,38 +338,15 @@ PlayerSettings:
   psp2UseDebugIl2cppLibs: 0
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
-  scriptingDefineSymbols:
-    0: UDEA;TBB
-    1: UDEA;TBB;CROSS_PLATFORM_INPUT
-    2: UDEA;TBB;CROSS_PLATFORM_INPUT
-    3: UDEA;TBB
-    4: UDEA;TBB;CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    5: UDEA;TBB
-    6: UDEA;TBB
-    7: UDEA;TBB;CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    9: UDEA;TBB
-    11: UDEA;TBB
-    12: UDEA;TBB
-    13: TBB
-    14: UDEA;TBB;MOBILE_INPUT
-    15: UDEA;TBB;CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    16: UDEA;TBB;CROSS_PLATFORM_INPUT;MOBILE_INPUT
-    17: UDEA;TBB;MOBILE_INPUT
-    18: TBB
-    19: TBB
-    20: TBB;MOBILE_INPUT
-    21: TBB
-    22: TBB
-    23: TBB
-    24: TBB
-  metroPackageName: __tbbtest
+  scriptingDefineSymbols: {}
+  metroPackageName: Joker
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: __tbbtest
+  metroApplicationDescription: Joker
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 

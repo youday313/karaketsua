@@ -30,6 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -68,13 +69,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e82b68544a0114a898971502a5d596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSwipeDuration: .25
+  maxSwipeDuration: 0.25
   minSpeed: 150
   minDistance: 15
   maxDirectionChange: 35
   onlyFireWhenLiftCursor: 0
   enableMultiSwipe: 1
-  minDurationBetweenSwipe: .5
+  minDurationBetweenSwipe: 0.5
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,13 +103,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enableMultiTapFilter: 0
   maxTapDisplacementAllowance: 5
-  shortTapTime: .200000003
-  longTapTime: .800000012
-  multiTapInterval: .349999994
+  shortTapTime: 0.2
+  longTapTime: 0.8
+  multiTapInterval: 0.35
   multiTapPosSpacing: 20
   maxMultiTapCount: 2
   chargeMode: 0
-  minChargeTime: .150000006
+  minChargeTime: 0.15
   maxChargeTime: 2
   maxFingerGroupDist: 200
 --- !u!114 &11400010

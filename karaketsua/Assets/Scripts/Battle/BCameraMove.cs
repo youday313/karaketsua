@@ -57,8 +57,6 @@ namespace BattleScene
         {
             get { return isMoved; }
             protected set { isMoved = value; }
-            
-           
         }
         bool isMoved = false;
 
@@ -96,10 +94,8 @@ namespace BattleScene
             var moveVect = GetMoveDirection(dragInfo.delta);
             CSTransform.SetX(transform, transform.position.x - moveVect.x);
             CSTransform.SetZ(transform, transform.position.z - moveVect.y);
-
         }
-
-
+            
         public Vector2 GetMoveDirection(Vector2 delta)
         {
             //x方向

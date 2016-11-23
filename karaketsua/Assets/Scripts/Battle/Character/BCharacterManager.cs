@@ -10,12 +10,10 @@ namespace BattleScene
 
     public class BCharacterManager: SingletonMonoBehaviour<BCharacterManager>
     {
-        public BCharacterBase ActiveCharacter {
-            get; set;
-        }
-        public BCharacterPlayer ActivePlayer {
-            get; set;
-        }
+        public BCharacterBase ActiveCharacter { get; set; }
+        public BCharacterPlayer ActivePlayer { get; set; }
+        public bool IsExitEnemy { get { return characters.Any(c => c.IsEnemy); } }
+
         private List<BCharacterBase> characters = new List<BCharacterBase>();
 
         [SerializeField]
@@ -25,10 +23,8 @@ namespace BattleScene
         {
             // バトルキャラクター作成
             characters = characterCreater.CreateBattleCharacters();
-
             ActiveCharacter = null;
         }
-
 
         public void SetActivePlayer(BCharacterPlayer chara)
         {
@@ -58,20 +54,12 @@ namespace BattleScene
             }
         }
 
-
         #region::Utility
-
-        public void Add(BCharacterBase chara)
-        {
-            characters.Add(chara);
-        }
-
         public void Remove(BCharacterBase chara)
         {
             characters.Remove(chara);
         }
-
-
+            
         //タイル上のキャラを取得
         //いない時はnull
         public BCharacterBase GetCharacterFromVect2D(IntVect2D toPos)
@@ -134,10 +122,5 @@ namespace BattleScene
         }
 
         #endregion::Utillity
-
-
-
-
-
     }
 }

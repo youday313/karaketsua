@@ -18,7 +18,7 @@ namespace BattleScene
             var playerPositions = PlayerGameData.Instance.BattlePlayerPosition;
             // IDが存在するキャラのみ生成
             foreach(var chara in allPlayers.Where(x => selectPlayerIds.Contains(x.id))) {
-                var prefabName = "Character/Playable/" + chara.charaName;
+                var prefabName = ResourcesPath.PlayableCharacterPrefab + chara.charaName;
                 var resources = Resources.Load<BCharacterPlayer>(prefabName);
                 var cha = Instantiate(resources) as BCharacterPlayer;
                 cha.Initialize(chara, playerPositions[chara.id]);
@@ -32,7 +32,7 @@ namespace BattleScene
             var enemyPositions = PlayerGameData.Instance.BattleEnemyPosition;
 
             foreach(var chara in allEnemys.Where(x => selectEnemyIds.Contains(x.id))) {
-                var prefabName = "Character/Enemy/" + chara.charaName;
+                var prefabName = ResourcesPath.EnemyCharacterPrefab + chara.charaName;
                 var resources = Resources.Load<BCharacterEnemy>(prefabName);
                 var cha = Instantiate(resources) as BCharacterEnemy;
                 cha.Initialize(chara, enemyPositions[chara.id]);

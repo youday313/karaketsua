@@ -5,25 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/myBad Studios/TurnBasedBattles/Demo/Scenes/MainMenu.unity
-  - enabled: 0
-    path: Assets/myBad Studios/TurnBasedBattles/Demo/Scenes/MainGame.unity
-  - enabled: 0
-    path: Assets/myBad Studios/TurnBasedBattles/Demo/Scenes/TBBDemoScene.unity
-  - enabled: 0
-    path: Assets/Scenes/MainScene.unity
-  - enabled: 0
-    path: Assets/Scenes/CharacterSelectScene.unity
   - enabled: 1
-    path: Assets/Scenes/Field.unity
-  - enabled: 1
-    path: Assets/Scenes/Edit.unity
+    path: Assets/ADV/JOKER_GAME/Scenes/Player.unity
   - enabled: 1
     path: Assets/Scenes/Battle.unity
   - enabled: 1
-    path: Assets/Scenes/Result.unity
-  - enabled: 0
+    path: Assets/Scenes/Edit.unity
+  - enabled: 1
+    path: Assets/Scenes/EffectEdit.unity
+  - enabled: 1
     path: Assets/Scenes/Field.unity
   - enabled: 1
-    path: Assets/Scenes/DontDestroy.unity
+    path: Assets/Scenes/Result.unity

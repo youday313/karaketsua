@@ -29,8 +29,6 @@ namespace BattleScene
             IsEnemy = true;
             base.Initialize(param, array);
 
-            //回転
-            transform.rotation = Quaternion.Euler(0, 180, 0);
             OnActiveEnemyE += BCharacterManager.Instance.SetActiveEnemy;
         }
 

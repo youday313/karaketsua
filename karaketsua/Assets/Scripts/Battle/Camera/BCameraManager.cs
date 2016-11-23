@@ -11,11 +11,13 @@ namespace BattleScene
     public enum CameraMode { FromBack = 0, FromFront, Up }
     public class BCameraManager : SingletonMonoBehaviour<BCameraManager>
     {
-
 		[SerializeField] 
 		private GameObject leanCameraObject;
         [SerializeField]
 		private GameObject upCameraObject;
+        [SerializeField]
+        private GameObject moveAttackCameraObject;
+        private GameObject moveCameraInstance;
         private BCameraMove leanCamera;
         // 現在のモード
         private CameraMode nowCameraMode;
@@ -49,6 +51,7 @@ namespace BattleScene
 
         public void ActiveUpMode()
         {
+            tryResetMoveCamera();
             leanCameraObject.SetActive(false);
             upCameraObject.SetActive(true);
             nowCameraMode = CameraMode.Up;
@@ -56,9 +59,27 @@ namespace BattleScene
 
         public void ActiveLeanMode()
         {
+            tryResetMoveCamera();
             leanCameraObject.SetActive(true);
             upCameraObject.SetActive(false);
+        }
 
+        // 移動攻撃のカメラをセット
+        public void StartMoveAttack(Transform chara)
+        {;
+            moveCameraInstance = Instantiate(moveAttackCameraObject, moveAttackCameraObject.transform.localPosition, moveAttackCameraObject.transform.rotation) as GameObject;
+            moveCameraInstance.transform.SetParent(chara, worldPositionStays:false);
+            moveCameraInstance.SetActive(true);
+            gameObject.SetActive(false);
+        }
+
+        private void tryResetMoveCamera()
+        {
+            if(moveCameraInstance != null) {
+                Destroy(moveCameraInstance);
+                moveCameraInstance = null;
+            }
+            gameObject.SetActive(true);
         }
     }
 }

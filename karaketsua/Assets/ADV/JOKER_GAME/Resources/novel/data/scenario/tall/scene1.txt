@@ -1,0 +1,52 @@
+@call file=tall/libs/utils
+[bg_new name="background" storage="room_tall"]
+[bg_show name="background"]
+
+;メッセージ表示
+[showmessage]
+;[call file=tall/system target="*system_setting_buttons"]
+[text_new name=_sp_chara_name layer=ui x="-187" y=-257 val="" color="DDFF00" fontsize=25 anchor="MiddleLeft"]
+[text_show name="_sp_chara_name"] 
+[font color="000000"]
+
+;---------------キャラ定義
+
+@tag_default tag="chara"
+[chara_new name="kashiwagi" storage="kashiwagi" jname="柏木" y=-2.5 scale=0.5]
+[chara_new name="mouri" storage="mouri" jname="毛利" y=-2.5 scale=0.5]
+@reset_tag_default
+
+@chara_pos name="kashiwagi" x=-1
+@chara_pos name="mouri" x=1
+
+[playbgm wait=false time=1 storage="music"]
+
+#発言者は#
+改行はr[r]
+ページ終了はp[p]
+
+@show name=mouri
+#mouri
+毛利です。[p]
+
+@hide name=mouri
+@show name=kashiwagi
+#kashiwagi
+柏木です。[p]
+
+@show name=mouri
+#毛木
+二人合わせて[r]
+毛木です。[p]
+
+#毛木
+二人合わせて[r]
+毛木でした。[p]
+
+
+[scene file="Battle"]
+
+[s]
+
+
+

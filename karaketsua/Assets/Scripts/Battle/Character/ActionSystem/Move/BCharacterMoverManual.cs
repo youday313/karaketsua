@@ -98,6 +98,11 @@ namespace BattleScene
             UIBottomCommandParent.UICommandState = EUICommandState.Action;
             UIBottomAllManager.Instance.UpdateUI();
         }
+
+        void OnDestroy()
+        {
+            IT_Gesture.onDraggingStartE -= OnChargeForMove;
+        }
         
     }
 }

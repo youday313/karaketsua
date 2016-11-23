@@ -32,7 +32,7 @@ namespace EditScene
         // 初期化
         public void Initialize(CharacterMasterParameter chara, IntVect2D initPos = null, bool isPlayer = true)
         {
-            var prefabName = "Character/ATB/ATB" + chara.charaName;
+            var prefabName = ResourcesPath.ATBIcon + chara.charaName;
             var image = Resources.Load<Sprite>(prefabName);
             iconImage.sprite = image;
             gameObject.SetActive(true);

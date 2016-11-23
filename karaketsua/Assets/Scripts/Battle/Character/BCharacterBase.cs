@@ -30,7 +30,7 @@ namespace BattleScene
         public event Action<BCharacterBase> OnDeathE;
 
         // ステータス変更
-        public event Action<BCharacterBase> OnStatusUpdateE;
+        public event Action OnStatusUpdateE;
 
         public bool IsEnemy = false;
 
@@ -77,7 +77,8 @@ namespace BattleScene
 
             //位置変更
             setPositionOnTile();
-
+            //回転
+            ResetRotate();
             //UI作成
             BStateUICreater.Instance.Create(this);
         }
@@ -130,6 +131,7 @@ namespace BattleScene
             activeCircle.SetActive(true);
         }
 
+        // 行動終了の共通処理
         public virtual void OnEndActive()
         {
             if(OnEndActiveE != null) {
@@ -148,14 +150,11 @@ namespace BattleScene
         {
             //爆発エフェクト
             //Instantiate(Resources.Load<GameObject>("DeathEffect"), transform.position, Quaternion.identity);
-            //リストから除く
-            //WaitTimeManager.Instance.DestroyWaitTime(this.activeTime);
-            //RemoveActiveTimeEventHandler();
 
-
-            //activeTime.DeathCharacter();
-            //CharacterManager.Instance.DestroyCharacter(this);
-            if(OnDeathE != null) OnDeathE(this);
+            if(OnDeathE != null) {
+                OnDeathE(this);
+                BCharacterManager.Instance.Remove(this);
+            }
             Destroy(gameObject);
         }
 
@@ -176,6 +175,19 @@ namespace BattleScene
             gameObject.SetActive(active);
         }
 
-    }
+        // イベント発火用
+        public void StatusUpdate()
+        {
+            if(OnStatusUpdateE != null) {
+                OnStatusUpdateE();
+            }
+        }
 
+        // 向きをデフォルトに戻す
+        public void ResetRotate()
+        {
+            var isEnemyAngle = IsEnemy == true ? 180 : 0;
+            transform.eulerAngles = new Vector3(0, isEnemyAngle, 0);
+        }
+    }
 }

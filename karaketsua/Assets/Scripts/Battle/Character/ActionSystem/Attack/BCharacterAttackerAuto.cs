@@ -15,6 +15,8 @@ namespace BattleScene
         private float cameraInterval = 1f;
         [SerializeField]
         private float attackTime = 2f;
+        [SerializeField]
+        private GameObject attackEffect;
 
 
         private Transform effectCanvas;
@@ -36,21 +38,19 @@ namespace BattleScene
 
             //BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange, this.character);
         }
+
         public override void Disable()
         {
-
-
             //CameraChange.Instance.
             base.Disable();
         }
-
 
         public void StartAutoAttack()
         {
             //ターゲットの検索と設定
             var target = setTarget();
             if(target == false) {
-                OnCompleteAction();
+                onCompleteAction();
                 return;
             }
             //攻撃の実行
@@ -95,15 +95,16 @@ namespace BattleScene
 
             //攻撃アニメーション
             animator.SetAutoAttack();
-
+            // 攻撃エフェクト
+            StartAttackEffect(selectAttackParameter.isForceFace);
 
             IsNowAction = true;
 
             //ダメージ
             foreach(var target in TargetList) {
-                var damageMagnification = calcDamageMagnification();
+                var damageRate = calcAutoDamageRate();
                 var characterPower = character.characterParameter.power;
-                target.Life.Damage(characterPower,damageMagnification);
+                target.Life.Damage(characterPower,damageRate);
             }
             //死亡
             foreach(var target in TargetList) {
@@ -111,7 +112,7 @@ namespace BattleScene
             }
 
             //攻撃終了
-            Invoke("onCompleteAnimation",attackTime);
+            StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAnimation(), attackTime));
             IsDone = true;
             yield return null;
         }
@@ -120,20 +121,33 @@ namespace BattleScene
         {
             IsNowAction = false;
             //行動終了
-            OnCompleteAction();
+            onCompleteAction();
             //character.OnEndActive();
-
         }
-        //倍率の算出
-        private float calcDamageMagnification()
+
+        private float calcAutoDamageRate()
         {
-            //会心＊振れ幅＊技倍率＊タップ倍率
-            return 1 * 1 * selectAttackParameter.powerMagnification * 1;
+            return calcBaseDamageRate() * selectAttackParameter.powerRate;
         }
 
-
-
-
-
+        // 攻撃エフェクト
+        // エフェクトは再生終了後自動で削除される
+        private void StartAttackEffect(bool isForceFace)
+        {
+            // 向き合う攻撃ならプレイヤー中心
+            if(isForceFace) {
+                var effect = Instantiate(attackEffect);
+                effect.transform.SetParent(transform);
+                effect.transform.localPosition = Vector3.zero;
+            }
+            // 複数攻撃ならターゲット中心
+            else {
+                foreach(var target in TargetList) {
+                    var effect = Instantiate(attackEffect);
+                    effect.transform.SetParent(target.transform);
+                    effect.transform.localPosition = Vector3.zero;
+                }
+            }
+        }
     }
 }

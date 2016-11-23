@@ -23,6 +23,8 @@ public class CharacterMasterParameter
     public int deffence;
     //精神力,MP
     public int skillPoint;
+    // 知力
+    public int intellisense;
 
     //攻撃技関連
     public List<SingleAttackParameter> singleAttackParameters = new List<SingleAttackParameter>();
@@ -36,21 +38,18 @@ public class CharacterMasterParameter
 
 }
 
-//一つの攻撃のパラメーター
+// 一つの攻撃のパラメーター
 [System.Serializable]
 public class AttackParameter
 {
     //技名
     public string wazaName;
-
     //使用MP
     public int needSkillPoint;
-
     //攻撃倍率
-    public float powerMagnification;
-
-
+    public float powerRate;
 }
+// 通常攻撃
 [System.Serializable]
 public class SingleAttackParameter: AttackParameter
 {
@@ -58,7 +57,11 @@ public class SingleAttackParameter: AttackParameter
     public List<IntVect2D> attackRanges;
 
     //攻撃種類
+    // { 0:近, 1:中, 2:遠 }
     public int attackDistance;
+
+    // 攻撃時向き合うか
+    public bool isForceFace;
 
     //範囲内の全ての敵にダメージ
     public bool isMultiAttack;
@@ -71,23 +74,24 @@ public class SingleAttackParameter: AttackParameter
     {
         return (AttackDistance)attackDistance;
     }
-
 }
-
+   
 [System.Serializable]
 public class SingleActionParameter
 {
+    // ジャスト判定になる時間
     public float judgeTime;
-    public float startInterval;
 }
 
 
-
+// 敵の攻撃
 [System.Serializable]
 public class AutoAttackParameter: AttackParameter
 {
     public List<IntVect2D> attackRanges;
     public int attackDistance;
+    // 攻撃時向き合うか
+    public bool isForceFace;
 
     public AttackDistance GetAttackDistance()
     {
@@ -95,12 +99,12 @@ public class AutoAttackParameter: AttackParameter
     }
 }
 
+// 移動攻撃
 [System.Serializable]
 public class MoveAttackParameter: AttackParameter
 {
-    //移動可能距離
+    // 移動可能距離
     public int moveRange;
-    public int needMovePoint;
 }
 
 public enum AttackDistance { 近, 中, 遠 }

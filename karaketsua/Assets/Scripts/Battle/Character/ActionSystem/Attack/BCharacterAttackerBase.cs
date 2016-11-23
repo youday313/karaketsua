@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 using BattleScene;
-using System;
 
 namespace BattleScene
 {
@@ -69,16 +69,20 @@ namespace BattleScene
         {
             TargetList = new List<BCharacterBase>();
         }
-
-
+            
         public virtual void Reset()
         {
             Disable();
             IsDone = false;
-
         }
-        public virtual void OnCompleteAction()
+
+        protected void onCompleteAction()
         {
+            character.ResetRotate();
+            foreach(var tar in TargetList.Where(x => x != null)) {
+                tar.ResetRotate();
+            }
+            TargetList = new List<BCharacterBase>();
             if(OnComplete != null) {
                 OnComplete();
             }
@@ -111,8 +115,19 @@ namespace BattleScene
                 target.transform.LookAt(attackerPos);
             }
         }
-        
-
-
+        // 技倍率
+        // critical * randam * except
+        private const float CriticalAmplitude = 1.5f;
+        private const float RandomMaxRange = 1.2f;
+        private const float RandomMinRange = 0.8f;
+        protected float calcBaseDamageRate()
+        {
+            //会心＊振れ幅＊技倍率＊タップ倍率
+            // 仮：知力はクリティカル発生率とする
+            var critical = character.characterParameter.intellisense >= (UnityEngine.Random.value * 100) ? CriticalAmplitude : 1;
+            var random = UnityEngine.Random.Range(RandomMinRange, RandomMaxRange);
+            // TODO:状態異常による影響値をかける
+            return critical * random;
+        }
     }
 }

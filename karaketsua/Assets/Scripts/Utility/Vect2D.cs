@@ -57,9 +57,10 @@ public class IntVect2D
 	public static IntVect2D Add(IntVect2D v1,IntVect2D v2){
 		return new IntVect2D (v1.x + v2.x,v1.y + v2.y);
 	}
+    // 方向を-1,0,1で取得
     public static IntVect2D GetDirection(IntVect2D oldVect, IntVect2D newVect)
     {
-        return new IntVect2D(newVect.x - oldVect.x, newVect.y - oldVect.y);
+        return new IntVect2D(Mathf.Clamp(newVect.x - oldVect.x, -1, 1), Mathf.Clamp(newVect.y - oldVect.y, -1, 1));
     }
     public static IntVect2D Clone(IntVect2D vect)
     {

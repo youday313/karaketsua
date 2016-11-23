@@ -1,74 +1,88 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using System.Collections;
+
 using BattleScene;
+
 namespace BattleScene
 {
-
-    public class BCharacterStateUI: MonoBehaviour
+    // 体力、気力の表示用UI
+    public class BCharacterStateUI: MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
+        // 表示までの長押し時間
+        private const float WatiTimeForShow = 1f;
+
+        // 長押しで実行
+        private UnityEvent onHold = new UnityEvent();
+
         [SerializeField]
         private Image faceImage;
-        //public Text name;
         [SerializeField]
         private Slider hpbar;
         [SerializeField]
         private Slider skillBar;
-
-        //BCharacterBase character;
-        private float holdTime;
         [SerializeField]
-        private float displayEnableTime = 1f;
+        private CharacterDetailStateUI detailState;
+
+        private bool isHold;
 
         public void Initialize(BCharacterBase character)
         {
             // イベント登録
-            character.OnDeathE += Delete;
-            character.OnStatusUpdateE += UpdateUI;
+            character.OnDeathE += delete;
+            character.OnStatusUpdateE += () => {
+                updateUi(character);
+            };
 
-            faceImage.sprite = Resources.Load<Sprite>("Character/StatusUIIcon/Status" + character.characterParameter.charaName);
+            onHold.AddListener(() => {
+                detailState.Show(character.characterParameter);
+            });
+
+            faceImage.sprite = Resources.Load<Sprite>(ResourcesPath.CharacterStatusIcon + character.characterParameter.charaName);
             hpbar.maxValue = character.characterParameter.hp;
             skillBar.maxValue = character.characterParameter.skillPoint;
-            UpdateUI(character);
+            updateUi(character);
         }
 
-        public void Delete(BCharacterBase chara)
+        private void delete(BCharacterBase chara)
         {
             Destroy(this.gameObject);
         }
 
-        public void UpdateUI(BCharacterBase character)
+        private void updateUi(BCharacterBase character)
         {
             hpbar.value = character.characterParameter.hp;
             skillBar.value = character.characterParameter.skillPoint;
         }
-
-        public void Update()
+            
+        // 押し始め
+        // Event
+        public void OnPointerDown(PointerEventData eventData)
         {
-            if(holdTime != 0) {
-                OnHold();
-            }
-
+            isHold = true;
+            StopAllCoroutines();
+            StartCoroutine(wait());
         }
-
-        //詳細表示用
-        //ボタンが押されている
-        public void OnPushDown()
+            
+        // ロング判定
+        private IEnumerator wait()
         {
-            holdTime = 0.01f;
-        }
+            yield return new WaitForSeconds(WatiTimeForShow);
 
-        public void OnHold()
-        {
-            holdTime += Time.deltaTime;
-            if(holdTime > displayEnableTime) {
-
+            // 長押ししていたら実行
+            if(isHold) {
+                isHold = false;
+                onHold.Invoke();
             }
         }
 
-        public void OnPushUp()
+        // 離した
+        // Event
+        public void OnPointerUp(PointerEventData eventData)
         {
-            holdTime = 0;
+            isHold = false;
         }
     }
 }
