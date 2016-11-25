@@ -89,9 +89,9 @@ public class SingleActionParameter
 public class AutoAttackParameter: AttackParameter
 {
     public List<IntVect2D> attackRanges;
-    public int attackDistance;
     // 攻撃時向き合うか
     public bool isForceFace;
+    public int attackDistance;
 
     public AttackDistance GetAttackDistance()
     {

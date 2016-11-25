@@ -99,11 +99,11 @@ namespace BattleScene
         }
 
         // キャラ同士を向かい合わせる
-        protected void FaceCharacter()
+        protected void FaceCharacter(bool isForceFace)
         {
             // 向く方向を変える
             // 攻撃側
-            if(TargetList.Count == 1) {
+            if(TargetList.Count == 1 && isForceFace) {
                 var targetPos = TargetList[0].transform.position;
                 targetPos.y = transform.position.y;
                 transform.LookAt(targetPos);

@@ -16,6 +16,10 @@ namespace BattleScene
         [SerializeField]
         private float attackTime = 2f;
         [SerializeField]
+        private float attackHitTime = 1f;
+
+
+        [SerializeField]
         private GameObject attackEffect;
 
 
@@ -90,7 +94,7 @@ namespace BattleScene
             BCameraManager.Instance.ActiveLeanMode();
             BCameraMove.Instance.MoveToAutoAttack(this,TargetList[0].transform.position);
             HideOtherCharacters();
-            FaceCharacter();
+            FaceCharacter(selectAttackParameter.isForceFace);
             yield return new WaitForSeconds(cameraInterval);
 
             //攻撃アニメーション
@@ -100,20 +104,21 @@ namespace BattleScene
 
             IsNowAction = true;
 
-            //ダメージ
-            foreach(var target in TargetList) {
-                var damageRate = calcAutoDamageRate();
-                var characterPower = character.characterParameter.power;
-                target.Life.Damage(characterPower,damageRate);
-            }
-            //死亡
-            foreach(var target in TargetList) {
-                target.Life.CheckDestroy();
-            }
-
-            //攻撃終了
-            StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAnimation(), attackTime));
-            IsDone = true;
+            WaitTimer.WaitSecond(() => {
+                //ダメージ
+                foreach(var target in TargetList) {
+                    var damageRate = calcAutoDamageRate();
+                    var characterPower = character.characterParameter.power;
+                    target.Life.Damage(characterPower,damageRate);
+                }
+                //死亡
+                foreach(var target in TargetList) {
+                    target.Life.CheckDestroy();
+                }
+                //攻撃終了
+                StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAnimation(), attackTime));
+                IsDone = true;
+            }, attackHitTime);
             yield return null;
         }
 
@@ -137,15 +142,17 @@ namespace BattleScene
             // 向き合う攻撃ならプレイヤー中心
             if(isForceFace) {
                 var effect = Instantiate(attackEffect);
-                effect.transform.SetParent(transform);
+                effect.transform.SetParent(transform, true);
                 effect.transform.localPosition = Vector3.zero;
+                effect.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             // 複数攻撃ならターゲット中心
             else {
                 foreach(var target in TargetList) {
                     var effect = Instantiate(attackEffect);
-                    effect.transform.SetParent(target.transform);
+                    effect.transform.SetParent(target.transform, true);
                     effect.transform.localPosition = Vector3.zero;
+                    effect.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 }
             }
         }

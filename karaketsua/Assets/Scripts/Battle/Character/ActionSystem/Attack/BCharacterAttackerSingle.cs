@@ -170,7 +170,7 @@ namespace BattleScene
             HideOtherCharacters();
 
             // 向く方向を変える
-            FaceCharacter();
+            FaceCharacter(selectAttackParameter.isForceFace);
 
             // ちょっと待つ
             yield return new WaitForSeconds(changeTimeSingleMode);
@@ -292,14 +292,15 @@ namespace BattleScene
             // 向き合う攻撃ならプレイヤー中心
             if(isForceFace) {
                 var effect = Instantiate(attackEffects[SelectWazaNumber]);
-                effect.transform.SetParent(transform);
+                effect.transform.SetParent(transform,true);
                 effect.transform.localPosition = Vector3.zero;
+                effect.transform.localRotation = Quaternion.Euler(0, 0, 0);
             }
             // 複数攻撃ならターゲット中心
             else {
                 foreach(var target in TargetList) {
                     var effect = Instantiate(attackEffects[SelectWazaNumber]);
-                    effect.transform.SetParent(target.transform);
+                    effect.transform.SetParent(target.transform,true);
                     effect.transform.localPosition = Vector3.zero;
                 }
             }

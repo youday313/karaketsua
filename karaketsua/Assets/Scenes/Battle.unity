@@ -6060,6 +6060,14 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: editorEnemyPositions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: SelectEnemyCharacterIds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 403174, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6091,6 +6099,18 @@ Prefab:
     - target: {fileID: 403174, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: SelectEnemyCharacterIds.Array.data[1]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: editorEnemyPositions.Array.data[1].x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11493884, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
+      propertyPath: editorEnemyPositions.Array.data[1].y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 862c216131f3c457ca515cb86abc41b7, type: 2}
@@ -6722,7 +6742,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400352, guid: 73586178264f6404a84ccc1701ffe587, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 574204911}
-  m_LocalRotation: {x: 0.35297635, y: -0.35297635, z: -0.6127053, w: 0.6127053}
+  m_LocalRotation: {x: 0.35297632, y: -0.35297632, z: -0.61270523, w: 0.61270523}
   m_LocalPosition: {x: -8.885426, y: 1.3844692, z: 9.631286}
   m_LocalScale: {x: 1.9790813, y: 1.1236278, z: 2.0629773}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7425,7 +7445,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606276142}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
