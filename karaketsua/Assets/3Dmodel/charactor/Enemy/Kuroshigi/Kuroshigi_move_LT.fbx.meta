@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 43f46a4fbe59ee5428db694283cf52a9
-timeCreated: 1477120212
+guid: 8c8e026ed51b9d44db78a84463826868
+timeCreated: 1480171307
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -74,7 +74,7 @@ ModelImporter:
     400064: Right_shokkaku
     400066: Right_tukene
     4300000: Kuroshigi_poly
-    7400000: Kurshigi_move
+    7400000: Kuroshigi_move
     9500000: //RootNode
     13700000: Kuroshigi_poly
   materials:
@@ -99,7 +99,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Kurshigi_move
+      name: Kuroshigi_move
       takeName: Take 001
       firstFrame: 120
       lastFrame: 240
@@ -193,7 +193,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

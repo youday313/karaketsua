@@ -1,0 +1,287 @@
+fileFormatVersion: 2
+guid: f7382363130389d4bb60bff730743a53
+timeCreated: 1480172062
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base
+    100002: cluster1Handle
+    100004: cluster2Handle
+    100006: cluster3Handle
+    100008: cluster4Handle
+    100010: curve1
+    100012: group1
+    100014: group2
+    100016: group3
+    100018: group4
+    100020: Hair_nemoto
+    100022: Hair_sentan
+    100024: Head
+    100026: Hip1
+    100028: Hip2
+    100030: Left_midle_ell
+    100032: Left_midle_hand
+    100034: Left_midle_sholl
+    100036: Left_top_ell
+    100038: Left_top_hand
+    100040: Left_top_shoull
+    100042: Left_under_ell
+    100044: Left_under_hand
+    100046: Left_under_shoul
+    100048: Left_Wing_top
+    100050: Left_Wing_under
+    100052: Moss_mesh
+    100054: //RootNode
+    100056: Mouth_midle
+    100058: Mouth_nemoto
+    100060: Mouth_sentan
+    100062: Neck
+    100064: Right_midle_ell
+    100066: Right_midle_hand
+    100068: Right_midle_sholl
+    100070: Right_top_ell
+    100072: Right_top_hand
+    100074: Right_top_shoull
+    100076: Right_under_ell
+    100078: Right_under_hand
+    100080: Right_under_shoul
+    100082: Right_Wing_Top
+    100084: Right_Wing_under1
+    100086: Sentan
+    100088: Spine
+    100090: Spine2
+    400000: Base
+    400002: cluster1Handle
+    400004: cluster2Handle
+    400006: cluster3Handle
+    400008: cluster4Handle
+    400010: curve1
+    400012: group1
+    400014: group2
+    400016: group3
+    400018: group4
+    400020: Hair_nemoto
+    400022: Hair_sentan
+    400024: Head
+    400026: Hip1
+    400028: Hip2
+    400030: Left_midle_ell
+    400032: Left_midle_hand
+    400034: Left_midle_sholl
+    400036: Left_top_ell
+    400038: Left_top_hand
+    400040: Left_top_shoull
+    400042: Left_under_ell
+    400044: Left_under_hand
+    400046: Left_under_shoul
+    400048: Left_Wing_top
+    400050: Left_Wing_under
+    400052: Moss_mesh
+    400054: //RootNode
+    400056: Mouth_midle
+    400058: Mouth_nemoto
+    400060: Mouth_sentan
+    400062: Neck
+    400064: Right_midle_ell
+    400066: Right_midle_hand
+    400068: Right_midle_sholl
+    400070: Right_top_ell
+    400072: Right_top_hand
+    400074: Right_top_shoull
+    400076: Right_under_ell
+    400078: Right_under_hand
+    400080: Right_under_shoul
+    400082: Right_Wing_Top
+    400084: Right_Wing_under1
+    400086: Sentan
+    400088: Spine
+    400090: Spine2
+    4300000: Moss_mesh
+    7400000: Moss_move
+    9500000: //RootNode
+    13700000: Moss_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Moss_move
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 230
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Base
+        weight: 1
+      - path: Base/Hip1
+        weight: 1
+      - path: Base/Hip1/Hip2
+        weight: 1
+      - path: Base/Spine
+        weight: 1
+      - path: Base/Spine/Left_midle_sholl
+        weight: 1
+      - path: Base/Spine/Left_midle_sholl/Left_midle_ell
+        weight: 1
+      - path: Base/Spine/Left_midle_sholl/Left_midle_ell/Left_midle_hand
+        weight: 1
+      - path: Base/Spine/Left_top_shoull
+        weight: 1
+      - path: Base/Spine/Left_top_shoull/Left_top_ell
+        weight: 1
+      - path: Base/Spine/Left_top_shoull/Left_top_ell/Left_top_hand
+        weight: 1
+      - path: Base/Spine/Left_under_shoul
+        weight: 1
+      - path: Base/Spine/Left_under_shoul/Left_under_ell
+        weight: 1
+      - path: Base/Spine/Left_under_shoul/Left_under_ell/Left_under_hand
+        weight: 1
+      - path: Base/Spine/Left_Wing_top
+        weight: 1
+      - path: Base/Spine/Left_Wing_under
+        weight: 1
+      - path: Base/Spine/Right_midle_sholl
+        weight: 1
+      - path: Base/Spine/Right_midle_sholl/Right_midle_ell
+        weight: 1
+      - path: Base/Spine/Right_midle_sholl/Right_midle_ell/Right_midle_hand
+        weight: 1
+      - path: Base/Spine/Right_top_shoull
+        weight: 1
+      - path: Base/Spine/Right_top_shoull/Right_top_ell
+        weight: 1
+      - path: Base/Spine/Right_top_shoull/Right_top_ell/Right_top_hand
+        weight: 1
+      - path: Base/Spine/Right_under_shoul
+        weight: 1
+      - path: Base/Spine/Right_under_shoul/Right_under_ell
+        weight: 1
+      - path: Base/Spine/Right_under_shoul/Right_under_ell/Right_under_hand
+        weight: 1
+      - path: Base/Spine/Right_Wing_Top
+        weight: 1
+      - path: Base/Spine/Right_Wing_under1
+        weight: 1
+      - path: Base/Spine/Spine2
+        weight: 1
+      - path: Base/Spine/Spine2/Neck
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/curve1
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Hair_nemoto
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Hair_nemoto/Hair_sentan
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group1
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group1/cluster1Handle
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group2
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group2/cluster2Handle
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group3
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group3/cluster3Handle
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group4
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/group4/cluster4Handle
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/Mouth_midle
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/Mouth_midle/Mouth_sentan
+        weight: 1
+      - path: Base/Spine/Spine2/Neck/Head/Mouth_nemoto/Mouth_midle/Mouth_sentan/Sentan
+        weight: 1
+      - path: Moss_mesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
