@@ -13,6 +13,8 @@ public class CharacterMasterParameter
     public int id;
     //キャラ名
     public string charaName;
+    //表示キャラ名
+    public string charaShowName;
     //体力
     public int hp;
     //行動力

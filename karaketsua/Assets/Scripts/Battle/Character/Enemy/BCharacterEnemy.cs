@@ -50,10 +50,6 @@ namespace BattleScene
             attacker.IsEnable = false;
         }
 
-
-
-
-
         //キャラクターを行動選択状態にする
         public override void OnActive()
         {

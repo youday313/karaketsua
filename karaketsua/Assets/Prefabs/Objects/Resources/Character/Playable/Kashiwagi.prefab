@@ -395,7 +395,7 @@ GameObject:
   - 114: {fileID: 11430350}
   - 114: {fileID: 11477290}
   m_Layer: 0
-  m_Name: "\u67CF\u6728"
+  m_Name: Kashiwagi
   m_TagString: BattleCharacter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1042,7 +1042,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 497248}
   m_Layer: 0
-  m_Name: Effect
+  m_Name: AttackEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2207,6 +2207,7 @@ MonoBehaviour:
   characterParameter:
     id: 0
     charaName: "\u67CF\u6728"
+    charaShowName: 
     hp: 0
     activeSpeed: 15
     power: 400
@@ -2259,8 +2260,8 @@ MonoBehaviour:
       needSkillPoint: 0
       powerRate: 0
       attackRanges: []
-      attackDistance: 0
       isForceFace: 0
+      attackDistance: 0
   IsEnemy: 0
   PositionArray:
     x: 0

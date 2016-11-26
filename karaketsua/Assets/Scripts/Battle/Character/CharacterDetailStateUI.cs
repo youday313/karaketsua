@@ -36,7 +36,7 @@ namespace BattleScene
         public void Show(CharacterMasterParameter param)
         {
             bodyImage.sprite = Resources.Load<Sprite>(ResourcesPath.CharacterBodyImage + param.charaName);
-            name.text = param.charaName;
+            name.text = param.charaShowName;
             power.text = param.power.ToString();
             deffence.text = param.deffence.ToString();
             activity.text = param.activeSpeed.ToString();
