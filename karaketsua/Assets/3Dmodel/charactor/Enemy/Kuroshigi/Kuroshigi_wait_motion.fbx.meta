@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c58f9eae819ee0a4392363baf1520aa3
-timeCreated: 1455944711
+timeCreated: 1480170839
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -30,15 +30,56 @@ ModelImporter:
     100044: Character1_Spine1
     100046: Character1_Spine2
     100048: hip
-    100050: Kuroshigi_poly
-    100052: //RootNode
-    100054: Left_sentan
-    100056: Left_shokkaku
-    100058: Left_tukene
-    100060: Right_sentan
-    100062: Right_shokkaku
-    100064: Right_tukene
-    100066: zakoari_Reference
+    100050: Kuroshigi_Ctrl_ChestEndEffector
+    100052: Kuroshigi_Ctrl_ChestOriginEffector
+    100054: Kuroshigi_Ctrl_Head
+    100056: Kuroshigi_Ctrl_HeadEffector
+    100058: Kuroshigi_Ctrl_Hips
+    100060: Kuroshigi_Ctrl_HipsEffector
+    100062: Kuroshigi_Ctrl_LeftAnkleEffector
+    100064: Kuroshigi_Ctrl_LeftArm
+    100066: Kuroshigi_Ctrl_LeftElbowEffector
+    100068: Kuroshigi_Ctrl_LeftFoot
+    100070: Kuroshigi_Ctrl_LeftFootEffector
+    100072: Kuroshigi_Ctrl_LeftForeArm
+    100074: Kuroshigi_Ctrl_LeftHand
+    100076: Kuroshigi_Ctrl_LeftHipEffector
+    100078: Kuroshigi_Ctrl_LeftKneeEffector
+    100080: Kuroshigi_Ctrl_LeftLeg
+    100082: Kuroshigi_Ctrl_LeftShoulder
+    100084: Kuroshigi_Ctrl_LeftShoulderEffector
+    100086: Kuroshigi_Ctrl_LeftToeBase
+    100088: Kuroshigi_Ctrl_LeftUpLeg
+    100090: Kuroshigi_Ctrl_LeftWristEffector
+    100092: Kuroshigi_Ctrl_Neck
+    100094: Kuroshigi_Ctrl_Reference
+    100096: Kuroshigi_Ctrl_RightAnkleEffector
+    100098: Kuroshigi_Ctrl_RightArm
+    100100: Kuroshigi_Ctrl_RightElbowEffector
+    100102: Kuroshigi_Ctrl_RightFoot
+    100104: Kuroshigi_Ctrl_RightFootEffector
+    100106: Kuroshigi_Ctrl_RightForeArm
+    100108: Kuroshigi_Ctrl_RightHand
+    100110: Kuroshigi_Ctrl_RightHipEffector
+    100112: Kuroshigi_Ctrl_RightKneeEffector
+    100114: Kuroshigi_Ctrl_RightLeg
+    100116: Kuroshigi_Ctrl_RightShoulder
+    100118: Kuroshigi_Ctrl_RightShoulderEffector
+    100120: Kuroshigi_Ctrl_RightToeBase
+    100122: Kuroshigi_Ctrl_RightUpLeg
+    100124: Kuroshigi_Ctrl_RightWristEffector
+    100126: Kuroshigi_Ctrl_Spine
+    100128: Kuroshigi_Ctrl_Spine1
+    100130: Kuroshigi_Ctrl_Spine2
+    100132: Kuroshigi_poly
+    100134: //RootNode
+    100136: Kuroshigi_wait_motion_zakoari_Reference
+    100138: Left_sentan
+    100140: Left_shokkaku
+    100142: Left_tukene
+    100144: Right_sentan
+    100146: Right_shokkaku
+    100148: Right_tukene
     400000: Character1_Head
     400002: Character1_Hips
     400004: Character1_LeftArm
@@ -64,17 +105,58 @@ ModelImporter:
     400044: Character1_Spine1
     400046: Character1_Spine2
     400048: hip
-    400050: Kuroshigi_poly
-    400052: //RootNode
-    400054: Left_sentan
-    400056: Left_shokkaku
-    400058: Left_tukene
-    400060: Right_sentan
-    400062: Right_shokkaku
-    400064: Right_tukene
-    400066: zakoari_Reference
+    400050: Kuroshigi_Ctrl_ChestEndEffector
+    400052: Kuroshigi_Ctrl_ChestOriginEffector
+    400054: Kuroshigi_Ctrl_Head
+    400056: Kuroshigi_Ctrl_HeadEffector
+    400058: Kuroshigi_Ctrl_Hips
+    400060: Kuroshigi_Ctrl_HipsEffector
+    400062: Kuroshigi_Ctrl_LeftAnkleEffector
+    400064: Kuroshigi_Ctrl_LeftArm
+    400066: Kuroshigi_Ctrl_LeftElbowEffector
+    400068: Kuroshigi_Ctrl_LeftFoot
+    400070: Kuroshigi_Ctrl_LeftFootEffector
+    400072: Kuroshigi_Ctrl_LeftForeArm
+    400074: Kuroshigi_Ctrl_LeftHand
+    400076: Kuroshigi_Ctrl_LeftHipEffector
+    400078: Kuroshigi_Ctrl_LeftKneeEffector
+    400080: Kuroshigi_Ctrl_LeftLeg
+    400082: Kuroshigi_Ctrl_LeftShoulder
+    400084: Kuroshigi_Ctrl_LeftShoulderEffector
+    400086: Kuroshigi_Ctrl_LeftToeBase
+    400088: Kuroshigi_Ctrl_LeftUpLeg
+    400090: Kuroshigi_Ctrl_LeftWristEffector
+    400092: Kuroshigi_Ctrl_Neck
+    400094: Kuroshigi_Ctrl_Reference
+    400096: Kuroshigi_Ctrl_RightAnkleEffector
+    400098: Kuroshigi_Ctrl_RightArm
+    400100: Kuroshigi_Ctrl_RightElbowEffector
+    400102: Kuroshigi_Ctrl_RightFoot
+    400104: Kuroshigi_Ctrl_RightFootEffector
+    400106: Kuroshigi_Ctrl_RightForeArm
+    400108: Kuroshigi_Ctrl_RightHand
+    400110: Kuroshigi_Ctrl_RightHipEffector
+    400112: Kuroshigi_Ctrl_RightKneeEffector
+    400114: Kuroshigi_Ctrl_RightLeg
+    400116: Kuroshigi_Ctrl_RightShoulder
+    400118: Kuroshigi_Ctrl_RightShoulderEffector
+    400120: Kuroshigi_Ctrl_RightToeBase
+    400122: Kuroshigi_Ctrl_RightUpLeg
+    400124: Kuroshigi_Ctrl_RightWristEffector
+    400126: Kuroshigi_Ctrl_Spine
+    400128: Kuroshigi_Ctrl_Spine1
+    400130: Kuroshigi_Ctrl_Spine2
+    400132: Kuroshigi_poly
+    400134: //RootNode
+    400136: Kuroshigi_wait_motion_zakoari_Reference
+    400138: Left_sentan
+    400140: Left_shokkaku
+    400142: Left_tukene
+    400144: Right_sentan
+    400146: Right_shokkaku
+    400148: Right_tukene
     4300000: Kuroshigi_poly
-    7400000: KuroshigiWait
+    7400000: Kuroshigi_wait
     9500000: //RootNode
     13700000: Kuroshigi_poly
   materials:
@@ -99,7 +181,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: KuroshigiWait
+      name: Kuroshigi_wait
       takeName: Take 001
       firstFrame: 1
       lastFrame: 120
@@ -109,7 +191,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -125,75 +207,157 @@ ModelImporter:
       transformMask:
       - path: 
         weight: 1
+      - path: Kuroshigi_Ctrl_Reference
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_ChestEndEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_ChestOriginEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_HeadEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_LeftUpLeg
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_LeftUpLeg/Kuroshigi_Ctrl_LeftLeg
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_LeftUpLeg/Kuroshigi_Ctrl_LeftLeg/Kuroshigi_Ctrl_LeftFoot
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_LeftUpLeg/Kuroshigi_Ctrl_LeftLeg/Kuroshigi_Ctrl_LeftFoot/Kuroshigi_Ctrl_LeftToeBase
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_RightUpLeg
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_RightUpLeg/Kuroshigi_Ctrl_RightLeg
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_RightUpLeg/Kuroshigi_Ctrl_RightLeg/Kuroshigi_Ctrl_RightFoot
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_RightUpLeg/Kuroshigi_Ctrl_RightLeg/Kuroshigi_Ctrl_RightFoot/Kuroshigi_Ctrl_RightToeBase
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_LeftShoulder
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_LeftShoulder/Kuroshigi_Ctrl_LeftArm
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_LeftShoulder/Kuroshigi_Ctrl_LeftArm/Kuroshigi_Ctrl_LeftForeArm
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_LeftShoulder/Kuroshigi_Ctrl_LeftArm/Kuroshigi_Ctrl_LeftForeArm/Kuroshigi_Ctrl_LeftHand
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_Neck
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_Neck/Kuroshigi_Ctrl_Head
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_RightShoulder
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_RightShoulder/Kuroshigi_Ctrl_RightArm
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_RightShoulder/Kuroshigi_Ctrl_RightArm/Kuroshigi_Ctrl_RightForeArm
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_Hips/Kuroshigi_Ctrl_Spine/Kuroshigi_Ctrl_Spine1/Kuroshigi_Ctrl_Spine2/Kuroshigi_Ctrl_RightShoulder/Kuroshigi_Ctrl_RightArm/Kuroshigi_Ctrl_RightForeArm/Kuroshigi_Ctrl_RightHand
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_HipsEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_LeftAnkleEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_LeftElbowEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_LeftFootEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_LeftHipEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_LeftKneeEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_LeftShoulderEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_LeftWristEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_RightAnkleEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_RightElbowEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_RightFootEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_RightHipEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_RightKneeEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_RightShoulderEffector
+        weight: 1
+      - path: Kuroshigi_Ctrl_Reference/Kuroshigi_Ctrl_RightWristEffector
+        weight: 1
       - path: Kuroshigi_poly
         weight: 1
-      - path: zakoari_Reference
+      - path: Kuroshigi_wait_motion_zakoari_Reference
         weight: 1
-      - path: zakoari_Reference/Character1_Hips
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_LeftUpLeg
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_LeftUpLeg
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_LeftUpLeg/Character1_LeftLeg
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_LeftUpLeg/Character1_LeftLeg
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_LeftUpLeg/Character1_LeftLeg/Character1_LeftFoot
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_LeftUpLeg/Character1_LeftLeg/Character1_LeftFoot
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_LeftUpLeg/Character1_LeftLeg/Character1_LeftFoot/Character1_LeftToeBase
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_LeftUpLeg/Character1_LeftLeg/Character1_LeftFoot/Character1_LeftToeBase
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_RightUpLeg
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_RightUpLeg
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_RightUpLeg/Character1_RightLeg
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_RightUpLeg/Character1_RightLeg
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_RightUpLeg/Character1_RightLeg/Character1_RightFoot
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_RightUpLeg/Character1_RightLeg/Character1_RightFoot
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_RightUpLeg/Character1_RightLeg/Character1_RightFoot/Character1_RightToeBase
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_RightUpLeg/Character1_RightLeg/Character1_RightFoot/Character1_RightToeBase
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftArmRoll
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftArmRoll
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftArmRoll/Character1_LeftForeArm
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftArmRoll/Character1_LeftForeArm
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftArmRoll/Character1_LeftForeArm/Character1_LeftHand
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_LeftShoulder/Character1_LeftArm/Character1_LeftArmRoll/Character1_LeftForeArm/Character1_LeftHand
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Left_tukene
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Left_tukene
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Left_tukene/Left_shokkaku
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Left_tukene/Left_shokkaku
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Left_tukene/Left_shokkaku/Left_sentan
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Left_tukene/Left_shokkaku/Left_sentan
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Right_tukene
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Right_tukene
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Right_tukene/Right_shokkaku
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Right_tukene/Right_shokkaku
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Right_tukene/Right_shokkaku/Right_sentan
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_Neck/Character1_Head/Right_tukene/Right_shokkaku/Right_sentan
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm/Character1_RightArmRoll
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm/Character1_RightArmRoll
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm/Character1_RightArmRoll/Character1_RightForeArm
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm/Character1_RightArmRoll/Character1_RightForeArm
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm/Character1_RightArmRoll/Character1_RightForeArm/Character1_RightHand
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/Character1_Spine/Character1_Spine1/Character1_Spine2/Character1_RightShoulder/Character1_RightArm/Character1_RightArmRoll/Character1_RightForeArm/Character1_RightHand
         weight: 1
-      - path: zakoari_Reference/Character1_Hips/hip
+      - path: Kuroshigi_wait_motion_zakoari_Reference/Character1_Hips/hip
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -215,7 +379,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

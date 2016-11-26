@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5d9e3861f082a074cb36b737fefc03a0
-timeCreated: 1455944439
+guid: e7777c7ea16cf7d408418e0734845585
+timeCreated: 1480171084
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -74,7 +74,7 @@ ModelImporter:
     400064: Right_shokkaku
     400066: Right_tukene
     4300000: Kuroshigi_poly
-    7400000: Kuroshigi_Attack
+    7400000: Kuroshigi_damege
     9500000: //RootNode
     13700000: Kuroshigi_poly
   materials:
@@ -99,10 +99,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Kuroshigi_Attack
+      name: Kuroshigi_damege
       takeName: Take 001
       firstFrame: 120
-      lastFrame: 255
+      lastFrame: 210
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -215,7 +215,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

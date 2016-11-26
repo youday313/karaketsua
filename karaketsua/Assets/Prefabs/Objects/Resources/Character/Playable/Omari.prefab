@@ -1069,9 +1069,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a1603485ffdbc48ae59ae5d0dec8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackEffects:
+  - {fileID: 0}
   changeTimeSingleMode: 1
-  onTapEffect: {fileID: 119380, guid: 8acc6eedfa4245b41b7847c142db3de5, type: 2}
-  selectWazaNumber: 0
+  SelectWazaNumber: 0
   resetInterval: 3
 --- !u!114 &11429998
 MonoBehaviour:
@@ -1141,10 +1142,11 @@ MonoBehaviour:
     power: 0
     deffence: 150
     skillPoint: 700
+    intellisense: 0
     singleAttackParameters:
     - wazaName: "\u7642\u8853"
       needSkillPoint: 1
-      powerMagnification: -0.5
+      powerRate: 0
       attackRanges:
       - x: -1
         y: 0
@@ -1155,13 +1157,13 @@ MonoBehaviour:
       - x: 0
         y: 1
       attackDistance: 0
+      isForceFace: 0
       isMultiAttack: 0
       actionParameters:
       - judgeTime: 1
-        startInterval: 1
     - wazaName: "\u6C37\u7D50"
       needSkillPoint: 1
-      powerMagnification: 1.2
+      powerRate: 0
       attackRanges:
       - x: -2
         y: 0
@@ -1172,26 +1174,24 @@ MonoBehaviour:
       - x: 0
         y: -2
       attackDistance: 0
+      isForceFace: 0
       isMultiAttack: 0
       actionParameters:
       - judgeTime: 0.64
-        startInterval: 1
       - judgeTime: 0.288
-        startInterval: 0
       - judgeTime: 0.288
-        startInterval: 0
     moveAttackParameter:
       wazaName: "\u79FB\u52D5\u653B\u6483"
       needSkillPoint: 10
-      powerMagnification: -1
+      powerRate: 0
       moveRange: 4
-      needMovePoint: 0
     autoAttackParameter:
       wazaName: 
       needSkillPoint: 0
-      powerMagnification: 0
+      powerRate: 0
       attackRanges: []
       attackDistance: 0
+      isForceFace: 0
   IsEnemy: 0
   PositionArray:
     x: 0

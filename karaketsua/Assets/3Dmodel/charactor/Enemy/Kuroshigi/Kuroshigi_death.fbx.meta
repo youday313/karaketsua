@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 11a141130be44224497833721286dd1f
-timeCreated: 1455944882
+guid: a2d3cc842bf4b8c46937b3183b0866a0
+timeCreated: 1480171204
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -74,7 +74,7 @@ ModelImporter:
     400064: Right_shokkaku
     400066: Right_tukene
     4300000: Kuroshigi_poly
-    7400000: Kuroshigi_Damege
+    7400000: Kuroshigi_death
     9500000: //RootNode
     13700000: Kuroshigi_poly
   materials:
@@ -99,10 +99,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Kuroshigi_Damege
+      name: Kuroshigi_death
       takeName: Take 001
       firstFrame: 120
-      lastFrame: 210
+      lastFrame: 230
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -215,7 +215,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:

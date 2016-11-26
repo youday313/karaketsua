@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fbfe93323d03ca549b608df4dd83356d
-timeCreated: 1455944602
+guid: d0e79454569058c498b2a9285ba751e0
+timeCreated: 1480170573
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -74,7 +74,7 @@ ModelImporter:
     400064: Right_shokkaku
     400066: Right_tukene
     4300000: Kuroshigi_poly
-    7400000: KuroshigiDeath
+    7400000: Kuroshigi_attaack
     9500000: //RootNode
     13700000: Kuroshigi_poly
   materials:
@@ -99,10 +99,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: KuroshigiDeath
+      name: Kuroshigi_attaack
       takeName: Take 001
       firstFrame: 120
-      lastFrame: 260
+      lastFrame: 250
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -193,7 +193,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -215,7 +215,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
