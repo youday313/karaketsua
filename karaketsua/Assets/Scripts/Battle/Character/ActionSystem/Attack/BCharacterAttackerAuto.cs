@@ -26,9 +26,8 @@ namespace BattleScene
         private Transform effectCanvas;
         private AutoAttackParameter selectAttackParameter;
 
-        public override void Awake()
+        public void Start()
         {
-            base.Awake();
             effectCanvas = GameObject.FindGameObjectWithTag("EffectCanvas").transform;
             selectAttackParameter = GetComponent<BCharacterEnemy>().characterParameter.autoAttackParameter;
         }
@@ -36,11 +35,6 @@ namespace BattleScene
         public override void Enable()
         {
             base.Enable();
-
-            //技のセット
-            //selectAttackParameter = character.characterParameter.attackParameter[selectActionNumber];
-
-            //BattleStage.Instance.ChangeTileColorsToAttack(selectAttackParameter.attackRange, this.character);
         }
 
         public override void Disable()
