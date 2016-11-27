@@ -80,7 +80,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 404348}
-  - 111: {fileID: 11173100}
+  - 111: {fileID: 11164448}
   m_Layer: 0
   m_Name: DirectionIcons
   m_TagString: Untagged
@@ -337,7 +337,7 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!111 &11173100
+--- !u!111 &11164448
 Animation:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -345,9 +345,9 @@ Animation:
   m_GameObject: {fileID: 166066}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6054ab737744c2c4e81201ae2c30ed85, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 6054ab737744c2c4e81201ae2c30ed85, type: 2}
+  - {fileID: 7400000, guid: 22ae7542a7958484a8b5f94aba44fdca, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

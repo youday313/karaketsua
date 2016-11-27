@@ -152,7 +152,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Mouri_Damege
       takeName: Take 001
-      firstFrame: 120
+      firstFrame: 200
       lastFrame: 300
       wrapMode: 0
       orientationOffsetY: 0
@@ -274,7 +274,7 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

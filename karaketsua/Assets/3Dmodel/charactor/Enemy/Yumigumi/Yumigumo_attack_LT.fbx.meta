@@ -1,80 +1,95 @@
 fileFormatVersion: 2
-guid: 4c7de5bc939e3bd44b3805659c5193b8
-timeCreated: 1455945251
+guid: 8b4b7b73f5e08b3408ead215495653eb
+timeCreated: 1480242788
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Head
-    100002: Left_Foot
-    100004: Left_Fore_Arm
-    100006: Left_Hand
-    100008: Left_Knee
-    100010: Left_Leg_Midle
-    100012: Left_Leg_Root
-    100014: Left_Midle_Arm
-    100016: Left_Midle_Knee
-    100018: Left_Nail
-    100020: Left_Shoullder
-    100022: Left_Toe
-    100024: Neck
-    100026: Right_Foot
-    100028: Right_Fore_Arm
-    100030: Right_Hand
-    100032: Right_Knee
-    100034: Right_Leg_Midle
-    100036: Right_Leg_Root
-    100038: Right_Midle_Arm
-    100040: Right_Midle_Knee
-    100042: Right_Nail
-    100044: Right_Shoullder
-    100046: Right_Toe
-    100048: Spine
-    100050: Tsuru
-    100052: //RootNode
-    100054: Yumigumo_wait_motion_Arrow
-    100056: Yumigumo_wait_motion_Arrow_poly
-    100058: Yumigumo_wait_motion_Hip
-    100060: Yumigumo_wait_motion_Ya_poly
-    100062: Yumigumo_wait_motion_Yumigumo_poly
-    400000: Head
-    400002: Left_Foot
-    400004: Left_Fore_Arm
-    400006: Left_Hand
-    400008: Left_Knee
-    400010: Left_Leg_Midle
-    400012: Left_Leg_Root
-    400014: Left_Midle_Arm
-    400016: Left_Midle_Knee
-    400018: Left_Nail
-    400020: Left_Shoullder
-    400022: Left_Toe
-    400024: Neck
-    400026: Right_Foot
-    400028: Right_Fore_Arm
-    400030: Right_Hand
-    400032: Right_Knee
-    400034: Right_Leg_Midle
-    400036: Right_Leg_Root
-    400038: Right_Midle_Arm
-    400040: Right_Midle_Knee
-    400042: Right_Nail
-    400044: Right_Shoullder
-    400046: Right_Toe
-    400048: Spine
-    400050: Tsuru
-    400052: //RootNode
-    400054: Yumigumo_wait_motion_Arrow
-    400056: Yumigumo_wait_motion_Arrow_poly
-    400058: Yumigumo_wait_motion_Hip
-    400060: Yumigumo_wait_motion_Ya_poly
-    400062: Yumigumo_wait_motion_Yumigumo_poly
-    2300000: Yumigumo_wait_motion_Ya_poly
-    3300000: Yumigumo_wait_motion_Ya_poly
-    4300000: Yumigumo_wait_motion_Ya_poly
-    4300002: Yumigumo_wait_motion_Arrow_poly
-    4300004: Yumigumo_wait_motion_Yumigumo_poly
-    7400000: Yumgumo_Attack
+    100000: Arrow_rig
+    100002: Head
+    100004: Left_Foot
+    100006: Left_Fore_Arm
+    100008: Left_Hand
+    100010: Left_Knee
+    100012: Left_Leg_Midle
+    100014: Left_Leg_Root
+    100016: Left_Midle_Arm
+    100018: Left_Midle_Knee
+    100020: Left_Nail
+    100022: Left_Shoullder
+    100024: Left_Toe
+    100026: Neck
+    100028: Right_Foot
+    100030: Right_Fore_Arm
+    100032: Right_Hand
+    100034: Right_Knee
+    100036: Right_Leg_Midle
+    100038: Right_Leg_Root
+    100040: Right_Midle_Arm
+    100042: Right_Midle_Knee
+    100044: Right_Nail
+    100046: Right_Shoullder
+    100048: Right_Toe
+    100050: Spine
+    100052: Tsuru
+    100054: Tsuru_rig
+    100056: //RootNode
+    100058: Yumigumo_wait_motion_Arrow
+    100060: Yumigumo_wait_motion_Arrow_poly
+    100062: Yumigumo_wait_motion_Hip
+    100064: Yumigumo_wait_motion_Ya_poly
+    100066: Yumigumo_wait_motion_Ya_rig
+    100068: Yumigumo_wait_motion_Yumigumo_poly
+    400000: Arrow_rig
+    400002: Head
+    400004: Left_Foot
+    400006: Left_Fore_Arm
+    400008: Left_Hand
+    400010: Left_Knee
+    400012: Left_Leg_Midle
+    400014: Left_Leg_Root
+    400016: Left_Midle_Arm
+    400018: Left_Midle_Knee
+    400020: Left_Nail
+    400022: Left_Shoullder
+    400024: Left_Toe
+    400026: Neck
+    400028: Right_Foot
+    400030: Right_Fore_Arm
+    400032: Right_Hand
+    400034: Right_Knee
+    400036: Right_Leg_Midle
+    400038: Right_Leg_Root
+    400040: Right_Midle_Arm
+    400042: Right_Midle_Knee
+    400044: Right_Nail
+    400046: Right_Shoullder
+    400048: Right_Toe
+    400050: Spine
+    400052: Tsuru
+    400054: Tsuru_rig
+    400056: //RootNode
+    400058: Yumigumo_wait_motion_Arrow
+    400060: Yumigumo_wait_motion_Arrow_poly
+    400062: Yumigumo_wait_motion_Hip
+    400064: Yumigumo_wait_motion_Ya_poly
+    400066: Yumigumo_wait_motion_Ya_rig
+    400068: Yumigumo_wait_motion_Yumigumo_poly
+    2300000: Arrow_rig
+    2300002: Tsuru_rig
+    2300004: Yumigumo_wait_motion_Ya_poly
+    2300006: Yumigumo_wait_motion_Ya_rig
+    3300000: Arrow_rig
+    3300002: Tsuru_rig
+    3300004: Yumigumo_wait_motion_Ya_poly
+    3300006: Yumigumo_wait_motion_Ya_rig
+    4300000: Arrow_rig
+    4300002: Tsuru_rig
+    4300004: Yumigumo_wait_motion_Ya_poly
+    4300006: Yumigumo_wait_motion_Arrow_poly
+    4300008: Yumigumo_wait_motion_Yumigumo_poly
+    4300010: Yumigumo_wait_motion_Ya_rig
+    7400000: Yumigumo_Att
     9500000: //RootNode
     13700000: Yumigumo_wait_motion_Arrow_poly
     13700002: Yumigumo_wait_motion_Yumigumo_poly
@@ -100,7 +115,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Yumgumo_Attack
+      name: Yumigumo_Att
       takeName: Take 001
       firstFrame: 120
       lastFrame: 450
@@ -212,7 +227,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 4
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
