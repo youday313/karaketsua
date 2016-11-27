@@ -1037,7 +1037,6 @@ GameObject:
   - 95: {fileID: 9572870}
   - 114: {fileID: 11455216}
   - 114: {fileID: 11491142}
-  - 114: {fileID: 11420194}
   - 114: {fileID: 11425678}
   - 114: {fileID: 11436052}
   - 114: {fileID: 11452366}
@@ -2384,17 +2383,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11420194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 183870}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0daf44065cb345a8a0f1934a47546, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11425678
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2422,7 +2410,7 @@ MonoBehaviour:
   cameraInterval: 1
   attackTime: 2
   attackHitTime: 1
-  attackEffect: {fileID: 0}
+  attackEffect: {fileID: 193680}
 --- !u!114 &11452366
 MonoBehaviour:
   m_ObjectHideFlags: 1
