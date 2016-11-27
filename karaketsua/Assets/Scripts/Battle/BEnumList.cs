@@ -94,6 +94,8 @@ public class AutoAttackParameter: AttackParameter
     // 攻撃時向き合うか
     public bool isForceFace;
     public int attackDistance;
+    // 攻撃モーション開始からダメージが出る時間
+    public float damageShowTime;
 
     public AttackDistance GetAttackDistance()
     {

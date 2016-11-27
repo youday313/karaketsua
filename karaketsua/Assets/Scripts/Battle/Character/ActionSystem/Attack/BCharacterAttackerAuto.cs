@@ -58,13 +58,13 @@ namespace BattleScene
         private bool setTarget()
         {
             //攻撃可能位置の設定
-            var attackablePosition = selectAttackParameter.attackRanges.Select(x => IntVect2D.Add(x,character.PositionArray)).ToList();
+            var attackablePosition = selectAttackParameter.attackRanges.Select(x => IntVect2D.Add(x, character.PositionArray)).ToList();
             if(attackablePosition == null) return false;
             //デバッグ出力
             //攻撃可能位置にいるキャラクター
             var opponentCharacters = new List<BCharacterBase>();
             foreach(var pos in attackablePosition) {
-                var chara = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(pos,character.IsEnemy);
+                var chara = BCharacterManager.Instance.GetOpponentCharacterOnTileFormVect2D(pos, character.IsEnemy);
                 if(chara != null) {
                     opponentCharacters.Add(chara);
                 }
@@ -72,7 +72,7 @@ namespace BattleScene
             if(opponentCharacters.Count == 0) return false;
 
             //一番近い位置がターゲット
-            TargetList.Add(opponentCharacters.OrderBy(c => IntVect2D.Distance(c.PositionArray,character.PositionArray)).First());
+            TargetList.Add(opponentCharacters.OrderBy(c => IntVect2D.Distance(c.PositionArray, character.PositionArray)).First());
             return true;
 
         }
@@ -86,7 +86,7 @@ namespace BattleScene
             UIBottomAllManager.Instance.UpdateUI();
             //カメラ移動
             BCameraManager.Instance.ActiveLeanMode();
-            BCameraMove.Instance.MoveToAutoAttack(this,TargetList[0].transform.position);
+            BCameraMove.Instance.MoveToAutoAttack(this, TargetList[0].transform.position);
             HideOtherCharacters();
             FaceCharacter(selectAttackParameter.isForceFace);
             yield return new WaitForSeconds(cameraInterval);
@@ -98,26 +98,28 @@ namespace BattleScene
 
             IsNowAction = true;
 
-            WaitTimer.WaitSecond(() => {
+            StartCoroutine(WaitTimer.WaitSecond(() => {
                 //ダメージ
                 foreach(var target in TargetList) {
                     var damageRate = calcAutoDamageRate();
                     var characterPower = character.characterParameter.power;
-                    target.Life.Damage(characterPower,damageRate);
+                    target.Life.Damage(characterPower, damageRate);
                 }
                 //死亡
                 foreach(var target in TargetList) {
                     target.Life.CheckDestroy();
                 }
                 //攻撃終了
-                StartCoroutine(WaitTimer.WaitSecond(() => onCompleteAnimation(), attackTime));
-                IsDone = true;
-            }, attackHitTime);
-            yield return null;
+                StartCoroutine(WaitTimer.WaitSecond(() => {
+                    onCompleteAnimation();
+                }, attackTime));
+            }, selectAttackParameter.damageShowTime));
         }
 
         private void onCompleteAnimation()
         {
+            IsDone = true;
+            Debug.Log(IsNowAction);
             IsNowAction = false;
             //行動終了
             onCompleteAction();
