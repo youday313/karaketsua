@@ -9,7 +9,7 @@ public class DestroyAfterAllParticleSystem : MonoBehaviour {
     void Awake()
     {
         var particles = GetComponentsInChildren<ParticleSystem>();
-        var maxTime = particles.Max(p => p.duration);
+        var maxTime = particles.Max(p => p.startDelay + p.duration);
         Destroy(gameObject, maxTime);
     }
 }
