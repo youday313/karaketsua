@@ -391,6 +391,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 411392}
+  - 114: {fileID: 11495706}
   m_Layer: 0
   m_Name: Omari_Ice_target_efx
   m_TagString: Untagged
@@ -1623,6 +1624,7 @@ MonoBehaviour:
       attackRanges: []
       isForceFace: 0
       attackDistance: 0
+      damageShowTime: 0
   IsEnemy: 0
   PositionArray:
     x: 0
@@ -1631,6 +1633,17 @@ MonoBehaviour:
   life: {fileID: 11481506}
   mover: {fileID: 11496490}
   attacker: {fileID: 11414832}
+--- !u!114 &11495706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c27e4a404c0740bdb607a06f9fb2407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11496490
 MonoBehaviour:
   m_ObjectHideFlags: 1

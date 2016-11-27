@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 493008}
+  - 114: {fileID: 11428364}
   m_Layer: 0
   m_Name: Gaikochu_attack_efx
   m_TagString: Untagged
@@ -1174,6 +1175,7 @@ MonoBehaviour:
         y: -1
       isForceFace: 0
       attackDistance: 0
+      damageShowTime: 2
   IsEnemy: 1
   PositionArray:
     x: 0
@@ -1203,6 +1205,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1af32a153f036154b90ece5f16a58322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11428364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c27e4a404c0740bdb607a06f9fb2407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11436514

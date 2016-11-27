@@ -669,6 +669,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 429314}
+  - 114: {fileID: 11437798}
   m_Layer: 0
   m_Name: Nanakusa_nomal_attack_efx
   m_TagString: Untagged
@@ -1154,7 +1155,7 @@ Transform:
   m_LocalRotation: {x: -0.14228866, y: 0.55546254, z: -0.055114545, w: 0.81742144}
   m_LocalPosition: {x: -0.08079805, y: 0.49087033, z: 0.32997638}
   m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -9.8688, y: 69.660995, z: -14.590199}
   m_Children: []
   m_Father: {fileID: 479456}
   m_RootOrder: 0
@@ -1484,7 +1485,7 @@ Transform:
   m_LocalRotation: {x: 0.3897322, y: 0.25011128, z: -0.6650282, w: 0.5859101}
   m_LocalPosition: {x: -0.14972663, y: 1.3461468, z: -0.18054016}
   m_LocalScale: {x: -0.99999994, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 52.1256, y: -21.5275, z: -107.8619}
   m_Children: []
   m_Father: {fileID: 479456}
   m_RootOrder: 1
@@ -1885,6 +1886,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 11445770}
   character: {fileID: 11492942}
+--- !u!114 &11437798
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c27e4a404c0740bdb607a06f9fb2407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11445770
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1986,6 +1998,7 @@ MonoBehaviour:
       attackRanges: []
       isForceFace: 0
       attackDistance: 0
+      damageShowTime: 0
   IsEnemy: 0
   PositionArray:
     x: 0

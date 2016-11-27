@@ -1103,6 +1103,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 472022}
+  - 114: {fileID: 11495236}
   m_Layer: 0
   m_Name: Kuroshigi_attack_efx
   m_TagString: Untagged
@@ -2478,6 +2479,7 @@ MonoBehaviour:
       attackRanges: []
       isForceFace: 0
       attackDistance: 0
+      damageShowTime: 2
   IsEnemy: 1
   PositionArray:
     x: 0
@@ -2508,6 +2510,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ba545ed371f48744bd13478ad4e0e54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11495236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c27e4a404c0740bdb607a06f9fb2407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!137 &13791986
